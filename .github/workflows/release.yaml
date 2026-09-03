@@ -1,4 +1,6 @@
-﻿run-name: Creating new release by @{{ github.actor }}
+﻿name: Release
+
+run-name: Creating new release by @{{ github.actor }}
 
 on:
   push:
