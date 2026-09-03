@@ -1,0 +1,43 @@
+﻿run-name: Creating new release by @{{ github.actor }}
+
+on:
+  push:
+    branches:
+      - release/*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+    
+      - name: Create release
+        shell: bash
+        run: |
+          branch="${GITHUB_REF_NAME}"
+          version="${branch#release/}"
+          version="${version%.x}"
+          
+          echo "Release line: $version"
+          
+          latest=$(
+            git tag --list "$version.*" --sort=-v:refname |
+            head -n 1
+          )
+          
+          if [ -z "$latest" ]; then
+            next="$version.0"
+          else
+            patch="${latest##*.}"
+            next="$version.$((patch + 1))"
+          fi
+          
+          echo "Latest: ${latest:-none}"
+          echo "Next: $next"
+          
+          git tag "$next"
+          git push origin "$next"
