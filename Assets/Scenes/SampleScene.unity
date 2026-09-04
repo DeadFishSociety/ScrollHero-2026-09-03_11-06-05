@@ -168,6 +168,10 @@ MonoBehaviour:
   actionPanelPrefab: {fileID: 1688414409085432215, guid: 46608baadcc2f4f05b231486cef5916e, type: 3}
   overlayPicker:
     options:
+    - label: Call
+      prefab: {fileID: 532728241129940951, guid: f3fdb90f487a24cc0841ceb0f1c69849, type: 3}
+      enabled: 1
+      weight: 0
     - label: Like
       prefab: {fileID: 5946289297436305329, guid: 1b004f45ca0324274ab84f9dc612098c, type: 3}
       enabled: 1

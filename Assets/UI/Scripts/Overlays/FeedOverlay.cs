@@ -76,6 +76,13 @@ public abstract class FeedOverlay : MonoBehaviour
     /// <summary>Per-frame hook while the overlay is running.</summary>
     protected virtual void OnTick(float deltaTime) { }
 
+    /// <summary>
+    /// Swipes from the feed's SwipeInput are forwarded here while this overlay is
+    /// active. Tap-based overlays ignore it; swipe-based ones (e.g. CallOverlay)
+    /// override this to read the gesture.
+    /// </summary>
+    public virtual void OnSwipeInput(SwipeDirection direction) { }
+
     /// <summary>Text for the progress label, e.g. "3 / 8".</summary>
     protected abstract string GetProgressLabel();
 

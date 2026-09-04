@@ -51,10 +51,15 @@ public class FeedManager : MonoBehaviour
 
     private void HandleSwipe(SwipeDirection direction)
     {
-        // While an action overlay is up it handles its own input (taps on the heart,
-        // the close cross, ...). Swipes are swallowed so you can't scroll past it.
-        if (actionInProgress && currentOverlay != null && currentOverlay.BlocksSwipe)
-            return;
+        // While an action overlay is up, hand it the swipe (swipe-based overlays like
+        // the call minigame use it; tap-based ones ignore it). If it blocks swipe,
+        // stop here so you can't scroll past the action.
+        if (actionInProgress && currentOverlay != null)
+        {
+            currentOverlay.OnSwipeInput(direction);
+            if (currentOverlay.BlocksSwipe)
+                return;
+        }
 
         if (direction != SwipeDirection.Up)
             return; // only an upward swipe counts as "scrolling"

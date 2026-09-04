@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// "Like this post" — the player has to tap the heart a number of times.
+/// "Like this post" — the player taps the heart to fill it up. The fill drains
+/// over time, so they have to keep tapping to top it off before it completes.
 /// </summary>
 public class LikeOverlay : FeedOverlay
 {
@@ -13,31 +14,37 @@ public class LikeOverlay : FeedOverlay
     [Tooltip("The thing that pops when tapped. Defaults to the heart button's own transform.")]
     [SerializeField] private RectTransform heartVisual;
 
+    [Tooltip("Taps needed to fill the heart from empty, ignoring decay. " +
+             "Each tap adds 1 / this to the fill.")]
     [SerializeField, Min(1)] private int requiredTaps = 8;
 
     [Header("Fill")]
     [Tooltip("Inner heart that grows to fill the outline as taps come in. Optional.")]
     [SerializeField] private RectTransform heartFill;
 
-    [Tooltip("How full the inner heart is at 0 taps, as a fraction of its authored size. " +
+    [Tooltip("How full the inner heart is at 0% fill, as a fraction of its authored size. " +
              "0 = starts invisible, 0.2 = starts at 20%.")]
     [SerializeField, Range(0f, 1f)] private float fillStartScale = 0f;
 
-    [Tooltip("How long the inner heart takes to grow to its new size after each tap.")]
-    [SerializeField, Min(0.01f)] private float fillGrowDuration = 0.15f;
+    [Tooltip("How fast the fill drains per second while the player isn't tapping. " +
+             "0 = never shrinks.")]
+    [SerializeField, Min(0f)] private float fillDecayPerSecond = 0.25f;
+
+    [Tooltip("Smoothing time for the heart following the fill value. Smaller = snappier.")]
+    [SerializeField, Min(0.001f)] private float fillSmoothing = 0.12f;
 
     [Header("Feedback")]
     [SerializeField] private float popScale = 1.25f;
     [SerializeField, Min(0.01f)] private float popDuration = 0.12f;
 
-    [Tooltip("Optional: tinted from unfilledColor to filledColor as taps come in.")]
+    [Tooltip("Optional: tinted from unfilledColor to filledColor as the heart fills.")]
     [SerializeField] private Graphic heartGraphic;
     [SerializeField] private Color unfilledColor = new Color(1f, 1f, 1f, 0.5f);
     [SerializeField] private Color filledColor = new Color(1f, 0.2f, 0.35f, 1f);
 
-    private int taps;
+    // Continuous progress, 0..1. A tap adds 1/requiredTaps; decay chips away at it.
+    private float fill;
     private Coroutine popRoutine;
-    private Coroutine fillRoutine;
 
     // The scale the heart was authored at in the prefab. The pop animation is
     // relative to this, so a heart scaled down in the Inspector stays that size.
@@ -70,20 +77,26 @@ public class LikeOverlay : FeedOverlay
 
     protected override void OnBegin()
     {
-        taps = 0;
+        fill = 0f;
 
         if (Visual != null)
             Visual.localScale = baseScale;
 
-        if (fillRoutine != null)
-        {
-            StopCoroutine(fillRoutine);
-            fillRoutine = null;
-        }
-        if (heartFill != null)
-            heartFill.localScale = fillFullScale * fillStartScale; // snap to empty
-
+        ApplyFillScale(snap: true); // start empty immediately
         RefreshTint();
+    }
+
+    protected override void OnTick(float deltaTime)
+    {
+        // Drain while idle. Tapping outpaces this; stop tapping and it shrinks back.
+        if (fillDecayPerSecond > 0f && fill > 0f)
+        {
+            fill = Mathf.Clamp01(fill - fillDecayPerSecond * deltaTime);
+            RefreshTint();
+            ReportProgress();
+        }
+
+        ApplyFillScale(snap: false); // smoothly follow the fill value every frame
     }
 
     private void HandleTap()
@@ -91,46 +104,33 @@ public class LikeOverlay : FeedOverlay
         if (IsFinished)
             return;
 
-        taps++;
+        fill = Mathf.Clamp01(fill + 1f / requiredTaps);
         RefreshTint();
         Pop();
-        GrowFill();
 
-        if (taps >= requiredTaps)
+        if (fill >= 1f)
             Complete();
         else
             ReportProgress();
     }
 
-    // Fraction (0..1) of the inner heart's full size for the current tap count.
-    private float FillFraction => Mathf.Lerp(fillStartScale, 1f, (float)taps / requiredTaps);
+    // Target scale of the inner heart for the current fill value.
+    private Vector3 FillTarget => fillFullScale * Mathf.Lerp(fillStartScale, 1f, fill);
 
-    private void GrowFill()
+    private void ApplyFillScale(bool snap)
     {
         if (heartFill == null)
             return;
 
-        if (fillRoutine != null)
-            StopCoroutine(fillRoutine);
-
-        fillRoutine = StartCoroutine(GrowFillRoutine(fillFullScale * FillFraction));
-    }
-
-    private IEnumerator GrowFillRoutine(Vector3 target)
-    {
-        Vector3 start = heartFill.localScale;
-        float elapsed = 0f;
-
-        while (elapsed < fillGrowDuration)
+        if (snap)
         {
-            elapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / fillGrowDuration));
-            heartFill.localScale = Vector3.Lerp(start, target, t);
-            yield return null;
+            heartFill.localScale = FillTarget;
+            return;
         }
 
-        heartFill.localScale = target;
-        fillRoutine = null;
+        // Exponential smoothing toward the target; frame-rate independent.
+        float t = 1f - Mathf.Exp(-Time.deltaTime / fillSmoothing);
+        heartFill.localScale = Vector3.Lerp(heartFill.localScale, FillTarget, t);
     }
 
     private void RefreshTint()
@@ -138,7 +138,7 @@ public class LikeOverlay : FeedOverlay
         if (heartGraphic == null)
             return;
 
-        heartGraphic.color = Color.Lerp(unfilledColor, filledColor, (float)taps / requiredTaps);
+        heartGraphic.color = Color.Lerp(unfilledColor, filledColor, fill);
     }
 
     private void Pop()
@@ -170,5 +170,5 @@ public class LikeOverlay : FeedOverlay
         popRoutine = null;
     }
 
-    protected override string GetProgressLabel() => $"{Mathf.Min(taps, requiredTaps)} / {requiredTaps}";
+    protected override string GetProgressLabel() => $"{Mathf.RoundToInt(fill * 100)}%";
 }
