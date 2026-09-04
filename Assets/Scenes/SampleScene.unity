@@ -166,11 +166,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FeedManager
   scrollPanelPrefab: {fileID: 7772586537115945514, guid: b671ec575cd4544b6b717ae1acdd8636, type: 3}
   actionPanelPrefab: {fileID: 1688414409085432215, guid: 46608baadcc2f4f05b231486cef5916e, type: 3}
+  overlayPicker:
+    options:
+    - label: Like
+      prefab: {fileID: 5946289297436305329, guid: 1b004f45ca0324274ab84f9dc612098c, type: 3}
+      enabled: 1
+      weight: 0
+    - label: Ad
+      prefab: {fileID: 7243956113741152377, guid: 90ae87b499a2247ce8319021726ee6e6, type: 3}
+      enabled: 1
+      weight: 0
+    mode: 1
+    avoidImmediateRepeat: 1
   feedContainer: {fileID: 1015304934}
   swipeInput: {fileID: 82216751}
   dopamineMeter: {fileID: 82216754}
   scrollCountText: {fileID: 2073216476}
-  actionEveryNScrolls: 5
+  scoreText: {fileID: 0}
+  actionEveryNScrolls: 2
+  advanceOnActionFail: 1
 --- !u!114 &82216753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FeedItem
   Type: 0
   DisplayImage: {fileID: 0}
-  RequiredSwipe: 3
+  OverlayRoot: {fileID: 0}
 --- !u!114 &82216754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DopamineMeter
   slider: {fileID: 1842167555}
   decayPerSecond: 0.05
-  scrollBoost: 0.1
   actionSuccessBoost: 0.15
   actionFailPenalty: 0.1
 --- !u!4 &82216755

@@ -5,7 +5,6 @@ public class DopamineMeter : MonoBehaviour
 {
     [SerializeField] private Slider slider; // range 0-1
     [SerializeField] private float decayPerSecond = 0.05f;
-    [SerializeField] private float scrollBoost = 0.1f;
     [SerializeField] private float actionSuccessBoost = 0.15f;
     [SerializeField] private float actionFailPenalty = 0.1f;
 
@@ -19,7 +18,7 @@ public class DopamineMeter : MonoBehaviour
         slider.value = value;
     }
 
-    public void OnScroll() => value = Mathf.Clamp01(value + scrollBoost);
+    // Scrolling reels deliberately no longer boosts dopamine — only actions do.
     public void OnSuccessfulAction() => value = Mathf.Clamp01(value + actionSuccessBoost);
     public void OnFailedAction() => value = Mathf.Clamp01(value - actionFailPenalty);
 }
