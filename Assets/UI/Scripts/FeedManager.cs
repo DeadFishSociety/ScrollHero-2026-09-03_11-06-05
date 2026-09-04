@@ -30,11 +30,23 @@ public class FeedManager : MonoBehaviour
              "Untick to let the player keep trying the same action.")]
     [SerializeField] private bool advanceOnActionFail = true;
 
+    [Header("Notification")]
+    [Tooltip("Prefab for the notification banner (e.g. \"New message from: Mom\"). Leave empty to disable notifications.")]
+    [SerializeField] private NotificationOverlay notificationPrefab;
+
+    [Tooltip("Independent random chance per scroll, averaging one notification every this many scrolls. " +
+             "Not tied to the action-every-N-scrolls cycle, and skipped while an action overlay is showing.")]
+    [SerializeField, Min(1)] private int notificationAverageEveryNScrolls = 8;
+
+    [Tooltip("Dopamine drains this many times faster while a notification is on screen.")]
+    [SerializeField] private float notificationDrainMultiplier = 2f;
+
     private int scrollCount;
     private int score;
     private FeedItem currentItem;
     private FeedOverlay currentOverlay;
     private bool actionInProgress;
+    private NotificationOverlay activeNotification;
 
     void Start()
     {
@@ -47,10 +59,29 @@ public class FeedManager : MonoBehaviour
     {
         swipeInput.OnSwipe -= HandleSwipe;
         DetachOverlay();
+        DetachNotification();
     }
 
     private void HandleSwipe(SwipeDirection direction)
     {
+        // A notification sits on top of whatever panel is showing and swallows every
+        // swipe until it's swiped away — it doesn't share the action overlay's slot,
+        // so check it before anything else.
+        if (activeNotification != null)
+        {
+            activeNotification.OnSwipeInput(direction);
+            return;
+        }
+
+        // Roll for a notification on every upward swipe attempt — even one that an
+        // action overlay (e.g. the ad) would otherwise swallow below, so notifications
+        // can interrupt those too, not just plain scrolling.
+        if (direction == SwipeDirection.Up)
+            TryTriggerNotification();
+
+        if (activeNotification != null)
+            return; // this swipe just surfaced a notification; nothing else happens this turn
+
         // While an action overlay is up, hand it the swipe (swipe-based overlays like
         // the call minigame use it; tap-based ones ignore it). If it blocks swipe,
         // stop here so you can't scroll past the action.
@@ -135,6 +166,46 @@ public class FeedManager : MonoBehaviour
             // Let the player try again on the same panel.
             overlay.Begin();
         }
+    }
+
+    private void TryTriggerNotification()
+    {
+        if (notificationPrefab == null || currentItem == null)
+            return;
+
+        if (Random.value >= 1f / notificationAverageEveryNScrolls)
+            return;
+
+        RectTransform overlayRoot = currentItem.ResolveOverlayRoot();
+        activeNotification = Instantiate(notificationPrefab, overlayRoot, false);
+        activeNotification.Completed += OnNotificationDismissed;
+        activeNotification.Failed += OnNotificationDismissed;
+
+        if (dopamineMeter != null)
+            dopamineMeter.SetDrainMultiplier(notificationDrainMultiplier);
+
+        activeNotification.Begin();
+    }
+
+    // Dismissing a notification is neutral — unlike OnOverlayCompleted, it doesn't
+    // score or boost dopamine. It just clears the extra drain.
+    private void OnNotificationDismissed(FeedOverlay overlay)
+    {
+        DetachNotification();
+
+        if (dopamineMeter != null)
+            dopamineMeter.SetDrainMultiplier(1f);
+    }
+
+    private void DetachNotification()
+    {
+        if (activeNotification == null)
+            return;
+
+        activeNotification.Completed -= OnNotificationDismissed;
+        activeNotification.Failed -= OnNotificationDismissed;
+        Destroy(activeNotification.gameObject);
+        activeNotification = null;
     }
 
     private void UpdateScoreText()

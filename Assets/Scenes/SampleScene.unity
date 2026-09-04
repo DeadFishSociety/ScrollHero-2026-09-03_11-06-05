@@ -189,6 +189,9 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   actionEveryNScrolls: 2
   advanceOnActionFail: 1
+  notificationPrefab: {fileID: 6001001001001005, guid: b0105fab000747a8b843288e7a12be05, type: 3}
+  notificationAverageEveryNScrolls: 8
+  notificationDrainMultiplier: 2
 --- !u!114 &82216753
 MonoBehaviour:
   m_ObjectHideFlags: 0
