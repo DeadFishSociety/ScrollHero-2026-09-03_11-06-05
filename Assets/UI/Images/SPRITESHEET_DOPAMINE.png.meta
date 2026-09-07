@@ -1,0 +1,1283 @@
+fileFormatVersion: 2
+guid: 35f9b2951e4f44350a3f86a9f91130ac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5859283879436885465
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_0
+  - first:
+      213: -3350078537010379409
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_1
+  - first:
+      213: 8389105792166772466
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_2
+  - first:
+      213: -5476275327307123490
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_3
+  - first:
+      213: -5105422964722782902
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_4
+  - first:
+      213: 5830330422452588109
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_5
+  - first:
+      213: -8206834061884575676
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_6
+  - first:
+      213: -7497320655249316820
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_7
+  - first:
+      213: 8754850620646248029
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_8
+  - first:
+      213: -6796056841805880071
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_9
+  - first:
+      213: 7927346699174847928
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_10
+  - first:
+      213: -2530015604083332436
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_11
+  - first:
+      213: 1574751046943056659
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_12
+  - first:
+      213: 6972185786537248027
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_13
+  - first:
+      213: 5176346735225041431
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_14
+  - first:
+      213: -4905587650040969200
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_15
+  - first:
+      213: 7117552110292355854
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_16
+  - first:
+      213: -96121981873785460
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_17
+  - first:
+      213: -6475829553557014746
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_18
+  - first:
+      213: 2973328826978447071
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_19
+  - first:
+      213: 3836809903545599104
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_20
+  - first:
+      213: -6315044609930957047
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_21
+  - first:
+      213: -7346880610438888844
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_22
+  - first:
+      213: -6166434955456809387
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_23
+  - first:
+      213: 8234137695459131564
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_24
+  - first:
+      213: 4382465330369298862
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_25
+  - first:
+      213: 3748080101223035762
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_26
+  - first:
+      213: -2341769475259287543
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_27
+  - first:
+      213: 4611839722175151761
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_28
+  - first:
+      213: -1042988307471360073
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_29
+  - first:
+      213: 2371898699791917181
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_30
+  - first:
+      213: -6052788730069158076
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_31
+  - first:
+      213: -5296157529277248757
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_32
+  - first:
+      213: 4048112410901405213
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_33
+  - first:
+      213: 8428518466462716917
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_34
+  - first:
+      213: 8607014647383836945
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_35
+  - first:
+      213: -8062634754305843020
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_36
+  - first:
+      213: -1267977760583314575
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_37
+  - first:
+      213: 3673966716661970399
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_38
+  - first:
+      213: -5718813808526502144
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_39
+  - first:
+      213: -8295750362733871110
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_40
+  - first:
+      213: -3202737155560684194
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_41
+  - first:
+      213: -5338573859701214078
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_42
+  - first:
+      213: 5101117475951652337
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_43
+  - first:
+      213: 4346998523904833276
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_44
+  - first:
+      213: 2607169481020603016
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_45
+  - first:
+      213: -6401521058214331041
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_46
+  - first:
+      213: 616912135263672462
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_47
+  - first:
+      213: 2390313584728908140
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_48
+  - first:
+      213: -3119175129813638958
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_49
+  - first:
+      213: 6470595925692712031
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_50
+  - first:
+      213: 131805479961830488
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_51
+  - first:
+      213: 2845923030778689846
+    second: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_52
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dd120005ab505150800000000000000
+      internalID: 5859283879436885465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_1
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 2500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6506dfe1512281d0800000000000000
+      internalID: -3350078537010379409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_2
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2feb54545471c6470800000000000000
+      internalID: 8389105792166772466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_3
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 2500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed47f97ba9c5004b0800000000000000
+      internalID: -5476275327307123490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4da39ffcd4e529b0800000000000000
+      internalID: -5105422964722782902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_5
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 2250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e8079f0ae79e050800000000000000
+      internalID: 5830330422452588109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4403bc207e77b1e80800000000000000
+      internalID: -8206834061884575676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_7
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 2250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c246aa8269a24f790800000000000000
+      internalID: -7497320655249316820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e4a39114a7f7970800000000000000
+      internalID: 8754850620646248029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_9
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 2000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f42cc63f4e8fa1a0800000000000000
+      internalID: -6796056841805880071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_10
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b5aeaf62d7930e60800000000000000
+      internalID: 7927346699174847928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_11
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 2000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caaea62763493ecd0800000000000000
+      internalID: -2530015604083332436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31327badbb3aad510800000000000000
+      internalID: 1574751046943056659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_13
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 1750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b15849a580e22c060800000000000000
+      internalID: 6972185786537248027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_14
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71277532ee316d740800000000000000
+      internalID: 5176346735225041431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_15
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018c3c0f50adbebb0800000000000000
+      internalID: -4905587650040969200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0bce441fef96c260800000000000000
+      internalID: 7117552110292355854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_17
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 1500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c857e4711918aaef0800000000000000
+      internalID: -96121981873785460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_18
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 627f14ad45b3126a0800000000000000
+      internalID: -6475829553557014746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_19
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdeaa7490d2634920800000000000000
+      internalID: 2973328826978447071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 084498b67461f3530800000000000000
+      internalID: 3836809903545599104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_21
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 1250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90fe154c2647c58a0800000000000000
+      internalID: -6315044609930957047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_22
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 472c59f9203aa0a90800000000000000
+      internalID: -7346880610438888844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_23
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 556f175441c6c6aa0800000000000000
+      internalID: -6166434955456809387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca0ce719b98854270800000000000000
+      internalID: 8234137695459131564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_25
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 1000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea18029aff4a1dc30800000000000000
+      internalID: 4382465330369298862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_26
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 273fb1f6efad30430800000000000000
+      internalID: 3748080101223035762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_27
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1000
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9083159c11d508fd0800000000000000
+      internalID: -2341769475259287543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19e3941facb800040800000000000000
+      internalID: 4611839722175151761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_29
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf984c09af8681f0800000000000000
+      internalID: -1042988307471360073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_30
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70ee44fc4daae020800000000000000
+      internalID: 2371898699791917181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_31
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 750
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4477db318bc200ca0800000000000000
+      internalID: -6052788730069158076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0b4be099c44086b0800000000000000
+      internalID: -5296157529277248757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_33
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1ed0a63ac8cd2830800000000000000
+      internalID: 4048112410901405213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_34
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f3945893ec18f470800000000000000
+      internalID: 8428518466462716917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_35
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 500
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 119c5e94832427770800000000000000
+      internalID: 8607014647383836945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b0a1eb9864cb1090800000000000000
+      internalID: -8062634754305843020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_37
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 173165dd1fc376ee0800000000000000
+      internalID: -1267977760583314575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_38
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd5be37634d8cf230800000000000000
+      internalID: 3673966716661970399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_39
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 250
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007dd260421b2a0b0800000000000000
+      internalID: -5718813808526502144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afffde37ff29fdc80800000000000000
+      internalID: -8295750362733871110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_41
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 500
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e554cdd96879d83d0800000000000000
+      internalID: -3202737155560684194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 23067247a13564b3493482da9c19b8ab
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":500.0,"y":250.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_0: 5859283879436885465
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_1: -3350078537010379409
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_10: 7927346699174847928
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_11: -2530015604083332436
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_12: 1574751046943056659
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_13: 6972185786537248027
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_14: 5176346735225041431
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_15: -4905587650040969200
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_16: 7117552110292355854
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_17: -96121981873785460
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_18: -6475829553557014746
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_19: 2973328826978447071
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_2: 8389105792166772466
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_20: 3836809903545599104
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_21: -6315044609930957047
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_22: -7346880610438888844
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_23: -6166434955456809387
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_24: 8234137695459131564
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_25: 4382465330369298862
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_26: 3748080101223035762
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_27: -2341769475259287543
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_28: 4611839722175151761
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_29: -1042988307471360073
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_3: -5476275327307123490
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_30: 2371898699791917181
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_31: -6052788730069158076
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_32: -5296157529277248757
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_33: 4048112410901405213
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_34: 8428518466462716917
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_35: 8607014647383836945
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_36: -8062634754305843020
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_37: -1267977760583314575
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_38: 3673966716661970399
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_39: -5718813808526502144
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_4: -5105422964722782902
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_40: -8295750362733871110
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_41: -3202737155560684194
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_5: 5830330422452588109
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_6: -8206834061884575676
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_7: -7497320655249316820
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_8: 8754850620646248029
+      SPRITESHEET_FULLYANIMATED_BACKUP_COPYNOTEXTURE_ANIMATION_DOPAMINE_9: -6796056841805880071
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,7 +15,6 @@ public class FeedManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private RectTransform feedContainer;
     [SerializeField] private SwipeInput swipeInput;
-    [SerializeField] private DopamineMeter dopamineMeter;
 
     [Tooltip("Shows how many reels have been scrolled (not the score).")]
     [SerializeField] private TMP_Text scrollCountText;
@@ -23,8 +22,15 @@ public class FeedManager : MonoBehaviour
     [Tooltip("Optional. Shows the score — only successful actions raise it.")]
     [SerializeField] private TMP_Text scoreText;
 
+    [Tooltip("Optional. Shows how many lives are left.")]
+    [SerializeField] private TMP_Text livesText;
+
     [Header("Settings")]
     [SerializeField] private int actionEveryNScrolls = 5;
+
+    [Tooltip("Lives the player starts with. Each time a dopamine timer empties " +
+             "before the reel/action is cleared, one life is lost.")]
+    [SerializeField, Min(1)] private int startingLives = 5;
 
     [Tooltip("When an action overlay fails (e.g. times out), move on to the next reel anyway. " +
              "Untick to let the player keep trying the same action.")]
@@ -32,14 +38,22 @@ public class FeedManager : MonoBehaviour
 
     private int scrollCount;
     private int score;
+    private int lives;
+    private bool gameOver;
     private FeedItem currentItem;
     private FeedOverlay currentOverlay;
+    private ReelTimer currentReelTimer;
     private bool actionInProgress;
+
+    /// <summary>Fired once when lives reach zero. Hook a lose screen here later.</summary>
+    public event System.Action GameOver;
 
     void Start()
     {
         swipeInput.OnSwipe += HandleSwipe;
+        lives = startingLives;
         UpdateScoreText();
+        UpdateLivesText();
         SpawnScroll();
     }
 
@@ -47,10 +61,14 @@ public class FeedManager : MonoBehaviour
     {
         swipeInput.OnSwipe -= HandleSwipe;
         DetachOverlay();
+        DetachReelTimer();
     }
 
     private void HandleSwipe(SwipeDirection direction)
     {
+        if (gameOver)
+            return; // feed is frozen once the player is out of lives
+
         // While an action overlay is up, hand it the swipe (swipe-based overlays like
         // the call minigame use it; tap-based ones ignore it). If it blocks swipe,
         // stop here so you can't scroll past the action.
@@ -81,6 +99,27 @@ public class FeedManager : MonoBehaviour
     {
         actionInProgress = false;
         SpawnPanel(FeedItemType.Scroll);
+
+        // A scroll reel is timed: the player must swipe up before its dopamine
+        // timer empties, or a life is lost. Action panels have no ReelTimer — the
+        // overlay owns their timer instead.
+        currentReelTimer = currentItem != null ? currentItem.GetComponentInChildren<ReelTimer>() : null;
+        if (currentReelTimer != null)
+        {
+            currentReelTimer.Expired += OnReelExpired;
+            currentReelTimer.Restart();
+        }
+    }
+
+    private void OnReelExpired()
+    {
+        // Timed out before the player swiped away — lose a life, then move on.
+        // (This wasn't a scroll, so scrollCount is left unchanged.)
+        LoseLife();
+        if (gameOver)
+            return;
+
+        SpawnScroll();
     }
 
     private void SpawnAction()
@@ -113,8 +152,6 @@ public class FeedManager : MonoBehaviour
     {
         score++;
         UpdateScoreText();
-        if (dopamineMeter != null)
-            dopamineMeter.OnSuccessfulAction();
 
         DetachOverlay();
         SpawnScroll();
@@ -122,8 +159,10 @@ public class FeedManager : MonoBehaviour
 
     private void OnOverlayFailed(FeedOverlay overlay)
     {
-        if (dopamineMeter != null)
-            dopamineMeter.OnFailedAction();
+        // The action's dopamine timer ran out (or the player gave up) — lose a life.
+        LoseLife();
+        if (gameOver)
+            return;
 
         if (advanceOnActionFail)
         {
@@ -135,6 +174,34 @@ public class FeedManager : MonoBehaviour
             // Let the player try again on the same panel.
             overlay.Begin();
         }
+    }
+
+    private void LoseLife()
+    {
+        if (gameOver)
+            return;
+
+        lives = Mathf.Max(0, lives - 1);
+        UpdateLivesText();
+
+        if (lives <= 0)
+            EndGame();
+    }
+
+    private void EndGame()
+    {
+        gameOver = true;
+        DetachReelTimer();
+        DetachOverlay();
+        Debug.Log("[FeedManager] GAME OVER — out of lives.");
+        GameOver?.Invoke();
+        // Feed is frozen: HandleSwipe ignores input and nothing new is spawned.
+    }
+
+    private void UpdateLivesText()
+    {
+        if (livesText != null)
+            livesText.text = $"Lives: {lives}";
     }
 
     private void UpdateScoreText()
@@ -153,9 +220,20 @@ public class FeedManager : MonoBehaviour
         currentOverlay = null;
     }
 
+    private void DetachReelTimer()
+    {
+        if (currentReelTimer == null)
+            return;
+
+        currentReelTimer.Expired -= OnReelExpired;
+        currentReelTimer.Stop();
+        currentReelTimer = null;
+    }
+
     private void SpawnPanel(FeedItemType type)
     {
         DetachOverlay();
+        DetachReelTimer();
 
         if (currentItem != null)
             Destroy(currentItem.gameObject); // destroys the overlay child too
