@@ -42,6 +42,33 @@ public class LikeOverlay : FeedOverlay
     [SerializeField] private Color unfilledColor = new Color(1f, 1f, 1f, 0.5f);
     [SerializeField] private Color filledColor = new Color(1f, 0.2f, 0.35f, 1f);
 
+    [Header("Particles")]
+    [Tooltip("Little sprites that burst out of the heart on each tap. 0 = no particles.\n" +
+             "Sizes and distances below are fractions of the heart's CURRENT radius, so " +
+             "they scale automatically as the heart grows or if it's sized bigger on screen.")]
+    [SerializeField, Min(0)] private int particleCount = 10;
+
+    [Tooltip("Sprite for each particle. Leave empty to reuse the heart's own sprite.")]
+    [SerializeField] private Sprite particleSprite;
+
+    [SerializeField] private Color particleColor = new Color(1f, 0.2f, 0.35f, 1f);
+
+    [Tooltip("Particle diameter as a fraction of the heart's current radius.")]
+    [SerializeField, Min(0f)] private float particleSizeFraction = 0.22f;
+
+    [Tooltip("Where particles spawn, as a fraction of the heart's radius out from its centre. " +
+             "1 = right at the edge — keeps them from being hidden behind the heart.")]
+    [SerializeField, Range(0f, 2f)] private float particleStartRadius = 0.9f;
+
+    [Tooltip("How fast particles fly out, in heart-radii per second, picked randomly in this range.")]
+    [SerializeField] private Vector2 particleSpeedRange = new Vector2(1.2f, 2.6f);
+
+    [Tooltip("Downward pull on particles, in heart-radii per second². 0 = they fly straight out.")]
+    [SerializeField] private float particleGravity = 4f;
+
+    [Tooltip("Seconds a particle lives before it has fully shrunk and faded.")]
+    [SerializeField, Min(0.05f)] private float particleLifetime = 0.6f;
+
     // Continuous progress, 0..1. A tap adds 1/requiredTaps; decay chips away at it.
     private float fill;
     private Coroutine popRoutine;
@@ -107,6 +134,7 @@ public class LikeOverlay : FeedOverlay
         fill = Mathf.Clamp01(fill + 1f / requiredTaps);
         RefreshTint();
         Pop();
+        EmitBurst();
 
         if (fill >= 1f)
             Complete();
@@ -168,6 +196,106 @@ public class LikeOverlay : FeedOverlay
 
         visual.localScale = baseScale;
         popRoutine = null;
+    }
+
+    // Spray a handful of small heart sprites out from the heart on each tap. These
+    // are plain UI Images so they render on the same canvas as the overlay, no
+    // ParticleSystem or material setup required.
+    //
+    // Sizes and distances are all measured in "heart radii" — a fraction of the
+    // heart's current on-screen radius — so the burst automatically scales with the
+    // heart as it grows with taps or if it's sized bigger on screen, and particles
+    // always start at the edge instead of hiding behind the heart.
+    private void EmitBurst()
+    {
+        RectTransform origin = Visual;
+        RectTransform parent = transform as RectTransform;
+        if (particleCount <= 0 || origin == null || parent == null)
+            return;
+
+        Sprite sprite = particleSprite != null ? particleSprite : ResolveHeartSprite();
+        if (sprite == null)
+            return;
+
+        float radius = CurrentHeartRadius(parent);
+        if (radius <= 0f)
+            return;
+
+        // The heart is a direct child of this overlay root, so its anchored position
+        // is exactly where the burst should start in the particles' parent space.
+        Vector2 start = origin.anchoredPosition;
+
+        for (int i = 0; i < particleCount; i++)
+        {
+            float angle = Random.Range(0f, Mathf.PI * 2f);
+            Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            Vector2 spawn = start + dir * (radius * particleStartRadius);
+            Vector2 velocity = dir * (Random.Range(particleSpeedRange.x, particleSpeedRange.y) * radius);
+            StartCoroutine(ParticleRoutine(parent, sprite, spawn, velocity, radius));
+        }
+    }
+
+    // The heart's current radius in the particles' parent space, folding in the fill
+    // growth, the tap pop, and however big the heart is authored on screen.
+    private float CurrentHeartRadius(RectTransform parent)
+    {
+        RectTransform heart = heartFill != null ? heartFill : Visual;
+        if (heart == null)
+            return 0f;
+
+        var corners = new Vector3[4]; // bottom-left, top-left, top-right, bottom-right
+        heart.GetWorldCorners(corners);
+        float worldWidth = Vector3.Distance(corners[0], corners[3]);
+        float worldHeight = Vector3.Distance(corners[0], corners[1]);
+        float worldRadius = 0.5f * Mathf.Min(worldWidth, worldHeight);
+
+        float parentScale = parent.lossyScale.x;
+        return Mathf.Approximately(parentScale, 0f) ? worldRadius : worldRadius / parentScale;
+    }
+
+    private Sprite ResolveHeartSprite()
+    {
+        if (heartButton != null && heartButton.image != null && heartButton.image.sprite != null)
+            return heartButton.image.sprite;
+        return heartGraphic is Image graphicImage ? graphicImage.sprite : null;
+    }
+
+    private IEnumerator ParticleRoutine(RectTransform parent, Sprite sprite, Vector2 startPos, Vector2 velocity, float radius)
+    {
+        var go = new GameObject("HeartParticle", typeof(RectTransform), typeof(Image));
+        var rect = (RectTransform)go.transform;
+        rect.SetParent(parent, worldPositionStays: false);
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
+        float size = radius * particleSizeFraction;
+        rect.sizeDelta = new Vector2(size, size);
+        rect.anchoredPosition = startPos;
+
+        var image = go.GetComponent<Image>();
+        image.sprite = sprite;
+        image.raycastTarget = false;
+        image.preserveAspect = true;
+
+        float gravity = particleGravity * radius; // radii/s² → parent units/s²
+        float elapsed = 0f;
+        while (elapsed < particleLifetime)
+        {
+            float dt = Time.deltaTime;
+            elapsed += dt;
+
+            velocity += Vector2.down * (gravity * dt);
+            rect.anchoredPosition += velocity * dt;
+
+            float t = elapsed / particleLifetime;
+            rect.localScale = Vector3.one * Mathf.Lerp(1f, 0.2f, t);
+
+            Color c = particleColor;
+            c.a = particleColor.a * (1f - t);
+            image.color = c;
+
+            yield return null;
+        }
+
+        Destroy(go);
     }
 
     protected override string GetProgressLabel() => $"{Mathf.RoundToInt(fill * 100)}%";
