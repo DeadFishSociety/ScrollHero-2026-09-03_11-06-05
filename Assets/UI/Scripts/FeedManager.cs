@@ -22,8 +22,8 @@ public class FeedManager : MonoBehaviour
     [Tooltip("Optional. Shows the score — only successful actions raise it.")]
     [SerializeField] private TMP_Text scoreText;
 
-    [Tooltip("Optional. Shows how many lives are left.")]
-    [SerializeField] private TMP_Text livesText;
+    [Tooltip("The dog health indicator — shows current health as a frame and shakes on a hit.")]
+    [SerializeField] private HealthDisplay healthDisplay;
 
     [Header("Settings")]
     [SerializeField] private int actionEveryNScrolls = 5;
@@ -53,7 +53,8 @@ public class FeedManager : MonoBehaviour
         swipeInput.OnSwipe += HandleSwipe;
         lives = startingLives;
         UpdateScoreText();
-        UpdateLivesText();
+        if (healthDisplay != null)
+            healthDisplay.SetHealth(lives, startingLives);
         SpawnScroll();
     }
 
@@ -104,11 +105,19 @@ public class FeedManager : MonoBehaviour
         // timer empties, or a life is lost. Action panels have no ReelTimer — the
         // overlay owns their timer instead.
         currentReelTimer = currentItem != null ? currentItem.GetComponentInChildren<ReelTimer>() : null;
-        if (currentReelTimer != null)
+        ReelTimer reelTimer = currentReelTimer;
+        if (reelTimer != null)
         {
-            currentReelTimer.Expired += OnReelExpired;
-            currentReelTimer.Restart();
+            reelTimer.Expired += OnReelExpired;
+            reelTimer.Prime(); // show a full gauge while it slides in
         }
+
+        // Start the countdown only once the reel has finished sliding into place.
+        SlidePanelIn(() =>
+        {
+            if (reelTimer != null && currentReelTimer == reelTimer)
+                reelTimer.Begin();
+        });
     }
 
     private void OnReelExpired()
@@ -131,6 +140,7 @@ public class FeedManager : MonoBehaviour
         {
             // Nothing usable in the pool — treat it as a normal reel instead of stalling.
             actionInProgress = false;
+            SlidePanelIn(null);
             return;
         }
 
@@ -145,7 +155,15 @@ public class FeedManager : MonoBehaviour
         currentOverlay.Failed += OnOverlayFailed;
 
         actionInProgress = true;
-        currentOverlay.Begin();
+        currentOverlay.Begin(); // sets the minigame up + primes the gauge; timer not counting yet
+
+        // Start the countdown only once the panel has finished sliding into place.
+        FeedOverlay overlay = currentOverlay;
+        SlidePanelIn(() =>
+        {
+            if (overlay != null && currentOverlay == overlay)
+                overlay.StartTimer();
+        });
     }
 
     private void OnOverlayCompleted(FeedOverlay overlay)
@@ -182,7 +200,8 @@ public class FeedManager : MonoBehaviour
             return;
 
         lives = Mathf.Max(0, lives - 1);
-        UpdateLivesText();
+        if (healthDisplay != null)
+            healthDisplay.PlayDamage(lives, startingLives); // flash + shake, settle on new frame
 
         if (lives <= 0)
             EndGame();
@@ -196,12 +215,6 @@ public class FeedManager : MonoBehaviour
         Debug.Log("[FeedManager] GAME OVER — out of lives.");
         GameOver?.Invoke();
         // Feed is frozen: HandleSwipe ignores input and nothing new is spawned.
-    }
-
-    private void UpdateLivesText()
-    {
-        if (livesText != null)
-            livesText.text = $"Lives: {lives}";
     }
 
     private void UpdateScoreText()
@@ -243,7 +256,25 @@ public class FeedManager : MonoBehaviour
 
         RectTransform rt = currentItem.GetComponent<RectTransform>();
         StretchToFill(rt);
-        StartCoroutine(SlideIn(rt));
+        // The slide is kicked off by the caller (SpawnScroll/SpawnAction) via
+        // SlidePanelIn, so it can start that panel's timer when the slide finishes.
+    }
+
+    /// <summary>
+    /// Slides the current panel up into place, then runs <paramref name="onComplete"/>.
+    /// Timers are started in that callback so the countdown begins only once the panel
+    /// has landed (not while it is still animating in).
+    /// </summary>
+    private void SlidePanelIn(System.Action onComplete)
+    {
+        if (currentItem == null)
+        {
+            onComplete?.Invoke();
+            return;
+        }
+
+        RectTransform rt = currentItem.GetComponent<RectTransform>();
+        StartCoroutine(SlideIn(rt, onComplete));
     }
 
     private static void StretchToFill(RectTransform rt)
@@ -258,8 +289,14 @@ public class FeedManager : MonoBehaviour
         rt.localScale = Vector3.one;
     }
 
-    private IEnumerator SlideIn(RectTransform rt)
+    private IEnumerator SlideIn(RectTransform rt, System.Action onComplete)
     {
+        if (rt == null)
+        {
+            onComplete?.Invoke();
+            yield break;
+        }
+
         float duration = 0.2f;
         float elapsed = 0f;
         Vector2 startPos = new Vector2(0f, -Screen.height); // start off-screen below
@@ -269,11 +306,18 @@ public class FeedManager : MonoBehaviour
 
         while (elapsed < duration)
         {
+            if (rt == null)
+                yield break; // panel was swiped away / destroyed mid-slide
+
             elapsed += Time.deltaTime;
             rt.anchoredPosition = Vector2.Lerp(startPos, endPos, elapsed / duration);
             yield return null;
         }
 
+        if (rt == null)
+            yield break;
+
         rt.anchoredPosition = endPos;
+        onComplete?.Invoke();
     }
 }

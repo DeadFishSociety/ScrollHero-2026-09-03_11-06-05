@@ -5,9 +5,10 @@ using UnityEngine;
 /// The countdown that lives on a scroll reel. It drains every frame, drives an
 /// optional DopamineGauge, and fires <see cref="Expired"/> the instant it empties.
 ///
-/// FeedManager calls <see cref="Restart"/> when the reel becomes active, and turns
-/// <see cref="Expired"/> into a lost life. If the player swipes the reel away in
-/// time, FeedManager calls <see cref="Stop"/> so no life is lost.
+/// FeedManager calls <see cref="Prime"/> when the reel spawns and <see cref="Begin"/>
+/// once it has slid into place, and turns <see cref="Expired"/> into a lost life. If
+/// the player swipes the reel away in time, FeedManager calls <see cref="Stop"/> so no
+/// life is lost.
 ///
 /// Both knobs (duration, drain rate) live here on the reel itself, so each reel
 /// prefab can be tuned independently.
@@ -24,10 +25,17 @@ public class ReelTimer : MonoBehaviour
     /// <summary>Fired on the frame the timer empties.</summary>
     public event Action Expired;
 
-    /// <summary>Refill and start draining. Call when this reel becomes the active one.</summary>
-    public void Restart()
+    /// <summary>Refill and show a full gauge, but don't count yet (while the reel slides in).</summary>
+    public void Prime()
     {
-        timer.Restart();
+        timer.Prime();
+        PushToGauge();
+    }
+
+    /// <summary>Start draining. FeedManager calls this once the reel has slid into place.</summary>
+    public void Begin()
+    {
+        timer.Run();
         PushToGauge();
     }
 

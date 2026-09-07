@@ -43,19 +43,37 @@ public abstract class FeedOverlay : MonoBehaviour
     /// <summary>Partial progress (one tap of many). Used for small feedback, not scoring.</summary>
     public event Action<FeedOverlay> Progressed;
 
-    /// <summary>Called by FeedManager right after the overlay is spawned.</summary>
+    private bool active; // timer is counting (between StartTimer and finish)
+
+    /// <summary>
+    /// Called by FeedManager right after the overlay is spawned. Sets the minigame up
+    /// and primes the gauge to full, but does NOT start the countdown yet — that waits
+    /// for <see cref="StartTimer"/> so the clock only begins once the panel has slid in.
+    /// </summary>
     public void Begin()
     {
         IsFinished = false;
-        timer.Restart();
+        active = false;
+        timer.Prime();
         PushToGauge();
         OnBegin();
         RefreshProgressText();
     }
 
-    private void Update()
+    /// <summary>Start the countdown. FeedManager calls this when the panel finishes sliding in.</summary>
+    public void StartTimer()
     {
         if (IsFinished)
+            return;
+
+        active = true;
+        timer.Run();
+        PushToGauge();
+    }
+
+    private void Update()
+    {
+        if (!active)
             return;
 
         bool justEmptied = timer.Tick(Time.deltaTime);
@@ -107,6 +125,7 @@ public abstract class FeedOverlay : MonoBehaviour
             return;
 
         IsFinished = true;
+        active = false;
         timer.Stop();
         RefreshProgressText();
         Completed?.Invoke(this);
@@ -118,6 +137,7 @@ public abstract class FeedOverlay : MonoBehaviour
             return;
 
         IsFinished = true;
+        active = false;
         timer.Stop();
         RefreshProgressText();
         Failed?.Invoke(this);

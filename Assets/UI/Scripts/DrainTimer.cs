@@ -21,7 +21,7 @@ public class DrainTimer
 
     private float remaining;
 
-    /// <summary>True between Restart() and the moment it empties (or Stop()).</summary>
+    /// <summary>True between Run() and the moment it empties (or Stop()).</summary>
     public bool Running { get; private set; }
 
     /// <summary>1 = full, 0 = empty. A duration of 0 means "no timer" and stays full.</summary>
@@ -29,8 +29,16 @@ public class DrainTimer
 
     public bool IsEmpty => remaining <= 0f;
 
-    /// <summary>Refill to full and start draining. Called when the panel becomes active.</summary>
-    public void Restart()
+    /// <summary>Refill to full but don't count yet — the gauge shows full while the
+    /// panel slides in. Call <see cref="Run"/> to actually start draining.</summary>
+    public void Prime()
+    {
+        remaining = duration;
+        Running = false;
+    }
+
+    /// <summary>Refill to full and start draining now.</summary>
+    public void Run()
     {
         remaining = duration;
         Running = duration > 0f;
