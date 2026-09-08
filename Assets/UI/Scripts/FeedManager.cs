@@ -52,6 +52,10 @@ public class FeedManager : MonoBehaviour
     private ReelTimer currentReelTimer;
     private bool actionInProgress;
 
+    /// <summary>Description paired with the current scroll reel's video. For later use
+    /// (e.g. an overlay caption). Empty until the first video reel has spawned.</summary>
+    public string CurrentReelDescription { get; private set; } = string.Empty;
+
     /// <summary>Fired once when lives reach zero. Hook a lose screen here later.</summary>
     public event System.Action GameOver;
 
@@ -107,6 +111,13 @@ public class FeedManager : MonoBehaviour
     {
         actionInProgress = false;
         SpawnPanel(FeedItemType.Scroll);
+
+        // Remember this reel's video description so it can be used later (e.g. an
+        // overlay caption). ReelVideo picks its clip in OnEnable during Instantiate,
+        // so CurrentDescription is already set by the time we read it here.
+        ReelVideo reelVideo = currentItem != null ? currentItem.GetComponentInChildren<ReelVideo>() : null;
+        if (reelVideo != null)
+            CurrentReelDescription = reelVideo.CurrentDescription;
 
         // A scroll reel is timed: the player must swipe up before its dopamine
         // timer empties, or a life is lost. Action panels have no ReelTimer — the
