@@ -25,6 +25,9 @@ public class FeedManager : MonoBehaviour
     [Tooltip("The dog health indicator — shows current health as a frame and shakes on a hit.")]
     [SerializeField] private HealthDisplay healthDisplay;
 
+    [Tooltip("Game-over UI. Revealed after the death explosion plays.")]
+    [SerializeField] private GameOverScreen gameOverScreen;
+
     [Header("Settings")]
     [SerializeField] private int actionEveryNScrolls = 5;
 
@@ -200,11 +203,15 @@ public class FeedManager : MonoBehaviour
             return;
 
         lives = Mathf.Max(0, lives - 1);
-        if (healthDisplay != null)
-            healthDisplay.PlayDamage(lives, startingLives); // flash + shake, settle on new frame
 
         if (lives <= 0)
-            EndGame();
+        {
+            EndGame(); // the fatal hit: the dog explodes instead of a normal shake
+        }
+        else if (healthDisplay != null)
+        {
+            healthDisplay.PlayDamage(lives, startingLives); // flash + shake, settle on new frame
+        }
     }
 
     private void EndGame()
@@ -215,6 +222,19 @@ public class FeedManager : MonoBehaviour
         Debug.Log("[FeedManager] GAME OVER — out of lives.");
         GameOver?.Invoke();
         // Feed is frozen: HandleSwipe ignores input and nothing new is spawned.
+
+        // Explode the dog in place, then reveal the game-over screen after its first
+        // cycle. If there's no health display, just show the screen straight away.
+        if (healthDisplay != null)
+            healthDisplay.PlayExplosion(ShowGameOverScreen);
+        else
+            ShowGameOverScreen();
+    }
+
+    private void ShowGameOverScreen()
+    {
+        if (gameOverScreen != null)
+            gameOverScreen.Show();
     }
 
     private void UpdateScoreText()

@@ -31,9 +31,18 @@ public class HealthDisplay : MonoBehaviour
     [Tooltip("How far (pixels) the image jitters at the start of the shake.")]
     [SerializeField, Min(0f)] private float shakeMagnitude = 15f;
 
+    [Header("Death explosion")]
+    [Tooltip("DopeDogXplosion frames in play order. Played on THIS image at game over, " +
+             "so the dog appears to explode in place.")]
+    [SerializeField] private Sprite[] explosionFrames;
+
+    [Tooltip("Explosion playback speed, frames per second.")]
+    [SerializeField, Min(0.1f)] private float explosionFps = 24f;
+
     private RectTransform rt;
     private Vector2 home;
     private Coroutine shakeRoutine;
+    private Coroutine explosionRoutine;
 
     private void Awake()
     {
@@ -85,6 +94,56 @@ public class HealthDisplay : MonoBehaviour
         rt.anchoredPosition = home;
         ShowFrame(livesRemaining, maxLives);
         shakeRoutine = null;
+    }
+
+    /// <summary>
+    /// Take over the dog image and loop the explosion animation in place (the dog
+    /// "explodes"). <paramref name="onFirstCycleComplete"/> fires once, after the first
+    /// full pass through the frames — the explosion keeps looping after that.
+    /// </summary>
+    public void PlayExplosion(System.Action onFirstCycleComplete)
+    {
+        // Hand the image over to the explosion: cancel any shake and snap back to rest.
+        if (shakeRoutine != null)
+        {
+            StopCoroutine(shakeRoutine);
+            shakeRoutine = null;
+        }
+        if (rt != null)
+            rt.anchoredPosition = home;
+
+        if (explosionRoutine != null)
+            StopCoroutine(explosionRoutine);
+
+        // Nothing to play — don't stall the game-over flow, reveal immediately.
+        if (image == null || explosionFrames == null || explosionFrames.Length == 0)
+        {
+            onFirstCycleComplete?.Invoke();
+            return;
+        }
+
+        explosionRoutine = StartCoroutine(ExplosionLoop(onFirstCycleComplete));
+    }
+
+    private IEnumerator ExplosionLoop(System.Action onFirstCycleComplete)
+    {
+        float frameTime = 1f / explosionFps;
+        bool firstCycleDone = false;
+
+        while (true)
+        {
+            for (int i = 0; i < explosionFrames.Length; i++)
+            {
+                image.sprite = explosionFrames[i];
+                yield return new WaitForSeconds(frameTime);
+            }
+
+            if (!firstCycleDone)
+            {
+                firstCycleDone = true;
+                onFirstCycleComplete?.Invoke();
+            }
+        }
     }
 
     private void ShowFrame(int livesRemaining, int maxLives)
