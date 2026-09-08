@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: d54854ceec0d5422cb65b45ee8628534
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3967518488746042800
+    second: DOPAMINE_0
+  - first:
+      213: -2312014457037183051
+    second: DOPAMINE_1
+  - first:
+      213: -7146520239521506628
+    second: DOPAMINE_2
+  - first:
+      213: 2736390594457488143
+    second: DOPAMINE_3
+  - first:
+      213: 6490560782931960660
+    second: DOPAMINE_4
+  - first:
+      213: -3864264915250054429
+    second: DOPAMINE_5
+  - first:
+      213: 1367736126114207867
+    second: DOPAMINE_6
+  - first:
+      213: 4315036378321546215
+    second: DOPAMINE_7
+  - first:
+      213: -8988231641297345726
+    second: DOPAMINE_8
+  - first:
+      213: 1959991530720783604
+    second: DOPAMINE_9
+  - first:
+      213: -8217356068230173067
+    second: DOPAMINE_10
+  - first:
+      213: -8401243215732364781
+    second: DOPAMINE_11
+  - first:
+      213: -9184582526666813848
+    second: DOPAMINE_12
+  - first:
+      213: -7939672654545651253
+    second: DOPAMINE_13
+  - first:
+      213: 7500423600014325899
+    second: DOPAMINE_14
+  - first:
+      213: 6091439779704696376
+    second: DOPAMINE_15
+  - first:
+      213: 2954505655345032871
+    second: DOPAMINE_16
+  - first:
+      213: -4157454055895565467
+    second: DOPAMINE_17
+  - first:
+      213: -2650025787784732171
+    second: DOPAMINE_18
+  - first:
+      213: -8253770777030309317
+    second: DOPAMINE_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DOPAMINE_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b5a0817b057f0730800000000000000
+      internalID: 3967518488746042800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b72bb4d9131aefd0800000000000000
+      internalID: -2312014457037183051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba5e2fb4b572dc90800000000000000
+      internalID: -7146520239521506628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_3
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0bcb556fbc99f520800000000000000
+      internalID: 2736390594457488143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_4
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 453adb3c4aa131a50800000000000000
+      internalID: 6490560782931960660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eaf388888f5f5ac0800000000000000
+      internalID: -3864264915250054429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_6
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78918792cc2bf210800000000000000
+      internalID: 1367736126114207867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_7
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eb6eba59b612eb30800000000000000
+      internalID: 4315036378321546215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_8
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 243ab85a1f2634380800000000000000
+      internalID: -8988231641297345726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_9
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fce267a9e9433b10800000000000000
+      internalID: 1959991530720783604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_10
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57e6d30813616fd80800000000000000
+      internalID: -8217356068230173067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_11
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31aac969ec9c86b80800000000000000
+      internalID: -8401243215732364781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_12
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86ec3cf9adec98080800000000000000
+      internalID: -9184582526666813848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_13
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc97ce079cd90d190800000000000000
+      internalID: -7939672654545651253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_14
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b887fc7768bd61860800000000000000
+      internalID: 7500423600014325899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_15
+      rect:
+        serializedVersion: 2
+        x: 1922
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e6bffa434298450800000000000000
+      internalID: 6091439779704696376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_16
+      rect:
+        serializedVersion: 2
+        x: 2050
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae29b96d33800920800000000000000
+      internalID: 2954505655345032871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_17
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56b76543091cd46c0800000000000000
+      internalID: -4157454055895565467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_18
+      rect:
+        serializedVersion: 2
+        x: 2306
+        y: 4
+        width: 124
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f167712697393bd0800000000000000
+      internalID: -2650025787784732171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DOPAMINE_19
+      rect:
+        serializedVersion: 2
+        x: 2434
+        y: 3
+        width: 124
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3acb996537b47d80800000000000000
+      internalID: -8253770777030309317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DOPAMINE_0: 3967518488746042800
+      DOPAMINE_1: -2312014457037183051
+      DOPAMINE_10: -8217356068230173067
+      DOPAMINE_11: -8401243215732364781
+      DOPAMINE_12: -9184582526666813848
+      DOPAMINE_13: -7939672654545651253
+      DOPAMINE_14: 7500423600014325899
+      DOPAMINE_15: 6091439779704696376
+      DOPAMINE_16: 2954505655345032871
+      DOPAMINE_17: -4157454055895565467
+      DOPAMINE_18: -2650025787784732171
+      DOPAMINE_19: -8253770777030309317
+      DOPAMINE_2: -7146520239521506628
+      DOPAMINE_3: 2736390594457488143
+      DOPAMINE_4: 6490560782931960660
+      DOPAMINE_5: -3864264915250054429
+      DOPAMINE_6: 1367736126114207867
+      DOPAMINE_7: 4315036378321546215
+      DOPAMINE_8: -8988231641297345726
+      DOPAMINE_9: 1959991530720783604
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

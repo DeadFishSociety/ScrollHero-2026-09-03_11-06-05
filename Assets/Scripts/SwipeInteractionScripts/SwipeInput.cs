@@ -14,6 +14,13 @@ public class SwipeInput : MonoBehaviour
     public delegate void SwipeEvent(SwipeDirection direction);
     public event SwipeEvent OnSwipe;
 
+    /// <summary>
+    /// Drop the press currently in progress so its release does NOT fire a swipe.
+    /// Called when a minigame is solved mid-gesture, so lifting the finger that solved
+    /// it doesn't linger into scrolling the next reel. The next fresh press works normally.
+    /// </summary>
+    public void CancelCurrentGesture() => isPressing = false;
+
     void Update()
     {
         bool pressedThisFrame = false;

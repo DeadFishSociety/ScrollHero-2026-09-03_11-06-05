@@ -22,6 +22,10 @@ public class FeedManager : MonoBehaviour
     [Tooltip("Optional. Shows the score — only successful actions raise it.")]
     [SerializeField] private TMP_Text scoreText;
 
+    [Tooltip("The single shared dopamine gauge on the Canvas. Whichever reel/minigame is " +
+             "active drives it; prefabs no longer carry their own gauge.")]
+    [SerializeField] private DopamineGauge dopamineGauge;
+
     [Tooltip("The dog health indicator — shows current health as a frame and shakes on a hit.")]
     [SerializeField] private HealthDisplay healthDisplay;
 
@@ -112,6 +116,7 @@ public class FeedManager : MonoBehaviour
         if (reelTimer != null)
         {
             reelTimer.Expired += OnReelExpired;
+            reelTimer.SetGauge(dopamineGauge); // drive the shared HUD gauge
             reelTimer.Prime(); // show a full gauge while it slides in
         }
 
@@ -156,6 +161,7 @@ public class FeedManager : MonoBehaviour
 
         currentOverlay.Completed += OnOverlayCompleted;
         currentOverlay.Failed += OnOverlayFailed;
+        currentOverlay.SetGauge(dopamineGauge); // drive the shared HUD gauge
 
         actionInProgress = true;
         currentOverlay.Begin(); // sets the minigame up + primes the gauge; timer not counting yet
@@ -174,12 +180,21 @@ public class FeedManager : MonoBehaviour
         score++;
         UpdateScoreText();
 
+        // A drag-based minigame (e.g. the phone) completes mid-gesture. Drop that
+        // in-progress press so lifting the finger doesn't linger into a scroll swipe.
+        if (swipeInput != null)
+            swipeInput.CancelCurrentGesture();
+
         DetachOverlay();
         SpawnScroll();
     }
 
     private void OnOverlayFailed(FeedOverlay overlay)
     {
+        // Drop any in-progress press so a lingering release doesn't scroll the next reel.
+        if (swipeInput != null)
+            swipeInput.CancelCurrentGesture();
+
         // The action's dopamine timer ran out (or the player gave up) — lose a life.
         LoseLife();
         if (gameOver)

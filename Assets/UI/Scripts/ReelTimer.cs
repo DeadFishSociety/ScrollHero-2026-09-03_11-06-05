@@ -19,11 +19,15 @@ public class ReelTimer : MonoBehaviour
     [SerializeField] private DrainTimer timer = new DrainTimer();
 
     [Header("Display")]
-    [Tooltip("Optional dopamine gauge to drive. Leave empty for no visual.")]
+    [Tooltip("Optional dopamine gauge to drive. Usually left empty — FeedManager injects " +
+             "the shared HUD gauge at spawn via SetGauge().")]
     [SerializeField] private DopamineGauge gauge;
 
     /// <summary>Fired on the frame the timer empties.</summary>
     public event Action Expired;
+
+    /// <summary>Point this timer at the shared HUD gauge. Called by FeedManager on spawn.</summary>
+    public void SetGauge(DopamineGauge sharedGauge) => gauge = sharedGauge;
 
     /// <summary>Refill and show a full gauge, but don't count yet (while the reel slides in).</summary>
     public void Prime()
