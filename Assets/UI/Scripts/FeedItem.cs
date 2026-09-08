@@ -7,7 +7,7 @@ public class FeedItem : MonoBehaviour
 {
     public FeedItemType Type;
 
-    [Tooltip("Later: swap this for a RawImage + VideoPlayer to show real video.")]
+    [Tooltip("The Image that displays this reel's visual content.")]
     public Image DisplayImage;
 
     [Tooltip("Action panels only — where the chosen overlay prefab is spawned. " +
@@ -17,4 +17,5 @@ public class FeedItem : MonoBehaviour
     /// <summary>Where an overlay should be parented — the explicit root, or this panel itself.</summary>
     public RectTransform ResolveOverlayRoot()
         => OverlayRoot != null ? OverlayRoot : transform as RectTransform;
+
 }

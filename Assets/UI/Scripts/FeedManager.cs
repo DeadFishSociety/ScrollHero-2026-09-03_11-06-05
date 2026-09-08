@@ -16,6 +16,9 @@ public class FeedManager : MonoBehaviour
     [SerializeField] private RectTransform feedContainer;
     [SerializeField] private SwipeInput swipeInput;
 
+    [Tooltip("A screen-level effect that plays when the player swipes past a normal reel.")]
+    [SerializeField] private ReelSpriteAnimation scrollAnimation;
+
     [Tooltip("Shows how many reels have been scrolled (not the score).")]
     [SerializeField] private TMP_Text scrollCountText;
 
@@ -85,6 +88,12 @@ public class FeedManager : MonoBehaviour
 
         if (direction != SwipeDirection.Up)
             return; // only an upward swipe counts as "scrolling"
+
+        // Play the effect only when the player actually scrolls away from a normal
+        // reel. The effect lives outside the reel prefab, so destroying that prefab
+        // cannot cut the animation off.
+        if (currentItem != null && currentItem.Type == FeedItemType.Scroll)
+            scrollAnimation?.PlayFromStart();
 
         scrollCount++;
         if (scrollCountText != null)
