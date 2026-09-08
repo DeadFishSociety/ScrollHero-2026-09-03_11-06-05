@@ -17,8 +17,12 @@ public abstract class FeedOverlay : MonoBehaviour
     [Tooltip("Shown in logs and in the FeedManager overlay list. Falls back to the object name.")]
     [SerializeField] private string displayName = "";
 
-    [Tooltip("Seconds before this overlay fails on its own. 0 = no time limit.")]
-    [SerializeField, Min(0f)] private float timeLimit = 0f;
+    [Tooltip("The countdown for this minigame. When it empties the overlay fails on " +
+             "its own. Set duration to 0 for no time limit.")]
+    [SerializeField] private DrainTimer timer = new DrainTimer();
+
+    [Tooltip("Optional dopamine gauge to drive from this overlay's timer.")]
+    [SerializeField] private DopamineGauge gauge;
 
     [Tooltip("Optional label that shows progress, e.g. \"3 / 8\".")]
     [SerializeField] private TMP_Text progressText;
@@ -29,8 +33,8 @@ public abstract class FeedOverlay : MonoBehaviour
     public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
     public bool BlocksSwipe => blocksSwipe;
     public bool IsFinished { get; private set; }
-    public float TimeLimit => timeLimit;
-    public float TimeRemaining => timeLimit <= 0f ? Mathf.Infinity : Mathf.Max(0f, timeLimit - elapsed);
+    /// <summary>1 = full, 0 = out of time. Handy for custom visuals.</summary>
+    public float TimeFraction => timer.Fraction;
 
     /// <summary>Player finished the interaction successfully — this is what scores.</summary>
     public event Action<FeedOverlay> Completed;
@@ -39,35 +43,55 @@ public abstract class FeedOverlay : MonoBehaviour
     /// <summary>Partial progress (one tap of many). Used for small feedback, not scoring.</summary>
     public event Action<FeedOverlay> Progressed;
 
-    private float elapsed;
-    private bool running;
+    private bool active; // timer is counting (between StartTimer and finish)
 
-    /// <summary>Called by FeedManager right after the overlay is spawned.</summary>
+    /// <summary>
+    /// Called by FeedManager right after the overlay is spawned. Sets the minigame up
+    /// and primes the gauge to full, but does NOT start the countdown yet — that waits
+    /// for <see cref="StartTimer"/> so the clock only begins once the panel has slid in.
+    /// </summary>
     public void Begin()
     {
         IsFinished = false;
-        elapsed = 0f;
-        running = true;
+        active = false;
+        timer.Prime();
+        PushToGauge();
         OnBegin();
         RefreshProgressText();
     }
 
-    private void Update()
+    /// <summary>Start the countdown. FeedManager calls this when the panel finishes sliding in.</summary>
+    public void StartTimer()
     {
-        if (!running)
+        if (IsFinished)
             return;
 
-        if (timeLimit > 0f)
+        active = true;
+        timer.Run();
+        PushToGauge();
+    }
+
+    private void Update()
+    {
+        if (!active)
+            return;
+
+        bool justEmptied = timer.Tick(Time.deltaTime);
+        PushToGauge();
+
+        if (justEmptied)
         {
-            elapsed += Time.deltaTime;
-            if (elapsed >= timeLimit)
-            {
-                Fail();
-                return;
-            }
+            Fail(); // ran out of time
+            return;
         }
 
         OnTick(Time.deltaTime);
+    }
+
+    private void PushToGauge()
+    {
+        if (gauge != null)
+            gauge.SetFraction(timer.Fraction);
     }
 
     /// <summary>Reset your own state here — Begin() may be called again on a retry.</summary>
@@ -101,7 +125,8 @@ public abstract class FeedOverlay : MonoBehaviour
             return;
 
         IsFinished = true;
-        running = false;
+        active = false;
+        timer.Stop();
         RefreshProgressText();
         Completed?.Invoke(this);
     }
@@ -112,7 +137,8 @@ public abstract class FeedOverlay : MonoBehaviour
             return;
 
         IsFinished = true;
-        running = false;
+        active = false;
+        timer.Stop();
         RefreshProgressText();
         Failed?.Invoke(this);
     }
