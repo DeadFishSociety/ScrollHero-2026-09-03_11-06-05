@@ -18,6 +18,10 @@ public class DopamineGauge : MonoBehaviour
              "Only the ones you drop here are used.")]
     [SerializeField] private Sprite[] frames;
 
+    [Tooltip("Tick if the animation plays backwards — reverses the frame order without " +
+             "having to re-drag the sprites.")]
+    [SerializeField] private bool reverse;
+
     /// <summary>fraction: 1 = full (first frame), 0 = empty (last frame).</summary>
     public void SetFraction(float fraction)
     {
@@ -28,6 +32,10 @@ public class DopamineGauge : MonoBehaviour
         // 1 -> first frame (full), 0 -> last frame (empty).
         int index = Mathf.RoundToInt((1f - fraction) * (frames.Length - 1));
         index = Mathf.Clamp(index, 0, frames.Length - 1);
+
+        if (reverse)
+            index = frames.Length - 1 - index;
+
         image.sprite = frames[index];
     }
 }

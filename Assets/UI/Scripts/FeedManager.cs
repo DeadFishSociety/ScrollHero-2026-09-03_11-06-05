@@ -25,6 +25,10 @@ public class FeedManager : MonoBehaviour
     [Tooltip("Optional. Shows the score — only successful actions raise it.")]
     [SerializeField] private TMP_Text scoreText;
 
+    [Tooltip("The single shared dopamine gauge on the Canvas. Whichever reel/minigame is " +
+             "active drives it; prefabs no longer carry their own gauge.")]
+    [SerializeField] private DopamineGauge dopamineGauge;
+
     [Tooltip("The dog health indicator — shows current health as a frame and shakes on a hit.")]
     [SerializeField] private HealthDisplay healthDisplay;
 
@@ -50,6 +54,10 @@ public class FeedManager : MonoBehaviour
     private FeedOverlay currentOverlay;
     private ReelTimer currentReelTimer;
     private bool actionInProgress;
+
+    /// <summary>Description paired with the current scroll reel's video. For later use
+    /// (e.g. an overlay caption). Empty until the first video reel has spawned.</summary>
+    public string CurrentReelDescription { get; private set; } = string.Empty;
 
     /// <summary>Fired once when lives reach zero. Hook a lose screen here later.</summary>
     public event System.Action GameOver;
@@ -113,6 +121,13 @@ public class FeedManager : MonoBehaviour
         actionInProgress = false;
         SpawnPanel(FeedItemType.Scroll);
 
+        // Remember this reel's video description so it can be used later (e.g. an
+        // overlay caption). ReelVideo picks its clip in OnEnable during Instantiate,
+        // so CurrentDescription is already set by the time we read it here.
+        ReelVideo reelVideo = currentItem != null ? currentItem.GetComponentInChildren<ReelVideo>() : null;
+        if (reelVideo != null)
+            CurrentReelDescription = reelVideo.CurrentDescription;
+
         // A scroll reel is timed: the player must swipe up before its dopamine
         // timer empties, or a life is lost. Action panels have no ReelTimer — the
         // overlay owns their timer instead.
@@ -121,6 +136,7 @@ public class FeedManager : MonoBehaviour
         if (reelTimer != null)
         {
             reelTimer.Expired += OnReelExpired;
+            reelTimer.SetGauge(dopamineGauge); // drive the shared HUD gauge
             reelTimer.Prime(); // show a full gauge while it slides in
         }
 
@@ -165,6 +181,7 @@ public class FeedManager : MonoBehaviour
 
         currentOverlay.Completed += OnOverlayCompleted;
         currentOverlay.Failed += OnOverlayFailed;
+        currentOverlay.SetGauge(dopamineGauge); // drive the shared HUD gauge
 
         actionInProgress = true;
         currentOverlay.Begin(); // sets the minigame up + primes the gauge; timer not counting yet
@@ -183,12 +200,21 @@ public class FeedManager : MonoBehaviour
         score++;
         UpdateScoreText();
 
+        // A drag-based minigame (e.g. the phone) completes mid-gesture. Drop that
+        // in-progress press so lifting the finger doesn't linger into a scroll swipe.
+        if (swipeInput != null)
+            swipeInput.CancelCurrentGesture();
+
         DetachOverlay();
         SpawnScroll();
     }
 
     private void OnOverlayFailed(FeedOverlay overlay)
     {
+        // Drop any in-progress press so a lingering release doesn't scroll the next reel.
+        if (swipeInput != null)
+            swipeInput.CancelCurrentGesture();
+
         // The action's dopamine timer ran out (or the player gave up) — lose a life.
         LoseLife();
         if (gameOver)

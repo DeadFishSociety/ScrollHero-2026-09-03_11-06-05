@@ -21,7 +21,8 @@ public abstract class FeedOverlay : MonoBehaviour
              "its own. Set duration to 0 for no time limit.")]
     [SerializeField] private DrainTimer timer = new DrainTimer();
 
-    [Tooltip("Optional dopamine gauge to drive from this overlay's timer.")]
+    [Tooltip("Optional dopamine gauge to drive. Usually left empty — FeedManager injects " +
+             "the shared HUD gauge at spawn via SetGauge().")]
     [SerializeField] private DopamineGauge gauge;
 
     [Tooltip("Optional label that shows progress, e.g. \"3 / 8\".")]
@@ -35,6 +36,9 @@ public abstract class FeedOverlay : MonoBehaviour
     public bool IsFinished { get; private set; }
     /// <summary>1 = full, 0 = out of time. Handy for custom visuals.</summary>
     public float TimeFraction => timer.Fraction;
+
+    /// <summary>Point this overlay at the shared HUD gauge. Called by FeedManager on spawn.</summary>
+    public void SetGauge(DopamineGauge sharedGauge) => gauge = sharedGauge;
 
     /// <summary>Player finished the interaction successfully — this is what scores.</summary>
     public event Action<FeedOverlay> Completed;
