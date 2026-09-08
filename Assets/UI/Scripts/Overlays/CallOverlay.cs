@@ -65,12 +65,45 @@ public class CallOverlay : FeedOverlay,
     [Tooltip("How far off the current path segment (screen pixels) resets the trace. 0 = never.")]
     [SerializeField, Min(0f)] private float strayLimit = 140f;
 
+    [Header("Checkpoints")]
+    [Tooltip("Round marker sprite for each checkpoint. Leave empty for a generated round dot.")]
+    [SerializeField] private Sprite checkpointSprite;
+
+    [Tooltip("Colour a checkpoint turns once the finger has passed it.")]
+    [SerializeField] private Color passedCheckpointColor = new Color(0.6f, 0.6f, 0.6f, 1f);
+
+    [Header("Checkpoint particles")]
+    [Tooltip("Little burst that pops from each checkpoint the moment the finger passes it. " +
+             "0 = no particles.")]
+    [SerializeField, Min(0)] private int checkpointParticleCount = 12;
+
+    [Tooltip("Sprite for each particle. Leave empty for a round dot.")]
+    [SerializeField] private Sprite checkpointParticleSprite;
+
+    [SerializeField] private Color checkpointParticleColor = Color.white;
+
+    [SerializeField, Min(1f)] private float checkpointParticleSize = 28f;
+
+    [Tooltip("Outward speed (units/sec), picked randomly in this range.")]
+    [SerializeField] private Vector2 checkpointParticleSpeedRange = new Vector2(150f, 400f);
+
+    [Tooltip("Downward pull on particles, units/sec². 0 = they fly straight out.")]
+    [SerializeField] private float checkpointParticleGravity = 500f;
+
+    [SerializeField, Min(0.05f)] private float checkpointParticleLifetime = 0.5f;
+
     /// <summary>Player tapped pick-up — the losing action. No consequence wired yet.</summary>
     public event Action<CallOverlay> PickedUp;
 
     private CallPath current;
     private int nextIndex;
     private bool dragging;
+
+    // Each checkpoint's Image and the colour it was authored with, so passed markers
+    // can go grey and be restored on a reset. Captured once per Image (before we ever
+    // recolour it) so retries always restore the real authored colour.
+    private readonly Dictionary<RectTransform, Image> checkpointImages = new Dictionary<RectTransform, Image>();
+    private readonly Dictionary<Image, Color> checkpointBaseColors = new Dictionary<Image, Color>();
 
     private Canvas canvas;
     private Camera UICamera => canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay
@@ -112,7 +145,83 @@ public class CallOverlay : FeedOverlay,
         if (current == null)
             Debug.LogWarning("[CallOverlay] No valid paths assigned — the call can't be hung up.");
         else
+        {
+            SetupCheckpoints(); // round them off and clear any 'passed' grey from last run
             PlaceSpriteAtWaypoint(0);
+        }
+    }
+
+    // Give the chosen path's checkpoints a round sprite and their un-passed colour.
+    private void SetupCheckpoints()
+    {
+        Sprite round = checkpointSprite != null ? checkpointSprite : UIParticleBurst.RoundSprite();
+
+        foreach (RectTransform wp in current.waypoints)
+        {
+            Image img = ResolveCheckpointImage(wp);
+            if (img == null)
+                continue;
+
+            if (round != null)
+            {
+                img.sprite = round;
+                img.preserveAspect = true;
+            }
+
+            img.color = BaseColorOf(img); // restore, in case it was greyed on a previous run
+        }
+    }
+
+    private Image ResolveCheckpointImage(RectTransform wp)
+    {
+        if (wp == null)
+            return null;
+
+        if (!checkpointImages.TryGetValue(wp, out Image img))
+        {
+            img = wp.GetComponent<Image>();
+            checkpointImages[wp] = img;
+        }
+        return img;
+    }
+
+    // The Image's authored colour, captured the first time we see it and never after,
+    // so it survives our own recolouring across resets and retries.
+    private Color BaseColorOf(Image img)
+    {
+        if (!checkpointBaseColors.TryGetValue(img, out Color c))
+        {
+            c = img.color;
+            checkpointBaseColors[img] = c;
+        }
+        return c;
+    }
+
+    private void MarkCheckpointPassed(int index)
+    {
+        if (current == null || index < 0 || index >= current.waypoints.Count)
+            return;
+
+        Image img = ResolveCheckpointImage(current.waypoints[index]);
+        if (img != null)
+        {
+            BaseColorOf(img);                 // make sure the authored colour is captured first
+            img.color = passedCheckpointColor;
+        }
+    }
+
+    // Un-grey every checkpoint back to its authored colour (used when the trace restarts).
+    private void RestoreCheckpointColors()
+    {
+        if (current == null)
+            return;
+
+        foreach (RectTransform wp in current.waypoints)
+        {
+            Image img = ResolveCheckpointImage(wp);
+            if (img != null)
+                img.color = BaseColorOf(img);
+        }
     }
 
     private CallPath PickPath()
@@ -188,6 +297,8 @@ public class CallOverlay : FeedOverlay,
 
         if (Vector2.Distance(screenPos, WaypointScreenPos(nextIndex)) <= hitRadius)
         {
+            MarkCheckpointPassed(nextIndex); // grey out the checkpoint we just crossed
+            EmitCheckpointBurst(nextIndex);  // and spray a burst from it
             nextIndex++;
             ReportProgress();
 
@@ -199,10 +310,38 @@ public class CallOverlay : FeedOverlay,
         }
     }
 
+    // Pop a grey burst out of the waypoint at the given index, in this overlay's space.
+    private void EmitCheckpointBurst(int index)
+    {
+        if (checkpointParticleCount <= 0 || current == null || index >= current.waypoints.Count)
+            return;
+
+        RectTransform parent = transform as RectTransform;
+        if (parent == null)
+            return;
+
+        Vector2 screen = WaypointScreenPos(index);
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, screen, UICamera, out Vector2 local))
+            return;
+
+        UIParticleBurst.Emit(this, parent, local, new UIParticleBurst.Settings
+        {
+            sprite = checkpointParticleSprite,
+            color = checkpointParticleColor,
+            count = checkpointParticleCount,
+            size = checkpointParticleSize,
+            speedRange = checkpointParticleSpeedRange,
+            gravity = checkpointParticleGravity,
+            startRadius = 0f,
+            lifetime = checkpointParticleLifetime,
+        });
+    }
+
     private void ResetTrace()
     {
         dragging = false;
         nextIndex = 0;
+        RestoreCheckpointColors(); // trace restarts, so passed markers un-grey
         PlaceSpriteAtWaypoint(0);
         ReportProgress();
     }
