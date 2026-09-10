@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwipeInput
   minSwipeDistance: 50
+  doubleTapMaxDelay: 0.3
+  doubleTapMaxDistance: 120
 --- !u!114 &82216752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ MonoBehaviour:
     - label: Ad
       prefab: {fileID: 7243956113741152377, guid: 90ae87b499a2247ce8319021726ee6e6, type: 3}
       enabled: 1
-      weight: 0
+      weight: 1
     mode: 1
     avoidImmediateRepeat: 1
   feedContainer: {fileID: 1015304934}
@@ -192,6 +194,9 @@ MonoBehaviour:
   actionEveryNScrolls: 2
   startingLives: 5
   advanceOnActionFail: 1
+  scrollPoints: 100
+  minigamePoints: 1000
+  likePoints: 100
 --- !u!114 &82216753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,12 +1130,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthDisplay
   image: {fileID: 901270436}
   healthFrames:
-  - {fileID: 4943719534023939487, guid: 8978135e13c2f4526a6f9a94f8c6ee34, type: 3}
-  - {fileID: 4350258449080877876, guid: 8978135e13c2f4526a6f9a94f8c6ee34, type: 3}
-  - {fileID: 7958276402675325458, guid: 8978135e13c2f4526a6f9a94f8c6ee34, type: 3}
-  - {fileID: -3540079612156717407, guid: 8978135e13c2f4526a6f9a94f8c6ee34, type: 3}
-  - {fileID: -6229028167542932077, guid: 8978135e13c2f4526a6f9a94f8c6ee34, type: 3}
-  - {fileID: 2625160697187616179, guid: 8978135e13c2f4526a6f9a94f8c6ee34, type: 3}
+  - {fileID: 6184271745595557143, guid: aa532b2a01ae545e08f51310c5b2828c, type: 3}
+  - {fileID: -3467866928675490739, guid: aa532b2a01ae545e08f51310c5b2828c, type: 3}
+  - {fileID: 4642450458958328065, guid: aa532b2a01ae545e08f51310c5b2828c, type: 3}
+  - {fileID: -2064026679219467764, guid: aa532b2a01ae545e08f51310c5b2828c, type: 3}
+  - {fileID: 6688300701515798116, guid: aa532b2a01ae545e08f51310c5b2828c, type: 3}
+  - {fileID: 6507212797502495997, guid: aa532b2a01ae545e08f51310c5b2828c, type: 3}
   damageSprite: {fileID: 0}
   shakeDuration: 0.3
   shakeMagnitude: 15
