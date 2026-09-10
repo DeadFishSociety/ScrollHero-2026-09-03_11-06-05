@@ -194,6 +194,8 @@ MonoBehaviour:
   actionEveryNScrolls: 2
   startingLives: 5
   advanceOnActionFail: 1
+  screenTimePrefab: {fileID: 2446082534309352402, guid: ac212f6b6809854489333e00134ef299, type: 3}
+  firstScreenTimeDelay: 8
   scrollPoints: 100
   minigamePoints: 1000
   likePoints: 100
@@ -585,7 +587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012159, y: 769}
+  m_AnchoredPosition: {x: 0, y: 769}
   m_SizeDelta: {x: 990, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &191734299

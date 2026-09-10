@@ -54,6 +54,14 @@ public class FeedManager : MonoBehaviour
              "same minigame until they beat it.")]
     [SerializeField] private bool advanceOnActionFail = true;
 
+    [Header("Screen time")]
+    [Tooltip("The screen-time limit popup, raised on top of the current reel after a " +
+             "stretch of play. Leave empty to disable the feature entirely.")]
+    [SerializeField] private ScreenTimeOverlay screenTimePrefab;
+
+    [Tooltip("Seconds of play before the screen-time popup first appears. After that it " +
+             "returns whenever the time the player chose to 'extend' for runs out.")]
+    [SerializeField, Min(1f)] private float firstScreenTimeDelay = 30f;
     [Header("Scoring")]
     [Tooltip("Points added each time the player scrolls past a reel.")]
     [SerializeField] private int scrollPoints = 100;
@@ -78,6 +86,7 @@ public class FeedManager : MonoBehaviour
     private ReelTimer currentReelTimer;
     private ReelLike currentReelLike;
     private bool actionInProgress;
+    private float screenTimeCountdown;
 
     /// <summary>Description paired with the current scroll reel's video. For later use
     /// (e.g. an overlay caption). Empty until the first video reel has spawned.</summary>
@@ -94,6 +103,7 @@ public class FeedManager : MonoBehaviour
         UpdateScoreText();
         if (healthDisplay != null)
             healthDisplay.SetHealth(lives, startingLives);
+        screenTimeCountdown = firstScreenTimeDelay;
         SpawnScroll(false);
     }
 
@@ -138,6 +148,21 @@ public class FeedManager : MonoBehaviour
         // ScrollAnimationOverlay so it doesn't double up.
         bool playShared = like == null || !like.HasLikeAnimation;
         AddScore(likePoints, playShared);
+    }
+
+    void Update()
+    {
+        // Count down toward the next screen-time popup. The clock only advances during
+        // normal scrolling: it pauses while another overlay is up (a minigame, or the
+        // popup itself) and stops for good once the game is over.
+        if (gameOver || screenTimePrefab == null)
+            return;
+        if (actionInProgress || currentOverlay != null)
+            return;
+
+        screenTimeCountdown -= Time.deltaTime;
+        if (screenTimeCountdown <= 0f)
+            RaiseScreenTimeOverlay();
     }
 
     private void HandleSwipe(SwipeDirection direction)
@@ -268,11 +293,52 @@ public class FeedManager : MonoBehaviour
         currentOverlay = Instantiate(prefab, root, false);
         currentOverlay.Completed += OnOverlayCompleted;
         currentOverlay.Failed += OnOverlayFailed;
+        currentOverlay.GameOverRequested += OnOverlayGameOver;
         currentOverlay.SetGauge(dopamineGauge); // drive the shared HUD gauge
 
         actionInProgress = true;
         currentOverlay.Begin();      // set the minigame up + prime the gauge
         currentOverlay.StartTimer(); // the reel has already slid in, so start counting now
+    }
+
+    /// <summary>
+    /// Raise the screen-time limit popup on top of the current reel. The reel's own
+    /// dopamine countdown is cancelled while the popup is up; the popup drives the shared
+    /// gauge with its own short timer. Closing it via "extend" scrolls on to the next
+    /// reel and schedules the popup's return; "quit" ends the run.
+    /// </summary>
+    private void RaiseScreenTimeOverlay()
+    {
+        RectTransform root = overlayContainer != null
+            ? overlayContainer
+            : (currentItem != null ? currentItem.ResolveOverlayRoot() : null);
+
+        if (screenTimePrefab == null || root == null)
+        {
+            ScheduleNextScreenTime(firstScreenTimeDelay); // can't show it now — try again later
+            return;
+        }
+
+        // Cancel the current video's dopamine timer: it neither drains nor can cost a
+        // life while the popup owns the screen.
+        if (currentReelTimer != null)
+            currentReelTimer.Stop();
+
+        currentOverlay = Instantiate(screenTimePrefab, root, false);
+        currentOverlay.Completed += OnOverlayCompleted;
+        currentOverlay.Failed += OnOverlayFailed;
+        currentOverlay.GameOverRequested += OnOverlayGameOver;
+        currentOverlay.SetGauge(dopamineGauge);
+
+        actionInProgress = true;
+        currentOverlay.Begin();
+        currentOverlay.StartTimer();
+    }
+
+    /// <summary>Set how long (seconds) until the screen-time popup next appears.</summary>
+    private void ScheduleNextScreenTime(float seconds)
+    {
+        screenTimeCountdown = Mathf.Max(1f, seconds);
     }
 
     private void OnOverlayCompleted(FeedOverlay overlay)
@@ -284,10 +350,18 @@ public class FeedManager : MonoBehaviour
         if (swipeInput != null)
             swipeInput.CancelCurrentGesture();
 
-        // Close the overlay and hand the reel below back to the player as a normal timed
-        // reel — they must now swipe up before its dopamine timer empties.
+        // The screen-time popup schedules its own return based on how long the player
+        // chose to "extend" for.
+        if (overlay is ScreenTimeOverlay screenTime)
+            ScheduleNextScreenTime(screenTime.ChosenExtendSeconds);
+
+        bool advance = overlay.AdvancesFeedOnComplete;
         DetachOverlay();
-        BeginReelTimer();
+
+        if (advance)
+            SpawnScroll(false); // scroll on to the next reel (screen-time popup)
+        else
+            BeginReelTimer();   // hand the reel below back as a normal timed reel
     }
 
     private void OnOverlayFailed(FeedOverlay overlay)
@@ -301,11 +375,21 @@ public class FeedManager : MonoBehaviour
         if (gameOver)
             return;
 
-        if (advanceOnActionFail)
+        // A screen-time popup that timed out (no choice made) reschedules itself with
+        // the default delay and always scrolls on, whatever the minigame retry setting is.
+        if (overlay is ScreenTimeOverlay)
+            ScheduleNextScreenTime(firstScreenTimeDelay);
+
+        bool advance = overlay.AdvancesFeedOnComplete;
+
+        if (advanceOnActionFail || advance)
         {
-            // Close the overlay; the reel below continues as a normal timed reel.
+            // Close the overlay; scroll on, or let the reel below continue as normal.
             DetachOverlay();
-            BeginReelTimer();
+            if (advance)
+                SpawnScroll(false);
+            else
+                BeginReelTimer();
         }
         else
         {
@@ -313,6 +397,17 @@ public class FeedManager : MonoBehaviour
             overlay.Begin();
             overlay.StartTimer();
         }
+    }
+
+    private void OnOverlayGameOver(FeedOverlay overlay)
+    {
+        // Drop any in-progress press so a lingering release doesn't scroll the reel.
+        if (swipeInput != null)
+            swipeInput.CancelCurrentGesture();
+
+        // The screen-time "quit" choice: end the run immediately. EndGame tears the
+        // overlay down for us.
+        EndGame();
     }
 
     private void LoseLife()
@@ -376,6 +471,7 @@ public class FeedManager : MonoBehaviour
 
         currentOverlay.Completed -= OnOverlayCompleted;
         currentOverlay.Failed -= OnOverlayFailed;
+        currentOverlay.GameOverRequested -= OnOverlayGameOver;
         // The overlay lives in its own canvas container now (not as a child of the reel),
         // so it won't be destroyed with the reel — tear it down explicitly.
         Destroy(currentOverlay.gameObject);
