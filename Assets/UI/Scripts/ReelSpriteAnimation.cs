@@ -29,6 +29,11 @@ public class ReelSpriteAnimation : MonoBehaviour
     [Tooltip("Maximum horizontal and vertical offset, in Canvas UI units.")]
     [SerializeField] private Vector2 positionJitter;
 
+    [Header("Sound")]
+    [Tooltip("Sound played each time this animation starts. Add clip variations — weighted or " +
+             "not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect playSound = new SoundEffect();
+
     private Image image;
     private RectTransform rectTransform;
     private Vector2 homePosition;
@@ -82,6 +87,7 @@ public class ReelSpriteAnimation : MonoBehaviour
         {
             image.enabled = true;
             image.sprite = frames[frameIndex];
+            playSound.Play();
         }
     }
 
