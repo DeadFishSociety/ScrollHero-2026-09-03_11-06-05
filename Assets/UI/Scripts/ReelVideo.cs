@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -36,6 +37,22 @@ public class ReelVideo : MonoBehaviour
     [Header("Pool")]
     [Tooltip("The clips (with descriptions) this reel can pick from. One is chosen at random.")]
     [SerializeField] private List<ReelClip> clips = new List<ReelClip>();
+
+    [Header("Panel text")]
+    [Tooltip("Optional. Shows the chosen clip's paired description (the caption) on the panel.")]
+    [SerializeField] private TMP_Text captionText;
+
+    [Tooltip("Optional. Filled with a random entry from Usernames each time this reel spawns.")]
+    [SerializeField] private TMP_Text usernameText;
+
+    [Tooltip("Usernames to pick from at random for usernameText. Customize this list.")]
+    [SerializeField] private string[] usernames;
+
+    [Tooltip("Optional. Filled with a random entry from Music Tracks each time this reel spawns.")]
+    [SerializeField] private TMP_Text musicText;
+
+    [Tooltip("Music/sound labels to pick from at random for musicText. Customize this list.")]
+    [SerializeField] private string[] musicTracks;
 
     /// <summary>Description paired with the clip chosen for this reel. Set on spawn.</summary>
     public string CurrentDescription { get; private set; }
@@ -76,6 +93,15 @@ public class ReelVideo : MonoBehaviour
         ReelClip chosen = clips[PickIndex()];
         CurrentDescription = chosen != null ? chosen.description : string.Empty;
 
+        // Fill the panel's text: the caption is paired with the chosen clip, while the
+        // username and music are independent random picks from their own lists.
+        if (captionText != null)
+            captionText.text = CurrentDescription;
+        if (usernameText != null)
+            usernameText.text = PickRandom(usernames);
+        if (musicText != null)
+            musicText.text = PickRandom(musicTracks);
+
         if (chosen == null || chosen.clip == null)
             return;
 
@@ -95,6 +121,14 @@ public class ReelVideo : MonoBehaviour
 
         if (videoImage != null)
             videoImage.enabled = true; // first frame ready — safe to reveal
+    }
+
+    /// <summary>A random entry from the pool, or empty string if it's null/empty.</summary>
+    private static string PickRandom(string[] pool)
+    {
+        if (pool == null || pool.Length == 0)
+            return string.Empty;
+        return pool[Random.Range(0, pool.Length)];
     }
 
     private int PickIndex()
