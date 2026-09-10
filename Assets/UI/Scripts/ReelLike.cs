@@ -37,6 +37,10 @@ public class ReelLike : MonoBehaviour
              "to the shared ScrollAnimationOverlay.")]
     [SerializeField] private ReelSpriteAnimation likeAnimation;
 
+    [Tooltip("Optional heart particle burst played on a like. Place its object on the heart " +
+             "icon so the hearts emanate from there.")]
+    [SerializeField] private HeartBurst heartBurst;
+
     [Header("Pop-in")]
     [Tooltip("How long the red heart's pop-in scale animation lasts.")]
     [SerializeField, Min(0f)] private float popInDuration = 0.25f;
@@ -108,6 +112,9 @@ public class ReelLike : MonoBehaviour
 
         if (likeAnimation != null)
             likeAnimation.PlayFromStart(); // plays next to the heart, wherever it's placed
+
+        if (heartBurst != null)
+            heartBurst.Play(); // hearts emanate from the heart icon
 
         Liked?.Invoke(this);
     }
