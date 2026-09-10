@@ -69,6 +69,22 @@ public class LikeOverlay : FeedOverlay
     [Tooltip("Seconds a particle lives before it has fully shrunk and faded.")]
     [SerializeField, Min(0.05f)] private float particleLifetime = 0.6f;
 
+    [Header("Sound")]
+    [Tooltip("Sound played on each tap. Add clip variations — weighted or not depending on the " +
+             "mode chosen. Pitch is driven by how full the heart is (see below), so leave this " +
+             "slot's own Pitch Range at 1.")]
+    [SerializeField] private SoundEffect tapSound = new SoundEffect();
+
+    [Tooltip("Tap-sound pitch when the heart is empty (0% complete).")]
+    [SerializeField, Min(0.01f)] private float pitchAtEmpty = 0.8f;
+
+    [Tooltip("Tap-sound pitch when the heart is full (100% complete).")]
+    [SerializeField, Min(0.01f)] private float pitchAtFull = 1.6f;
+
+    [Tooltip("How completeness (0..1) maps to pitch between empty and full. Linear by default; " +
+             "curve it for an ease or an accelerating rise.")]
+    [SerializeField] private AnimationCurve pitchOverProgress = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
     // Continuous progress, 0..1. A tap adds 1/requiredTaps; decay chips away at it.
     private float fill;
     private Coroutine popRoutine;
@@ -133,6 +149,7 @@ public class LikeOverlay : FeedOverlay
 
         fill = Mathf.Clamp01(fill + 1f / requiredTaps);
         RefreshTint();
+        PlayTapSound(); // pitched by the new (higher) completeness
         Pop();
         EmitBurst();
 
@@ -140,6 +157,13 @@ public class LikeOverlay : FeedOverlay
             Complete();
         else
             ReportProgress();
+    }
+
+    // Play the tap sound at a pitch that rises with how full the heart is.
+    private void PlayTapSound()
+    {
+        float curved = Mathf.Clamp01(pitchOverProgress.Evaluate(fill));
+        tapSound.Play(Mathf.Lerp(pitchAtEmpty, pitchAtFull, curved));
     }
 
     // Target scale of the inner heart for the current fill value.

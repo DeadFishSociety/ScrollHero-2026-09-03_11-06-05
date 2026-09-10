@@ -64,6 +64,11 @@ public class FeedManager : MonoBehaviour
     [Tooltip("Bonus points added when the player likes a reel.")]
     [SerializeField] private int likePoints = 100;
 
+    [Header("Audio")]
+    [Tooltip("Sound played when the player scrolls to the next reel. Add clip variations — " +
+             "weighted or not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect scrollSound = new SoundEffect();
+
     private int scrollCount;
     private int score;
     private int lives;
@@ -156,6 +161,8 @@ public class FeedManager : MonoBehaviour
         scrollCount++;
         if (scrollCountText != null)
             scrollCountText.text = $"Scrolls: {scrollCount}";
+
+        scrollSound.Play();
 
         // Scrolling past a reel scores. AddScore also plays the shared points-gained
         // animation (ScrollAnimationOverlay), which lives outside the reel prefab so

@@ -144,8 +144,12 @@ public abstract class FeedOverlay : MonoBehaviour
         active = false;
         timer.Stop();
         RefreshProgressText();
+        OnFail();
         Failed?.Invoke(this);
     }
+
+    /// <summary>Called when the overlay fails (e.g. its timer ran out). Override for fail feedback.</summary>
+    protected virtual void OnFail() { }
 
     private void RefreshProgressText()
     {
