@@ -8,11 +8,24 @@ public class SwipeInput : MonoBehaviour
     [Header("Swipe Settings")]
     [SerializeField] private float minSwipeDistance = 50f; // in pixels
 
+    [Header("Double-tap Settings")]
+    [Tooltip("Max seconds between two taps for them to count as a double-tap.")]
+    [SerializeField] private float doubleTapMaxDelay = 0.3f;
+
+    [Tooltip("Max pixels between the two taps for them to count as a double-tap.")]
+    [SerializeField] private float doubleTapMaxDistance = 120f;
+
     private Vector2 startPos;
     private bool isPressing;
 
+    private float lastTapTime = -10f;
+    private Vector2 lastTapPos;
+
     public delegate void SwipeEvent(SwipeDirection direction);
     public event SwipeEvent OnSwipe;
+
+    /// <summary>Fired when the player taps twice quickly in roughly the same spot.</summary>
+    public event System.Action OnDoubleTap;
 
     /// <summary>
     /// Drop the press currently in progress so its release does NOT fire a swipe.
@@ -52,9 +65,30 @@ public class SwipeInput : MonoBehaviour
             Vector2 delta = currentPos - startPos;
 
             if (delta.magnitude < minSwipeDistance)
-                return; // too small, treat as a tap, ignore
+            {
+                HandleTap(currentPos); // too small to be a swipe — it's a tap
+                return;
+            }
 
             OnSwipe?.Invoke(GetDirection(delta));
+        }
+    }
+
+    private void HandleTap(Vector2 position)
+    {
+        float now = Time.time;
+        bool inTime = now - lastTapTime <= doubleTapMaxDelay;
+        bool inPlace = (position - lastTapPos).magnitude <= doubleTapMaxDistance;
+
+        if (inTime && inPlace)
+        {
+            OnDoubleTap?.Invoke();
+            lastTapTime = -10f; // consume, so a third quick tap doesn't double again
+        }
+        else
+        {
+            lastTapTime = now;
+            lastTapPos = position;
         }
     }
 
