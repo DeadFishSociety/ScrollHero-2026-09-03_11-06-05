@@ -46,6 +46,18 @@ public abstract class FeedOverlay : MonoBehaviour
     public event Action<FeedOverlay> Failed;
     /// <summary>Partial progress (one tap of many). Used for small feedback, not scoring.</summary>
     public event Action<FeedOverlay> Progressed;
+    /// <summary>Player chose an instant game-over (e.g. the screen-time "quit" button).
+    /// FeedManager ends the run when this fires. Most overlays never raise it.</summary>
+    public event Action<FeedOverlay> GameOverRequested;
+
+    /// <summary>Whether beating this overlay raises the score. Minigames do; the
+    /// screen-time popup (a choice, not a challenge) overrides this to false.</summary>
+    public virtual bool ScoresOnComplete => true;
+
+    /// <summary>When true, FeedManager scrolls on to a fresh reel once this overlay
+    /// finishes, instead of handing the reel underneath back to the player. The
+    /// screen-time popup overrides this to true so closing it advances the feed.</summary>
+    public virtual bool AdvancesFeedOnComplete => false;
 
     private bool active; // timer is counting (between StartTimer and finish)
 
@@ -145,6 +157,21 @@ public abstract class FeedOverlay : MonoBehaviour
         timer.Stop();
         RefreshProgressText();
         Failed?.Invoke(this);
+    }
+
+    /// <summary>Finish the overlay and ask FeedManager to end the run immediately (the
+    /// screen-time "quit" choice). Like Complete/Fail it stops the timer, but instead of
+    /// scoring or costing a life it triggers game over.</summary>
+    protected void RequestGameOver()
+    {
+        if (IsFinished)
+            return;
+
+        IsFinished = true;
+        active = false;
+        timer.Stop();
+        RefreshProgressText();
+        GameOverRequested?.Invoke(this);
     }
 
     private void RefreshProgressText()

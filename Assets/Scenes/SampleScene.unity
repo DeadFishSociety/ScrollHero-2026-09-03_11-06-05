@@ -192,6 +192,8 @@ MonoBehaviour:
   actionEveryNScrolls: 2
   startingLives: 5
   advanceOnActionFail: 1
+  screenTimePrefab: {fileID: 4619924182810433911}
+  firstScreenTimeDelay: 20
 --- !u!114 &82216753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012159, y: 769}
+  m_AnchoredPosition: {x: 0, y: 769}
   m_SizeDelta: {x: 990, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &191734299
@@ -775,6 +777,11 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000030518, y: 0.000026703}
   m_SizeDelta: {x: 598.6323, y: 116.9012}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &320336099 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+  m_PrefabInstance: {fileID: 4619924182810433910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1354,7 @@ RectTransform:
   - {fileID: 191734298}
   - {fileID: 9218037146529830471}
   - {fileID: 901270435}
+  - {fileID: 320336099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1362,6 +1370,114 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6731928475061829374}
   m_CullTransparentMesh: 1
+--- !u!1001 &4619924182810433910
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1915963074}
+    m_Modifications:
+    - target: {fileID: 212900242119227276, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_Name
+      value: ScreenTimeOverlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796210264167305820, guid: ac212f6b6809854489333e00134ef299, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac212f6b6809854489333e00134ef299, type: 3}
+--- !u!114 &4619924182810433911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2446082534309352402, guid: ac212f6b6809854489333e00134ef299, type: 3}
+  m_PrefabInstance: {fileID: 4619924182810433910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4535548759c07794984947dcbd0b375b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenTimeOverlay
 --- !u!114 &5428019367154268093
 MonoBehaviour:
   m_ObjectHideFlags: 0
