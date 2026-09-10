@@ -254,22 +254,28 @@ public class FeedManager : MonoBehaviour
         gameOver = true;
         DetachReelTimer();
         DetachOverlay();
+
+        // No more reels are timed once the game is over — hide the shared dopamine
+        // gauge so it doesn't linger, frozen, over the game-over screen.
+        if (dopamineGauge != null)
+            dopamineGauge.gameObject.SetActive(false);
+
         Debug.Log("[FeedManager] GAME OVER — out of lives.");
         GameOver?.Invoke();
         // Feed is frozen: HandleSwipe ignores input and nothing new is spawned.
 
-        // Explode the dog in place, then reveal the game-over screen after its first
-        // cycle. If there's no health display, just show the screen straight away.
-        if (healthDisplay != null)
-            healthDisplay.PlayExplosion(ShowGameOverScreen);
+        // Fade the game-over screen into view, then explode the dog once it's fully
+        // visible. If there's no game-over screen, explode straight away.
+        if (gameOverScreen != null)
+            gameOverScreen.Show(PlayDeathExplosion);
         else
-            ShowGameOverScreen();
+            PlayDeathExplosion();
     }
 
-    private void ShowGameOverScreen()
+    private void PlayDeathExplosion()
     {
-        if (gameOverScreen != null)
-            gameOverScreen.Show();
+        if (healthDisplay != null)
+            healthDisplay.PlayExplosion(null);
     }
 
     private void UpdateScoreText()

@@ -39,8 +39,13 @@ public class HealthDisplay : MonoBehaviour
     [Tooltip("Explosion playback speed, frames per second.")]
     [SerializeField, Min(0.1f)] private float explosionFps = 24f;
 
+    [Tooltip("Scale multiplier applied to the dog image while the death explosion plays, " +
+             "so the game-over animation reads a little bigger than the HUD dog. 1 = same size.")]
+    [SerializeField, Min(0.1f)] private float explosionScale = 1.25f;
+
     private RectTransform rt;
     private Vector2 home;
+    private Vector3 homeScale = Vector3.one;
     private Coroutine shakeRoutine;
     private Coroutine explosionRoutine;
 
@@ -49,7 +54,10 @@ public class HealthDisplay : MonoBehaviour
         if (image != null)
             rt = image.rectTransform;
         if (rt != null)
+        {
             home = rt.anchoredPosition; // resting position to shake around
+            homeScale = rt.localScale;  // resting scale to grow the explosion from
+        }
     }
 
     /// <summary>Show the matching health frame with no shake. Use to initialise.</summary>
@@ -121,6 +129,10 @@ public class HealthDisplay : MonoBehaviour
             onFirstCycleComplete?.Invoke();
             return;
         }
+
+        // Grow the dog slightly so the death explosion reads bigger than the HUD dog.
+        if (rt != null)
+            rt.localScale = homeScale * explosionScale;
 
         explosionRoutine = StartCoroutine(ExplosionLoop(onFirstCycleComplete));
     }
