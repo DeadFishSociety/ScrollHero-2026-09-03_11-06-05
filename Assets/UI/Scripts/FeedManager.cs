@@ -6,14 +6,19 @@ public class FeedManager : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] private FeedItem scrollPanelPrefab;
-    [SerializeField] private FeedItem actionPanelPrefab;
 
-    [Tooltip("The pool of action overlays that can appear, and how one is chosen. " +
-             "Tick/untick entries here to decide which actions are in rotation.")]
+    [Tooltip("The pool of minigame overlays that can appear, and how one is chosen. " +
+             "Tick/untick entries here to decide which minigames are in rotation.")]
     [SerializeField] private OverlayPicker overlayPicker = new OverlayPicker();
 
     [Header("References")]
     [SerializeField] private RectTransform feedContainer;
+
+    [Tooltip("Canvas-level container the minigame overlay is spawned into, on top of the " +
+             "current reel. Make it a full-screen stretched RectTransform above the feed so " +
+             "the overlay covers the reel below and swallows input until it's beaten.")]
+    [SerializeField] private RectTransform overlayContainer;
+
     [SerializeField] private SwipeInput swipeInput;
 
     [Tooltip("A screen-level effect that plays when the player swipes past a normal reel.")]
@@ -36,14 +41,17 @@ public class FeedManager : MonoBehaviour
     [SerializeField] private GameOverScreen gameOverScreen;
 
     [Header("Settings")]
+    [Tooltip("Every this many scrolls, the next reel also carries a minigame overlay on top " +
+             "of it that must be beaten (or time out) before the player can scroll on.")]
     [SerializeField] private int actionEveryNScrolls = 5;
 
     [Tooltip("Lives the player starts with. Each time a dopamine timer empties " +
              "before the reel/action is cleared, one life is lost.")]
     [SerializeField, Min(1)] private int startingLives = 5;
 
-    [Tooltip("When an action overlay fails (e.g. times out), move on to the next reel anyway. " +
-             "Untick to let the player keep trying the same action.")]
+    [Tooltip("When a minigame overlay fails (e.g. times out), close it and let the reel below " +
+             "continue as a normal timed reel. Untick to make the player keep retrying the " +
+             "same minigame until they beat it.")]
     [SerializeField] private bool advanceOnActionFail = true;
 
     private int scrollCount;
@@ -69,7 +77,7 @@ public class FeedManager : MonoBehaviour
         UpdateScoreText();
         if (healthDisplay != null)
             healthDisplay.SetHealth(lives, startingLives);
-        SpawnScroll();
+        SpawnScroll(false);
     }
 
     void OnDestroy()
@@ -107,19 +115,24 @@ public class FeedManager : MonoBehaviour
         if (scrollCountText != null)
             scrollCountText.text = $"Scrolls: {scrollCount}";
 
-        // NOTE: scrolling reels deliberately does NOT score. Only completing an
-        // action overlay does. See OnOverlayCompleted.
+        // NOTE: scrolling reels deliberately does NOT score. Only completing a
+        // minigame overlay does. See OnOverlayCompleted.
 
-        if (scrollCount % actionEveryNScrolls == 0 && overlayPicker.HasAny)
-            SpawnAction();
-        else
-            SpawnScroll();
+        // Every N scrolls the next reel also carries a minigame overlay on top of it.
+        bool withMinigame = scrollCount % actionEveryNScrolls == 0 && overlayPicker.HasAny;
+        SpawnScroll(withMinigame);
     }
 
-    private void SpawnScroll()
+    /// <summary>
+    /// Spawn the next video reel. When <paramref name="withMinigame"/> is true, a minigame
+    /// overlay is dropped on top of it once it slides in: the reel's own timer stays paused
+    /// and the overlay blocks scrolling until the player beats it (or it times out). A plain
+    /// reel just starts its dopamine countdown once it has slid into place.
+    /// </summary>
+    private void SpawnScroll(bool withMinigame)
     {
         actionInProgress = false;
-        SpawnPanel(FeedItemType.Scroll);
+        SpawnPanel();
 
         // Remember this reel's video description so it can be used later (e.g. an
         // overlay caption). ReelVideo picks its clip in OnEnable during Instantiate,
@@ -128,9 +141,9 @@ public class FeedManager : MonoBehaviour
         if (reelVideo != null)
             CurrentReelDescription = reelVideo.CurrentDescription;
 
-        // A scroll reel is timed: the player must swipe up before its dopamine
-        // timer empties, or a life is lost. Action panels have no ReelTimer — the
-        // overlay owns their timer instead.
+        // Every reel is timed: the player must swipe up before its dopamine timer empties,
+        // or a life is lost. On a minigame reel the timer is primed (full gauge) but left
+        // paused — the overlay's own timer drives the gauge until the minigame resolves.
         currentReelTimer = currentItem != null ? currentItem.GetComponentInChildren<ReelTimer>() : null;
         ReelTimer reelTimer = currentReelTimer;
         if (reelTimer != null)
@@ -140,11 +153,18 @@ public class FeedManager : MonoBehaviour
             reelTimer.Prime(); // show a full gauge while it slides in
         }
 
-        // Start the countdown only once the reel has finished sliding into place.
+        // Wait until the reel has finished sliding into place, then either raise the
+        // minigame overlay on top of it or start the plain reel's countdown.
+        FeedItem item = currentItem;
         SlidePanelIn(() =>
         {
-            if (reelTimer != null && currentReelTimer == reelTimer)
-                reelTimer.Begin();
+            if (currentItem != item)
+                return; // the reel was swiped away / replaced mid-slide
+
+            if (withMinigame)
+                SpawnMinigameOverlay();
+            else
+                BeginReelTimer();
         });
     }
 
@@ -156,43 +176,47 @@ public class FeedManager : MonoBehaviour
         if (gameOver)
             return;
 
-        SpawnScroll();
+        SpawnScroll(false);
     }
 
-    private void SpawnAction()
+    /// <summary>Start the current reel's dopamine countdown (a no-op if it has no timer).</summary>
+    private void BeginReelTimer()
     {
-        SpawnPanel(FeedItemType.Action);
+        if (currentReelTimer != null)
+            currentReelTimer.Begin();
+    }
 
+    /// <summary>
+    /// Raise a minigame overlay on top of the current reel, in the canvas-level overlay
+    /// container. The overlay drives the shared gauge and blocks scrolling until it is
+    /// beaten or times out. If nothing is usable in the pool, the reel just becomes a
+    /// normal timed reel instead of stalling.
+    /// </summary>
+    private void SpawnMinigameOverlay()
+    {
         FeedOverlay prefab = overlayPicker.Pick();
-        if (prefab == null)
+        RectTransform root = overlayContainer != null
+            ? overlayContainer
+            : (currentItem != null ? currentItem.ResolveOverlayRoot() : null);
+
+        if (prefab == null || root == null)
         {
-            // Nothing usable in the pool — treat it as a normal reel instead of stalling.
-            actionInProgress = false;
-            SlidePanelIn(null);
+            BeginReelTimer(); // nothing to show — fall back to a plain timed reel
             return;
         }
 
-        RectTransform overlayRoot = currentItem.ResolveOverlayRoot();
-        // worldPositionStays=false so the overlay keeps the size, anchors, position
-        // and scale authored in its prefab instead of inheriting the panel's.
-        // Intentionally NOT stretched to fill — each overlay controls its own layout
-        // via its prefab RectTransform (a small centered heart, a full-screen ad, ...).
-        currentOverlay = Instantiate(prefab, overlayRoot, false);
-
+        // worldPositionStays=false so the overlay keeps the size, anchors, position and
+        // scale authored in its prefab. Intentionally NOT stretched to fill — each overlay
+        // controls its own layout via its prefab RectTransform (a small centered heart, a
+        // full-screen ad, ...).
+        currentOverlay = Instantiate(prefab, root, false);
         currentOverlay.Completed += OnOverlayCompleted;
         currentOverlay.Failed += OnOverlayFailed;
         currentOverlay.SetGauge(dopamineGauge); // drive the shared HUD gauge
 
         actionInProgress = true;
-        currentOverlay.Begin(); // sets the minigame up + primes the gauge; timer not counting yet
-
-        // Start the countdown only once the panel has finished sliding into place.
-        FeedOverlay overlay = currentOverlay;
-        SlidePanelIn(() =>
-        {
-            if (overlay != null && currentOverlay == overlay)
-                overlay.StartTimer();
-        });
+        currentOverlay.Begin();      // set the minigame up + prime the gauge
+        currentOverlay.StartTimer(); // the reel has already slid in, so start counting now
     }
 
     private void OnOverlayCompleted(FeedOverlay overlay)
@@ -205,30 +229,34 @@ public class FeedManager : MonoBehaviour
         if (swipeInput != null)
             swipeInput.CancelCurrentGesture();
 
+        // Close the overlay and hand the reel below back to the player as a normal timed
+        // reel — they must now swipe up before its dopamine timer empties.
         DetachOverlay();
-        SpawnScroll();
+        BeginReelTimer();
     }
 
     private void OnOverlayFailed(FeedOverlay overlay)
     {
-        // Drop any in-progress press so a lingering release doesn't scroll the next reel.
+        // Drop any in-progress press so a lingering release doesn't scroll the reel.
         if (swipeInput != null)
             swipeInput.CancelCurrentGesture();
 
-        // The action's dopamine timer ran out (or the player gave up) — lose a life.
+        // The minigame's dopamine timer ran out (or the player gave up) — lose a life.
         LoseLife();
         if (gameOver)
             return;
 
         if (advanceOnActionFail)
         {
+            // Close the overlay; the reel below continues as a normal timed reel.
             DetachOverlay();
-            SpawnScroll();
+            BeginReelTimer();
         }
         else
         {
-            // Let the player try again on the same panel.
+            // Let the player try the same minigame again in place.
             overlay.Begin();
+            overlay.StartTimer();
         }
     }
 
@@ -286,11 +314,16 @@ public class FeedManager : MonoBehaviour
 
     private void DetachOverlay()
     {
+        actionInProgress = false;
+
         if (currentOverlay == null)
             return;
 
         currentOverlay.Completed -= OnOverlayCompleted;
         currentOverlay.Failed -= OnOverlayFailed;
+        // The overlay lives in its own canvas container now (not as a child of the reel),
+        // so it won't be destroyed with the reel — tear it down explicitly.
+        Destroy(currentOverlay.gameObject);
         currentOverlay = null;
     }
 
@@ -304,20 +337,19 @@ public class FeedManager : MonoBehaviour
         currentReelTimer = null;
     }
 
-    private void SpawnPanel(FeedItemType type)
+    private void SpawnPanel()
     {
         DetachOverlay();
         DetachReelTimer();
 
         if (currentItem != null)
-            Destroy(currentItem.gameObject); // destroys the overlay child too
+            Destroy(currentItem.gameObject);
 
-        FeedItem prefab = type == FeedItemType.Scroll ? scrollPanelPrefab : actionPanelPrefab;
-        currentItem = Instantiate(prefab, feedContainer);
+        currentItem = Instantiate(scrollPanelPrefab, feedContainer);
 
         RectTransform rt = currentItem.GetComponent<RectTransform>();
         StretchToFill(rt);
-        // The slide is kicked off by the caller (SpawnScroll/SpawnAction) via
+        // The slide is kicked off by the caller (SpawnScroll) via
         // SlidePanelIn, so it can start that panel's timer when the slide finishes.
     }
 
