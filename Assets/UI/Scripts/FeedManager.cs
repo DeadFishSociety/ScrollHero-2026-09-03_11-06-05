@@ -69,6 +69,13 @@ public class FeedManager : MonoBehaviour
              "weighted or not depending on the mode chosen.")]
     [SerializeField] private SoundEffect scrollSound = new SoundEffect();
 
+    [Header("Haptics")]
+    [Tooltip("Vibrate the device when the player takes damage (a life lost from not reacting in time).")]
+    [SerializeField] private bool vibrateOnDamage = true;
+
+    [Tooltip("Vibration length in milliseconds (Android). iOS uses a fixed system buzz.")]
+    [SerializeField, Min(1)] private int damageVibrationMs = 50;
+
     private int scrollCount;
     private int score;
     private int lives;
@@ -321,6 +328,9 @@ public class FeedManager : MonoBehaviour
             return;
 
         lives = Mathf.Max(0, lives - 1);
+
+        if (vibrateOnDamage)
+            Haptics.Vibrate(damageVibrationMs); // buzz on every hit, fatal or not
 
         if (lives <= 0)
         {
