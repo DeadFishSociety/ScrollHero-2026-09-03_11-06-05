@@ -62,6 +62,20 @@ public class FeedManager : MonoBehaviour
     [Tooltip("Seconds of play before the screen-time popup first appears. After that it " +
              "returns whenever the time the player chose to 'extend' for runs out.")]
     [SerializeField, Min(1f)] private float firstScreenTimeDelay = 30f;
+    [Header("Scoring")]
+    [Tooltip("Points added each time the player scrolls past a reel.")]
+    [SerializeField] private int scrollPoints = 100;
+
+    [Tooltip("Points added when a minigame is completed successfully.")]
+    [SerializeField] private int minigamePoints = 1000;
+
+    [Tooltip("Bonus points added when the player likes a reel.")]
+    [SerializeField] private int likePoints = 100;
+
+    [Header("Audio")]
+    [Tooltip("Sound played when the player scrolls to the next reel. Add clip variations — " +
+             "weighted or not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect scrollSound = new SoundEffect();
 
     private int scrollCount;
     private int score;
@@ -70,6 +84,7 @@ public class FeedManager : MonoBehaviour
     private FeedItem currentItem;
     private FeedOverlay currentOverlay;
     private ReelTimer currentReelTimer;
+    private ReelLike currentReelLike;
     private bool actionInProgress;
     private float screenTimeCountdown;
 
@@ -83,6 +98,7 @@ public class FeedManager : MonoBehaviour
     void Start()
     {
         swipeInput.OnSwipe += HandleSwipe;
+        swipeInput.OnDoubleTap += HandleDoubleTap;
         lives = startingLives;
         UpdateScoreText();
         if (healthDisplay != null)
@@ -94,8 +110,44 @@ public class FeedManager : MonoBehaviour
     void OnDestroy()
     {
         swipeInput.OnSwipe -= HandleSwipe;
+        swipeInput.OnDoubleTap -= HandleDoubleTap;
         DetachOverlay();
         DetachReelTimer();
+        DetachReelLike();
+    }
+
+    /// <summary>
+    /// Central scoring: add points, refresh the label, and play the shared points-gained
+    /// animation (the ScrollAnimationOverlay). Every score source routes through here.
+    /// </summary>
+    private void AddScore(int amount, bool playAnimation = true)
+    {
+        score += amount;
+        UpdateScoreText();
+        if (playAnimation)
+            scrollAnimation?.PlayFromStart();
+    }
+
+    /// <summary>A double-tap: like the current reel, unless a minigame is blocking input.</summary>
+    private void HandleDoubleTap()
+    {
+        if (gameOver)
+            return;
+
+        // While a minigame is up and swallowing input, the tap belongs to it, not a like.
+        if (actionInProgress && currentOverlay != null && currentOverlay.BlocksSwipe)
+            return;
+
+        if (currentReelLike != null)
+            currentReelLike.OnDoubleTap();
+    }
+
+    private void OnReelLiked(ReelLike like)
+    {
+        // If the reel plays its own like animation (next to the heart), skip the shared
+        // ScrollAnimationOverlay so it doesn't double up.
+        bool playShared = like == null || !like.HasLikeAnimation;
+        AddScore(likePoints, playShared);
     }
 
     void Update()
@@ -131,18 +183,16 @@ public class FeedManager : MonoBehaviour
         if (direction != SwipeDirection.Up)
             return; // only an upward swipe counts as "scrolling"
 
-        // Play the effect only when the player actually scrolls away from a normal
-        // reel. The effect lives outside the reel prefab, so destroying that prefab
-        // cannot cut the animation off.
-        if (currentItem != null && currentItem.Type == FeedItemType.Scroll)
-            scrollAnimation?.PlayFromStart();
-
         scrollCount++;
         if (scrollCountText != null)
             scrollCountText.text = $"Scrolls: {scrollCount}";
 
-        // NOTE: scrolling reels deliberately does NOT score. Only completing a
-        // minigame overlay does. See OnOverlayCompleted.
+        scrollSound.Play();
+
+        // Scrolling past a reel scores. AddScore also plays the shared points-gained
+        // animation (ScrollAnimationOverlay), which lives outside the reel prefab so
+        // destroying that prefab cannot cut the animation off.
+        AddScore(scrollPoints);
 
         // Every N scrolls the next reel also carries a minigame overlay on top of it.
         bool withMinigame = scrollCount % actionEveryNScrolls == 0 && overlayPicker.HasAny;
@@ -178,6 +228,11 @@ public class FeedManager : MonoBehaviour
             reelTimer.SetGauge(dopamineGauge); // drive the shared HUD gauge
             reelTimer.Prime(); // show a full gauge while it slides in
         }
+
+        // The reel can be liked (double-tap and/or heart button) for bonus points.
+        currentReelLike = currentItem != null ? currentItem.GetComponentInChildren<ReelLike>() : null;
+        if (currentReelLike != null)
+            currentReelLike.Liked += OnReelLiked;
 
         // Wait until the reel has finished sliding into place, then either raise the
         // minigame overlay on top of it or start the plain reel's countdown.
@@ -288,11 +343,7 @@ public class FeedManager : MonoBehaviour
 
     private void OnOverlayCompleted(FeedOverlay overlay)
     {
-        if (overlay.ScoresOnComplete)
-        {
-            score++;
-            UpdateScoreText();
-        }
+        AddScore(minigamePoints);
 
         // A drag-based minigame (e.g. the phone) completes mid-gesture. Drop that
         // in-progress press so lifting the finger doesn't linger into a scroll swipe.
@@ -437,10 +488,20 @@ public class FeedManager : MonoBehaviour
         currentReelTimer = null;
     }
 
+    private void DetachReelLike()
+    {
+        if (currentReelLike == null)
+            return;
+
+        currentReelLike.Liked -= OnReelLiked;
+        currentReelLike = null; // the component is destroyed with its reel panel
+    }
+
     private void SpawnPanel()
     {
         DetachOverlay();
         DetachReelTimer();
+        DetachReelLike();
 
         if (currentItem != null)
             Destroy(currentItem.gameObject);

@@ -92,6 +92,14 @@ public class CallOverlay : FeedOverlay,
 
     [SerializeField, Min(0.05f)] private float checkpointParticleLifetime = 0.5f;
 
+    [Header("Sound")]
+    [Tooltip("Played each time the finger passes a checkpoint. Tip: use Sequential mode with a " +
+             "few rising notes for an ascending 'combo' as the player traces the path.")]
+    [SerializeField] private SoundEffect checkpointSound = new SoundEffect();
+
+    [Tooltip("Played when the player fails — picks up the call, or lets the timer run out.")]
+    [SerializeField] private SoundEffect failSound = new SoundEffect();
+
     /// <summary>Player tapped pick-up — the losing action. No consequence wired yet.</summary>
     public event Action<CallOverlay> PickedUp;
 
@@ -141,6 +149,7 @@ public class CallOverlay : FeedOverlay,
         current = PickPath();
         nextIndex = 0;
         dragging = false;
+        checkpointSound.ResetSequence(); // restart the note sequence for this attempt
 
         if (current == null)
             Debug.LogWarning("[CallOverlay] No valid paths assigned — the call can't be hung up.");
@@ -248,6 +257,7 @@ public class CallOverlay : FeedOverlay,
 
         // No lose mechanic yet — just announce it and fire the event.
         Debug.Log("[CallOverlay] Player picked up — LOSE (no lose logic wired yet).");
+        failSound.Play();
         onPickedUp?.Invoke();
         PickedUp?.Invoke(this);
     }
@@ -299,6 +309,7 @@ public class CallOverlay : FeedOverlay,
         {
             MarkCheckpointPassed(nextIndex); // grey out the checkpoint we just crossed
             EmitCheckpointBurst(nextIndex);  // and spray a burst from it
+            checkpointSound.Play();          // one note per checkpoint
             nextIndex++;
             ReportProgress();
 
@@ -342,9 +353,13 @@ public class CallOverlay : FeedOverlay,
         dragging = false;
         nextIndex = 0;
         RestoreCheckpointColors(); // trace restarts, so passed markers un-grey
+        checkpointSound.ResetSequence(); // and the note sequence starts over
         PlaceSpriteAtWaypoint(0);
         ReportProgress();
     }
+
+    // Timer ran out — play the fail sound (pick-up handles its own fail sound separately).
+    protected override void OnFail() => failSound.Play();
 
     // ---- Positioning helpers ----------------------------------------------
 
