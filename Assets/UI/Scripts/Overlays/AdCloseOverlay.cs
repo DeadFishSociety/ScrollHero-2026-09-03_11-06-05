@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// "Close the ad" — the player has to tap the cross, but the cross jumps to a new
 /// spot every time it is hit. It only closes after it has been caught N times.
 /// </summary>
-public class AdCloseOverlay : FeedOverlay
+public class AdCloseOverlay : FeedOverlay, IPointerClickHandler
 {
     [Header("Ad")]
     [SerializeField] private Button closeButton;
@@ -26,6 +27,14 @@ public class AdCloseOverlay : FeedOverlay
 
     [Tooltip("How long the hop takes. 0 = teleport instantly.")]
     [SerializeField, Min(0f)] private float moveDuration = 0.12f;
+
+    [Header("Sound")]
+    [Tooltip("Played when the player successfully taps the cross.")]
+    [SerializeField] private SoundEffect crossTapSound = new SoundEffect();
+
+    [Tooltip("Played when the player taps the ad but misses the cross. Needs a raycast-target " +
+             "background on the overlay so empty taps register — see the class notes.")]
+    [SerializeField] private SoundEffect wrongTapSound = new SoundEffect();
 
     private int taps;
     private Vector2 startAnchoredPosition;
@@ -86,6 +95,7 @@ public class AdCloseOverlay : FeedOverlay
         if (IsFinished)
             return;
 
+        crossTapSound.Play(); // a correct hit on the cross
         taps++;
 
         if (taps >= requiredTaps)
@@ -96,6 +106,20 @@ public class AdCloseOverlay : FeedOverlay
 
         Dodge();
         ReportProgress();
+    }
+
+    /// <summary>
+    /// A tap that reached the overlay instead of the cross button — i.e. a miss. The close
+    /// button consumes its own clicks, so this only fires for taps that missed it. Requires a
+    /// raycast-target graphic (e.g. the ad background) on/under this overlay for empty-space
+    /// taps to register.
+    /// </summary>
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (IsFinished)
+            return;
+
+        wrongTapSound.Play();
     }
 
     private void Dodge()

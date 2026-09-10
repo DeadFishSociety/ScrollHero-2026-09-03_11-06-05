@@ -92,6 +92,13 @@ public class SoundEffect
         output.PlayOneShot(clip, volume);
     }
 
+    /// <summary>Restart Sequential mode from the first clip and clear the repeat memory.</summary>
+    public void ResetSequence()
+    {
+        nextIndex = 0;
+        lastPlayed = null;
+    }
+
     private AudioClip Pick()
     {
         usable.Clear();
