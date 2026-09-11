@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-/// <summary>One video plus the description paired with it.</summary>
+/// <summary>One video plus the description and custom audio paired with it.</summary>
 [System.Serializable]
 public class ReelClip
 {
@@ -14,6 +14,10 @@ public class ReelClip
     [Tooltip("Description paired with this clip. Exposed via CurrentDescription for later " +
              "use (e.g. an overlay caption).")]
     [TextArea] public string description;
+
+    [Tooltip("Optional custom audio for this video — played (through the reel's Audio Source) " +
+             "while this clip is on screen. Leave empty for a silent video.")]
+    public AudioClip audio;
 }
 
 /// <summary>
@@ -33,6 +37,17 @@ public class ReelVideo : MonoBehaviour
     [Tooltip("The RawImage showing the video's RenderTexture. Hidden until the first " +
              "frame is ready, then revealed — this is what avoids the black frame.")]
     [SerializeField] private RawImage videoImage;
+
+    [Header("Audio")]
+    [Tooltip("Plays the chosen clip's custom audio. Add an AudioSource to the reel (2D: " +
+             "Spatial Blend 0) and assign it here. Leave empty for no per-video audio.")]
+    [SerializeField] private AudioSource audioSource;
+
+    [Tooltip("Loop the custom audio while the video is on screen.")]
+    [SerializeField] private bool loopAudio = true;
+
+    [Tooltip("Volume for the custom audio.")]
+    [Range(0f, 1f)][SerializeField] private float audioVolume = 1f;
 
     [Header("Pool")]
     [Tooltip("The clips (with descriptions) this reel can pick from. One is chosen at random.")]
@@ -83,6 +98,8 @@ public class ReelVideo : MonoBehaviour
             videoPlayer.prepareCompleted -= OnPrepared;
             videoPlayer.Stop();
         }
+        if (audioSource != null)
+            audioSource.Stop(); // don't let this reel's audio linger after it's gone
     }
 
     private void PlayRandom()
@@ -101,6 +118,9 @@ public class ReelVideo : MonoBehaviour
             usernameText.text = PickRandom(usernames);
         if (musicText != null)
             musicText.text = PickRandom(musicTracks);
+
+        // Play this clip's custom audio (if any) through the reel's own AudioSource.
+        PlayClipAudio(chosen);
 
         if (chosen == null || chosen.clip == null)
             return;
@@ -121,6 +141,24 @@ public class ReelVideo : MonoBehaviour
 
         if (videoImage != null)
             videoImage.enabled = true; // first frame ready — safe to reveal
+    }
+
+    // Play the chosen clip's custom audio through the reel's AudioSource, or stop if it has none.
+    private void PlayClipAudio(ReelClip chosen)
+    {
+        if (audioSource == null)
+            return;
+
+        audioSource.Stop();
+
+        AudioClip audio = chosen != null ? chosen.audio : null;
+        if (audio == null)
+            return;
+
+        audioSource.clip = audio;
+        audioSource.loop = loopAudio;
+        audioSource.volume = audioVolume;
+        audioSource.Play();
     }
 
     /// <summary>A random entry from the pool, or empty string if it's null/empty.</summary>
