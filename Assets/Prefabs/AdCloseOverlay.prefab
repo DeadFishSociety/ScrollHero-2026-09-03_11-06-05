@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -139,6 +139,35 @@ MonoBehaviour:
   padding: {x: 40, y: 40}
   minMoveDistance: 250
   moveDuration: 0.12
+  crossTapSound:
+    variations:
+    - clip: {fileID: 8300000, guid: b665c501289196e4bb58742468bcd3be, type: 3}
+      weight: 0
+      enabled: 1
+    mode: 2
+    avoidImmediateRepeat: 1
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    source: {fileID: 0}
+  wrongTapSound:
+    variations:
+    - clip: {fileID: 8300000, guid: 3a40ab468f5bf9245a333a4b32380e67, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 3a40ab468f5bf9245a333a4b32380e67, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 3a40ab468f5bf9245a333a4b32380e67, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 31c196d939fa17f42ad0d6d210215a55, type: 3}
+      weight: 0
+      enabled: 1
+    mode: 2
+    avoidImmediateRepeat: 1
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    source: {fileID: 0}
 --- !u!1 &5791543247930273207
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +269,20 @@ MonoBehaviour:
   padding: {x: 40, y: 40}
   minMoveDistance: 250
   moveDuration: 0.12
+  crossTapSound:
+    variations: []
+    mode: 0
+    avoidImmediateRepeat: 1
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    source: {fileID: 0}
+  wrongTapSound:
+    variations: []
+    mode: 0
+    avoidImmediateRepeat: 1
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    source: {fileID: 0}
 --- !u!1 &6716299468956339402
 GameObject:
   m_ObjectHideFlags: 0
