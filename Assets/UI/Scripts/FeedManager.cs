@@ -77,6 +77,14 @@ public class FeedManager : MonoBehaviour
              "weighted or not depending on the mode chosen.")]
     [SerializeField] private SoundEffect scrollSound = new SoundEffect();
 
+    [Tooltip("Sound played when a minigame is completed successfully. Add clip variations — " +
+             "weighted or not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect minigameCompleteSound = new SoundEffect();
+
+    [Tooltip("General background music. Add one or more tracks (weighted); loop a single track " +
+             "or play them as a continuous playlist.")]
+    [SerializeField] private BackgroundMusic backgroundMusic = new BackgroundMusic();
+
     private int scrollCount;
     private int score;
     private int lives;
@@ -104,6 +112,7 @@ public class FeedManager : MonoBehaviour
         if (healthDisplay != null)
             healthDisplay.SetHealth(lives, startingLives);
         screenTimeCountdown = firstScreenTimeDelay;
+        backgroundMusic.Play();
         SpawnScroll(false);
     }
 
@@ -111,6 +120,7 @@ public class FeedManager : MonoBehaviour
     {
         swipeInput.OnSwipe -= HandleSwipe;
         swipeInput.OnDoubleTap -= HandleDoubleTap;
+        backgroundMusic.Stop();
         DetachOverlay();
         DetachReelTimer();
         DetachReelLike();
@@ -152,6 +162,9 @@ public class FeedManager : MonoBehaviour
 
     void Update()
     {
+        // Keep the background-music playlist advancing regardless of game state.
+        backgroundMusic.Tick();
+
         // Count down toward the next screen-time popup. The clock only advances during
         // normal scrolling: it pauses while another overlay is up (a minigame, or the
         // popup itself) and stops for good once the game is over.
@@ -344,6 +357,11 @@ public class FeedManager : MonoBehaviour
     private void OnOverlayCompleted(FeedOverlay overlay)
     {
         AddScore(minigamePoints);
+
+        // Play the win jingle only for real minigames — the screen-time popup is a choice,
+        // not a challenge (ScoresOnComplete == false), so it stays silent here.
+        if (overlay != null && overlay.ScoresOnComplete)
+            minigameCompleteSound.Play();
 
         // A drag-based minigame (e.g. the phone) completes mid-gesture. Drop that
         // in-progress press so lifting the finger doesn't linger into a scroll swipe.
