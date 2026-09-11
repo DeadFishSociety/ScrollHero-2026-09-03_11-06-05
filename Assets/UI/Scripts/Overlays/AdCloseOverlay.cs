@@ -58,6 +58,9 @@ public class AdCloseOverlay : FeedOverlay, IPointerClickHandler
             closeButton.onClick.RemoveListener(HandleTap);
     }
 
+    /// <summary>Set how many taps are needed to close the ad. Adaptive difficulty; apply before Begin().</summary>
+    public void SetRequiredTaps(int taps) => requiredTaps = Mathf.Max(1, taps);
+
     private void CaptureStartPosition()
     {
         if (startPositionCaptured)

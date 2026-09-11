@@ -29,6 +29,9 @@ public class ReelTimer : MonoBehaviour
     /// <summary>Point this timer at the shared HUD gauge. Called by FeedManager on spawn.</summary>
     public void SetGauge(DopamineGauge sharedGauge) => gauge = sharedGauge;
 
+    /// <summary>Scale how fast the dopamine bar drains (1 = authored speed). Adaptive difficulty.</summary>
+    public void SetSpeedMultiplier(float multiplier) => timer.SetSpeedMultiplier(multiplier);
+
     /// <summary>Refill and show a full gauge, but don't count yet (while the reel slides in).</summary>
     public void Prime()
     {
