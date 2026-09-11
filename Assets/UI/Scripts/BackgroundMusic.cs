@@ -37,11 +37,13 @@ public class BackgroundMusic
     private AudioClip lastPlayed;
     private int nextIndex;
     private bool playing;
+    private AudioSource fallbackSource; // created on demand when no Source is assigned
 
     /// <summary>Start playback from a freshly chosen track.</summary>
     public void Play()
     {
-        if (source == null)
+        AudioSource output = ResolveSource();
+        if (output == null)
             return;
 
         AudioClip clip = Pick();
@@ -56,8 +58,9 @@ public class BackgroundMusic
     public void Stop()
     {
         playing = false;
-        if (source != null)
-            source.Stop();
+        AudioSource output = source != null ? source : fallbackSource;
+        if (output != null)
+            output.Stop();
     }
 
     /// <summary>
@@ -66,11 +69,15 @@ public class BackgroundMusic
     /// </summary>
     public void Tick()
     {
-        if (!playing || loopSingleTrack || source == null)
+        if (!playing || loopSingleTrack)
+            return;
+
+        AudioSource output = ResolveSource();
+        if (output == null)
             return;
 
         // The current track ended — queue up the next one.
-        if (source.clip != null && !source.isPlaying)
+        if (output.clip != null && !output.isPlaying)
         {
             AudioClip next = Pick();
             if (next != null)
@@ -80,10 +87,32 @@ public class BackgroundMusic
 
     private void StartClip(AudioClip clip)
     {
-        source.clip = clip;
-        source.loop = loopSingleTrack;
-        source.volume = volume;
-        source.Play();
+        AudioSource output = ResolveSource();
+        if (output == null)
+            return;
+
+        output.clip = clip;
+        output.loop = loopSingleTrack;
+        output.volume = volume;
+        output.Play();
+    }
+
+    /// <summary>The assigned AudioSource, or a dedicated 2D one created on demand if none is set,
+    /// so background music still plays with no wiring.</summary>
+    private AudioSource ResolveSource()
+    {
+        if (source != null)
+            return source;
+
+        if (fallbackSource == null)
+        {
+            var go = new GameObject("BackgroundMusicSource");
+            Object.DontDestroyOnLoad(go);
+            fallbackSource = go.AddComponent<AudioSource>();
+            fallbackSource.playOnAwake = false;
+            fallbackSource.spatialBlend = 0f; // 2D
+        }
+        return fallbackSource;
     }
 
     private AudioClip Pick()

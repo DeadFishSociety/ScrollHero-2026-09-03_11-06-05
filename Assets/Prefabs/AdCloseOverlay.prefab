@@ -104,15 +104,30 @@ MonoBehaviour:
   minMoveDistance: 250
   moveDuration: 0.12
   crossTapSound:
-    variations: []
+    variations:
+    - clip: {fileID: 8300000, guid: b665c501289196e4bb58742468bcd3be, type: 3}
+      weight: 1
+      enabled: 1
     mode: 0
     avoidImmediateRepeat: 1
     volume: 1
     pitchRange: {x: 1, y: 1}
     source: {fileID: 0}
   wrongTapSound:
-    variations: []
-    mode: 0
+    variations:
+    - clip: {fileID: 8300000, guid: 3a40ab468f5bf9245a333a4b32380e67, type: 3}
+      weight: 1
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 3a40ab468f5bf9245a333a4b32380e67, type: 3}
+      weight: 1
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 3a40ab468f5bf9245a333a4b32380e67, type: 3}
+      weight: 1
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 31c196d939fa17f42ad0d6d210215a55, type: 3}
+      weight: 1
+      enabled: 1
+    mode: 2
     avoidImmediateRepeat: 1
     volume: 1
     pitchRange: {x: 1, y: 1}
@@ -128,7 +143,6 @@ GameObject:
   - component: {fileID: 6386155395240639589}
   - component: {fileID: 630057246324863631}
   - component: {fileID: 7696846708903020646}
-  - component: {fileID: 3261952743315392849}
   m_Layer: 5
   m_Name: AdCloseOverlay
   m_TagString: Untagged
@@ -193,45 +207,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3261952743315392849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5791543247930273207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9312c0aa84a6246b5ae2c7161204914b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AdCloseOverlay
-  displayName: 
-  timer:
-    duration: 5
-    drainRate: 1
-  gauge: {fileID: 0}
-  progressText: {fileID: 0}
-  blocksSwipe: 1
-  closeButton: {fileID: 0}
-  moveArea: {fileID: 0}
-  requiredTaps: 3
-  padding: {x: 40, y: 40}
-  minMoveDistance: 250
-  moveDuration: 0.12
-  crossTapSound:
-    variations: []
-    mode: 0
-    avoidImmediateRepeat: 1
-    volume: 1
-    pitchRange: {x: 1, y: 1}
-    source: {fileID: 0}
-  wrongTapSound:
-    variations: []
-    mode: 0
-    avoidImmediateRepeat: 1
-    volume: 1
-    pitchRange: {x: 1, y: 1}
-    source: {fileID: 0}
 --- !u!1 &6716299468956339402
 GameObject:
   m_ObjectHideFlags: 0
