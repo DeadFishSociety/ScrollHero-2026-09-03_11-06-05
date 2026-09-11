@@ -54,6 +54,18 @@ public class FeedManager : MonoBehaviour
              "same minigame until they beat it.")]
     [SerializeField] private bool advanceOnActionFail = true;
 
+    [Header("Minigame intro")]
+    [Tooltip("Scale the minigame overlay grows from as it appears. 1 = no grow-in, 0 = grows " +
+             "from nothing.")]
+    [SerializeField, Range(0f, 1f)] private float overlayStartScale = 0.5f;
+
+    [Tooltip("How long the overlay takes to grow to full size.")]
+    [SerializeField, Min(0f)] private float overlayGrowDuration = 0.25f;
+
+    [Tooltip("Extra pause after the overlay is fully grown before the minigame starts (its timer " +
+             "and input). The overlay is visible but not yet interactive during the whole intro.")]
+    [SerializeField, Min(0f)] private float overlayStartDelay = 0.3f;
+
     [Header("Screen time")]
     [Tooltip("The screen-time limit popup, raised on top of the current reel after a " +
              "stretch of play. Leave empty to disable the feature entirely.")]
@@ -310,8 +322,61 @@ public class FeedManager : MonoBehaviour
         currentOverlay.SetGauge(dopamineGauge); // drive the shared HUD gauge
 
         actionInProgress = true;
-        currentOverlay.Begin();      // set the minigame up + prime the gauge
-        currentOverlay.StartTimer(); // the reel has already slid in, so start counting now
+        currentOverlay.Begin(); // set the minigame up + prime the gauge (not counting yet)
+
+        // Grow the overlay into view and hold a beat, then let it go live (input + timer).
+        StartCoroutine(GrowInAndStart(currentOverlay));
+    }
+
+    /// <summary>
+    /// Play the minigame's entrance: scale it up from <see cref="overlayStartScale"/>, wait
+    /// <see cref="overlayStartDelay"/>, then make it interactive and start its countdown. The
+    /// overlay is held non-interactive (and its timer paused) for the whole intro.
+    /// </summary>
+    private IEnumerator GrowInAndStart(FeedOverlay overlay)
+    {
+        if (overlay == null)
+            yield break;
+
+        RectTransform rt = overlay.transform as RectTransform;
+
+        // Hold the minigame inert until it actually starts: no button presses, no drags,
+        // no taps reach it during the grow-in and delay.
+        CanvasGroup gate = overlay.GetComponent<CanvasGroup>();
+        if (gate == null)
+            gate = overlay.gameObject.AddComponent<CanvasGroup>();
+        gate.interactable = false;
+        gate.blocksRaycasts = false;
+
+        // Grow from the start scale up to whatever scale the prefab was authored at.
+        Vector3 fullScale = rt != null ? rt.localScale : Vector3.one;
+        if (rt != null && overlayStartScale < 1f && overlayGrowDuration > 0f)
+        {
+            rt.localScale = fullScale * overlayStartScale;
+
+            float elapsed = 0f;
+            while (elapsed < overlayGrowDuration)
+            {
+                if (currentOverlay != overlay)
+                    yield break; // overlay was torn down mid-grow
+                elapsed += Time.deltaTime;
+                float p = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / overlayGrowDuration));
+                rt.localScale = fullScale * Mathf.Lerp(overlayStartScale, 1f, p);
+                yield return null;
+            }
+            rt.localScale = fullScale;
+        }
+
+        if (overlayStartDelay > 0f)
+            yield return new WaitForSeconds(overlayStartDelay);
+
+        if (currentOverlay != overlay)
+            yield break;
+
+        // Live now: allow input and start the countdown.
+        gate.interactable = true;
+        gate.blocksRaycasts = true;
+        overlay.StartTimer();
     }
 
     /// <summary>
