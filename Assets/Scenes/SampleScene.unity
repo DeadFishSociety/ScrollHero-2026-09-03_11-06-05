@@ -213,8 +213,24 @@ MonoBehaviour:
   minigamePoints: 1000
   likePoints: 100
   scrollSound:
-    variations: []
-    mode: 0
+    variations:
+    - clip: {fileID: 8300000, guid: 241583fb1abca8143bf0abf20659e137, type: 3}
+      weight: 0
+      enabled: 1
+    mode: 2
+    avoidImmediateRepeat: 1
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    source: {fileID: 0}
+  minigameCompleteSound:
+    variations:
+    - clip: {fileID: 8300000, guid: 8b007bbae3dd6bb4c9dde41a1aaf41bf, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 0c10f14992b59cf48a3d0341d7468356, type: 3}
+      weight: 0
+      enabled: 1
+    mode: 2
     avoidImmediateRepeat: 1
     volume: 1
     pitchRange: {x: 1, y: 1}
@@ -1446,8 +1462,20 @@ MonoBehaviour:
   randomizePosition: 1
   positionJitter: {x: 180, y: 140}
   playSound:
-    variations: []
-    mode: 0
+    variations:
+    - clip: {fileID: 8300000, guid: 062e0c2fc05c00b45844f41c1e5f5953, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 597303bfee2700f4b90e0160e3a76ab7, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: 1baaa0211b4f5eb4bb90555dd9858dd0, type: 3}
+      weight: 0
+      enabled: 1
+    - clip: {fileID: 8300000, guid: fc78c910a2edf4b4cba9ea93d9b68d0b, type: 3}
+      weight: 0
+      enabled: 1
+    mode: 2
     avoidImmediateRepeat: 1
     volume: 1
     pitchRange: {x: 1, y: 1}

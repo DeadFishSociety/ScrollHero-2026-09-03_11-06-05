@@ -5546,13 +5546,16 @@ MonoBehaviour:
   particleGravity: 4
   particleLifetime: 0.6
   tapSound:
-    variations: []
+    variations:
+    - clip: {fileID: 8300000, guid: 7d489240819c38446a6bc17b06f037c9, type: 3}
+      weight: 0
+      enabled: 1
     mode: 0
     avoidImmediateRepeat: 1
     volume: 1
     pitchRange: {x: 1, y: 1}
     source: {fileID: 0}
-  pitchAtEmpty: 0.8
+  pitchAtEmpty: 0.4
   pitchAtFull: 1.6
   pitchOverProgress:
     serializedVersion: 2
