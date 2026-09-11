@@ -82,9 +82,11 @@ public class ScreenTimeOverlay : FeedOverlay
     public int ChosenExtendSeconds { get; private set; }
 
     // The popup is a choice, not a challenge: it never scores, and finishing it always
-    // scrolls the feed on to the next reel rather than resuming the one below.
+    // scrolls the feed on to the next reel rather than resuming the one below. It also keeps
+    // its own authored countdown instead of being scaled by the difficulty ramp.
     public override bool ScoresOnComplete => false;
     public override bool AdvancesFeedOnComplete => true;
+    public override bool ScaledByDifficulty => false;
 
     private void Awake()
     {

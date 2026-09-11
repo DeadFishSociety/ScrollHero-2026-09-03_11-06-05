@@ -66,6 +66,12 @@ public abstract class FeedOverlay : MonoBehaviour
     /// screen-time popup overrides this to true so closing it advances the feed.</summary>
     public virtual bool AdvancesFeedOnComplete => false;
 
+    /// <summary>Whether FeedManager scales this overlay to the current difficulty on spawn
+    /// (its time limit, plus per-type knobs like ad taps or like decay). Minigames do; the
+    /// screen-time popup overrides this to false — it is a choice with its own authored
+    /// countdown, not a difficulty-scaled challenge.</summary>
+    public virtual bool ScaledByDifficulty => true;
+
     private bool active; // timer is counting (between StartTimer and finish)
 
     /// <summary>
