@@ -54,6 +54,48 @@ public class FeedManager : MonoBehaviour
              "same minigame until they beat it.")]
     [SerializeField] private bool advanceOnActionFail = true;
 
+    [Header("Adaptive difficulty")]
+    [Tooltip("Score at which difficulty reaches MAX. It ramps from 0 (at 0 points) up to 1 " +
+             "(at this score) and holds there. Larger = a slower, gentler ramp.")]
+    [SerializeField, Min(1)] private int difficultyRampPoints = 10000;
+
+    [Tooltip("Reel dopamine bar speed at the START, difficulty 0 (1 = the reel prefab's authored " +
+             "speed, 1.5 = 50% faster from the very beginning). Raise this to make all reels faster.")]
+    [SerializeField, Min(0.1f)] private float reelTimerMinSpeed = 1f;
+
+    [Tooltip("Reel dopamine bar speed at MAX difficulty (2 = drains twice as fast as authored). " +
+             "This is the 'threshold' the timer speeds up to and never exceeds.")]
+    [SerializeField, Min(0.1f)] private float reelTimerMaxSpeed = 2f;
+
+    [Tooltip("Draw a small on-screen readout of the current difficulty level and scaled values.")]
+    [SerializeField] private bool showDifficultyDebug = false;
+
+    [Tooltip("Close-the-ad taps required at easy (difficulty 0) → hard (max).")]
+    [SerializeField, Min(1)] private int adTapsEasy = 3;
+    [SerializeField, Min(1)] private int adTapsHard = 8;
+
+    [Tooltip("Like-heart fill decay per second at easy → hard. Higher = must tap faster to fill it.")]
+    [SerializeField, Min(0f)] private float likeDecayEasy = 0.25f;
+    [SerializeField, Min(0f)] private float likeDecayHard = 0.9f;
+
+    [Tooltip("Time limit (seconds) every minigame gets at EASY, difficulty 0 — the MOST time.")]
+    [SerializeField, Min(0.1f)] private float minigameTimeMax = 8f;
+
+    [Tooltip("Time limit (seconds) every minigame gets at HARD, max difficulty — the LEAST time.")]
+    [SerializeField, Min(0.1f)] private float minigameTimeMin = 3f;
+
+    [Header("Minigame intro")]
+    [Tooltip("Scale the minigame overlay grows from as it appears. 1 = no grow-in, 0 = grows " +
+             "from nothing.")]
+    [SerializeField, Range(0f, 1f)] private float overlayStartScale = 0.5f;
+
+    [Tooltip("How long the overlay takes to grow to full size.")]
+    [SerializeField, Min(0f)] private float overlayGrowDuration = 0.25f;
+
+    [Tooltip("Extra pause after the overlay is fully grown before the minigame starts (its timer " +
+             "and input). The overlay is visible but not yet interactive during the whole intro.")]
+    [SerializeField, Min(0f)] private float overlayStartDelay = 0.3f;
+
     [Header("Screen time")]
     [Tooltip("The screen-time limit popup, raised on top of the current reel after a " +
              "stretch of play. Leave empty to disable the feature entirely.")]
@@ -77,6 +119,14 @@ public class FeedManager : MonoBehaviour
              "weighted or not depending on the mode chosen.")]
     [SerializeField] private SoundEffect scrollSound = new SoundEffect();
 
+    [Tooltip("Sound played when a minigame is completed successfully. Add clip variations — " +
+             "weighted or not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect minigameCompleteSound = new SoundEffect();
+
+    [Tooltip("General background music. Add one or more tracks (weighted); loop a single track " +
+             "or play them as a continuous playlist.")]
+    [SerializeField] private BackgroundMusic backgroundMusic = new BackgroundMusic();
+
     private int scrollCount;
     private int score;
     private int lives;
@@ -87,6 +137,8 @@ public class FeedManager : MonoBehaviour
     private ReelLike currentReelLike;
     private bool actionInProgress;
     private float screenTimeCountdown;
+    /// <summary>Difficulty from 0 (start) to 1 (fully ramped), based on the player's score.</summary>
+    private float Difficulty01 => Mathf.Clamp01(score / (float)difficultyRampPoints);
 
     /// <summary>Description paired with the current scroll reel's video. For later use
     /// (e.g. an overlay caption). Empty until the first video reel has spawned.</summary>
@@ -104,6 +156,7 @@ public class FeedManager : MonoBehaviour
         if (healthDisplay != null)
             healthDisplay.SetHealth(lives, startingLives);
         screenTimeCountdown = firstScreenTimeDelay;
+        backgroundMusic.Play();
         SpawnScroll(false);
     }
 
@@ -111,6 +164,7 @@ public class FeedManager : MonoBehaviour
     {
         swipeInput.OnSwipe -= HandleSwipe;
         swipeInput.OnDoubleTap -= HandleDoubleTap;
+        backgroundMusic.Stop();
         DetachOverlay();
         DetachReelTimer();
         DetachReelLike();
@@ -152,6 +206,9 @@ public class FeedManager : MonoBehaviour
 
     void Update()
     {
+        // Keep the background-music playlist advancing regardless of game state.
+        backgroundMusic.Tick();
+
         // Count down toward the next screen-time popup. The clock only advances during
         // normal scrolling: it pauses while another overlay is up (a minigame, or the
         // popup itself) and stops for good once the game is over.
@@ -163,6 +220,38 @@ public class FeedManager : MonoBehaviour
         screenTimeCountdown -= Time.deltaTime;
         if (screenTimeCountdown <= 0f)
             RaiseScreenTimeOverlay();
+    }
+
+    // Live readout of the difficulty ramp and every value it currently drives. Toggle with
+    // Show Difficulty Debug on the FeedManager. Editor/debug aid only.
+    private void OnGUI()
+    {
+        if (!showDifficultyDebug)
+            return;
+
+        float t = Difficulty01;
+        float reelSpeed = Mathf.Lerp(reelTimerMinSpeed, reelTimerMaxSpeed, t);
+        int adTaps = Mathf.RoundToInt(Mathf.Lerp(adTapsEasy, adTapsHard, t));
+        float likeDecay = Mathf.Lerp(likeDecayEasy, likeDecayHard, t);
+        float minigameTime = Mathf.Lerp(minigameTimeMax, minigameTimeMin, t);
+
+        string text =
+            $"DIFFICULTY  {t * 100f:0}%   (t = {t:0.00})\n" +
+            $"score {score} / {difficultyRampPoints}\n" +
+            $"reel speed     x{reelSpeed:0.00}\n" +
+            $"ad taps        {adTaps}\n" +
+            $"like decay     {likeDecay:0.00}/s\n" +
+            $"minigame time  {minigameTime:0.0}s";
+
+        var style = new GUIStyle(GUI.skin.box)
+        {
+            alignment = TextAnchor.UpperLeft,
+            fontSize = 22,
+            padding = new RectOffset(10, 10, 10, 10),
+        };
+        style.normal.textColor = Color.white;
+
+        GUI.Box(new Rect(12f, 12f, 340f, 210f), text, style);
     }
 
     private void HandleSwipe(SwipeDirection direction)
@@ -226,6 +315,9 @@ public class FeedManager : MonoBehaviour
         {
             reelTimer.Expired += OnReelExpired;
             reelTimer.SetGauge(dopamineGauge); // drive the shared HUD gauge
+            // Adaptive difficulty: the dopamine bar drains faster the longer you've played,
+            // from reelTimerMinSpeed up to reelTimerMaxSpeed (the threshold).
+            reelTimer.SetSpeedMultiplier(Mathf.Lerp(reelTimerMinSpeed, reelTimerMaxSpeed, Difficulty01));
             reelTimer.Prime(); // show a full gauge while it slides in
         }
 
@@ -268,6 +360,29 @@ public class FeedManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Scale a freshly-spawned minigame to the current difficulty (0..1): the ad needs more
+    /// taps, the like heart drains faster, and the call gets less time. Called before Begin(),
+    /// so the new values are in place when the overlay primes and starts.
+    /// </summary>
+    private void ApplyDifficultyToOverlay(FeedOverlay overlay)
+    {
+        float t = Difficulty01;
+
+        // Every minigame's time limit shrinks from max (easy) to min (hard).
+        overlay.SetTimeLimit(Mathf.Lerp(minigameTimeMax, minigameTimeMin, t));
+
+        switch (overlay)
+        {
+            case AdCloseOverlay ad:
+                ad.SetRequiredTaps(Mathf.RoundToInt(Mathf.Lerp(adTapsEasy, adTapsHard, t)));
+                break;
+            case LikeOverlay like:
+                like.SetFillDecay(Mathf.Lerp(likeDecayEasy, likeDecayHard, t));
+                break;
+        }
+    }
+
+    /// <summary>
     /// Raise a minigame overlay on top of the current reel, in the canvas-level overlay
     /// container. The overlay drives the shared gauge and blocks scrolling until it is
     /// beaten or times out. If nothing is usable in the pool, the reel just becomes a
@@ -295,10 +410,64 @@ public class FeedManager : MonoBehaviour
         currentOverlay.Failed += OnOverlayFailed;
         currentOverlay.GameOverRequested += OnOverlayGameOver;
         currentOverlay.SetGauge(dopamineGauge); // drive the shared HUD gauge
+        ApplyDifficultyToOverlay(currentOverlay); // scale this minigame to the current difficulty
 
         actionInProgress = true;
-        currentOverlay.Begin();      // set the minigame up + prime the gauge
-        currentOverlay.StartTimer(); // the reel has already slid in, so start counting now
+        currentOverlay.Begin(); // set the minigame up + prime the gauge (not counting yet)
+
+        // Grow the overlay into view and hold a beat, then let it go live (input + timer).
+        StartCoroutine(GrowInAndStart(currentOverlay));
+    }
+
+    /// <summary>
+    /// Play the minigame's entrance: scale it up from <see cref="overlayStartScale"/>, wait
+    /// <see cref="overlayStartDelay"/>, then make it interactive and start its countdown. The
+    /// overlay is held non-interactive (and its timer paused) for the whole intro.
+    /// </summary>
+    private IEnumerator GrowInAndStart(FeedOverlay overlay)
+    {
+        if (overlay == null)
+            yield break;
+
+        RectTransform rt = overlay.transform as RectTransform;
+
+        // Hold the minigame inert until it actually starts: no button presses, no drags,
+        // no taps reach it during the grow-in and delay.
+        CanvasGroup gate = overlay.GetComponent<CanvasGroup>();
+        if (gate == null)
+            gate = overlay.gameObject.AddComponent<CanvasGroup>();
+        gate.interactable = false;
+        gate.blocksRaycasts = false;
+
+        // Grow from the start scale up to whatever scale the prefab was authored at.
+        Vector3 fullScale = rt != null ? rt.localScale : Vector3.one;
+        if (rt != null && overlayStartScale < 1f && overlayGrowDuration > 0f)
+        {
+            rt.localScale = fullScale * overlayStartScale;
+
+            float elapsed = 0f;
+            while (elapsed < overlayGrowDuration)
+            {
+                if (currentOverlay != overlay)
+                    yield break; // overlay was torn down mid-grow
+                elapsed += Time.deltaTime;
+                float p = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / overlayGrowDuration));
+                rt.localScale = fullScale * Mathf.Lerp(overlayStartScale, 1f, p);
+                yield return null;
+            }
+            rt.localScale = fullScale;
+        }
+
+        if (overlayStartDelay > 0f)
+            yield return new WaitForSeconds(overlayStartDelay);
+
+        if (currentOverlay != overlay)
+            yield break;
+
+        // Live now: allow input and start the countdown.
+        gate.interactable = true;
+        gate.blocksRaycasts = true;
+        overlay.StartTimer();
     }
 
     /// <summary>
@@ -344,6 +513,11 @@ public class FeedManager : MonoBehaviour
     private void OnOverlayCompleted(FeedOverlay overlay)
     {
         AddScore(minigamePoints);
+
+        // Play the win jingle only for real minigames — the screen-time popup is a choice,
+        // not a challenge (ScoresOnComplete == false), so it stays silent here.
+        if (overlay != null && overlay.ScoresOnComplete)
+            minigameCompleteSound.Play();
 
         // A drag-based minigame (e.g. the phone) completes mid-gesture. Drop that
         // in-progress press so lifting the finger doesn't linger into a scroll swipe.
