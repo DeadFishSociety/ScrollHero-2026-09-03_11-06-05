@@ -194,6 +194,19 @@ MonoBehaviour:
   actionEveryNScrolls: 2
   startingLives: 5
   advanceOnActionFail: 1
+  difficultyRampPoints: 10000
+  reelTimerMinSpeed: 1
+  reelTimerMaxSpeed: 4
+  showDifficultyDebug: 1
+  adTapsEasy: 3
+  adTapsHard: 5
+  likeDecayEasy: 0.25
+  likeDecayHard: 0.6
+  minigameTimeMax: 8
+  minigameTimeMin: 5
+  overlayStartScale: 0.5
+  overlayGrowDuration: 0.25
+  overlayStartDelay: 0.3
   screenTimePrefab: {fileID: 2446082534309352402, guid: ac212f6b6809854489333e00134ef299, type: 3}
   firstScreenTimeDelay: 8
   scrollPoints: 100
@@ -206,8 +219,20 @@ MonoBehaviour:
     volume: 1
     pitchRange: {x: 1, y: 1}
     source: {fileID: 0}
-  vibrateOnDamage: 1
-  damageVibrationMs: 50
+  minigameCompleteSound:
+    variations: []
+    mode: 0
+    avoidImmediateRepeat: 1
+    volume: 1
+    pitchRange: {x: 1, y: 1}
+    source: {fileID: 0}
+  backgroundMusic:
+    source: {fileID: 0}
+    tracks: []
+    mode: 0
+    avoidImmediateRepeat: 1
+    loopSingleTrack: 0
+    volume: 1
 --- !u!114 &82216753
 MonoBehaviour:
   m_ObjectHideFlags: 0

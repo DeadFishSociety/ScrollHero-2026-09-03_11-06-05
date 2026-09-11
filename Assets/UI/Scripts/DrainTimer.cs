@@ -20,9 +20,17 @@ public class DrainTimer
     [SerializeField, Min(0.0001f)] private float drainRate = 1f;
 
     private float remaining;
+    private float speedMultiplier = 1f; // runtime scale on drainRate (adaptive difficulty)
 
     /// <summary>True between Run() and the moment it empties (or Stop()).</summary>
     public bool Running { get; private set; }
+
+    /// <summary>Scale how fast the clock drains at runtime (1 = authored drainRate, 2 = twice
+    /// as fast). Multiplies drainRate without touching the authored value.</summary>
+    public void SetSpeedMultiplier(float multiplier) => speedMultiplier = Mathf.Max(0.0001f, multiplier);
+
+    /// <summary>Set the starting time on the clock (seconds). Apply before Run()/Prime().</summary>
+    public void SetDuration(float newDuration) => duration = Mathf.Max(0f, newDuration);
 
     /// <summary>1 = full, 0 = empty. A duration of 0 means "no timer" and stays full.</summary>
     public float Fraction => duration <= 0f ? 1f : Mathf.Clamp01(remaining / duration);
@@ -52,7 +60,7 @@ public class DrainTimer
         if (!Running)
             return false;
 
-        remaining -= drainRate * deltaTime;
+        remaining -= drainRate * speedMultiplier * deltaTime;
         if (remaining <= 0f)
         {
             remaining = 0f;

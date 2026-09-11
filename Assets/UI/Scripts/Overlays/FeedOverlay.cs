@@ -40,6 +40,13 @@ public abstract class FeedOverlay : MonoBehaviour
     /// <summary>Point this overlay at the shared HUD gauge. Called by FeedManager on spawn.</summary>
     public void SetGauge(DopamineGauge sharedGauge) => gauge = sharedGauge;
 
+    /// <summary>Override this overlay's time limit (seconds). Apply before StartTimer().
+    /// Used by adaptive difficulty (e.g. the call minigame's shrinking time).</summary>
+    public void SetTimeLimit(float seconds) => timer.SetDuration(seconds);
+
+    /// <summary>Scale how fast this overlay's dopamine timer drains (1 = authored). Adaptive difficulty.</summary>
+    public void SetTimerSpeedMultiplier(float multiplier) => timer.SetSpeedMultiplier(multiplier);
+
     /// <summary>Player finished the interaction successfully — this is what scores.</summary>
     public event Action<FeedOverlay> Completed;
     /// <summary>Player ran out of time, or did something that counts as giving up.</summary>
