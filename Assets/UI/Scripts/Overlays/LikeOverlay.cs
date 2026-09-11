@@ -118,6 +118,10 @@ public class LikeOverlay : FeedOverlay
             heartButton.onClick.RemoveListener(HandleTap);
     }
 
+    /// <summary>Set how fast the heart's fill drains (higher = must tap faster to keep up).
+    /// Adaptive difficulty; apply before Begin().</summary>
+    public void SetFillDecay(float decayPerSecond) => fillDecayPerSecond = Mathf.Max(0f, decayPerSecond);
+
     protected override void OnBegin()
     {
         fill = 0f;
