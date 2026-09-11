@@ -123,6 +123,14 @@ public class FeedManager : MonoBehaviour
              "weighted or not depending on the mode chosen.")]
     [SerializeField] private SoundEffect minigameCompleteSound = new SoundEffect();
 
+    [Tooltip("Sound played when the player loses a (non-fatal) life. Add clip variations — " +
+             "weighted or not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect lifeLostSound = new SoundEffect();
+
+    [Tooltip("Sound played on game over (the fatal, last life lost). Add clip variations — " +
+             "weighted or not depending on the mode chosen.")]
+    [SerializeField] private SoundEffect gameOverSound = new SoundEffect();
+
     [Tooltip("General background music. Add one or more tracks (weighted); loop a single track " +
              "or play them as a continuous playlist.")]
     [SerializeField] private BackgroundMusic backgroundMusic = new BackgroundMusic();
@@ -595,9 +603,11 @@ public class FeedManager : MonoBehaviour
         {
             EndGame(); // the fatal hit: the dog explodes instead of a normal shake
         }
-        else if (healthDisplay != null)
+        else
         {
-            healthDisplay.PlayDamage(lives, startingLives); // flash + shake, settle on new frame
+            lifeLostSound.Play();
+            if (healthDisplay != null)
+                healthDisplay.PlayDamage(lives, startingLives); // flash + shake, settle on new frame
         }
     }
 
@@ -612,6 +622,7 @@ public class FeedManager : MonoBehaviour
         if (dopamineGauge != null)
             dopamineGauge.gameObject.SetActive(false);
 
+        gameOverSound.Play();
         Debug.Log("[FeedManager] GAME OVER — out of lives.");
         GameOver?.Invoke();
         // Feed is frozen: HandleSwipe ignores input and nothing new is spawned.
