@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: 853cb7ee4fa1042e7a4f9c0abc143a89
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3858407875973940264
+    second: DopeDogXplosion_0
+  - first:
+      213: 7027342981692043723
+    second: DopeDogXplosion_1
+  - first:
+      213: -3555748233981306677
+    second: DopeDogXplosion_2
+  - first:
+      213: 7090614018331787376
+    second: DopeDogXplosion_3
+  - first:
+      213: 2326420563150359987
+    second: DopeDogXplosion_4
+  - first:
+      213: -6500955876491451854
+    second: DopeDogXplosion_5
+  - first:
+      213: -47320956887371407
+    second: DopeDogXplosion_6
+  - first:
+      213: 7778252596734472386
+    second: DopeDogXplosion_7
+  - first:
+      213: -7484923297939957501
+    second: DopeDogXplosion_8
+  - first:
+      213: 4287282401710422026
+    second: DopeDogXplosion_9
+  - first:
+      213: -188284489892253348
+    second: DopeDogXplosion_10
+  - first:
+      213: -7477050960399992758
+    second: DopeDogXplosion_11
+  - first:
+      213: 1093696284710549664
+    second: DopeDogXplosion_12
+  - first:
+      213: 2166768893098790884
+    second: DopeDogXplosion_13
+  - first:
+      213: -3337252489083327159
+    second: DopeDogXplosion_14
+  - first:
+      213: -2529273715528396953
+    second: DopeDogXplosion_15
+  - first:
+      213: -4194918495348414161
+    second: DopeDogXplosion_16
+  - first:
+      213: -6526208684570294889
+    second: DopeDogXplosion_17
+  - first:
+      213: 2224576226582955598
+    second: DopeDogXplosion_18
+  - first:
+      213: 3725126447063847741
+    second: DopeDogXplosion_19
+  - first:
+      213: -8934728651604790056
+    second: DopeDogXplosion_20
+  - first:
+      213: -9086112550941295867
+    second: DopeDogXplosion_21
+  - first:
+      213: -4722503641764493117
+    second: DopeDogXplosion_22
+  - first:
+      213: -8851770846034135411
+    second: DopeDogXplosion_23
+  - first:
+      213: 4861164364926791387
+    second: DopeDogXplosion_24
+  - first:
+      213: 2071766236715588863
+    second: DopeDogXplosion_25
+  - first:
+      213: -7963327001553918523
+    second: DopeDogXplosion_26
+  - first:
+      213: 1398775839006558733
+    second: DopeDogXplosion_27
+  - first:
+      213: -1470089178929502781
+    second: DopeDogXplosion_28
+  - first:
+      213: -5574666394029807062
+    second: DopeDogXplosion_29
+  - first:
+      213: 1421988179138742894
+    second: DopeDogXplosion_30
+  - first:
+      213: -3852818435477941895
+    second: DopeDogXplosion_31
+  - first:
+      213: -4254416928042253974
+    second: DopeDogXplosion_32
+  - first:
+      213: 2487582305544696459
+    second: DopeDogXplosion_33
+  - first:
+      213: 3526612666953305499
+    second: DopeDogXplosion_34
+  - first:
+      213: 3063856358812015968
+    second: DopeDogXplosion_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DopeDogXplosion_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 6
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8240ffd3581db8530800000000000000
+      internalID: 3858407875973940264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 6
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc1b69a9533268160800000000000000
+      internalID: 7027342981692043723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 6
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc852d202d177aec0800000000000000
+      internalID: -3555748233981306677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_3
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 5
+        width: 45
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 070421ac1ebe66260800000000000000
+      internalID: 7090614018331787376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 3
+        width: 48
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bdcdb02d2b194020800000000000000
+      internalID: 2326420563150359987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_5
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 53
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2322d39e217f7c5a0800000000000000
+      internalID: -6500955876491451854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_6
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 0
+        width: 61
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171fb4627d1e75ff0800000000000000
+      internalID: -47320956887371407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_7
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 3
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c03e999687e1fb60800000000000000
+      internalID: 7778252596734472386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_8
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 33
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3095e37dae5302890800000000000000
+      internalID: -7484923297939957501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_9
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 23
+        width: 30
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08bbbd11ac7f7b30800000000000000
+      internalID: 4287282401710422026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_10
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 30
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c51b1470144136df0800000000000000
+      internalID: -188284489892253348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_11
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 0
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a487dd144cd2c3890800000000000000
+      internalID: -7477050960399992758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_12
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 26
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a8365ee9f69d2f00800000000000000
+      internalID: 1093696284710549664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_13
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 32
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ef058704d8e11e10800000000000000
+      internalID: 2166768893098790884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 38
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d666eea82bfa1d0800000000000000
+      internalID: -3337252489083327159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_15
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 26
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f8236d4f636ecd0800000000000000
+      internalID: -2529273715528396953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_16
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 17
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29aa07aad7a8c5c0800000000000000
+      internalID: -4194918495348414161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_17
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 22
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7954e1a57cf3e65a0800000000000000
+      internalID: -6526208684570294889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_18
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 27
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e468141ba484fde10800000000000000
+      internalID: 2224576226582955598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_19
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 23
+        width: 39
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3357ac54ce42b330800000000000000
+      internalID: 3725126447063847741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_20
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 0
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4779c21a7710480800000000000000
+      internalID: -8934728651604790056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_21
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 28
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50bfce376c4a7e180800000000000000
+      internalID: -9086112550941295867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_22
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 22
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8832e65fb467eb0800000000000000
+      internalID: -4722503641764493117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_23
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 9
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d86f9f07051382580800000000000000
+      internalID: -8851770846034135411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_24
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 0
+        width: 70
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdeaf3efb33567340800000000000000
+      internalID: 4861164364926791387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_25
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 0
+        width: 115
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc94156a6460cc10800000000000000
+      internalID: 2071766236715588863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_26
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 0
+        width: 28
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c52a1a98449c7190800000000000000
+      internalID: -7963327001553918523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_27
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 4
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a826ce633796310800000000000000
+      internalID: 1398775839006558733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 14
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c5e2cd3ea1399be0800000000000000
+      internalID: -1470089178929502781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_29
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 0
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2aab82537ec2a2b0800000000000000
+      internalID: -5574666394029807062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_30
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 9
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a8e5407baebb310800000000000000
+      internalID: 1421988179138742894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_31
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 0
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 971d249cb0a088ac0800000000000000
+      internalID: -3852818435477941895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_32
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 4
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6102a5485645f4c0800000000000000
+      internalID: -4254416928042253974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_33
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 19
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82f9875deaa58220800000000000000
+      internalID: 2487582305544696459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_34
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 0
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9d052a298b01f030800000000000000
+      internalID: 3526612666953305499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DopeDogXplosion_35
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 1
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06ddfc51021058a20800000000000000
+      internalID: 3063856358812015968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DopeDogXplosion_0: 3858407875973940264
+      DopeDogXplosion_1: 7027342981692043723
+      DopeDogXplosion_10: -188284489892253348
+      DopeDogXplosion_11: -7477050960399992758
+      DopeDogXplosion_12: 1093696284710549664
+      DopeDogXplosion_13: 2166768893098790884
+      DopeDogXplosion_14: -3337252489083327159
+      DopeDogXplosion_15: -2529273715528396953
+      DopeDogXplosion_16: -4194918495348414161
+      DopeDogXplosion_17: -6526208684570294889
+      DopeDogXplosion_18: 2224576226582955598
+      DopeDogXplosion_19: 3725126447063847741
+      DopeDogXplosion_2: -3555748233981306677
+      DopeDogXplosion_20: -8934728651604790056
+      DopeDogXplosion_21: -9086112550941295867
+      DopeDogXplosion_22: -4722503641764493117
+      DopeDogXplosion_23: -8851770846034135411
+      DopeDogXplosion_24: 4861164364926791387
+      DopeDogXplosion_25: 2071766236715588863
+      DopeDogXplosion_26: -7963327001553918523
+      DopeDogXplosion_27: 1398775839006558733
+      DopeDogXplosion_28: -1470089178929502781
+      DopeDogXplosion_29: -5574666394029807062
+      DopeDogXplosion_3: 7090614018331787376
+      DopeDogXplosion_30: 1421988179138742894
+      DopeDogXplosion_31: -3852818435477941895
+      DopeDogXplosion_32: -4254416928042253974
+      DopeDogXplosion_33: 2487582305544696459
+      DopeDogXplosion_34: 3526612666953305499
+      DopeDogXplosion_35: 3063856358812015968
+      DopeDogXplosion_4: 2326420563150359987
+      DopeDogXplosion_5: -6500955876491451854
+      DopeDogXplosion_6: -47320956887371407
+      DopeDogXplosion_7: 7778252596734472386
+      DopeDogXplosion_8: -7484923297939957501
+      DopeDogXplosion_9: 4287282401710422026
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
