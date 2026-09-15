@@ -207,10 +207,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
   minigames:
   - prefab: {fileID: 2111662204157608173, guid: 837a25fc7c8534245b6ba8c19ec92a79, type: 3}
+    weight: 0
+  - prefab: {fileID: 6163388160916773928, guid: 6f64ea2ff080844bfa30fb0dfd049901, type: 3}
     weight: 1
   selection: 0
   avoidImmediateRepeat: 1
-  chancePerReel: 0.15
+  chancePerReel: 1
   gracePeriodReels: 2
   minReelsBetween: 1
   backdropColor: {r: 0, g: 0, b: 0, a: 0.6}

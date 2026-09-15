@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 // Tap-the-heart minigame. An inner heart grows toward filling an outline: each
 // tap on the heart adds to the fill, and it shrinks over time when idle. Fill
@@ -12,6 +13,9 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
 
     [Tooltip("Spawns heart particles on each tap. Auto-found in children if left empty.")]
     [SerializeField] private HeartParticleSpawner particleSpawner;
+
+    [Tooltip("Optional label showing fill progress as a percentage. Auto-found in children if left empty.")]
+    [SerializeField] private TMP_Text progressLabel;
 
     [Header("Fill rates")]
     [Tooltip("How much fill (0..1) each tap adds.")]
@@ -37,17 +41,30 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
     private float punch;
     private bool playing;
 
+    void Awake()
+    {
+        // Collapse the heart immediately on spawn so the fill isn't shown at full
+        // scale during the overlay's scale-in (StartGame only runs afterwards).
+        fill = Mathf.Clamp01(startFill);
+        punch = 0f;
+        Refresh();
+    }
+
     public override void StartGame(MinigameContext context)
     {
         if (particleSpawner == null)
         {
             particleSpawner = GetComponentInChildren<HeartParticleSpawner>(true);
         }
+        if (progressLabel == null)
+        {
+            progressLabel = GetComponentInChildren<TMP_Text>(true);
+        }
 
         fill = Mathf.Clamp01(startFill);
         punch = 0f;
-        ApplyScale();
         playing = true;
+        Refresh();
     }
 
     void Update()
@@ -63,13 +80,8 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
         // Ease the tap pop back to zero.
         punch = Mathf.MoveTowards(punch, 0f, punchDecay * Time.deltaTime);
 
-        ApplyScale();
-
-        if (fill >= 1f)
-        {
-            playing = false;
-            Win();
-        }
+        Refresh();
+        TryWin();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -87,16 +99,32 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
             particleSpawner.Burst(eventData.position);
         }
 
-        ApplyScale();
+        Refresh();
+        TryWin(); // check on the tap, before the next frame drains the fill
     }
 
-    private void ApplyScale()
+    // Win as soon as the heart is completely filled.
+    private void TryWin()
     {
-        if (heartFill == null)
+        if (playing && fill >= 1f)
         {
-            return;
+            playing = false;
+            Win();
         }
-        float s = Mathf.Max(0f, fill + punch);
-        heartFill.localScale = new Vector3(s, s, 1f);
+    }
+
+    // Updates the heart scale (fill + tap pop) and the progress label.
+    private void Refresh()
+    {
+        if (heartFill != null)
+        {
+            float s = Mathf.Max(0f, fill + punch);
+            heartFill.localScale = new Vector3(s, s, 1f);
+        }
+
+        if (progressLabel != null)
+        {
+            progressLabel.text = Mathf.RoundToInt(fill * 100f) + "%";
+        }
     }
 }
