@@ -21,8 +21,14 @@ public class ReelFeedController : MonoBehaviour,
     [SerializeField] private GameObject reelPrefab;
 
     [Header("Feed content")]
-    [Tooltip("Each entry becomes one reel as you scroll (loops when the list runs out). Set the video, audio, username, description and audio name here - not on the prefab.")]
+    [Tooltip("Each entry becomes one reel as you scroll. Set the video, audio, username, description and audio name here - not on the prefab.")]
     [SerializeField] private ReelPost[] posts;
+
+    [Tooltip("Sequential: play the list in order (loops). WeightedRandom: pick each reel at random using the per-post Weight.")]
+    [SerializeField] private FeedOrder order = FeedOrder.Sequential;
+
+    [Tooltip("WeightedRandom only: avoid showing the same post twice in a row (when more than one exists).")]
+    [SerializeField] private bool avoidImmediateRepeat = true;
 
     [Header("Feel")]
     [Tooltip("Fraction of a screen you must drag past for it to advance to the next reel on release.")]
@@ -44,6 +50,7 @@ public class ReelFeedController : MonoBehaviour,
     // reels[0] = the one in view, reels[1] = the one below it, etc.
     private readonly List<RectTransform> reels = new List<RectTransform>();
     private int nextPostIndex;
+    private int lastPostIndex = -1;
 
     // The reel currently allowed to play audio (always the top one).
     private RectTransform audioReel;
@@ -265,8 +272,9 @@ public class ReelFeedController : MonoBehaviour,
             return;
         }
 
-        ReelPost post = posts[nextPostIndex % posts.Length];
-        nextPostIndex++;
+        int index = (order == FeedOrder.WeightedRandom) ? PickWeightedIndex() : (nextPostIndex++ % posts.Length);
+        lastPostIndex = index;
+        ReelPost post = posts[index];
 
         ReelVideoBackground video = reel.GetComponentInChildren<ReelVideoBackground>(true);
         if (video != null && post.video != null)
@@ -280,6 +288,52 @@ public class ReelFeedController : MonoBehaviour,
             content.SetContent(post.username, post.description, post.audioName, post.audio);
         }
     }
+
+    // Picks a post index at random, biased by each post's Weight. Optionally
+    // avoids repeating the last post when more than one is available.
+    private int PickWeightedIndex()
+    {
+        // Total weight of the eligible posts (optionally skipping the last one).
+        float total = 0f;
+        for (int i = 0; i < posts.Length; i++)
+        {
+            if (avoidImmediateRepeat && i == lastPostIndex && posts.Length > 1)
+            {
+                continue;
+            }
+            total += Mathf.Max(0f, posts[i].weight);
+        }
+
+        // No usable weights: fall back to a uniform pick over all posts.
+        if (total <= 0f)
+        {
+            return Random.Range(0, posts.Length);
+        }
+
+        float roll = Random.value * total;
+        for (int i = 0; i < posts.Length; i++)
+        {
+            if (avoidImmediateRepeat && i == lastPostIndex && posts.Length > 1)
+            {
+                continue;
+            }
+            roll -= Mathf.Max(0f, posts[i].weight);
+            if (roll <= 0f)
+            {
+                return i;
+            }
+        }
+
+        // Floating-point safety net.
+        return posts.Length - 1;
+    }
+}
+
+// How the feed picks which post to show next.
+public enum FeedOrder
+{
+    Sequential,
+    WeightedRandom
 }
 
 // One post in the feed. Fill these in on the ReelFeedController's Posts array.
@@ -292,4 +346,8 @@ public class ReelPost
     [TextArea(2, 5)]
     public string description;
     public string audioName = "Original audio";
+
+    [Tooltip("Relative chance of being picked in WeightedRandom order. Higher = more often. Ignored in Sequential order.")]
+    [Min(0f)]
+    public float weight = 1f;
 }
