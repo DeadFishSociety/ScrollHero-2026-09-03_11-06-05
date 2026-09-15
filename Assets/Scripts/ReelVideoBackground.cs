@@ -25,6 +25,7 @@ public class ReelVideoBackground : MonoBehaviour
     private VideoPlayer videoPlayer;
     private RenderTexture renderTexture;
     private bool isPrepared;
+    private bool muted;
 
     void Awake()
     {
@@ -67,6 +68,21 @@ public class ReelVideoBackground : MonoBehaviour
     }
 
     // --- Public API for a feed controller -------------------------------------
+
+    // Mute/unmute the video's own audio track (used to silence off-screen reels).
+    public void SetMuted(bool value)
+    {
+        muted = value;
+        ApplyMute();
+    }
+
+    private void ApplyMute()
+    {
+        if (videoPlayer != null && videoPlayer.audioTrackCount > 0)
+        {
+            videoPlayer.SetDirectAudioMute(0, muted);
+        }
+    }
 
     // Swap in a new clip at runtime (e.g. when this reel is recycled in a feed).
     public void SetClip(VideoClip newClip)
@@ -153,6 +169,7 @@ public class ReelVideoBackground : MonoBehaviour
         }
 
         ApplyCoverCrop(width, height);
+        ApplyMute();   // re-apply now that the audio track exists
         source.Play();
     }
 
