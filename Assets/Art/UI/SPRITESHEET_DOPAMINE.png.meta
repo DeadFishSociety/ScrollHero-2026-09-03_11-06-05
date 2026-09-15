@@ -1,0 +1,1534 @@
+fileFormatVersion: 2
+guid: 1f2c2bc7ab7be4211892bb56c00b4748
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -883686675321074286
+    second: SPRITESHEET_DOPAMINE_0
+  - first:
+      213: -2183069774397613424
+    second: SPRITESHEET_DOPAMINE_1
+  - first:
+      213: -2997682210086463239
+    second: SPRITESHEET_DOPAMINE_2
+  - first:
+      213: 7564066516420297709
+    second: SPRITESHEET_DOPAMINE_3
+  - first:
+      213: 7103453577047631308
+    second: SPRITESHEET_DOPAMINE_4
+  - first:
+      213: -3949061598930962199
+    second: SPRITESHEET_DOPAMINE_5
+  - first:
+      213: -2014403592971632799
+    second: SPRITESHEET_DOPAMINE_6
+  - first:
+      213: -1381747366885467861
+    second: SPRITESHEET_DOPAMINE_7
+  - first:
+      213: -6310463417856773854
+    second: SPRITESHEET_DOPAMINE_8
+  - first:
+      213: 2598972846965016112
+    second: SPRITESHEET_DOPAMINE_9
+  - first:
+      213: -3840916543941411025
+    second: SPRITESHEET_DOPAMINE_10
+  - first:
+      213: -5342893871022669522
+    second: SPRITESHEET_DOPAMINE_11
+  - first:
+      213: -5298444045571853973
+    second: SPRITESHEET_DOPAMINE_12
+  - first:
+      213: -456970602557660640
+    second: SPRITESHEET_DOPAMINE_13
+  - first:
+      213: 6110833695203941697
+    second: SPRITESHEET_DOPAMINE_14
+  - first:
+      213: 2196841325969855047
+    second: SPRITESHEET_DOPAMINE_15
+  - first:
+      213: 5026926371784987383
+    second: SPRITESHEET_DOPAMINE_16
+  - first:
+      213: -5283740073800919026
+    second: SPRITESHEET_DOPAMINE_17
+  - first:
+      213: 8175156910502382443
+    second: SPRITESHEET_DOPAMINE_18
+  - first:
+      213: 6752985325911565768
+    second: SPRITESHEET_DOPAMINE_19
+  - first:
+      213: 9159540236978311914
+    second: SPRITESHEET_DOPAMINE_20
+  - first:
+      213: -1863099720008196139
+    second: SPRITESHEET_DOPAMINE_21
+  - first:
+      213: 812883928051487217
+    second: SPRITESHEET_DOPAMINE_22
+  - first:
+      213: 1421449103787533424
+    second: SPRITESHEET_DOPAMINE_23
+  - first:
+      213: -8600617209386296092
+    second: SPRITESHEET_DOPAMINE_24
+  - first:
+      213: 6335247063038518855
+    second: SPRITESHEET_DOPAMINE_25
+  - first:
+      213: -5622416436570581800
+    second: SPRITESHEET_DOPAMINE_26
+  - first:
+      213: 909975685861900299
+    second: SPRITESHEET_DOPAMINE_27
+  - first:
+      213: -3728546694426990146
+    second: SPRITESHEET_DOPAMINE_28
+  - first:
+      213: 8971172440570599184
+    second: SPRITESHEET_DOPAMINE_29
+  - first:
+      213: -3038058966542275714
+    second: SPRITESHEET_DOPAMINE_30
+  - first:
+      213: -2094411625683515415
+    second: SPRITESHEET_DOPAMINE_31
+  - first:
+      213: 6497053044516159327
+    second: SPRITESHEET_DOPAMINE_32
+  - first:
+      213: -1350854908188650239
+    second: SPRITESHEET_DOPAMINE_33
+  - first:
+      213: -349319223006955692
+    second: SPRITESHEET_DOPAMINE_34
+  - first:
+      213: 5193902223348953712
+    second: SPRITESHEET_DOPAMINE_35
+  - first:
+      213: 6116712015919381954
+    second: SPRITESHEET_DOPAMINE_36
+  - first:
+      213: -5388232751989613447
+    second: SPRITESHEET_DOPAMINE_37
+  - first:
+      213: 6840201242194311383
+    second: SPRITESHEET_DOPAMINE_38
+  - first:
+      213: 7256437581890031971
+    second: SPRITESHEET_DOPAMINE_39
+  - first:
+      213: -8884202256910532929
+    second: SPRITESHEET_DOPAMINE_40
+  - first:
+      213: -6282630440463941170
+    second: SPRITESHEET_DOPAMINE_41
+  - first:
+      213: 7025128895138593806
+    second: SPRITESHEET_DOPAMINE_42
+  - first:
+      213: 9085591340125147703
+    second: SPRITESHEET_DOPAMINE_43
+  - first:
+      213: -8076936346338190675
+    second: SPRITESHEET_DOPAMINE_44
+  - first:
+      213: -9162509792363235690
+    second: SPRITESHEET_DOPAMINE_45
+  - first:
+      213: 5096804932784983633
+    second: SPRITESHEET_DOPAMINE_46
+  - first:
+      213: -6440751535667892531
+    second: SPRITESHEET_DOPAMINE_47
+  - first:
+      213: 987017149107345985
+    second: SPRITESHEET_DOPAMINE_48
+  - first:
+      213: -5127879851255175736
+    second: SPRITESHEET_DOPAMINE_49
+  - first:
+      213: -8798231374899420048
+    second: SPRITESHEET_DOPAMINE_50
+  - first:
+      213: -4138181302129956732
+    second: SPRITESHEET_DOPAMINE_51
+  - first:
+      213: 4348120405461513376
+    second: SPRITESHEET_DOPAMINE_52
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_0
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 2600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29dcdb896a38cb3f0800000000000000
+      internalID: -883686675321074286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_1
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 2599
+        width: 278
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a53294b9d24b1e0800000000000000
+      internalID: -2183069774397613424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_2
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 2600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f8d94e89e71666d0800000000000000
+      internalID: -2997682210086463239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_3
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 2600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de388a8ab66f8f860800000000000000
+      internalID: 7564066516420297709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_4
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 2350
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc5e6628469849260800000000000000
+      internalID: 7103453577047631308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_5
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 2350
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e87597166d1239c0800000000000000
+      internalID: -3949061598930962199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_6
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 2350
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16fb7aeda966b04e0800000000000000
+      internalID: -2014403592971632799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_7
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 2350
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b29d573371c03dce0800000000000000
+      internalID: -1381747366885467861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_8
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 2100
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 221bc8aa4fabc68a0800000000000000
+      internalID: -6310463417856773854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_9
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 2100
+        width: 278
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0364c3cc808611420800000000000000
+      internalID: 2598972846965016112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_10
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 2098
+        width: 278
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2f737ad0c252bac0800000000000000
+      internalID: -3840916543941411025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_11
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 2100
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e210519055a3ad5b0800000000000000
+      internalID: -5342893871022669522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_12
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1850
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61f76186352876b0800000000000000
+      internalID: -5298444045571853973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_13
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 1850
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02221c978a388a9f0800000000000000
+      internalID: -456970602557660640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_14
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 1850
+        width: 278
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d5e148eda0ec450800000000000000
+      internalID: 6110833695203941697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_15
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 1848
+        width: 278
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 742d45eeb8fbc7e10800000000000000
+      internalID: 2196841325969855047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_16
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1599
+        width: 278
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f2994eb6ea33c540800000000000000
+      internalID: 5026926371784987383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_17
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 1599
+        width: 278
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e089997b5626ca6b0800000000000000
+      internalID: -5283740073800919026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_18
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 1600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b039175edf37170800000000000000
+      internalID: 8175156910502382443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_19
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 1600
+        width: 278
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c56264006c67bd50800000000000000
+      internalID: 6752985325911565768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_20
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1349
+        width: 278
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae25df2f0593d1f70800000000000000
+      internalID: 9159540236978311914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_21
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 1350
+        width: 278
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df18cffca0f426e0800000000000000
+      internalID: -1863099720008196139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_22
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 1350
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f1122f20a1f74b00800000000000000
+      internalID: 812883928051487217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_23
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 1345
+        width: 278
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 074ad81cd600ab310800000000000000
+      internalID: 1421449103787533424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_24
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1100
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec1b61573874a880800000000000000
+      internalID: -8600617209386296092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_25
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 1100
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7466fb463a15be750800000000000000
+      internalID: 6335247063038518855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_26
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 1100
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d494ee2a0a29f1b0800000000000000
+      internalID: -5622416436570581800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_27
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 1100
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b008a06a012e0ac00800000000000000
+      internalID: 909975685861900299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_28
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 850
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9e83e398a814cc0800000000000000
+      internalID: -3728546694426990146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_29
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 850
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0171cfaadc1008c70800000000000000
+      internalID: 8971172440570599184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_30
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 850
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7bae8c5775a6d5d0800000000000000
+      internalID: -3038058966542275714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_31
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 850
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e78fad19b72fe2e0800000000000000
+      internalID: -2094411625683515415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_32
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5f7145325b2a2a50800000000000000
+      internalID: 6497053044516159327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_33
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 105925e3e9cc04de0800000000000000
+      internalID: -1350854908188650239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_34
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45774777408f62bf0800000000000000
+      internalID: -349319223006955692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_35
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 600
+        width: 278
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07273dcbd82741840800000000000000
+      internalID: 5193902223348953712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_36
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 350
+        width: 278
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cdfc36bb2de2e450800000000000000
+      internalID: 6116712015919381954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_37
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 373
+        width: 278
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97c98823cd62935b0800000000000000
+      internalID: -5388232751989613447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_38
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 339
+        width: 278
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d87d21f9c64dee50800000000000000
+      internalID: 6840201242194311383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_39
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 333
+        width: 285
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3619953d88b04b460800000000000000
+      internalID: 7256437581890031971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_40
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 368
+        width: 147
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbebf1c2e19f4b480800000000000000
+      internalID: -8884202256910532929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_41
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 368
+        width: 140
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec14715b6ec9fc8a0800000000000000
+      internalID: -6282630440463941170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_42
+      rect:
+        serializedVersion: 2
+        x: 1647
+        y: 324
+        width: 143
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0c711862854e7160800000000000000
+      internalID: 7025128895138593806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_43
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 326
+        width: 145
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7325682bf21861e70800000000000000
+      internalID: 9085591340125147703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_44
+      rect:
+        serializedVersion: 2
+        x: 1942
+        y: 361
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa121bbf25f8ef80800000000000000
+      internalID: -8076936346338190675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_45
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 124
+        width: 117
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696b62f83e938d080800000000000000
+      internalID: -9162509792363235690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_46
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 120
+        width: 137
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e8b14151d7bb640800000000000000
+      internalID: 5096804932784983633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_47
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 128
+        width: 112
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcea6f55a9add96a0800000000000000
+      internalID: -6440751535667892531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_48
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 123
+        width: 82
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a13cf1ed692bd00800000000000000
+      internalID: 987017149107345985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_49
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 79
+        width: 113
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c56d07a17c16d8b0800000000000000
+      internalID: -5127879851255175736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_50
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 80
+        width: 107
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0746c67fd2766e580800000000000000
+      internalID: -8798231374899420048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_51
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 86
+        width: 93
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 488616ed70a3296c0800000000000000
+      internalID: -4138181302129956732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPRITESHEET_DOPAMINE_52
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 87
+        width: 85
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a43920b870a75c30800000000000000
+      internalID: 4348120405461513376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SPRITESHEET_DOPAMINE_0: -883686675321074286
+      SPRITESHEET_DOPAMINE_1: -2183069774397613424
+      SPRITESHEET_DOPAMINE_10: -3840916543941411025
+      SPRITESHEET_DOPAMINE_11: -5342893871022669522
+      SPRITESHEET_DOPAMINE_12: -5298444045571853973
+      SPRITESHEET_DOPAMINE_13: -456970602557660640
+      SPRITESHEET_DOPAMINE_14: 6110833695203941697
+      SPRITESHEET_DOPAMINE_15: 2196841325969855047
+      SPRITESHEET_DOPAMINE_16: 5026926371784987383
+      SPRITESHEET_DOPAMINE_17: -5283740073800919026
+      SPRITESHEET_DOPAMINE_18: 8175156910502382443
+      SPRITESHEET_DOPAMINE_19: 6752985325911565768
+      SPRITESHEET_DOPAMINE_2: -2997682210086463239
+      SPRITESHEET_DOPAMINE_20: 9159540236978311914
+      SPRITESHEET_DOPAMINE_21: -1863099720008196139
+      SPRITESHEET_DOPAMINE_22: 812883928051487217
+      SPRITESHEET_DOPAMINE_23: 1421449103787533424
+      SPRITESHEET_DOPAMINE_24: -8600617209386296092
+      SPRITESHEET_DOPAMINE_25: 6335247063038518855
+      SPRITESHEET_DOPAMINE_26: -5622416436570581800
+      SPRITESHEET_DOPAMINE_27: 909975685861900299
+      SPRITESHEET_DOPAMINE_28: -3728546694426990146
+      SPRITESHEET_DOPAMINE_29: 8971172440570599184
+      SPRITESHEET_DOPAMINE_3: 7564066516420297709
+      SPRITESHEET_DOPAMINE_30: -3038058966542275714
+      SPRITESHEET_DOPAMINE_31: -2094411625683515415
+      SPRITESHEET_DOPAMINE_32: 6497053044516159327
+      SPRITESHEET_DOPAMINE_33: -1350854908188650239
+      SPRITESHEET_DOPAMINE_34: -349319223006955692
+      SPRITESHEET_DOPAMINE_35: 5193902223348953712
+      SPRITESHEET_DOPAMINE_36: 6116712015919381954
+      SPRITESHEET_DOPAMINE_37: -5388232751989613447
+      SPRITESHEET_DOPAMINE_38: 6840201242194311383
+      SPRITESHEET_DOPAMINE_39: 7256437581890031971
+      SPRITESHEET_DOPAMINE_4: 7103453577047631308
+      SPRITESHEET_DOPAMINE_40: -8884202256910532929
+      SPRITESHEET_DOPAMINE_41: -6282630440463941170
+      SPRITESHEET_DOPAMINE_42: 7025128895138593806
+      SPRITESHEET_DOPAMINE_43: 9085591340125147703
+      SPRITESHEET_DOPAMINE_44: -8076936346338190675
+      SPRITESHEET_DOPAMINE_45: -9162509792363235690
+      SPRITESHEET_DOPAMINE_46: 5096804932784983633
+      SPRITESHEET_DOPAMINE_47: -6440751535667892531
+      SPRITESHEET_DOPAMINE_48: 987017149107345985
+      SPRITESHEET_DOPAMINE_49: -5127879851255175736
+      SPRITESHEET_DOPAMINE_5: -3949061598930962199
+      SPRITESHEET_DOPAMINE_50: -8798231374899420048
+      SPRITESHEET_DOPAMINE_51: -4138181302129956732
+      SPRITESHEET_DOPAMINE_52: 4348120405461513376
+      SPRITESHEET_DOPAMINE_6: -2014403592971632799
+      SPRITESHEET_DOPAMINE_7: -1381747366885467861
+      SPRITESHEET_DOPAMINE_8: -6310463417856773854
+      SPRITESHEET_DOPAMINE_9: 2598972846965016112
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
