@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
   minigames:
-  - prefab: {fileID: 8827323932178105455, guid: b4488c9e4b1124975a6bb0ca947c1d22, type: 3}
+  - prefab: {fileID: 2111662204157608173, guid: 837a25fc7c8534245b6ba8c19ec92a79, type: 3}
     weight: 1
   selection: 0
   avoidImmediateRepeat: 1
