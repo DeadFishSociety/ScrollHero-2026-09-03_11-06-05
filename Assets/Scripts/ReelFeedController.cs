@@ -55,6 +55,10 @@ public class ReelFeedController : MonoBehaviour,
     // The reel currently allowed to play audio (always the top one).
     private RectTransform audioReel;
 
+    // Fired whenever a different reel becomes the top (initial + each recycle).
+    // Used by the minigame system to roll a trigger per reel.
+    public event System.Action TopReelChanged;
+
     // How far the feed has been scrolled within the current reel.
     // Kept in the range [0, ViewportHeight); increases as the user swipes up.
     private float offset;
@@ -233,6 +237,16 @@ public class ReelFeedController : MonoBehaviour,
 
         // Unmute + play the new top.
         SetReelAudio(top, true);
+
+        // Notify listeners (e.g. the minigame manager) that the reel changed.
+        TopReelChanged?.Invoke();
+    }
+
+    // Mute or restore the current top reel's audio (video track + custom clip).
+    // Used to duck the reel behind a minigame overlay.
+    public void SetTopReelAudio(bool on)
+    {
+        SetReelAudio(audioReel, on);
     }
 
     // Turns a reel's audio on or off: both the custom ReelContent clip and the

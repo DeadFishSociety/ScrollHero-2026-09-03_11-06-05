@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398602197}
   - component: {fileID: 398602198}
+  - component: {fileID: 398602199}
   m_Layer: 5
   m_Name: Feed
   m_TagString: Untagged
@@ -192,6 +193,54 @@ MonoBehaviour:
   advanceThreshold: 0.2
   flickVelocity: 1200
   snapSpeed: 14
+--- !u!114 &398602199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398602196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d546bb44ad84a24b42d3d538f511ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
+  minigames:
+  - prefab: {fileID: 8827323932178105455, guid: b4488c9e4b1124975a6bb0ca947c1d22, type: 3}
+    weight: 1
+  selection: 0
+  avoidImmediateRepeat: 1
+  chancePerReel: 0.15
+  gracePeriodReels: 2
+  minReelsBetween: 1
+  backdropColor: {r: 0, g: 0, b: 0, a: 0.6}
+  scaleInDuration: 0.35
+  scaleOutDuration: 0.25
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panelSizeFraction: {x: 1, y: 1}
 --- !u!1 &426246704
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +318,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
