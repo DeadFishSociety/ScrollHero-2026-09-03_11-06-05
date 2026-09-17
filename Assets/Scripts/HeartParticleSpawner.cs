@@ -12,7 +12,11 @@ public class HeartParticleSpawner : MonoBehaviour
     [Tooltip("Sprite used for each heart particle (e.g. heart.png).")]
     [SerializeField] private Sprite particleSprite;
     [SerializeField] private Color color = Color.white;
+    [Tooltip("Base size of a heart particle, in canvas units.")]
     [SerializeField] private Vector2 startSize = new Vector2(48f, 48f);
+
+    [Tooltip("Each heart's size is multiplied by a random value in this range (x = min, y = max). Set both to 1 for uniform size.")]
+    [SerializeField] private Vector2 sizeMultiplierRange = new Vector2(0.8f, 1.3f);
 
     [Header("Burst")]
     [Tooltip("How many hearts spawn per tap.")]
@@ -67,7 +71,10 @@ public class HeartParticleSpawner : MonoBehaviour
         GameObject go = new GameObject("HeartParticle", typeof(RectTransform), typeof(Image));
         RectTransform rt = go.GetComponent<RectTransform>();
         rt.SetParent(rectTransform, false);
-        rt.sizeDelta = startSize;
+        float sizeMul = Random.Range(
+            Mathf.Min(sizeMultiplierRange.x, sizeMultiplierRange.y),
+            Mathf.Max(sizeMultiplierRange.x, sizeMultiplierRange.y));
+        rt.sizeDelta = startSize * sizeMul;
         rt.anchoredPosition = localPoint;
 
         Image img = go.GetComponent<Image>();

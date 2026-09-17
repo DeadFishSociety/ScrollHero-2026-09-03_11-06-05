@@ -56,6 +56,9 @@ public class MinigameManager : MonoBehaviour
     [Tooltip("Size of the minigame panel as a fraction of the screen (1,1 = full screen).")]
     [SerializeField] private Vector2 panelSizeFraction = new Vector2(0.85f, 0.7f);
 
+    [Tooltip("Where the overlay is parented. Leave empty to use the SafeArea (found in parents) so minigames stay within the safe area, falling back to the canvas.")]
+    [SerializeField] private RectTransform overlayParent;
+
     // Dynamic-difficulty hook: added on top of chancePerReel (result clamped to 1).
     public float ExtraChance { get; set; }
 
@@ -71,6 +74,16 @@ public class MinigameManager : MonoBehaviour
     {
         feed = GetComponent<ReelFeedController>();
         canvas = GetComponentInParent<Canvas>();
+
+        // Default the overlay parent to the SafeArea so minigames stay within it.
+        if (overlayParent == null)
+        {
+            SafeAreaFitter safeArea = GetComponentInParent<SafeAreaFitter>();
+            if (safeArea != null)
+            {
+                overlayParent = safeArea.transform as RectTransform;
+            }
+        }
     }
 
     void OnEnable()
@@ -198,9 +211,24 @@ public class MinigameManager : MonoBehaviour
     {
         GameObject go = new GameObject("MinigameOverlay", typeof(RectTransform), typeof(SwipeBlocker));
         RectTransform rt = go.GetComponent<RectTransform>();
-        rt.SetParent(canvas != null ? canvas.transform : transform, false);
+        Transform parent = overlayParent != null
+            ? overlayParent
+            : (canvas != null ? canvas.transform : transform);
+        rt.SetParent(parent, false);
         Stretch(rt);
-        rt.SetAsLastSibling(); // draw on top of everything
+
+        // Draw the overlay directly above the feed: on top of the reels, but
+        // below anything layered after the feed (e.g. the TopUI overlay), so
+        // top-level UI stays in front of the minigame. If the overlay lives
+        // somewhere other than the feed's own parent, just put it on top.
+        if (parent == transform.parent)
+        {
+            rt.SetSiblingIndex(transform.GetSiblingIndex() + 1);
+        }
+        else
+        {
+            rt.SetAsLastSibling();
+        }
 
         Image backdrop = go.AddComponent<Image>();
         backdrop.color = backdropColor;
