@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d3b653a694b7bb84e8e304a84f31f695
+guid: a5699b9714fb470479732f97b4645741
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3962364362261343719
-    second: DopeDog2.0_0
+      213: -8473129283542564704
+    second: DopeDog2.0 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DopeDog2.0_0
+      name: DopeDog2.0 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ed214bd4652df630800000000000000
-      internalID: 3962364362261343719
+      spriteID: 0a04c762fc5696a80800000000000000
+      internalID: -8473129283542564704
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DopeDog2.0_0: 3962364362261343719
+      DopeDog2.0 1_0: -8473129283542564704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
