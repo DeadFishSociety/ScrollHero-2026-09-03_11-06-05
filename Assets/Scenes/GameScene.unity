@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 398602197}
   - component: {fileID: 398602198}
   - component: {fileID: 398602199}
+  - component: {fileID: 398602200}
   m_Layer: 5
   m_Name: Feed
   m_TagString: Untagged
@@ -247,6 +248,39 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   panelSizeFraction: {x: 1, y: 1}
+  overlayParent: {fileID: 0}
+--- !u!114 &398602200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398602196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea16a4c6facf4b3498707c5f79c46ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollOverlayAnimation
+  frames:
+  - {fileID: -4843774755556855624, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: 1994867461209844058, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: -7721355193720642819, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: 7188978469574267291, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: -3476028178533022977, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: 4338850743496141378, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: -6529658381713087929, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: -5597505915158672050, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: -8578418283616821370, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  - {fileID: -7603855088407998724, guid: 4404cfe838caa460d8fda99692dd878f, type: 3}
+  fps: 24
+  size: {x: 300, y: 300}
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  sound: {fileID: 0}
+  audioSource: {fileID: 0}
+  areaCenter: {x: 0.5, y: 0.5}
+  areaSize: {x: 0.4, y: 0.4}
+  overlayParent: {fileID: 0}
+  playOnStart: 0
 --- !u!1 &426246704
 GameObject:
   m_ObjectHideFlags: 0
