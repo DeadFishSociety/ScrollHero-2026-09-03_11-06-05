@@ -50,6 +50,10 @@ public class CallMinigame : MinigameBase
 
     [SerializeField] private Color lineColor = new Color(1f, 1f, 1f, 0.5f);
 
+    [Header("Checkpoint particles")]
+    [Tooltip("Bursts a particle effect each time a checkpoint is crossed. Assign its sprite and tweak the look on this spawner. Leave empty for no effect.")]
+    [SerializeField] private HeartParticleSpawner checkpointParticles;
+
     // World-space points of the active path's checkpoints, their anchored
     // positions (for drawing the line), and the cumulative length up to each one.
     private readonly List<Vector3> points = new List<Vector3>();
@@ -62,6 +66,8 @@ public class CallMinigame : MinigameBase
 
     private Transform activePath;
     private RectTransform selfRect;
+    private Canvas canvas;
+    private bool[] checkpointCrossed;
     private float progress;   // arc length the button currently sits at
     private bool dragging;
     private bool solved;
@@ -82,6 +88,7 @@ public class CallMinigame : MinigameBase
     public override void StartGame(MinigameContext context)
     {
         selfRect = transform as RectTransform;
+        canvas = GetComponentInParent<Canvas>();
 
         PickCallerName();
         Transform path = PickRandomPath();
@@ -158,6 +165,8 @@ public class CallMinigame : MinigameBase
             totalLength += Vector3.Distance(points[i - 1], points[i]);
             cumulative.Add(totalLength);
         }
+
+        checkpointCrossed = new bool[points.Count];
     }
 
     // Draws a UI line segment between each pair of consecutive checkpoints so the
@@ -257,8 +266,7 @@ public class CallMinigame : MinigameBase
         // Let go before reaching the end: back to the start.
         if (progress < totalLength - finishThreshold)
         {
-            progress = 0f;
-            SnapButtonTo(0f);
+            ResetToStart();
         }
     }
 
@@ -282,13 +290,13 @@ public class CallMinigame : MinigameBase
         // Strayed too far from the line, or tried to jump ahead: snap to start.
         if (bestDist > strayTolerance || bestArc > progress + maxAdvance)
         {
-            progress = 0f;
-            SnapButtonTo(0f);
+            ResetToStart();
             return;
         }
 
         progress = bestArc;
         SnapButtonTo(progress);
+        CheckCheckpointCrossings();
 
         if (progress >= totalLength - finishThreshold)
         {
@@ -304,8 +312,48 @@ public class CallMinigame : MinigameBase
         }
         solved = true;
         dragging = false;
+        progress = totalLength;
         SnapButtonTo(totalLength);
+        CheckCheckpointCrossings(); // fire the final checkpoint too
         Win();
+    }
+
+    // Sends the button and progress back to the path start and re-arms every
+    // checkpoint so they burst again on the next attempt.
+    private void ResetToStart()
+    {
+        progress = 0f;
+        SnapButtonTo(0f);
+        if (checkpointCrossed != null)
+        {
+            System.Array.Clear(checkpointCrossed, 0, checkpointCrossed.Length);
+        }
+    }
+
+    // Bursts the particle effect at any checkpoint the button has newly passed
+    // (skipping the start point). Each checkpoint fires once per attempt.
+    private void CheckCheckpointCrossings()
+    {
+        if (checkpointParticles == null || checkpointCrossed == null)
+        {
+            return;
+        }
+        for (int i = 1; i < points.Count && i < checkpointCrossed.Length; i++)
+        {
+            if (!checkpointCrossed[i] && progress >= cumulative[i])
+            {
+                checkpointCrossed[i] = true;
+                checkpointParticles.Burst(WorldToScreen(points[i]));
+            }
+        }
+    }
+
+    private Vector2 WorldToScreen(Vector3 world)
+    {
+        Camera cam = (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            ? canvas.worldCamera
+            : null;
+        return RectTransformUtility.WorldToScreenPoint(cam, world);
     }
 
     // --- Path maths ----------------------------------------------------------

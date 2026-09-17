@@ -217,7 +217,7 @@ MonoBehaviour:
     weight: 1
   selection: 0
   avoidImmediateRepeat: 1
-  chancePerReel: 0.15
+  chancePerReel: 0.25
   gracePeriodReels: 2
   minReelsBetween: 2
   backdropColor: {r: 0, g: 0, b: 0, a: 0.6}
