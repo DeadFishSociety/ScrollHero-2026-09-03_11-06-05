@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.89986134, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -725,12 +725,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbc895b226164ab7a652bd31cec86d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeartParticleSpawner
-  particleSprite: {fileID: -6467873200032675637, guid: 233debadf0e594b6bba9dba60536f04d, type: 3}
+  particleSprite: {fileID: -469312742665816928, guid: 021d03d42389b442c9a74b942045d834, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
-  startSize: {x: 48, y: 48}
+  startSize: {x: 128, y: 128}
+  sizeMultiplierRange: {x: 0.8, y: 1.3}
   countPerTap: 5
   lifetime: 0.6
-  riseSpeed: 350
-  horizontalSpread: 180
+  riseSpeed: 500
+  horizontalSpread: 200
   gravity: 400
   spinRange: 180

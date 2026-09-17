@@ -59,6 +59,12 @@ public class ReelFeedController : MonoBehaviour,
     // Used by the minigame system to roll a trigger per reel.
     public event System.Action TopReelChanged;
 
+    // Fired the instant a swipe is committed to advancing - on release (before the
+    // snap-settle finishes) and on each reel crossed during a fast flick. Use this
+    // for scroll-reactive effects that should feel immediate, rather than
+    // TopReelChanged which fires only once the new reel has settled into place.
+    public event System.Action ScrollCommitted;
+
     // How far the feed has been scrolled within the current reel.
     // Kept in the range [0, ViewportHeight); increases as the user swipes up.
     private float offset;
@@ -151,6 +157,7 @@ public class ReelFeedController : MonoBehaviour,
         {
             Recycle();
             offset -= height;
+            ScrollCommitted?.Invoke();
         }
 
         LayoutReels();
@@ -163,6 +170,13 @@ public class ReelFeedController : MonoBehaviour,
         bool advance = offset > ViewportHeight * advanceThreshold
                        || lastDragVelocity > flickVelocity;
         targetOffset = advance ? ViewportHeight : 0f;
+
+        // Notify immediately on commit, so scroll-reactive effects don't wait for
+        // the snap-settle to finish.
+        if (advance)
+        {
+            ScrollCommitted?.Invoke();
+        }
     }
 
     // Positions every active reel: reel i sits i screens below the top,
