@@ -206,11 +206,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
   minigames:
+  - prefab: {fileID: 4035645881646085940, guid: bbaf2b14d29d9414fa3c4e4192ea1dfe, type: 3}
+    weight: 1
   - prefab: {fileID: 2111662204157608173, guid: 837a25fc7c8534245b6ba8c19ec92a79, type: 3}
     weight: 0
   - prefab: {fileID: 6163388160916773928, guid: 6f64ea2ff080844bfa30fb0dfd049901, type: 3}
     weight: 1
-  selection: 0
+  selection: 1
   avoidImmediateRepeat: 1
   chancePerReel: 1
   gracePeriodReels: 2
