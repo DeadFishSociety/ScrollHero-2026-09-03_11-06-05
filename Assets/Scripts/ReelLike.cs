@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,12 @@ using UnityEngine.UI;
 // consumes its own taps), and scroll drags still bubble past to the feed.
 public class ReelLike : MonoBehaviour, IPointerClickHandler
 {
+    // Fired whenever any reel is liked (button tap or double tap). Reels are
+    // spawned dynamically, so a feed-level listener (e.g. FeedScorer) subscribes
+    // here rather than wiring every reel. Follows DopamineManager's static-event
+    // style.
+    public static event Action AnyReelLiked;
+
     [Header("Like button / heart")]
     [Tooltip("The LikeButton. Its click likes the reel; it is hidden once liked.")]
     [SerializeField] private Button likeButton;
@@ -127,6 +134,8 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
                 StartCoroutine(PopHeart());
             }
         }
+
+        AnyReelLiked?.Invoke();
 
         BurstParticles(screenPosition);
 
