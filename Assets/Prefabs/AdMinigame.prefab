@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa8b05c83cdd470a870103a75c1987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FakeAdMinigame
+  difficulty: 0
   backgroundImage: {fileID: 1920312551979813381}
   adImages:
   - {fileID: -3068244636034999136, guid: 2aa36f6249c7848808ef2d81c164444c, type: 3}
@@ -451,8 +452,23 @@ MonoBehaviour:
   closeButton: {fileID: 6420466348651195734}
   moveArea: {fileID: 3116318263277065623}
   requiredClicks: 5
+  requiredClicksAtMaxDifficulty: 9
   moveDuration: 0.25
+  moveDurationAtMaxDifficulty: 0.12
   closeParticles: {fileID: 7578235523644522015}
+  audioSource: {fileID: 0}
+  missedClickSounds:
+    sounds:
+    - clip: {fileID: 8300000, guid: 2c2ea3748008048059ea5d3b52993f4d, type: 3}
+      weight: 5
+    - clip: {fileID: 8300000, guid: 6de4a092e34124ecb8fdc3f0a1f43c21, type: 3}
+      weight: 0
+    volume: 1
+  successClickSounds:
+    sounds:
+    - clip: {fileID: 8300000, guid: a4f8127c2bda14f18aad9ba0045a6639, type: 3}
+      weight: 0
+    volume: 1
 --- !u!1 &7439223239168607235
 GameObject:
   m_ObjectHideFlags: 0

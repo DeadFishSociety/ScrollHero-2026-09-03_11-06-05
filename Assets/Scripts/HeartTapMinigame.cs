@@ -45,6 +45,16 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
     [Tooltip("How fast the pop settles back.")]
     [SerializeField] private float punchDecay = 1.5f;
 
+    [Header("Sound")]
+    [Tooltip("Source the tap sound plays through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Played on each tap, pitched up as the heart fills.")]
+    [SerializeField] private AudioClip tapSound;
+    [Tooltip("Tap pitch at empty (fill 0).")]
+    [SerializeField] private float minTapPitch = 0.9f;
+    [Tooltip("Tap pitch at full (fill 1).")]
+    [SerializeField] private float maxTapPitch = 1.6f;
+
     private float fill;
     private float punch;
     private bool playing;
@@ -60,6 +70,16 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
         fill = Mathf.Clamp01(startFill);
         punch = 0f;
         Refresh();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
     }
 
     public override void StartGame(MinigameContext context)
@@ -110,6 +130,13 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
 
         fill = Mathf.Clamp01(fill + activeGrowPerTap);
         punch = punchAmount;
+
+        // Pitch the tap up as the heart gets closer to full.
+        if (tapSound != null && audioSource != null)
+        {
+            audioSource.pitch = Mathf.Lerp(minTapPitch, maxTapPitch, fill);
+            audioSource.PlayOneShot(tapSound);
+        }
 
         if (particleSpawner != null)
         {

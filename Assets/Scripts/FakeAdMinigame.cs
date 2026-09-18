@@ -39,6 +39,14 @@ public class FakeAdMinigame : MinigameBase
     [Tooltip("Optional. Bursts particles at the close button every time it's tapped. Leave empty for none.")]
     [SerializeField] private HeartParticleSpawner closeParticles;
 
+    [Header("Sound")]
+    [Tooltip("Source the click sounds play through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Sounds for a click that doesn't close the ad yet (the button runs away).")]
+    [SerializeField] private SoundBank missedClickSounds;
+    [Tooltip("Sounds for the final click that closes the ad.")]
+    [SerializeField] private SoundBank successClickSounds;
+
     private RectTransform buttonRect;
     private int clicks;
 
@@ -61,6 +69,16 @@ public class FakeAdMinigame : MinigameBase
         }
 
         clicks = 0;
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
 
         // Harder = more taps and a snappier button.
         float d = Mathf.Clamp01(context.difficulty);
@@ -94,11 +112,13 @@ public class FakeAdMinigame : MinigameBase
 
         if (clicks >= activeRequiredClicks)
         {
+            successClickSounds.PlayOneShot(audioSource);
             closeButton.onClick.RemoveListener(OnCloseClicked);
             Win();
             return;
         }
 
+        missedClickSounds.PlayOneShot(audioSource);
         MoveButton();
     }
 
