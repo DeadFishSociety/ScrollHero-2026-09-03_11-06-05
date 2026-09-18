@@ -35,8 +35,11 @@ public class CallMinigame : MinigameBase
     [Tooltip("Parent whose children are the paths. Each path's children are its ordered checkpoints.")]
     [SerializeField] private Transform pathsParent;
 
-    [Tooltip("How far (in canvas units) the drag may stray from the line before it snaps back to the start.")]
+    [Tooltip("How far (in canvas units) the drag may stray from the line before it snaps back to the start (at difficulty 0).")]
     [SerializeField] private float strayTolerance = 90f;
+
+    [Tooltip("Stray tolerance at difficulty 1 (smaller = less forgiving). Scales between this and Stray Tolerance by difficulty.")]
+    [SerializeField] private float strayToleranceAtMaxDifficulty = 45f;
 
     [Tooltip("Most the button may advance along the path in one drag update, to stop skipping ahead.")]
     [SerializeField] private float maxAdvance = 300f;
@@ -71,6 +74,7 @@ public class CallMinigame : MinigameBase
     private float progress;   // arc length the button currently sits at
     private bool dragging;
     private bool solved;
+    private float activeStrayTolerance; // difficulty-scaled, resolved in StartGame
 
     void Awake()
     {
@@ -89,6 +93,9 @@ public class CallMinigame : MinigameBase
     {
         selfRect = transform as RectTransform;
         canvas = GetComponentInParent<Canvas>();
+
+        // Harder = the drag has to hug the line more tightly.
+        activeStrayTolerance = Mathf.Lerp(strayTolerance, strayToleranceAtMaxDifficulty, Mathf.Clamp01(context.difficulty));
 
         PickCallerName();
         Transform path = PickRandomPath();
@@ -288,7 +295,7 @@ public class CallMinigame : MinigameBase
         float bestArc = ClosestPointOnPath(world, out bestDist);
 
         // Strayed too far from the line, or tried to jump ahead: snap to start.
-        if (bestDist > strayTolerance || bestArc > progress + maxAdvance)
+        if (bestDist > activeStrayTolerance || bestArc > progress + maxAdvance)
         {
             ResetToStart();
             return;

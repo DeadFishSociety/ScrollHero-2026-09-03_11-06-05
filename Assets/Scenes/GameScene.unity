@@ -132,6 +132,9 @@ GameObject:
   - component: {fileID: 398602199}
   - component: {fileID: 398602200}
   - component: {fileID: 398602201}
+  - component: {fileID: 398602202}
+  - component: {fileID: 398602203}
+  - component: {fileID: 398602204}
   m_Layer: 5
   m_Name: Feed
   m_TagString: Untagged
@@ -174,21 +177,106 @@ MonoBehaviour:
   posts:
   - video: {fileID: 32900000, guid: 525b5b428bf814d0d9dc38b109852ea5, type: 3}
     audio: {fileID: 0}
-    username: Test
-    description: Test
-    audioName: Test
+    username: Jacob_plays
+    description: Just hanging out outside #nature #wormpilled
+    audioName: User Audio
     weight: 1
   - video: {fileID: 32900000, guid: 1d50a236712a74eda9d9a84fed04bbd0, type: 3}
     audio: {fileID: 0}
-    username: Test
-    description: Test
-    audioName: Test
+    username: xxx_jwaa
+    description: I love making content #contentcreator
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 87bd48c83fd6f4fd9ade2c13f7f79d7a, type: 3}
+    audio: {fileID: 0}
+    username: I_pee
+    description: Content is cool #thisisavideo
+    audioName: User Audio
     weight: 1
   - video: {fileID: 32900000, guid: 5b3cb1350028a4fd3a32f4540ea6b359, type: 3}
     audio: {fileID: 0}
-    username: Test
-    description: Test
-    audioName: Test
+    username: bolpquick
+    description: 6 is like 7 except 7 8 9 #jokes!
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 0876e22453a6d458bade658169a5c76f, type: 3}
+    audio: {fileID: 0}
+    username: Jesse_Klaaf
+    description: Birds are cool #I #Wish #A #Bird
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 835d8fb9ea84f4c3292f3378e7d21f27, type: 3}
+    audio: {fileID: 0}
+    username: oldpeoplesmell
+    description: 'I actually made this pineapple! So cool and edible. I love being
+      soggy. '
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 38062102f90e74348989802152ac706d, type: 3}
+    audio: {fileID: 0}
+    username: diapervideos
+    description: I'm a chud. I'm a weirdo. #soywokejack
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 4f35bb8e08666442d9fb7ee6c395ceba, type: 3}
+    audio: {fileID: 0}
+    username: cheese_plays
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 419df3a4485c64935b13d3bf29cf1248, type: 3}
+    audio: {fileID: 0}
+    username: YUO_d
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 5d033712c2ec94a54863dfd325dc9a9c, type: 3}
+    audio: {fileID: 0}
+    username: 2ekamerverhalen
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 14390663a5869435f99310a82f60bea5, type: 3}
+    audio: {fileID: 0}
+    username: TungLover
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: c8c3200598e874b3888107f3fd0275a3, type: 3}
+    audio: {fileID: 0}
+    username: J.E_OGFR
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 8a16883b310e94cefa372691d24ae9e7, type: 3}
+    audio: {fileID: 0}
+    username: ILOVECHEESE
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: aa899dd97dcf1489cbb1d98ae6cfa447, type: 3}
+    audio: {fileID: 0}
+    username: Speedyuser
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 7e1f99d5cf5be4051b034fed75151c4b, type: 3}
+    audio: {fileID: 0}
+    username: 1cP-LSD
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: e2f0bc911a973403eaf40182d8c0fd8f, type: 3}
+    audio: {fileID: 0}
+    username: designerbag
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
+    weight: 1
+  - video: {fileID: 32900000, guid: 2642af1c936c546129e6df994e4fa8dc, type: 3}
+    audio: {fileID: 0}
+    username: Louis_the-ix
+    description: Tung Tung Sahur I LOVE AI #peterthielismydad
+    audioName: User Audio
     weight: 1
   order: 1
   avoidImmediateRepeat: 1
@@ -216,9 +304,9 @@ MonoBehaviour:
     weight: 1
   - prefab: {fileID: 2111662204157608173, guid: 837a25fc7c8534245b6ba8c19ec92a79, type: 3}
     weight: 1
-  selection: 1
+  selection: 0
   avoidImmediateRepeat: 1
-  chancePerReel: 0.25
+  chancePerReel: 0.15
   gracePeriodReels: 2
   minReelsBetween: 2
   backdropColor: {r: 0, g: 0, b: 0, a: 0.6}
@@ -310,6 +398,86 @@ MonoBehaviour:
   - prefab: {fileID: 4035645881646085940, guid: bbaf2b14d29d9414fa3c4e4192ea1dfe, type: 3}
     wonScore: 1000
     lostScore: 0
+--- !u!114 &398602202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398602196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4c9a8ddd3bed14396c9cc1b6a3aa09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DopamineManager
+  maximumDopamine: 100
+  startDopamine: 100
+  swipeGain: 8
+  likeGain: 12
+  idleDrainPerSecond: 5
+  minigameDrainAtEasy: 5
+  minigameDrainAtHard: 20
+  feed: {fileID: 0}
+  minigameManager: {fileID: 0}
+--- !u!114 &398602203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398602196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122b8a4e64d934b7d83846a97ee306e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicDifficulty
+  minigameManager: {fileID: 0}
+  dopamineManager: {fileID: 0}
+  scoreForMaxDifficulty: 50000
+  difficultyOverScore:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  extraSpawnChanceAtMax: 0.4
+  drainMultiplierAtMax: 2
+  gainMultiplierAtMax: 0.75
+  minigames: []
+  scaleUnlistedMinigames: 1
+--- !u!114 &398602204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398602196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8170cb748b68d44faa8e5536990ca537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicDifficultyDebug
+  difficulty: {fileID: 0}
+  uiScale: 2
+  visible: 0
 --- !u!1 &426246704
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,10 +902,10 @@ RectTransform:
   - {fileID: 1762394395}
   m_Father: {fileID: 1231945678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -240, y: 710.43}
-  m_SizeDelta: {x: 538.9743, y: 94.143}
+  m_AnchorMin: {x: 0.03344444, y: 0.84800005}
+  m_AnchorMax: {x: 0.52500004, y: 0.8953542}
+  m_AnchoredPosition: {x: -3.9871826, y: -2.6519775}
+  m_SizeDelta: {x: 7.974304, y: 2.1430054}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648762458
 MonoBehaviour:
@@ -810,10 +978,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1648762457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.5135803, y: 2.93}
-  m_SizeDelta: {x: 508, y: 88.2831}
+  m_AnchorMin: {x: 0, y: 0.07435497}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 5.5135803, y: -0.5699997}
+  m_SizeDelta: {x: -30, y: 1.2830963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762394396
 MonoBehaviour:
