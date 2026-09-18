@@ -19,13 +19,21 @@ public class FakeAdMinigame : MinigameBase
     [Tooltip("Area the button is allowed to move within. Defaults to the button's parent.")]
     [SerializeField] private RectTransform moveArea;
 
-    [Tooltip("How many taps on the close button are needed before the ad closes.")]
+    [Tooltip("How many taps on the close button are needed before the ad closes (at difficulty 0).")]
     [Min(1)]
     [SerializeField] private int requiredClicks = 5;
 
-    [Tooltip("How long (seconds) the button takes to glide to its new spot.")]
+    [Tooltip("Required taps at difficulty 1. The actual count scales between this and Required Clicks by the minigame's difficulty.")]
+    [Min(1)]
+    [SerializeField] private int requiredClicksAtMaxDifficulty = 9;
+
+    [Tooltip("How long (seconds) the button takes to glide to its new spot (at difficulty 0).")]
     [Min(0f)]
     [SerializeField] private float moveDuration = 0.25f;
+
+    [Tooltip("Glide time at difficulty 1 (a snappier, harder-to-catch button). Scales between this and Move Duration by difficulty.")]
+    [Min(0f)]
+    [SerializeField] private float moveDurationAtMaxDifficulty = 0.12f;
 
     [Header("Feedback")]
     [Tooltip("Optional. Bursts particles at the close button every time it's tapped. Leave empty for none.")]
@@ -33,6 +41,10 @@ public class FakeAdMinigame : MinigameBase
 
     private RectTransform buttonRect;
     private int clicks;
+
+    // Difficulty-scaled values, resolved in StartGame.
+    private int activeRequiredClicks;
+    private float activeMoveDuration;
 
     // Smooth-move state.
     private Vector2 moveStart;
@@ -49,6 +61,11 @@ public class FakeAdMinigame : MinigameBase
         }
 
         clicks = 0;
+
+        // Harder = more taps and a snappier button.
+        float d = Mathf.Clamp01(context.difficulty);
+        activeRequiredClicks = Mathf.Max(1, Mathf.RoundToInt(Mathf.Lerp(requiredClicks, requiredClicksAtMaxDifficulty, d)));
+        activeMoveDuration = Mathf.Max(0f, Mathf.Lerp(moveDuration, moveDurationAtMaxDifficulty, d));
 
         if (closeButton != null)
         {
@@ -75,7 +92,7 @@ public class FakeAdMinigame : MinigameBase
             closeParticles.Burst(screenPos);
         }
 
-        if (clicks >= Mathf.Max(1, requiredClicks))
+        if (clicks >= activeRequiredClicks)
         {
             closeButton.onClick.RemoveListener(OnCloseClicked);
             Win();
@@ -92,7 +109,7 @@ public class FakeAdMinigame : MinigameBase
             return;
         }
 
-        moveT += Time.deltaTime / Mathf.Max(0.0001f, moveDuration);
+        moveT += Time.deltaTime / Mathf.Max(0.0001f, activeMoveDuration);
         float k = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(moveT));
         buttonRect.anchoredPosition = Vector2.LerpUnclamped(moveStart, moveTarget, k);
 
@@ -118,7 +135,7 @@ public class FakeAdMinigame : MinigameBase
 
         Vector2 target = new Vector2(Random.Range(-halfX, halfX), Random.Range(-halfY, halfY));
 
-        if (moveDuration <= 0f)
+        if (activeMoveDuration <= 0f)
         {
             buttonRect.anchoredPosition = target;
             moving = false;

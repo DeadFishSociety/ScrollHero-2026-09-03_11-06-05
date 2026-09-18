@@ -9,8 +9,9 @@ public enum MinigameOutcome
     Lost
 }
 
-// Data handed to a minigame when it starts. The difficulty field is the hook for
-// dynamic difficulty later (0 for now).
+// Data handed to a minigame when it starts. difficulty (0..1) is how hard this
+// run should play - set by DynamicDifficulty from the player's score, or the
+// minigame's own authored Difficulty when no dynamic difficulty is present.
 public struct MinigameContext
 {
     public float difficulty;
@@ -20,6 +21,10 @@ public struct MinigameContext
 // never needs to know about any specific minigame.
 public interface IMinigame
 {
+    // Authored difficulty of this minigame, 0 (easy) to 1 (hard). Drives things
+    // like how fast the dopamine bar drains while it is on screen.
+    float Difficulty { get; }
+
     // Called once the overlay has finished animating in.
     void StartGame(MinigameContext context);
 
@@ -31,6 +36,13 @@ public interface IMinigame
 // Guards against firing Finished more than once.
 public abstract class MinigameBase : MonoBehaviour, IMinigame
 {
+    [Header("Minigame")]
+    [Tooltip("How hard this minigame is, 0 (easy) to 1 (hard). Higher drains the dopamine bar faster while it is on screen.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float difficulty;
+
+    public float Difficulty => difficulty;
+
     public event Action<MinigameOutcome> Finished;
 
     private bool finished;
