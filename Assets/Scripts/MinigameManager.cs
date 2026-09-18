@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 // How the next minigame prefab is chosen.
 public enum MinigameSelectionMode
@@ -61,6 +63,11 @@ public class MinigameManager : MonoBehaviour
 
     // Dynamic-difficulty hook: added on top of chancePerReel (result clamped to 1).
     public float ExtraChance { get; set; }
+
+    // Fired when a minigame finishes, with the prefab that was played and its
+    // outcome. Lets a feed-level listener (e.g. FeedScorer) award score per
+    // minigame without the manager knowing anything about scoring.
+    public event Action<GameObject, MinigameOutcome> MinigameFinished;
 
     private ReelFeedController feed;
     private Canvas canvas;
@@ -166,6 +173,7 @@ public class MinigameManager : MonoBehaviour
 
         IMinigame game = minigame.GetComponent<IMinigame>();
         bool done = false;
+        MinigameOutcome outcome = MinigameOutcome.Lost;
         if (game == null)
         {
             Debug.LogError("MinigameManager: prefab has no IMinigame component - dismissing.", prefab);
@@ -173,7 +181,11 @@ public class MinigameManager : MonoBehaviour
         }
         else
         {
-            game.Finished += _ => done = true;
+            game.Finished += result =>
+            {
+                outcome = result;
+                done = true;
+            };
         }
 
         // Scale in.
@@ -193,6 +205,9 @@ public class MinigameManager : MonoBehaviour
         {
             yield return null;
         }
+
+        // Report the result (with the source prefab) so listeners can score it.
+        MinigameFinished?.Invoke(prefab, outcome);
 
         // Scale out and clean up.
         yield return Scale(panel, 1f, 0f, scaleOutDuration);

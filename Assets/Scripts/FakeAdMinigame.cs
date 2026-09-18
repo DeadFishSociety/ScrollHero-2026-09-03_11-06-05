@@ -27,6 +27,10 @@ public class FakeAdMinigame : MinigameBase
     [Min(0f)]
     [SerializeField] private float moveDuration = 0.25f;
 
+    [Header("Feedback")]
+    [Tooltip("Optional. Bursts particles at the close button every time it's tapped. Leave empty for none.")]
+    [SerializeField] private HeartParticleSpawner closeParticles;
+
     private RectTransform buttonRect;
     private int clicks;
 
@@ -62,6 +66,14 @@ public class FakeAdMinigame : MinigameBase
     private void OnCloseClicked()
     {
         clicks++;
+
+        // Fire particles at the button's current spot on every tap (including the
+        // final, winning one).
+        if (closeParticles != null && closeButton != null)
+        {
+            Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, closeButton.transform.position);
+            closeParticles.Burst(screenPos);
+        }
 
         if (clicks >= Mathf.Max(1, requiredClicks))
         {
