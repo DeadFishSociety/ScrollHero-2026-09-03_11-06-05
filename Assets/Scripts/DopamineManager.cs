@@ -20,6 +20,9 @@ public class DopamineManager : MonoBehaviour
     public static event Action<float> OnDopamineInitialized;
     public static event Action<float> OnDopamineChange;
 
+    // Fired once, the moment dopamine hits zero. The game-over trigger.
+    public event Action Depleted;
+
     [Header("Level")]
     [SerializeField] private float maximumDopamine = 100f;
     [Tooltip("Dopamine the player starts a session with.")]
@@ -51,6 +54,7 @@ public class DopamineManager : MonoBehaviour
     private float dopamineLevel;
     private bool inMinigame;
     private float activeMinigameDifficulty;
+    private bool depleted;
 
     private void Awake()
     {
@@ -144,6 +148,12 @@ public class DopamineManager : MonoBehaviour
     {
         dopamineLevel = Mathf.Clamp(dopamineLevel + amount, 0f, maximumDopamine);
         OnDopamineChange?.Invoke(Fraction());
+
+        if (!depleted && dopamineLevel <= 0f)
+        {
+            depleted = true;
+            Depleted?.Invoke();
+        }
     }
 
     public void AddDopamine(float amount)
