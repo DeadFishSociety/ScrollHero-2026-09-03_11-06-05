@@ -25,6 +25,12 @@ public class TimeLimitMinigame : MinigameBase
     [Range(0f, 1f)]
     [SerializeField] private float maxGrey = 0.8f;
 
+    [Header("Sound")]
+    [Tooltip("Source the button-press sound plays through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Played whenever any button is pressed. Leave empty for none.")]
+    [SerializeField] private AudioClip buttonPressSound;
+
     // Cached list of every button, quit + dismiss.
     private readonly List<Button> allButtons = new List<Button>();
 
@@ -34,6 +40,16 @@ public class TimeLimitMinigame : MinigameBase
         WireListeners();
         RandomiseGreys();
         ShuffleOrder();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
     }
 
     // --- Setup ---------------------------------------------------------------
@@ -132,14 +148,24 @@ public class TimeLimitMinigame : MinigameBase
 
     private void OnDismissClicked()
     {
+        PlayButtonPress();
         Win();
     }
 
     private void OnQuitClicked()
     {
+        PlayButtonPress();
         // Instant lose: this really does close the whole game.
         Lose();
         QuitGame();
+    }
+
+    private void PlayButtonPress()
+    {
+        if (buttonPressSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(buttonPressSound);
+        }
     }
 
     private static void QuitGame()

@@ -57,6 +57,12 @@ public class CallMinigame : MinigameBase
     [Tooltip("Bursts a particle effect each time a checkpoint is crossed. Assign its sprite and tweak the look on this spawner. Leave empty for no effect.")]
     [SerializeField] private HeartParticleSpawner checkpointParticles;
 
+    [Header("Sound")]
+    [Tooltip("Source the checkpoint sound plays through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Played each time a checkpoint is crossed. Leave empty for none.")]
+    [SerializeField] private AudioClip checkpointSound;
+
     // World-space points of the active path's checkpoints, their anchored
     // positions (for drawing the line), and the cumulative length up to each one.
     private readonly List<Vector3> points = new List<Vector3>();
@@ -93,6 +99,16 @@ public class CallMinigame : MinigameBase
     {
         selfRect = transform as RectTransform;
         canvas = GetComponentInParent<Canvas>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
 
         // Harder = the drag has to hug the line more tightly.
         activeStrayTolerance = Mathf.Lerp(strayTolerance, strayToleranceAtMaxDifficulty, Mathf.Clamp01(context.difficulty));
@@ -337,11 +353,12 @@ public class CallMinigame : MinigameBase
         }
     }
 
-    // Bursts the particle effect at any checkpoint the button has newly passed
-    // (skipping the start point). Each checkpoint fires once per attempt.
+    // Bursts the particle effect and plays a sound at any checkpoint the button
+    // has newly passed (skipping the start point). Each checkpoint fires once per
+    // attempt.
     private void CheckCheckpointCrossings()
     {
-        if (checkpointParticles == null || checkpointCrossed == null)
+        if (checkpointCrossed == null)
         {
             return;
         }
@@ -350,7 +367,14 @@ public class CallMinigame : MinigameBase
             if (!checkpointCrossed[i] && progress >= cumulative[i])
             {
                 checkpointCrossed[i] = true;
-                checkpointParticles.Burst(WorldToScreen(points[i]));
+                if (checkpointParticles != null)
+                {
+                    checkpointParticles.Burst(WorldToScreen(points[i]));
+                }
+                if (checkpointSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(checkpointSound);
+                }
             }
         }
     }
