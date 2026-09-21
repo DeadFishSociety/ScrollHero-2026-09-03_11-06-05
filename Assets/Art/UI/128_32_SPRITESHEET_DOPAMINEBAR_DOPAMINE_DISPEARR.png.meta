@@ -1,0 +1,646 @@
+fileFormatVersion: 2
+guid: 0e22292f739ab4d9a8ec3ead703e732d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5016817839622020711
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_0
+  - first:
+      213: 5684686268429094160
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_1
+  - first:
+      213: -741912552134908479
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_2
+  - first:
+      213: 7439103259904875879
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_3
+  - first:
+      213: 6778882067910062568
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_4
+  - first:
+      213: 4511858583467820368
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_5
+  - first:
+      213: -1250841789586492476
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_6
+  - first:
+      213: 6625439734559995267
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_7
+  - first:
+      213: -6870707995383244605
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_8
+  - first:
+      213: 6944934342901446248
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_9
+  - first:
+      213: 8916796510612684573
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_10
+  - first:
+      213: 4179828345574126061
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_11
+  - first:
+      213: -5796619984879409415
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_12
+  - first:
+      213: -3077224255719701344
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_13
+  - first:
+      213: 1517155458700948427
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_14
+  - first:
+      213: -2073163872971876593
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_15
+  - first:
+      213: -779284375687590603
+    second: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 991ac7e41cea06ab0800000000000000
+      internalID: -5016817839622020711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01dc149da0014ee40800000000000000
+      internalID: 5684686268429094160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_2
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c56893f67234b5f0800000000000000
+      internalID: -741912552134908479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_3
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d941630010d3760800000000000000
+      internalID: 7439103259904875879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_4
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e17b00235d631e50800000000000000
+      internalID: 6778882067910062568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_5
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05585601a775d9e30800000000000000
+      internalID: 4511858583467820368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_6
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c3bb75050e14aee0800000000000000
+      internalID: -1250841789586492476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_7
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385f433e55a42fb50800000000000000
+      internalID: 6625439734559995267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_8
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8deb31b7756a0a0800000000000000
+      internalID: -6870707995383244605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_9
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8663d013dfc516060800000000000000
+      internalID: 6944934342901446248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_10
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc8eb0090db6469488cc2d1e81df619
+      internalID: 8916796510612684573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_11
+      rect:
+        serializedVersion: 2
+        x: 1628
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537583aad2c25403eb93550c3f8d047c
+      internalID: 4179828345574126061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_12
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac5490ec4b2264df8823e6782de8a0fb
+      internalID: -5796619984879409415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_13
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da4f76a69fb534cd6a319bc40020e231
+      internalID: -3077224255719701344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_14
+      rect:
+        serializedVersion: 2
+        x: 2072
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecbb9d421fb764370bc83b4f9fbc8f1d
+      internalID: 1517155458700948427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_15
+      rect:
+        serializedVersion: 2
+        x: 2220
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5a8be3fc88c49518b17f60aef6f71c
+      internalID: -2073163872971876593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_16
+      rect:
+        serializedVersion: 2
+        x: 2368
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3118adb0c996449ad9142c4f94c7f8fb
+      internalID: -779284375687590603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_17
+      rect:
+        serializedVersion: 2
+        x: 2516
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bf2f00239a4f490fafe73727868fca2
+      internalID: -381132778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_18
+      rect:
+        serializedVersion: 2
+        x: 2664
+        y: 0
+        width: 148
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96daa632ba57c422f923911b64ef9552
+      internalID: 1218264931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 799c032c395084c188f97c33fb623d22
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":148.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_0: -5016817839622020711
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_1: 5684686268429094160
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_10: 8916796510612684573
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_11: 4179828345574126061
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_12: -5796619984879409415
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_13: -3077224255719701344
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_14: 1517155458700948427
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_15: -2073163872971876593
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_16: -779284375687590603
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_17: -381132778
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_18: 1218264931
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_2: -741912552134908479
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_3: 7439103259904875879
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_4: 6778882067910062568
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_5: 4511858583467820368
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_6: -1250841789586492476
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_7: 6625439734559995267
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_8: -6870707995383244605
+      128_32_SPRITESHEET_DOPAMINEBAR_DOPAMINE_DISPEARR_9: 6944934342901446248
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
