@@ -23,9 +23,9 @@ public class FakeAdMinigame : MinigameBase
     [Min(1)]
     [SerializeField] private int requiredClicks = 5;
 
-    [Tooltip("Required taps at difficulty 1. The actual count scales between this and Required Clicks by the minigame's difficulty.")]
+    [Tooltip("Required taps at difficulty 1. Set this LOWER than Required Clicks so a high-difficulty ad needs fewer taps and stays beatable when you enter it on low dopamine. The count scales between Required Clicks and this by the minigame's difficulty.")]
     [Min(1)]
-    [SerializeField] private int requiredClicksAtMaxDifficulty = 9;
+    [SerializeField] private int requiredClicksAtMaxDifficulty = 3;
 
     [Tooltip("How long (seconds) the button takes to glide to its new spot (at difficulty 0).")]
     [Min(0f)]
@@ -34,6 +34,18 @@ public class FakeAdMinigame : MinigameBase
     [Tooltip("Glide time at difficulty 1 (a snappier, harder-to-catch button). Scales between this and Move Duration by difficulty.")]
     [Min(0f)]
     [SerializeField] private float moveDurationAtMaxDifficulty = 0.12f;
+
+    [Header("Dopamine drain (while this ad is up)")]
+    [Tooltip("Dopamine drained per second while the ad is up, at difficulty 0.")]
+    [Min(0f)]
+    [SerializeField] private float drainPerSecond = 6f;
+
+    [Tooltip("Dopamine drain per second at difficulty 1. Set this LOWER than Drain Per Second so a high-difficulty ad drains less, keeping it beatable. Scales between Drain Per Second and this by difficulty.")]
+    [Min(0f)]
+    [SerializeField] private float drainPerSecondAtMaxDifficulty = 3f;
+
+    [Tooltip("The DopamineManager this ad drives its drain on. Auto-found if left empty.")]
+    [SerializeField] private DopamineManager dopamineManager;
 
     [Header("Feedback")]
     [Tooltip("Optional. Bursts particles at the close button every time it's tapped. Leave empty for none.")]
@@ -80,10 +92,22 @@ public class FakeAdMinigame : MinigameBase
         }
         audioSource.playOnAwake = false;
 
-        // Harder = more taps and a snappier button.
+        // Difficulty scales the tap count, button speed and drain (each between its
+        // own difficulty-0 and difficulty-1 setting).
         float d = Mathf.Clamp01(context.difficulty);
         activeRequiredClicks = Mathf.Max(1, Mathf.RoundToInt(Mathf.Lerp(requiredClicks, requiredClicksAtMaxDifficulty, d)));
         activeMoveDuration = Mathf.Max(0f, Mathf.Lerp(moveDuration, moveDurationAtMaxDifficulty, d));
+
+        // Push this ad's own dopamine drain for the current difficulty. The
+        // DopamineManager clears it again when the minigame finishes.
+        if (dopamineManager == null)
+        {
+            dopamineManager = FindFirstObjectByType<DopamineManager>();
+        }
+        if (dopamineManager != null)
+        {
+            dopamineManager.SetMinigameDrainOverride(Mathf.Lerp(drainPerSecond, drainPerSecondAtMaxDifficulty, d));
+        }
 
         if (closeButton != null)
         {

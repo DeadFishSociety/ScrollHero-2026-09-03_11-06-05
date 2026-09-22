@@ -56,6 +56,12 @@ public class DopamineManager : MonoBehaviour
     private float activeMinigameDifficulty;
     private bool depleted;
 
+    // Optional per-minigame drain (per second) set by the active minigame. When
+    // set it replaces the difficulty-based minigame drain for that minigame, and
+    // is cleared automatically when the minigame finishes.
+    private bool hasMinigameDrainOverride;
+    private float minigameDrainOverride;
+
     private void Awake()
     {
         // Resolve references up front so OnEnable can subscribe to them.
@@ -112,12 +118,24 @@ public class DopamineManager : MonoBehaviour
             return;
         }
 
-        // Dopamine always drains: faster during a minigame (by its difficulty),
-        // otherwise the steady idle rate.
-        float drainPerSecond = inMinigame
-            ? Mathf.Lerp(minigameDrainAtEasy, minigameDrainAtHard, Mathf.Clamp01(activeMinigameDifficulty))
-            : idleDrainPerSecond;
-        drainPerSecond *= Mathf.Max(0f, DrainMultiplier);
+        // Dopamine always drains: during a minigame at its own rate, otherwise the
+        // steady idle rate.
+        float drainPerSecond;
+        if (inMinigame)
+        {
+            // A minigame can set its own drain (see SetMinigameDrainOverride);
+            // otherwise it scales with the minigame's difficulty. The global
+            // dynamic-difficulty DrainMultiplier is deliberately NOT applied here,
+            // so it can't stack on top of the minigame's own (already scaled) drain
+            // and make a hard minigame impossible when entered on low dopamine.
+            drainPerSecond = hasMinigameDrainOverride
+                ? minigameDrainOverride
+                : Mathf.Lerp(minigameDrainAtEasy, minigameDrainAtHard, Mathf.Clamp01(activeMinigameDifficulty));
+        }
+        else
+        {
+            drainPerSecond = idleDrainPerSecond * Mathf.Max(0f, DrainMultiplier);
+        }
 
         if (drainPerSecond != 0f)
         {
@@ -146,6 +164,7 @@ public class DopamineManager : MonoBehaviour
     private void OnMinigameFinished(GameObject prefab, MinigameOutcome outcome)
     {
         inMinigame = false;
+        hasMinigameDrainOverride = false;
     }
 
     // --- Level plumbing ------------------------------------------------------
@@ -170,6 +189,20 @@ public class DopamineManager : MonoBehaviour
             return;
         }
         UpdateDopamineLevel(amount);
+    }
+
+    // Lets the active minigame set its own dopamine drain (per second) for as long
+    // as it is on screen, replacing the difficulty-based minigame drain. Cleared
+    // automatically when the minigame finishes.
+    public void SetMinigameDrainOverride(float perSecond)
+    {
+        minigameDrainOverride = Mathf.Max(0f, perSecond);
+        hasMinigameDrainOverride = true;
+    }
+
+    public void ClearMinigameDrainOverride()
+    {
+        hasMinigameDrainOverride = false;
     }
 
     public void RemoveDopamine(float amount)
