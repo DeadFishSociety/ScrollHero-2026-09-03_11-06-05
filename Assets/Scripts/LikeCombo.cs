@@ -25,6 +25,9 @@ public class LikeCombo : MonoBehaviour
     [Tooltip("How many liked-and-scrolled reels in a row are needed before the combo activates.")]
     [SerializeField] private int activationThreshold = 3;
 
+    [Tooltip("Highest the combo can climb to. The streak stops rising once it reaches this (e.g. 10 = max 10x).")]
+    [SerializeField] private int maxCombo = 10;
+
     [Header("Label")]
     [Tooltip("Text that shows the current combo, e.g. \"x3\". Hidden until the combo activates.")]
     [SerializeField] private TMP_Text comboLabel;
@@ -75,6 +78,16 @@ public class LikeCombo : MonoBehaviour
     private Coroutine animRoutine;
 
     private bool ComboActive => streak >= activationThreshold;
+
+    // True once the streak has reached the activation threshold.
+    public bool IsActive => ComboActive;
+
+    // The current combo count (the "xN" shown on the label).
+    public int Combo => streak;
+
+    // Score multiplier the combo currently applies: the combo count while active
+    // (so it matches the "xN" label), or 1 when no combo is running.
+    public float ScoreMultiplier => ComboActive ? streak : 1f;
 
     private void Awake()
     {
@@ -132,7 +145,8 @@ public class LikeCombo : MonoBehaviour
     {
         if (currentReelLiked)
         {
-            streak++;
+            // Grow the streak, but never past the max combo.
+            streak = Mathf.Min(streak + 1, maxCombo);
             if (ComboActive)
             {
                 TriggerCombo();

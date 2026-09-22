@@ -452,9 +452,12 @@ MonoBehaviour:
   closeButton: {fileID: 6420466348651195734}
   moveArea: {fileID: 3116318263277065623}
   requiredClicks: 5
-  requiredClicksAtMaxDifficulty: 9
+  requiredClicksAtMaxDifficulty: 2
   moveDuration: 0.25
-  moveDurationAtMaxDifficulty: 0.12
+  moveDurationAtMaxDifficulty: 0.1
+  drainPerSecond: 6
+  drainPerSecondAtMaxDifficulty: 5
+  dopamineManager: {fileID: 0}
   closeParticles: {fileID: 7578235523644522015}
   audioSource: {fileID: 0}
   missedClickSounds:
