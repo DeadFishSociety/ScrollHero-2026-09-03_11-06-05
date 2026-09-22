@@ -64,6 +64,16 @@ public class MinigameManager : MonoBehaviour
     // Dynamic-difficulty hook: added on top of chancePerReel (result clamped to 1).
     public float ExtraChance { get; set; }
 
+    // Dynamic-difficulty hook: given the prefab about to run, returns the
+    // difficulty (0..1) it should play at. Return a negative value to fall back to
+    // the minigame's own authored Difficulty. Set by DynamicDifficulty.
+    public Func<GameObject, float> DifficultyOverride { get; set; }
+
+    // Fired when a minigame starts running (after it has scaled in), carrying its
+    // authored difficulty (0..1). Lets listeners (e.g. DopamineManager) react for
+    // the duration of the minigame - paired with MinigameFinished.
+    public event Action<float> MinigameStarted;
+
     // Fired when a minigame finishes, with the prefab that was played and its
     // outcome. Lets a feed-level listener (e.g. FeedScorer) award score per
     // minigame without the manager knowing anything about scoring.
@@ -194,11 +204,24 @@ public class MinigameManager : MonoBehaviour
         // Run.
         if (game != null)
         {
+            // Difficulty comes from the dynamic-difficulty hook if present,
+            // otherwise from the minigame's own authored value.
+            float difficulty = game.Difficulty;
+            if (DifficultyOverride != null)
+            {
+                float overridden = DifficultyOverride(prefab);
+                if (overridden >= 0f)
+                {
+                    difficulty = Mathf.Clamp01(overridden);
+                }
+            }
+
             MinigameContext context = new MinigameContext
             {
-                difficulty = Mathf.Clamp01(chancePerReel + ExtraChance)
+                difficulty = difficulty
             };
             game.StartGame(context);
+            MinigameStarted?.Invoke(difficulty);
         }
 
         while (!done)

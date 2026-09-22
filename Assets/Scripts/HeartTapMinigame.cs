@@ -18,13 +18,21 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
     [SerializeField] private TMP_Text progressLabel;
 
     [Header("Fill rates")]
-    [Tooltip("How much fill (0..1) each tap adds.")]
+    [Tooltip("How much fill (0..1) each tap adds (at difficulty 0).")]
     [Range(0.01f, 1f)]
     [SerializeField] private float growPerTap = 0.08f;
 
-    [Tooltip("How much fill (0..1) drains per second when not tapping.")]
+    [Tooltip("Fill per tap at difficulty 1 (smaller = more taps needed). Scales between this and Grow Per Tap by difficulty.")]
+    [Range(0.01f, 1f)]
+    [SerializeField] private float growPerTapAtMaxDifficulty = 0.045f;
+
+    [Tooltip("How much fill (0..1) drains per second when not tapping (at difficulty 0).")]
     [Range(0f, 2f)]
     [SerializeField] private float shrinkPerSecond = 0.25f;
+
+    [Tooltip("Drain per second at difficulty 1 (faster = harder). Scales between this and Shrink Per Second by difficulty.")]
+    [Range(0f, 2f)]
+    [SerializeField] private float shrinkPerSecondAtMaxDifficulty = 0.5f;
 
     [Tooltip("Fill the heart starts at.")]
     [Range(0f, 1f)]
@@ -37,9 +45,23 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
     [Tooltip("How fast the pop settles back.")]
     [SerializeField] private float punchDecay = 1.5f;
 
+    [Header("Sound")]
+    [Tooltip("Source the tap sound plays through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Played on each tap, pitched up as the heart fills.")]
+    [SerializeField] private AudioClip tapSound;
+    [Tooltip("Tap pitch at empty (fill 0).")]
+    [SerializeField] private float minTapPitch = 0.9f;
+    [Tooltip("Tap pitch at full (fill 1).")]
+    [SerializeField] private float maxTapPitch = 1.6f;
+
     private float fill;
     private float punch;
     private bool playing;
+
+    // Difficulty-scaled fill rates, resolved in StartGame.
+    private float activeGrowPerTap;
+    private float activeShrinkPerSecond;
 
     void Awake()
     {
@@ -48,6 +70,16 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
         fill = Mathf.Clamp01(startFill);
         punch = 0f;
         Refresh();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
     }
 
     public override void StartGame(MinigameContext context)
@@ -60,6 +92,11 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
         {
             progressLabel = GetComponentInChildren<TMP_Text>(true);
         }
+
+        // Harder = each tap fills less and it drains faster.
+        float d = Mathf.Clamp01(context.difficulty);
+        activeGrowPerTap = Mathf.Lerp(growPerTap, growPerTapAtMaxDifficulty, d);
+        activeShrinkPerSecond = Mathf.Lerp(shrinkPerSecond, shrinkPerSecondAtMaxDifficulty, d);
 
         fill = Mathf.Clamp01(startFill);
         punch = 0f;
@@ -75,7 +112,7 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
         }
 
         // Drain over time, but never below empty (win-only, no losing).
-        fill = Mathf.Clamp01(fill - shrinkPerSecond * Time.deltaTime);
+        fill = Mathf.Clamp01(fill - activeShrinkPerSecond * Time.deltaTime);
 
         // Ease the tap pop back to zero.
         punch = Mathf.MoveTowards(punch, 0f, punchDecay * Time.deltaTime);
@@ -91,8 +128,15 @@ public class HeartTapMinigame : MinigameBase, IPointerDownHandler
             return;
         }
 
-        fill = Mathf.Clamp01(fill + growPerTap);
+        fill = Mathf.Clamp01(fill + activeGrowPerTap);
         punch = punchAmount;
+
+        // Pitch the tap up as the heart gets closer to full.
+        if (tapSound != null && audioSource != null)
+        {
+            audioSource.pitch = Mathf.Lerp(minTapPitch, maxTapPitch, fill);
+            audioSource.PlayOneShot(tapSound);
+        }
 
         if (particleSpawner != null)
         {

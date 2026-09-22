@@ -35,8 +35,11 @@ public class CallMinigame : MinigameBase
     [Tooltip("Parent whose children are the paths. Each path's children are its ordered checkpoints.")]
     [SerializeField] private Transform pathsParent;
 
-    [Tooltip("How far (in canvas units) the drag may stray from the line before it snaps back to the start.")]
+    [Tooltip("How far (in canvas units) the drag may stray from the line before it snaps back to the start (at difficulty 0).")]
     [SerializeField] private float strayTolerance = 90f;
+
+    [Tooltip("Stray tolerance at difficulty 1 (smaller = less forgiving). Scales between this and Stray Tolerance by difficulty.")]
+    [SerializeField] private float strayToleranceAtMaxDifficulty = 45f;
 
     [Tooltip("Most the button may advance along the path in one drag update, to stop skipping ahead.")]
     [SerializeField] private float maxAdvance = 300f;
@@ -53,6 +56,12 @@ public class CallMinigame : MinigameBase
     [Header("Checkpoint particles")]
     [Tooltip("Bursts a particle effect each time a checkpoint is crossed. Assign its sprite and tweak the look on this spawner. Leave empty for no effect.")]
     [SerializeField] private HeartParticleSpawner checkpointParticles;
+
+    [Header("Sound")]
+    [Tooltip("Source the checkpoint sound plays through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource audioSource;
+    [Tooltip("Played each time a checkpoint is crossed. Leave empty for none.")]
+    [SerializeField] private AudioClip checkpointSound;
 
     // World-space points of the active path's checkpoints, their anchored
     // positions (for drawing the line), and the cumulative length up to each one.
@@ -71,6 +80,7 @@ public class CallMinigame : MinigameBase
     private float progress;   // arc length the button currently sits at
     private bool dragging;
     private bool solved;
+    private float activeStrayTolerance; // difficulty-scaled, resolved in StartGame
 
     void Awake()
     {
@@ -89,6 +99,19 @@ public class CallMinigame : MinigameBase
     {
         selfRect = transform as RectTransform;
         canvas = GetComponentInParent<Canvas>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
+
+        // Harder = the drag has to hug the line more tightly.
+        activeStrayTolerance = Mathf.Lerp(strayTolerance, strayToleranceAtMaxDifficulty, Mathf.Clamp01(context.difficulty));
 
         PickCallerName();
         Transform path = PickRandomPath();
@@ -288,7 +311,7 @@ public class CallMinigame : MinigameBase
         float bestArc = ClosestPointOnPath(world, out bestDist);
 
         // Strayed too far from the line, or tried to jump ahead: snap to start.
-        if (bestDist > strayTolerance || bestArc > progress + maxAdvance)
+        if (bestDist > activeStrayTolerance || bestArc > progress + maxAdvance)
         {
             ResetToStart();
             return;
@@ -330,11 +353,12 @@ public class CallMinigame : MinigameBase
         }
     }
 
-    // Bursts the particle effect at any checkpoint the button has newly passed
-    // (skipping the start point). Each checkpoint fires once per attempt.
+    // Bursts the particle effect and plays a sound at any checkpoint the button
+    // has newly passed (skipping the start point). Each checkpoint fires once per
+    // attempt.
     private void CheckCheckpointCrossings()
     {
-        if (checkpointParticles == null || checkpointCrossed == null)
+        if (checkpointCrossed == null)
         {
             return;
         }
@@ -343,7 +367,14 @@ public class CallMinigame : MinigameBase
             if (!checkpointCrossed[i] && progress >= cumulative[i])
             {
                 checkpointCrossed[i] = true;
-                checkpointParticles.Burst(WorldToScreen(points[i]));
+                if (checkpointParticles != null)
+                {
+                    checkpointParticles.Burst(WorldToScreen(points[i]));
+                }
+                if (checkpointSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(checkpointSound);
+                }
             }
         }
     }
