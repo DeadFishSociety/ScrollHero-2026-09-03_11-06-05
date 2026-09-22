@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class MainMenuButtonsSpawner : MonoBehaviour
 {
@@ -10,8 +9,8 @@ public class MainMenuButtonsSpawner : MonoBehaviour
     [System.Serializable]
     public struct MenuButton
     {
-        public string buttonText;
-        public string sceneName;   // must match a scene name in Build Settings
+        public Sprite buttonIcon;
+        public string sceneName;
     }
     [SerializeField] MenuButton[] buttons;
 
@@ -22,7 +21,7 @@ public class MainMenuButtonsSpawner : MonoBehaviour
             var config = buttons[i];
             
             GameObject button = Instantiate(buttonPrefab, transform, false);
-            button.GetComponentInChildren<TMP_Text>().text = config.buttonText;
+            button.GetComponentInChildren<Image>().sprite = config.buttonIcon;
             
             string scene = config.sceneName;
             button.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(scene));
