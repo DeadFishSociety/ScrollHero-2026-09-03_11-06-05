@@ -146,7 +146,9 @@ public class ScrollOverlayAnimation : MonoBehaviour
         for (int i = 0; i < frames.Length; i++)
         {
             img.sprite = frames[i];
-            yield return new WaitForSeconds(frameDuration);
+            // Realtime so a paused game (Time.timeScale = 0, e.g. game over)
+            // can't freeze this overlay on its first frame and leave it on top.
+            yield return new WaitForSecondsRealtime(frameDuration);
         }
         Destroy(go);
     }

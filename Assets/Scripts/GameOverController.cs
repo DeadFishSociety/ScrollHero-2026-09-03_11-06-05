@@ -155,6 +155,14 @@ public class GameOverController : MonoBehaviour
         if (highScoreLabel != null) highScoreLabel.text = string.Format(highScoreFormat, highScore);
         if (newHighScoreBadge != null) newHighScoreBadge.SetActive(isNewHigh);
 
+        // Stop the feed from receiving input: Time.timeScale = 0 does NOT halt
+        // pointer/drag events, so without this the player can keep scrolling the
+        // paused feed (piling up dopamine and frozen scroll animations).
+        if (feed != null)
+        {
+            feed.enabled = false;
+        }
+
         if (overlayRoot != null)
         {
             overlayRoot.SetActive(true);

@@ -106,6 +106,12 @@ public class DopamineManager : MonoBehaviour
 
     private void Update()
     {
+        // Once depleted the run is over; stop draining so the level stays at zero.
+        if (depleted)
+        {
+            return;
+        }
+
         // Dopamine always drains: faster during a minigame (by its difficulty),
         // otherwise the steady idle rate.
         float drainPerSecond = inMinigame
@@ -158,6 +164,11 @@ public class DopamineManager : MonoBehaviour
 
     public void AddDopamine(float amount)
     {
+        // Ignore any gains once the run has ended.
+        if (depleted)
+        {
+            return;
+        }
         UpdateDopamineLevel(amount);
     }
 
