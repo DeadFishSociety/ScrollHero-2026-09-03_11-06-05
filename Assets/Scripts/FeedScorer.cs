@@ -29,6 +29,9 @@ public class FeedScorer : MonoBehaviour
     [Tooltip("The ScoreManager that stores and displays the score. Leave empty to use the scene's ScoreManager automatically.")]
     [SerializeField] private ScoreManager scoreManager;
 
+    [Tooltip("Optional. When a like combo is active, every point awarded is multiplied by its combo multiplier. Leave empty to find the scene's LikeCombo automatically.")]
+    [SerializeField] private LikeCombo likeCombo;
+
     [Header("Reel actions")]
     [Tooltip("Points awarded each time a reel is swiped away.")]
     [SerializeField] private int swipeScore = 5;
@@ -47,6 +50,10 @@ public class FeedScorer : MonoBehaviour
     {
         feed = GetComponent<ReelFeedController>();
         minigames = GetComponent<MinigameManager>();
+        if (likeCombo == null)
+        {
+            likeCombo = FindObjectOfType<LikeCombo>();
+        }
     }
 
     private void OnEnable()
@@ -108,6 +115,12 @@ public class FeedScorer : MonoBehaviour
         if (amount == 0)
         {
             return;
+        }
+
+        // While a like combo is active, multiply the points by its combo multiplier.
+        if (likeCombo != null && likeCombo.IsActive)
+        {
+            amount = Mathf.RoundToInt(amount * likeCombo.ScoreMultiplier);
         }
 
         ScoreManager target = scoreManager != null ? scoreManager : ScoreManager.Instance;
