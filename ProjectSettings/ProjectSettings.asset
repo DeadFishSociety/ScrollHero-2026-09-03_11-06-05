@@ -273,8 +273,8 @@ PlayerSettings:
   AndroidAllowedArchitectures: -13
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: /Users/basverhaak/Documents/deadfishstudio/doomscroller.keystore.keystore
-  AndroidKeyaliasName: doomscroller
+  AndroidKeystoreName: /Users/basverhaak/AndroidBuildScrollHero/Key/user.keystore.keystore
+  AndroidKeyaliasName: doomscrollkey
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0
