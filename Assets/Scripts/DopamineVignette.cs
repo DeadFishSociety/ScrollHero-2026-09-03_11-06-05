@@ -37,29 +37,48 @@ public class DopamineVignette : MonoBehaviour
     [Tooltip("Pulse speed, in beats per second.")]
     [SerializeField] private float pulseSpeed = 2.5f;
 
+    [Header("Colour (by lives)")]
+    [Tooltip("Vignette colour at full lives. Requires a white/greyscale vignette sprite so it can be tinted.")]
+    [SerializeField] private Color fullLivesColor = Color.black;
+
+    [Tooltip("Vignette colour at 1 life. The colour lerps toward this as lives run down.")]
+    [SerializeField] private Color lowLivesColor = Color.red;
+
     private Image image;
 
     // Target alpha from the latest dopamine reading, and the eased current value.
     private float targetAlpha;
     private float currentAlpha;
 
+    // 0 at full lives, 1 at the last life: how far to tint toward lowLivesColor.
+    private float redness;
+
     private void Awake()
     {
         image = GetComponent<Image>();
         image.raycastTarget = false; // never block taps/swipes
-        SetAlpha(0f);
+        currentAlpha = 0f;
+        Apply(0f);
     }
 
     private void OnEnable()
     {
         DopamineManager.OnDopamineInitialized += OnDopamineChanged;
         DopamineManager.OnDopamineChange += OnDopamineChanged;
+        DopamineManager.OnLivesChanged += OnLivesChanged;
     }
 
     private void OnDisable()
     {
         DopamineManager.OnDopamineInitialized -= OnDopamineChanged;
         DopamineManager.OnDopamineChange -= OnDopamineChanged;
+        DopamineManager.OnLivesChanged -= OnLivesChanged;
+    }
+
+    private void OnLivesChanged(int lives, int maxLives)
+    {
+        // Full lives -> 0 (base colour); one life -> 1 (fully lowLivesColor).
+        redness = maxLives > 1 ? Mathf.Clamp01(Mathf.InverseLerp(maxLives, 1, lives)) : (lives <= 1 ? 1f : 0f);
     }
 
     private void OnDopamineChanged(float fraction)
@@ -85,13 +104,15 @@ public class DopamineVignette : MonoBehaviour
             displayed += intensity * pulseAmplitude * wave;
         }
 
-        SetAlpha(Mathf.Clamp01(displayed));
+        Apply(Mathf.Clamp01(displayed));
     }
 
-    private void SetAlpha(float a)
+    // Sets the overlay colour: RGB tinted toward lowLivesColor by the current
+    // lives, alpha from the dopamine level.
+    private void Apply(float alpha)
     {
-        Color c = image.color;
-        c.a = a;
+        Color c = Color.Lerp(fullLivesColor, lowLivesColor, redness);
+        c.a = alpha;
         image.color = c;
     }
 }

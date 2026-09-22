@@ -20,13 +20,22 @@ public class DopamineManager : MonoBehaviour
     public static event Action<float> OnDopamineInitialized;
     public static event Action<float> OnDopamineChange;
 
-    // Fired once, the moment dopamine hits zero. The game-over trigger.
+    // Fired with (current lives, starting lives): once at start, and again each
+    // time a life is lost. The lives display and the vignette listen to this.
+    public static event Action<int, int> OnLivesChanged;
+
+    // Fired once dopamine empties with no lives left. The real game-over trigger.
     public event Action Depleted;
 
     [Header("Level")]
     [SerializeField] private float maximumDopamine = 100f;
-    [Tooltip("Dopamine the player starts a session with.")]
+    [Tooltip("Dopamine the player starts a session with. Also the amount it refills to when a life is lost.")]
     [SerializeField] private float startDopamine = 100f;
+
+    [Header("Lives")]
+    [Tooltip("How many times the dopamine bar can empty before the run ends. Each empty costs a life and refills the bar.")]
+    [Min(1)]
+    [SerializeField] private int startingLives = 3;
 
     [Header("Gains")]
     [Tooltip("Dopamine added each time a reel is swiped away.")]
@@ -52,9 +61,14 @@ public class DopamineManager : MonoBehaviour
     public float GainMultiplier { get; set; } = 1f;
 
     private float dopamineLevel;
+    private int lives;
     private bool inMinigame;
     private float activeMinigameDifficulty;
-    private bool depleted;
+    private bool gameOver;
+
+    // Current and starting lives, for late-subscribing listeners.
+    public int Lives => lives;
+    public int StartingLives => startingLives;
 
     // Optional per-minigame drain (per second) set by the active minigame. When
     // set it replaces the difficulty-based minigame drain for that minigame, and
@@ -75,6 +89,7 @@ public class DopamineManager : MonoBehaviour
         }
 
         dopamineLevel = Mathf.Clamp(startDopamine, 0f, maximumDopamine);
+        lives = Mathf.Max(1, startingLives);
     }
 
     private void OnEnable()
@@ -108,12 +123,13 @@ public class DopamineManager : MonoBehaviour
     private void Start()
     {
         OnDopamineInitialized?.Invoke(Fraction());
+        OnLivesChanged?.Invoke(lives, startingLives);
     }
 
     private void Update()
     {
-        // Once depleted the run is over; stop draining so the level stays at zero.
-        if (depleted)
+        // Once out of lives the run is over; stop draining so the level stays at zero.
+        if (gameOver)
         {
             return;
         }
@@ -171,23 +187,43 @@ public class DopamineManager : MonoBehaviour
 
     private void UpdateDopamineLevel(float amount)
     {
+        // No more changes once the run has ended.
+        if (gameOver)
+        {
+            return;
+        }
+
         dopamineLevel = Mathf.Clamp(dopamineLevel + amount, 0f, maximumDopamine);
         OnDopamineChange?.Invoke(Fraction());
 
-        if (!depleted && dopamineLevel <= 0f)
+        if (dopamineLevel <= 0f)
         {
-            depleted = true;
+            LoseLife();
+        }
+    }
+
+    // Called the moment dopamine empties. Costs a life; if any remain, the bar
+    // refills and the run continues, otherwise it's game over.
+    private void LoseLife()
+    {
+        lives = Mathf.Max(0, lives - 1);
+        OnLivesChanged?.Invoke(lives, startingLives);
+
+        if (lives > 0)
+        {
+            // Refill and keep the run going (this is what resets the vignette).
+            dopamineLevel = Mathf.Clamp(startDopamine, 0f, maximumDopamine);
+            OnDopamineChange?.Invoke(Fraction());
+        }
+        else
+        {
+            gameOver = true;
             Depleted?.Invoke();
         }
     }
 
     public void AddDopamine(float amount)
     {
-        // Ignore any gains once the run has ended.
-        if (depleted)
-        {
-            return;
-        }
         UpdateDopamineLevel(amount);
     }
 

@@ -452,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DopamineManager
   maximumDopamine: 100
   startDopamine: 100
+  startingLives: 3
   swipeGain: 8
   likeGain: 12
   idleDrainPerSecond: 10
@@ -1489,6 +1490,8 @@ MonoBehaviour:
   fadeSpeed: 15
   pulseAmplitude: 0.125
   pulseSpeed: 2.5
+  fullLivesColor: {r: 0, g: 0, b: 0, a: 1}
+  lowLivesColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1833084223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,7 +1512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7412247306732058326, guid: c1e550481c24b40468e76a441bd4db34, type: 3}
+  m_Sprite: {fileID: 1861699394298934709, guid: d33c43857bc2d42f191118f97a605f6a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

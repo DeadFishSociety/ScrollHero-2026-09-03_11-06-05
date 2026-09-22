@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 827794575809067519}
   - component: {fileID: 1358200216380806568}
   - component: {fileID: 8933592836910769691}
+  - component: {fileID: 3876120536365976079}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -150,6 +151,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3876120536365976079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515231917796619433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0382f65335df34ec8acf89c850ea5646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LivesDisplay
+  lifeSprites:
+  - {fileID: 427094971680629321, guid: 09a33d04866154a88badee78dfa06ff3, type: 3}
+  - {fileID: -169956337550097882, guid: 6733762cdd7364ca598c0796c6e0dc7d, type: 3}
+  - {fileID: 8204030942014730030, guid: 4565ce26253ae4e63b18f1d4dcf13d4d, type: 3}
+  - {fileID: 427094971680629321, guid: 09a33d04866154a88badee78dfa06ff3, type: 3}
+  damageSprite: {fileID: 6520206214997268272, guid: 2a72f56369fe24cd3914f94daf30e833, type: 3}
+  damageFlashDuration: 0.3
+  onLifeLost:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4558844177475081476
 GameObject:
   m_ObjectHideFlags: 0
