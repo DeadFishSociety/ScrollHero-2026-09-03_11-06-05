@@ -20,6 +20,11 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("The Reel prefab to spawn. Drag Assets/Prefabs/Reel.prefab here.")]
     [SerializeField] private GameObject reelPrefab;
 
+    [Header("Audio")]
+    [Tooltip("Global volume for reel video audio (0 = silent, 1 = full). Applies to every reel.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float videoVolume = 1f;
+
     [Header("Feed content")]
     [Tooltip("Each entry becomes one reel as you scroll. Set the video, audio, username, description and audio name here - not on the prefab.")]
     [SerializeField] private ReelPost[] posts;
@@ -80,6 +85,26 @@ public class ReelFeedController : MonoBehaviour,
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
     }
+
+#if UNITY_EDITOR
+    // Lets the Video Volume slider be tuned live in Play mode: push the new value
+    // to every active reel.
+    void OnValidate()
+    {
+        for (int i = 0; i < reels.Count; i++)
+        {
+            if (reels[i] == null)
+            {
+                continue;
+            }
+            ReelVideoBackground video = reels[i].GetComponentInChildren<ReelVideoBackground>(true);
+            if (video != null)
+            {
+                video.SetVolume(videoVolume);
+            }
+        }
+    }
+#endif
 
     void Start()
     {
@@ -213,6 +238,7 @@ public class ReelFeedController : MonoBehaviour,
         if (video != null)
         {
             video.SetMuted(true);
+            video.SetVolume(videoVolume);
         }
 
         LayoutReels();
