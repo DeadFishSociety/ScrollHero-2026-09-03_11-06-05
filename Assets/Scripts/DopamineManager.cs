@@ -66,6 +66,9 @@ public class DopamineManager : MonoBehaviour
     private float activeMinigameDifficulty;
     private bool gameOver;
 
+    // Cheat "scroll mode": captured once on load so the run never drains dopamine.
+    private bool noDrain;
+
     // Current and starting lives, for late-subscribing listeners.
     public int Lives => lives;
     public int StartingLives => startingLives;
@@ -90,6 +93,11 @@ public class DopamineManager : MonoBehaviour
 
         dopamineLevel = Mathf.Clamp(startDopamine, 0f, maximumDopamine);
         lives = Mathf.Max(1, startingLives);
+
+        // Consume the cheat flag: this run honours it, but it won't leak into the
+        // next (normal) run because we reset it here.
+        noDrain = CheatState.NoDopamineDrain;
+        CheatState.NoDopamineDrain = false;
     }
 
     private void OnEnable()
@@ -130,6 +138,12 @@ public class DopamineManager : MonoBehaviour
     {
         // Once out of lives the run is over; stop draining so the level stays at zero.
         if (gameOver)
+        {
+            return;
+        }
+
+        // Cheat "scroll mode": never drain (gains still work, so the bar can only rise).
+        if (noDrain)
         {
             return;
         }
