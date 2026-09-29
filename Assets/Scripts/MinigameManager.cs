@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -87,6 +88,9 @@ public class MinigameManager : MonoBehaviour
     private int lastPickedIndex = -1;
     private bool active;
 
+    // Cheat menu: scene to return to once the launched minigame finishes.
+    private string cheatReturnScene;
+
     void Awake()
     {
         feed = GetComponent<ReelFeedController>();
@@ -100,6 +104,20 @@ public class MinigameManager : MonoBehaviour
             {
                 overlayParent = safeArea.transform as RectTransform;
             }
+        }
+    }
+
+    void Start()
+    {
+        // Cheat menu: if a specific minigame was requested, open it right away and
+        // clear the request so it only fires once. Normal play resumes afterwards.
+        if (CheatState.RequestedMinigame != null)
+        {
+            GameObject requested = CheatState.RequestedMinigame;
+            cheatReturnScene = CheatState.ReturnToScene;
+            CheatState.RequestedMinigame = null;
+            CheatState.ReturnToScene = null;
+            PlaySpecific(requested);
         }
     }
 
@@ -150,6 +168,27 @@ public class MinigameManager : MonoBehaviour
         {
             TriggerMinigame();
         }
+    }
+
+    // Opens a specific minigame prefab immediately, bypassing the random selection
+    // and the grace/chance gating. Used by the cheat menu (works with any prefab
+    // that has an IMinigame component, listed on this manager or not).
+    public void PlaySpecific(GameObject prefab)
+    {
+        if (active || prefab == null)
+        {
+            return;
+        }
+
+        active = true;
+        reelsSinceLast = 0;
+
+        if (feed != null)
+        {
+            feed.SetTopReelAudio(false); // duck the reel behind the overlay
+        }
+
+        StartCoroutine(RunMinigame(prefab));
     }
 
     private void TriggerMinigame()
@@ -240,6 +279,15 @@ public class MinigameManager : MonoBehaviour
         if (feed != null)
         {
             feed.SetTopReelAudio(true);
+        }
+
+        // If this was a cheat-menu launch, return to the cheat menu instead of
+        // resuming the game.
+        if (!string.IsNullOrEmpty(cheatReturnScene))
+        {
+            string scene = cheatReturnScene;
+            cheatReturnScene = null;
+            SceneManager.LoadScene(scene);
         }
     }
 

@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReelFeedController
   reelPrefab: {fileID: 7562061212819923730, guid: 2c600100a2ac644b88245b1f3fd3ed95, type: 3}
+  videoVolume: 0
   posts:
   - video: {fileID: 32900000, guid: 525b5b428bf814d0d9dc38b109852ea5, type: 3}
     audio: {fileID: 0}
@@ -403,7 +404,7 @@ MonoBehaviour:
   fps: 24
   size: {x: 300, y: 300}
   tint: {r: 1, g: 1, b: 1, a: 1}
-  sound: {fileID: 0}
+  sound: {fileID: 8300000, guid: d8f65e1ada52748e5945016694fdbf2b, type: 3}
   audioSource: {fileID: 0}
   areaCenter: {x: 0.5, y: 0.5}
   areaSize: {x: 0.4, y: 0.4}
@@ -1484,11 +1485,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de434073b605748c5a6cd9a9ff1e6c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DopamineVignette
-  startFraction: 1
+  startFraction: 0.673
   fullFraction: 0
   maxAlpha: 1
   fadeSpeed: 15
-  pulseAmplitude: 0.125
+  pulseAmplitude: 0.244
   pulseSpeed: 2.5
   fullLivesColor: {r: 0, g: 0, b: 0, a: 1}
   lowLivesColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1506,7 +1507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
