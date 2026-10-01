@@ -107,6 +107,18 @@ public class ReelFeedController : MonoBehaviour,
         canvas = GetComponentInParent<Canvas>();
     }
 
+    void OnEnable()
+    {
+        OverdriveController.Started += OnOverdriveChanged;
+        OverdriveController.Ended += OnOverdriveChanged;
+    }
+
+    void OnDisable()
+    {
+        OverdriveController.Started -= OnOverdriveChanged;
+        OverdriveController.Ended -= OnOverdriveChanged;
+    }
+
 #if UNITY_EDITOR
     // Lets the Video Volume slider be tuned live in Play mode: push the new value
     // to every active reel.
@@ -420,8 +432,22 @@ public class ReelFeedController : MonoBehaviour,
         }
     }
 
-    // Shows the scene overdrive overlay only when the given top reel is the
-    // overdrive reel.
+    // Whether the current top reel is the overdrive (golden) reel.
+    public bool TopReelIsOverdrive => ReelIsOverdrive(reels.Count > 0 ? reels[0] : null);
+
+    private static bool ReelIsOverdrive(RectTransform reel)
+    {
+        if (reel == null)
+        {
+            return false;
+        }
+        ReelLike like = reel.GetComponentInChildren<ReelLike>(true);
+        return like != null && like.IsOverdrive;
+    }
+
+    // Shows the scene overdrive overlay while the top reel is the overdrive reel OR
+    // overdrive mode is running (so the golden animation keeps playing for the
+    // whole round, even as the player scrolls other reels).
     private void RefreshOverdriveOverlay(RectTransform top)
     {
         if (overdriveReelOverlay == null)
@@ -429,17 +455,17 @@ public class ReelFeedController : MonoBehaviour,
             return;
         }
 
-        bool topIsOverdrive = false;
-        if (top != null)
+        bool show = ReelIsOverdrive(top) || OverdriveController.IsActive;
+        if (overdriveReelOverlay.activeSelf != show)
         {
-            ReelLike like = top.GetComponentInChildren<ReelLike>(true);
-            topIsOverdrive = like != null && like.IsOverdrive;
+            overdriveReelOverlay.SetActive(show);
         }
+    }
 
-        if (overdriveReelOverlay.activeSelf != topIsOverdrive)
-        {
-            overdriveReelOverlay.SetActive(topIsOverdrive);
-        }
+    // Re-evaluate the overlay when overdrive begins/ends (not only on reel change).
+    private void OnOverdriveChanged()
+    {
+        RefreshOverdriveOverlay(reels.Count > 0 ? reels[0] : null);
     }
 
     // Picks a post index at random, biased by each post's Weight. Optionally

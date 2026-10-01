@@ -67,11 +67,22 @@ public class LikeCombo : MonoBehaviour
     [Tooltip("Highest pitch the sound is allowed to reach.")]
     [SerializeField] private float maxPitch = 2f;
 
+    [Header("Overdrive")]
+    [Tooltip("The two colours the multiplier text cycles between while overdrive is active.")]
+    [SerializeField] private Color overdriveColorA = Color.white;
+    [SerializeField] private Color overdriveColorB = Color.yellow;
+
+    [Tooltip("White<->yellow cycles per second during overdrive.")]
+    [SerializeField] private float overdriveColorCycleSpeed = 2f;
+
     // Current run of consecutive liked-and-scrolled reels.
     private int streak = 0;
 
     // Whether the reel currently in view has been liked yet.
     private bool currentReelLiked = false;
+
+    private Color labelBaseColor = Color.white;
+    private Coroutine overdriveColorRoutine;
 
     private Vector3 labelBaseScale = Vector3.one;
     private Coroutine popRoutine;
@@ -99,6 +110,7 @@ public class LikeCombo : MonoBehaviour
         if (comboLabel != null)
         {
             labelBaseScale = comboLabel.transform.localScale;
+            labelBaseColor = comboLabel.color;
             comboLabel.gameObject.SetActive(false);
         }
         if (comboAnimationImage != null)
@@ -123,6 +135,8 @@ public class LikeCombo : MonoBehaviour
         {
             feed.ScrollCommitted += OnScrollCommitted;
         }
+        OverdriveController.Started += OnOverdriveStarted;
+        OverdriveController.Ended += OnOverdriveEnded;
     }
 
     private void OnDisable()
@@ -132,17 +146,29 @@ public class LikeCombo : MonoBehaviour
         {
             feed.ScrollCommitted -= OnScrollCommitted;
         }
+        OverdriveController.Started -= OnOverdriveStarted;
+        OverdriveController.Ended -= OnOverdriveEnded;
     }
 
     // A reel was liked. Remember it so the next scroll extends the streak.
     private void OnReelLiked()
     {
+        if (OverdriveController.IsActive)
+        {
+            return; // multiplier is locked during overdrive
+        }
         currentReelLiked = true;
     }
 
     // A reel was scrolled away. Extend the streak if it was liked, otherwise break.
     private void OnScrollCommitted()
     {
+        // Overdrive locks the multiplier text; ignore normal combo tracking.
+        if (OverdriveController.IsActive)
+        {
+            return;
+        }
+
         if (currentReelLiked)
         {
             // Grow the streak, but never past the max combo.
@@ -233,6 +259,57 @@ public class LikeCombo : MonoBehaviour
         if (comboAnimationImage != null)
         {
             comboAnimationImage.gameObject.SetActive(false);
+        }
+    }
+
+    // --- Overdrive -----------------------------------------------------------
+
+    // During overdrive the multiplier is locked: show it on the label and cycle
+    // the colour white <-> yellow instead of running the normal combo.
+    private void OnOverdriveStarted()
+    {
+        // Clear any in-progress normal combo visuals.
+        if (popRoutine != null) { StopCoroutine(popRoutine); popRoutine = null; }
+        if (animRoutine != null) { StopCoroutine(animRoutine); animRoutine = null; }
+        if (comboAnimationImage != null) { comboAnimationImage.gameObject.SetActive(false); }
+        streak = 0;
+        currentReelLiked = false;
+
+        if (comboLabel != null)
+        {
+            comboLabel.transform.localScale = labelBaseScale;
+            comboLabel.gameObject.SetActive(true);
+            comboLabel.text = string.Format(labelFormat, Mathf.RoundToInt(OverdriveController.Multiplier));
+
+            if (overdriveColorRoutine != null) { StopCoroutine(overdriveColorRoutine); }
+            overdriveColorRoutine = StartCoroutine(OverdriveColorCycle());
+        }
+    }
+
+    private void OnOverdriveEnded()
+    {
+        if (overdriveColorRoutine != null)
+        {
+            StopCoroutine(overdriveColorRoutine);
+            overdriveColorRoutine = null;
+        }
+        if (comboLabel != null)
+        {
+            comboLabel.color = labelBaseColor;
+        }
+        HideCombo();
+    }
+
+    private IEnumerator OverdriveColorCycle()
+    {
+        while (true)
+        {
+            float wave = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * overdriveColorCycleSpeed * Mathf.PI * 2f);
+            if (comboLabel != null)
+            {
+                comboLabel.color = Color.Lerp(overdriveColorA, overdriveColorB, wave);
+            }
+            yield return null;
         }
     }
 

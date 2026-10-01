@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -39,6 +40,11 @@ public class OverdriveController : MonoBehaviour
     // Read by FeedScorer (locked multiplier) and MinigameManager (suppression).
     public static bool IsActive { get; private set; }
     public static float Multiplier { get; private set; } = 1f;
+
+    // Fired when overdrive begins / ends, for listeners that can't poll (feed
+    // overlay, combo multiplier text).
+    public static event Action Started;
+    public static event Action Ended;
 
     private Coroutine routine;
 
@@ -92,6 +98,7 @@ public class OverdriveController : MonoBehaviour
     {
         IsActive = true;
         Multiplier = lockedMultiplier;
+        Started?.Invoke();
 
         if (overlay != null)
         {
@@ -141,5 +148,7 @@ public class OverdriveController : MonoBehaviour
         {
             overlay.SetActive(false);
         }
+
+        Ended?.Invoke();
     }
 }
