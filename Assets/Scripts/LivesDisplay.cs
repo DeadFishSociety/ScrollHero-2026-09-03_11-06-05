@@ -33,9 +33,6 @@ public class LivesDisplay : MonoBehaviour
 
     private Image image;
 
-    // Last count we displayed, so we can tell a real loss from the initial fill.
-    private int previousLives = -1;
-
     // Latest life count, used to settle back after the damage flash.
     private int currentLives;
 
@@ -49,37 +46,46 @@ public class LivesDisplay : MonoBehaviour
     private void OnEnable()
     {
         DopamineManager.OnLivesChanged += OnLivesChanged;
+        DopamineManager.OnLifeLost += OnLifeLostSignal;
     }
 
     private void OnDisable()
     {
         DopamineManager.OnLivesChanged -= OnLivesChanged;
+        DopamineManager.OnLifeLost -= OnLifeLostSignal;
     }
 
+    // Count changed (loss, overdrive set/reset, or initial). Just updates the
+    // sprite - the damage flash is driven by OnLifeLost instead, so the overdrive
+    // reset (3 -> 2) doesn't flash.
     private void OnLivesChanged(int lives, int maxLives)
     {
         currentLives = lives;
 
-        // A real loss (not the initial broadcast) flashes the damage sprite.
-        bool lostALife = previousLives >= 0 && lives < previousLives;
-        previousLives = lives;
-
-        if (lostALife)
+        // If a flash is in progress, let it settle onto the new count when it ends.
+        if (flashRoutine == null)
         {
-            onLifeLost?.Invoke();
-
-            if (damageSprite != null && damageFlashDuration > 0f)
-            {
-                if (flashRoutine != null)
-                {
-                    StopCoroutine(flashRoutine);
-                }
-                flashRoutine = StartCoroutine(DamageFlash());
-                return;
-            }
+            SyncSprite(currentLives);
         }
+    }
 
-        SyncSprite(currentLives);
+    // An actual life was lost: play the damage flash.
+    private void OnLifeLostSignal()
+    {
+        onLifeLost?.Invoke();
+
+        if (damageSprite != null && damageFlashDuration > 0f)
+        {
+            if (flashRoutine != null)
+            {
+                StopCoroutine(flashRoutine);
+            }
+            flashRoutine = StartCoroutine(DamageFlash());
+        }
+        else
+        {
+            SyncSprite(currentLives);
+        }
     }
 
     private IEnumerator DamageFlash()

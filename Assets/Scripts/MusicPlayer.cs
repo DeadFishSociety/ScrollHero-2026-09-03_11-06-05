@@ -16,6 +16,10 @@ public class MusicPlayer : MonoBehaviour
 
     private AudioSource source;
 
+    // True while a temporary override clip (e.g. overdrive music) is playing in
+    // place of the theme.
+    private bool overriding;
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -50,6 +54,42 @@ public class MusicPlayer : MonoBehaviour
     public void Stop()
     {
         if (source != null)
+        {
+            source.Stop();
+        }
+    }
+
+    // Replaces the theme with a temporary looping clip (e.g. overdrive music).
+    // Call StopOverride() to return to the theme.
+    public void PlayOverride(AudioClip clip, float overrideVolume = -1f)
+    {
+        if (source == null || clip == null)
+        {
+            return;
+        }
+        overriding = true;
+        source.clip = clip;
+        source.loop = true;
+        source.volume = overrideVolume >= 0f ? overrideVolume : volume;
+        source.Play();
+    }
+
+    // Returns to the main theme after a PlayOverride.
+    public void StopOverride()
+    {
+        if (source == null || !overriding)
+        {
+            return;
+        }
+        overriding = false;
+        source.volume = volume;
+        source.clip = theme;
+        source.loop = true;
+        if (theme != null)
+        {
+            source.Play();
+        }
+        else
         {
             source.Stop();
         }

@@ -35,6 +35,23 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("WeightedRandom only: avoid showing the same post twice in a row (when more than one exists).")]
     [SerializeField] private bool avoidImmediateRepeat = true;
 
+    [Header("Overdrive reel")]
+    [Tooltip("The special overdrive reel's content (video + text). Leave its video empty to disable overdrive insertion.")]
+    [SerializeField] private ReelPost overdrivePost;
+
+    [Tooltip("Chance for each newly spawned reel to be the overdrive reel.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float overdriveChancePerReel = 0.04f;
+
+    [Tooltip("No overdrive reel among the first N spawned reels.")]
+    [SerializeField] private int overdriveGracePeriodReels = 4;
+
+    [Tooltip("Minimum reels between two overdrive reels.")]
+    [SerializeField] private int overdriveMinReelsBetween = 8;
+
+    [Tooltip("A single overlay in the scene (e.g. an Image with UISpriteAnimation) positioned over the reel slot. Shown only while the overdrive reel is on screen. Leave empty for no marker.")]
+    [SerializeField] private GameObject overdriveReelOverlay;
+
     [Header("Feel")]
     [Tooltip("Fraction of a screen you must drag past for it to advance to the next reel on release.")]
     [Range(0.05f, 0.9f)]
@@ -56,6 +73,10 @@ public class ReelFeedController : MonoBehaviour,
     private readonly List<RectTransform> reels = new List<RectTransform>();
     private int nextPostIndex;
     private int lastPostIndex = -1;
+
+    // Overdrive insertion bookkeeping.
+    private int reelsSpawned;
+    private int reelsSinceOverdrive = 100000; // large so the first eligible reel can trigger
 
     // The reel currently allowed to play audio (always the top one).
     private RectTransform audioReel;
@@ -84,6 +105,18 @@ public class ReelFeedController : MonoBehaviour,
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+    }
+
+    void OnEnable()
+    {
+        OverdriveController.Started += OnOverdriveChanged;
+        OverdriveController.Ended += OnOverdriveChanged;
+    }
+
+    void OnDisable()
+    {
+        OverdriveController.Started -= OnOverdriveChanged;
+        OverdriveController.Ended -= OnOverdriveChanged;
     }
 
 #if UNITY_EDITOR
@@ -265,6 +298,11 @@ public class ReelFeedController : MonoBehaviour,
     private void UpdateCurrentAudio()
     {
         RectTransform top = reels.Count > 0 ? reels[0] : null;
+
+        // Show the scene overdrive marker over the slot only while the top reel is
+        // the overdrive reel.
+        RefreshOverdriveOverlay(top);
+
         if (top == audioReel)
         {
             return;
@@ -318,17 +356,35 @@ public class ReelFeedController : MonoBehaviour,
         }
     }
 
-    // Hands the spawned reel the next post's content: video, audio and text.
+    // Hands the spawned reel its content: usually the next normal post, but
+    // occasionally the special overdrive reel.
     private void AssignPost(GameObject reel)
     {
-        if (posts == null || posts.Length == 0)
+        reelsSpawned++;
+        if (reelsSinceOverdrive < 1000000)
         {
-            return;
+            reelsSinceOverdrive++;
         }
 
-        int index = (order == FeedOrder.WeightedRandom) ? PickWeightedIndex() : (nextPostIndex++ % posts.Length);
-        lastPostIndex = index;
-        ReelPost post = posts[index];
+        bool makeOverdrive = ShouldSpawnOverdrive();
+        ReelPost post;
+
+        if (makeOverdrive)
+        {
+            post = overdrivePost;
+            reelsSinceOverdrive = 0;
+        }
+        else
+        {
+            if (posts == null || posts.Length == 0)
+            {
+                MarkOverdriveReel(reel, false);
+                return;
+            }
+            int index = (order == FeedOrder.WeightedRandom) ? PickWeightedIndex() : (nextPostIndex++ % posts.Length);
+            lastPostIndex = index;
+            post = posts[index];
+        }
 
         ReelVideoBackground video = reel.GetComponentInChildren<ReelVideoBackground>(true);
         if (video != null && post.video != null)
@@ -341,6 +397,75 @@ public class ReelFeedController : MonoBehaviour,
         {
             content.SetContent(post.username, post.description, post.audioName, post.audio);
         }
+
+        MarkOverdriveReel(reel, makeOverdrive);
+    }
+
+    // Decides whether this freshly spawned reel should be the overdrive reel:
+    // needs a configured overdrive post, not already in overdrive, and past the
+    // grace period and cooldown.
+    private bool ShouldSpawnOverdrive()
+    {
+        if (overdrivePost == null || overdrivePost.video == null)
+        {
+            return false;
+        }
+        if (OverdriveController.IsActive)
+        {
+            return false;
+        }
+        if (reelsSpawned <= overdriveGracePeriodReels || reelsSinceOverdrive < overdriveMinReelsBetween)
+        {
+            return false;
+        }
+        return Random.value <= overdriveChancePerReel;
+    }
+
+    // Flags the reel's ReelLike so liking it starts overdrive. The visual marker is
+    // a single scene overlay (see RefreshOverdriveOverlay), not a per-reel object.
+    private void MarkOverdriveReel(GameObject reel, bool isOverdrive)
+    {
+        ReelLike like = reel.GetComponentInChildren<ReelLike>(true);
+        if (like != null)
+        {
+            like.IsOverdrive = isOverdrive;
+        }
+    }
+
+    // Whether the current top reel is the overdrive (golden) reel.
+    public bool TopReelIsOverdrive => ReelIsOverdrive(reels.Count > 0 ? reels[0] : null);
+
+    private static bool ReelIsOverdrive(RectTransform reel)
+    {
+        if (reel == null)
+        {
+            return false;
+        }
+        ReelLike like = reel.GetComponentInChildren<ReelLike>(true);
+        return like != null && like.IsOverdrive;
+    }
+
+    // Shows the scene overdrive overlay while the top reel is the overdrive reel OR
+    // overdrive mode is running (so the golden animation keeps playing for the
+    // whole round, even as the player scrolls other reels).
+    private void RefreshOverdriveOverlay(RectTransform top)
+    {
+        if (overdriveReelOverlay == null)
+        {
+            return;
+        }
+
+        bool show = ReelIsOverdrive(top) || OverdriveController.IsActive;
+        if (overdriveReelOverlay.activeSelf != show)
+        {
+            overdriveReelOverlay.SetActive(show);
+        }
+    }
+
+    // Re-evaluate the overlay when overdrive begins/ends (not only on reel change).
+    private void OnOverdriveChanged()
+    {
+        RefreshOverdriveOverlay(reels.Count > 0 ? reels[0] : null);
     }
 
     // Picks a post index at random, biased by each post's Weight. Optionally
