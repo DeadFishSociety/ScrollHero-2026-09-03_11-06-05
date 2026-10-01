@@ -3,7 +3,7 @@
 namespace DTOs
 {
     [Serializable]
-    public class SavaData
+    public class SaveData
     {
         public int highscore = 0;
     }

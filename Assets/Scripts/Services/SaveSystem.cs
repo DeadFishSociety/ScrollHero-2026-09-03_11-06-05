@@ -1,6 +1,6 @@
-﻿using UnityEditor.Overlays;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
+using DTOs;
 
 namespace Services
 {
@@ -23,7 +23,7 @@ namespace Services
             }
 
             string json = File.ReadAllText(FilePath);
-            return JsonUtility.FromJson(json);
+            return JsonUtility.FromJson<SaveData>(json);
         }
     }
 }
