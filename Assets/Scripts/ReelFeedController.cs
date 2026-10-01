@@ -49,8 +49,11 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("Minimum reels between two overdrive reels.")]
     [SerializeField] private int overdriveMinReelsBetween = 8;
 
-    [Tooltip("A single overlay in the scene (e.g. an Image with UISpriteAnimation) positioned over the reel slot. Shown only while the overdrive reel is on screen. Leave empty for no marker.")]
-    [SerializeField] private GameObject overdriveReelOverlay;
+    [Tooltip("Overlay prefab (e.g. an Image with UISpriteAnimation) spawned as a child of the golden reel, so it rides the reel and is visible as it scrolls in. Leave empty for no marker.")]
+    [SerializeField] private GameObject overdriveReelOverlayPrefab;
+
+    [Tooltip("Centered \"LIKE NOW\" prompt shown while the golden reel is the current reel and not yet liked. Leave empty for none.")]
+    [SerializeField] private GameObject likeNowPrompt;
 
     [Header("Feel")]
     [Tooltip("Fraction of a screen you must drag past for it to advance to the next reel on release.")]
@@ -299,9 +302,8 @@ public class ReelFeedController : MonoBehaviour,
     {
         RectTransform top = reels.Count > 0 ? reels[0] : null;
 
-        // Show the scene overdrive marker over the slot only while the top reel is
-        // the overdrive reel.
-        RefreshOverdriveOverlay(top);
+        // Show/hide the centered "LIKE NOW" prompt for the golden reel.
+        RefreshGoldenPrompt(top);
 
         if (top == audioReel)
         {
@@ -421,14 +423,33 @@ public class ReelFeedController : MonoBehaviour,
         return Random.value <= overdriveChancePerReel;
     }
 
-    // Flags the reel's ReelLike so liking it starts overdrive. The visual marker is
-    // a single scene overlay (see RefreshOverdriveOverlay), not a per-reel object.
+    // Flags the reel's ReelLike so liking it starts overdrive, and (for golden
+    // reels) spawns the marker overlay as a child so it rides the reel and is
+    // visible as the reel scrolls into view.
     private void MarkOverdriveReel(GameObject reel, bool isOverdrive)
     {
         ReelLike like = reel.GetComponentInChildren<ReelLike>(true);
         if (like != null)
         {
             like.IsOverdrive = isOverdrive;
+        }
+
+        if (isOverdrive && overdriveReelOverlayPrefab != null)
+        {
+            GameObject overlay = Instantiate(overdriveReelOverlayPrefab, reel.transform);
+            overlay.SetActive(true); // in case the prefab was saved disabled
+            RectTransform ort = overlay.transform as RectTransform;
+            if (ort != null)
+            {
+                // Fill the reel exactly (same as SpawnReelAtEnd does for reels).
+                ort.anchorMin = Vector2.zero;
+                ort.anchorMax = Vector2.one;
+                ort.sizeDelta = Vector2.zero;
+                ort.anchoredPosition = Vector2.zero;
+                ort.pivot = new Vector2(0.5f, 0.5f);
+                ort.localScale = Vector3.one;
+                ort.SetAsLastSibling(); // draw over the video/content
+            }
         }
     }
 
@@ -445,27 +466,26 @@ public class ReelFeedController : MonoBehaviour,
         return like != null && like.IsOverdrive;
     }
 
-    // Shows the scene overdrive overlay while the top reel is the overdrive reel OR
-    // overdrive mode is running (so the golden animation keeps playing for the
-    // whole round, even as the player scrolls other reels).
-    private void RefreshOverdriveOverlay(RectTransform top)
+    // Shows the centered "LIKE NOW" prompt only while the golden reel is the current
+    // reel and overdrive hasn't started yet.
+    private void RefreshGoldenPrompt(RectTransform top)
     {
-        if (overdriveReelOverlay == null)
+        if (likeNowPrompt == null)
         {
             return;
         }
 
-        bool show = ReelIsOverdrive(top) || OverdriveController.IsActive;
-        if (overdriveReelOverlay.activeSelf != show)
+        bool show = ReelIsOverdrive(top) && !OverdriveController.IsActive;
+        if (likeNowPrompt.activeSelf != show)
         {
-            overdriveReelOverlay.SetActive(show);
+            likeNowPrompt.SetActive(show);
         }
     }
 
-    // Re-evaluate the overlay when overdrive begins/ends (not only on reel change).
+    // Re-evaluate the prompt when overdrive begins/ends (not only on reel change).
     private void OnOverdriveChanged()
     {
-        RefreshOverdriveOverlay(reels.Count > 0 ? reels[0] : null);
+        RefreshGoldenPrompt(reels.Count > 0 ? reels[0] : null);
     }
 
     // Picks a post index at random, biased by each post's Weight. Optionally

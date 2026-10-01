@@ -237,9 +237,9 @@ MonoBehaviour:
   particleSpawner: {fileID: 5335243408833517920}
   progressLabel: {fileID: 4831112106398016504}
   growPerTap: 0.083
-  growPerTapAtMaxDifficulty: 0.045
+  growPerTapAtMaxDifficulty: 0.067
   shrinkPerSecond: 0.22
-  shrinkPerSecondAtMaxDifficulty: 0.5
+  shrinkPerSecondAtMaxDifficulty: 0.33
   startFill: 0
   punchAmount: 0.015
   punchDecay: 1
