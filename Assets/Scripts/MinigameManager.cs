@@ -145,7 +145,7 @@ public class MinigameManager : MonoBehaviour
             reelsSinceLast++;
         }
 
-        if (active || minigames == null || minigames.Length == 0)
+        if (active || OverdriveController.IsActive || minigames == null || minigames.Length == 0)
         {
             return;
         }

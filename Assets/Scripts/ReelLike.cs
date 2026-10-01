@@ -19,6 +19,15 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
     // style.
     public static event Action AnyReelLiked;
 
+    // Fired when an overdrive reel is liked (instead of AnyReelLiked). The
+    // OverdriveController listens for this to start the bonus round.
+    public static event Action OverdriveLiked;
+
+    // Marks this reel as the special overdrive reel. The feed sets this when it
+    // assigns the overdrive post. When true, liking fires OverdriveLiked instead of
+    // counting as a normal like.
+    public bool IsOverdrive { get; set; }
+
     [Header("Like button / heart")]
     [Tooltip("The LikeButton. Its click likes the reel; it is hidden once liked.")]
     [SerializeField] private Button likeButton;
@@ -135,7 +144,15 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        AnyReelLiked?.Invoke();
+        // An overdrive reel starts the bonus round instead of counting as a like.
+        if (IsOverdrive)
+        {
+            OverdriveLiked?.Invoke();
+        }
+        else
+        {
+            AnyReelLiked?.Invoke();
+        }
 
         BurstParticles(screenPosition);
 

@@ -117,10 +117,19 @@ public class FeedScorer : MonoBehaviour
             return;
         }
 
-        // While a like combo is active, multiply the points by its combo multiplier.
-        if (likeCombo != null && likeCombo.IsActive)
+        // Overdrive locks the multiplier; otherwise an active like combo multiplies.
+        float multiplier = 1f;
+        if (OverdriveController.IsActive)
         {
-            amount = Mathf.RoundToInt(amount * likeCombo.ScoreMultiplier);
+            multiplier = OverdriveController.Multiplier;
+        }
+        else if (likeCombo != null && likeCombo.IsActive)
+        {
+            multiplier = likeCombo.ScoreMultiplier;
+        }
+        if (!Mathf.Approximately(multiplier, 1f))
+        {
+            amount = Mathf.RoundToInt(amount * multiplier);
         }
 
         ScoreManager target = scoreManager != null ? scoreManager : ScoreManager.Instance;
