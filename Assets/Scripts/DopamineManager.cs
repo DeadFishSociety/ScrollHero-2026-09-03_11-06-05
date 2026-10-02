@@ -306,6 +306,28 @@ public class DopamineManager : MonoBehaviour
         OnDopamineChange?.Invoke(Fraction());
     }
 
+    // Liking a despair reel: lose a life (refilling the bar, like a normal life
+    // loss). On the last life, halve the current dopamine instead so it can't be an
+    // instant game over. Called by DespairController.
+    public void ApplyDespair()
+    {
+        if (gameOver || overdrive)
+        {
+            return;
+        }
+
+        if (lives > 1)
+        {
+            LoseLife(); // decrement + damage flash + refill (same as a normal loss)
+        }
+        else
+        {
+            // Last life: halve whatever's currently in the bar.
+            dopamineLevel = Mathf.Clamp(dopamineLevel * 0.5f, 0f, maximumDopamine);
+            OnDopamineChange?.Invoke(Fraction());
+        }
+    }
+
     public void AddDopamine(float amount)
     {
         // No top-ups during overdrive: the bar only drains.

@@ -55,6 +55,26 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("Centered \"LIKE NOW\" prompt shown while the golden reel is the current reel and not yet liked. Leave empty for none.")]
     [SerializeField] private GameObject likeNowPrompt;
 
+    [Header("Despair reel")]
+    [Tooltip("The despair reel's content (video + text). Leave its video empty to disable despair insertion.")]
+    [SerializeField] private ReelPost despairPost;
+
+    [Tooltip("Chance for each newly spawned reel to be the despair reel.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float despairChancePerReel = 0.04f;
+
+    [Tooltip("No despair reel among the first N spawned reels.")]
+    [SerializeField] private int despairGracePeriodReels = 4;
+
+    [Tooltip("Minimum reels between two despair reels.")]
+    [SerializeField] private int despairMinReelsBetween = 8;
+
+    [Tooltip("Overlay prefab (Image + UISpriteAnimation) shown full-screen while the despair reel is current. Leave empty for no marker.")]
+    [SerializeField] private GameObject despairReelOverlayPrefab;
+
+    [Tooltip("Centered prompt (e.g. \"DOPAMINE DESPAIR\") shown while the despair reel is the current reel. Leave empty for none.")]
+    [SerializeField] private GameObject despairPrompt;
+
     [Header("Feel")]
     [Tooltip("Fraction of a screen you must drag past for it to advance to the next reel on release.")]
     [Range(0.05f, 0.9f)]
@@ -77,12 +97,19 @@ public class ReelFeedController : MonoBehaviour,
     private int nextPostIndex;
     private int lastPostIndex = -1;
 
-    // The single full-screen overdrive overlay (child of the feed), toggled on/off.
+    // The single full-screen special overlays (children of the feed), toggled on/off.
     private GameObject overdriveOverlayInstance;
+    private GameObject despairOverlayInstance;
 
-    // Overdrive insertion bookkeeping.
+    // Special-reel insertion bookkeeping.
     private int reelsSpawned;
     private int reelsSinceOverdrive = 100000; // large so the first eligible reel can trigger
+    private int reelsSinceDespair = 100000;
+
+    // Whether the reel just scrolled away was special (holy/despair); read by
+    // LikeCombo so passing a special reel doesn't break the like streak.
+    private bool lastScrolledReelWasSpecial;
+    public bool LastScrolledReelWasSpecial => lastScrolledReelWasSpecial;
 
     // The reel currently allowed to play audio (always the top one).
     private RectTransform audioReel;
@@ -117,12 +144,15 @@ public class ReelFeedController : MonoBehaviour,
     {
         OverdriveController.Started += OnOverdriveChanged;
         OverdriveController.Ended += OnOverdriveChanged;
+        // Liking a despair reel auto-advances past it, so the despair is over.
+        ReelLike.DespairLiked += AdvanceToNextReel;
     }
 
     void OnDisable()
     {
         OverdriveController.Started -= OnOverdriveChanged;
         OverdriveController.Ended -= OnOverdriveChanged;
+        ReelLike.DespairLiked -= AdvanceToNextReel;
     }
 
 #if UNITY_EDITOR
@@ -154,7 +184,8 @@ public class ReelFeedController : MonoBehaviour,
             return;
         }
 
-        CreateOverdriveOverlay();
+        overdriveOverlayInstance = CreateSpecialOverlay(overdriveReelOverlayPrefab);
+        despairOverlayInstance = CreateSpecialOverlay(despairReelOverlayPrefab);
 
         for (int i = 0; i < BufferCount; i++)
         {
@@ -164,18 +195,17 @@ public class ReelFeedController : MonoBehaviour,
         UpdateCurrentAudio();
     }
 
-    // Spawns one full-screen overdrive overlay as a child of the Feed (so it fills
-    // the whole screen, not the safe area), shown while the golden reel is current
-    // or overdrive mode is running.
-    private void CreateOverdriveOverlay()
+    // Spawns one full-screen special overlay as a child of the Feed (so it fills the
+    // whole screen, not the safe area), starting hidden.
+    private GameObject CreateSpecialOverlay(GameObject prefab)
     {
-        if (overdriveReelOverlayPrefab == null || overdriveOverlayInstance != null)
+        if (prefab == null)
         {
-            return;
+            return null;
         }
 
-        overdriveOverlayInstance = Instantiate(overdriveReelOverlayPrefab, rectTransform);
-        RectTransform ort = overdriveOverlayInstance.transform as RectTransform;
+        GameObject instance = Instantiate(prefab, rectTransform);
+        RectTransform ort = instance.transform as RectTransform;
         if (ort != null)
         {
             ort.anchorMin = Vector2.zero;
@@ -185,7 +215,8 @@ public class ReelFeedController : MonoBehaviour,
             ort.pivot = new Vector2(0.5f, 0.5f);
             ort.SetAsLastSibling(); // draw over the reels
         }
-        overdriveOverlayInstance.SetActive(false);
+        instance.SetActive(false);
+        return instance;
     }
 
     void Update()
@@ -245,9 +276,11 @@ public class ReelFeedController : MonoBehaviour,
         // Handle fast multi-reel swipes without releasing: recycle as we cross each screen.
         while (offset >= height)
         {
+            // Capture the reel being passed BEFORE it's recycled.
+            bool passedWasSpecial = ReelIsSpecial(reels.Count > 0 ? reels[0] : null);
             Recycle();
             offset -= height;
-            ScrollCommitted?.Invoke();
+            CommitScroll(passedWasSpecial);
         }
 
         LayoutReels();
@@ -262,11 +295,33 @@ public class ReelFeedController : MonoBehaviour,
         targetOffset = advance ? ViewportHeight : 0f;
 
         // Notify immediately on commit, so scroll-reactive effects don't wait for
-        // the snap-settle to finish.
+        // the snap-settle to finish. The reel being passed is still the current top.
         if (advance)
         {
-            ScrollCommitted?.Invoke();
+            CommitScroll(ReelIsSpecial(reels.Count > 0 ? reels[0] : null));
         }
+    }
+
+    // Records whether the passed reel was special, then raises ScrollCommitted.
+    private void CommitScroll(bool passedWasSpecial)
+    {
+        lastScrolledReelWasSpecial = passedWasSpecial;
+        ScrollCommitted?.Invoke();
+    }
+
+    // Programmatically advance to the next reel (e.g. after liking a despair reel).
+    // The Update snap then recycles the current reel, so its overlay/prompt clear.
+    public void AdvanceToNextReel()
+    {
+        float height = ViewportHeight;
+        if (height <= 0f || dragging)
+        {
+            return;
+        }
+
+        bool passedWasSpecial = ReelIsSpecial(reels.Count > 0 ? reels[0] : null);
+        targetOffset = height;
+        CommitScroll(passedWasSpecial);
     }
 
     // Positions every active reel: reel i sits i screens below the top,
@@ -331,9 +386,11 @@ public class ReelFeedController : MonoBehaviour,
     {
         RectTransform top = reels.Count > 0 ? reels[0] : null;
 
-        // Show/hide the golden overlay + "LIKE NOW" prompt for the golden reel.
+        // Show/hide the special overlays + prompts for the current reel.
         RefreshOverdriveOverlay(top);
+        RefreshDespairOverlay(top);
         RefreshGoldenPrompt(top);
+        RefreshDespairPrompt(top);
 
         if (top == audioReel)
         {
@@ -397,20 +454,31 @@ public class ReelFeedController : MonoBehaviour,
         {
             reelsSinceOverdrive++;
         }
+        if (reelsSinceDespair < 1000000)
+        {
+            reelsSinceDespair++;
+        }
 
-        bool makeOverdrive = ShouldSpawnOverdrive();
+        ReelSpecial special = ReelSpecial.None;
         ReelPost post;
 
-        if (makeOverdrive)
+        if (ShouldSpawnOverdrive())
         {
+            special = ReelSpecial.Overdrive;
             post = overdrivePost;
             reelsSinceOverdrive = 0;
+        }
+        else if (ShouldSpawnDespair())
+        {
+            special = ReelSpecial.Despair;
+            post = despairPost;
+            reelsSinceDespair = 0;
         }
         else
         {
             if (posts == null || posts.Length == 0)
             {
-                MarkOverdriveReel(reel, false);
+                MarkReelSpecial(reel, ReelSpecial.None);
                 return;
             }
             int index = (order == FeedOrder.WeightedRandom) ? PickWeightedIndex() : (nextPostIndex++ % posts.Length);
@@ -430,7 +498,7 @@ public class ReelFeedController : MonoBehaviour,
             content.SetContent(post.username, post.description, post.audioName, post.audio);
         }
 
-        MarkOverdriveReel(reel, makeOverdrive);
+        MarkReelSpecial(reel, special);
     }
 
     // Decides whether this freshly spawned reel should be the overdrive reel:
@@ -453,29 +521,54 @@ public class ReelFeedController : MonoBehaviour,
         return Random.value <= overdriveChancePerReel;
     }
 
-    // Flags the reel's ReelLike so liking it starts overdrive. The visual marker is
-    // the single full-screen overlay on the feed (see RefreshOverdriveOverlay).
-    private void MarkOverdriveReel(GameObject reel, bool isOverdrive)
+    // Same as ShouldSpawnOverdrive, for the despair reel.
+    private bool ShouldSpawnDespair()
+    {
+        if (despairPost == null || despairPost.video == null)
+        {
+            return false;
+        }
+        if (OverdriveController.IsActive)
+        {
+            return false;
+        }
+        if (reelsSpawned <= despairGracePeriodReels || reelsSinceDespair < despairMinReelsBetween)
+        {
+            return false;
+        }
+        return Random.value <= despairChancePerReel;
+    }
+
+    // Flags the reel's ReelLike with its special kind so liking it fires the right
+    // event. The visual markers are the full-screen overlays on the feed.
+    private void MarkReelSpecial(GameObject reel, ReelSpecial special)
     {
         ReelLike like = reel.GetComponentInChildren<ReelLike>(true);
         if (like != null)
         {
-            like.IsOverdrive = isOverdrive;
+            like.Special = special;
         }
     }
 
     // Whether the current top reel is the overdrive (golden) reel.
-    public bool TopReelIsOverdrive => ReelIsOverdrive(reels.Count > 0 ? reels[0] : null);
+    public bool TopReelIsOverdrive => SpecialOf(reels.Count > 0 ? reels[0] : null) == ReelSpecial.Overdrive;
 
-    private static bool ReelIsOverdrive(RectTransform reel)
+    // Whether the current top reel is any special reel (holy or despair).
+    public bool TopReelIsSpecial => SpecialOf(reels.Count > 0 ? reels[0] : null) != ReelSpecial.None;
+
+    private static ReelSpecial SpecialOf(RectTransform reel)
     {
         if (reel == null)
         {
-            return false;
+            return ReelSpecial.None;
         }
         ReelLike like = reel.GetComponentInChildren<ReelLike>(true);
-        return like != null && like.IsOverdrive;
+        return like != null ? like.Special : ReelSpecial.None;
     }
+
+    private static bool ReelIsOverdrive(RectTransform reel) => SpecialOf(reel) == ReelSpecial.Overdrive;
+    private static bool ReelIsDespair(RectTransform reel) => SpecialOf(reel) == ReelSpecial.Despair;
+    private static bool ReelIsSpecial(RectTransform reel) => SpecialOf(reel) != ReelSpecial.None;
 
     // Shows the full-screen overdrive overlay while the golden reel is the current
     // reel OR overdrive mode is running (so it keeps playing for the whole round).
@@ -498,6 +591,25 @@ public class ReelFeedController : MonoBehaviour,
         }
     }
 
+    // Shows the full-screen despair overlay while the despair reel is the current reel.
+    private void RefreshDespairOverlay(RectTransform top)
+    {
+        if (despairOverlayInstance == null)
+        {
+            return;
+        }
+
+        bool show = ReelIsDespair(top);
+        if (show)
+        {
+            despairOverlayInstance.transform.SetAsLastSibling();
+        }
+        if (despairOverlayInstance.activeSelf != show)
+        {
+            despairOverlayInstance.SetActive(show);
+        }
+    }
+
     // Shows the centered "LIKE NOW" prompt only while the golden reel is the current
     // reel and overdrive hasn't started yet.
     private void RefreshGoldenPrompt(RectTransform top)
@@ -511,6 +623,21 @@ public class ReelFeedController : MonoBehaviour,
         if (likeNowPrompt.activeSelf != show)
         {
             likeNowPrompt.SetActive(show);
+        }
+    }
+
+    // Shows the centered "DOPAMINE DESPAIR" prompt while the despair reel is current.
+    private void RefreshDespairPrompt(RectTransform top)
+    {
+        if (despairPrompt == null)
+        {
+            return;
+        }
+
+        bool show = ReelIsDespair(top);
+        if (despairPrompt.activeSelf != show)
+        {
+            despairPrompt.SetActive(show);
         }
     }
 

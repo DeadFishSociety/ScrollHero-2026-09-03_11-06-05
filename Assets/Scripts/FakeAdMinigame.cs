@@ -19,6 +19,18 @@ public class FakeAdMinigame : MinigameBase
     [Tooltip("Area the button is allowed to move within. Defaults to the button's parent.")]
     [SerializeField] private RectTransform moveArea;
 
+    [Tooltip("Keeps the close button this far (canvas units) below the top of its move area - raise it so the button never slides up behind the dopamine bar / top HUD.")]
+    [Min(0f)]
+    [SerializeField] private float topMargin = 0f;
+
+    [Tooltip("Keeps the close button this far (canvas units) above the bottom of its move area.")]
+    [Min(0f)]
+    [SerializeField] private float bottomMargin = 0f;
+
+    [Tooltip("Keeps the close button this far (canvas units) from the left/right edges of its move area.")]
+    [Min(0f)]
+    [SerializeField] private float sideMargin = 0f;
+
     [Tooltip("How many taps on the close button are needed before the ad closes (at difficulty 0).")]
     [Min(1)]
     [SerializeField] private int requiredClicks = 5;
@@ -177,7 +189,18 @@ public class FakeAdMinigame : MinigameBase
         float halfX = Mathf.Max(0f, (area.x - btn.x) * 0.5f);
         float halfY = Mathf.Max(0f, (area.y - btn.y) * 0.5f);
 
-        Vector2 target = new Vector2(Random.Range(-halfX, halfX), Random.Range(-halfY, halfY));
+        // Pull the usable range in by the margins (top margin keeps the button clear
+        // of the dopamine bar / top HUD).
+        float minX = -halfX + sideMargin;
+        float maxX = halfX - sideMargin;
+        float minY = -halfY + bottomMargin;
+        float maxY = halfY - topMargin;
+
+        // If a margin is bigger than the available space, collapse to the centre.
+        if (minX > maxX) { minX = maxX = 0f; }
+        if (minY > maxY) { minY = maxY = 0f; }
+
+        Vector2 target = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
         if (activeMoveDuration <= 0f)
         {

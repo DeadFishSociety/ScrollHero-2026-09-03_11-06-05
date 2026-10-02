@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// The special kinds of reel. A normal reel is None; Overdrive is the holy reel
+// (starts the bonus round), Despair is its negative counterpart (costs a life).
+public enum ReelSpecial
+{
+    None,
+    Overdrive,
+    Despair
+}
+
 // Handles "liking" a reel. Tapping the LikeButton, OR double-tapping the reel,
 // likes it: the button is hidden, the filled Heart icon is revealed, a burst of
 // heart particles plays, an optional spritesheet animation plays near the heart,
@@ -19,14 +28,15 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
     // style.
     public static event Action AnyReelLiked;
 
-    // Fired when an overdrive reel is liked (instead of AnyReelLiked). The
-    // OverdriveController listens for this to start the bonus round.
+    // Fired when an overdrive (holy) reel is liked, instead of AnyReelLiked.
     public static event Action OverdriveLiked;
 
-    // Marks this reel as the special overdrive reel. The feed sets this when it
-    // assigns the overdrive post. When true, liking fires OverdriveLiked instead of
-    // counting as a normal like.
-    public bool IsOverdrive { get; set; }
+    // Fired when a despair reel is liked, instead of AnyReelLiked.
+    public static event Action DespairLiked;
+
+    // Which special kind of reel this is (set by the feed when assigning its post).
+    // Liking a special reel fires its own event instead of counting as a like.
+    public ReelSpecial Special { get; set; } = ReelSpecial.None;
 
     [Header("Like button / heart")]
     [Tooltip("The LikeButton. Its click likes the reel; it is hidden once liked.")]
@@ -144,14 +154,18 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        // An overdrive reel starts the bonus round instead of counting as a like.
-        if (IsOverdrive)
+        // Special reels fire their own event instead of counting as a normal like.
+        switch (Special)
         {
-            OverdriveLiked?.Invoke();
-        }
-        else
-        {
-            AnyReelLiked?.Invoke();
+            case ReelSpecial.Overdrive:
+                OverdriveLiked?.Invoke();
+                break;
+            case ReelSpecial.Despair:
+                DespairLiked?.Invoke();
+                break;
+            default:
+                AnyReelLiked?.Invoke();
+                break;
         }
 
         BurstParticles(screenPosition);
