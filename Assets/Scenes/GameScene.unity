@@ -199,7 +199,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1231945678}
+  m_Father: {fileID: 426246708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -368,18 +368,17 @@ MonoBehaviour:
       et mauris risus. #Sed #diam #arcu
     audioName: 
     weight: 0
-  - video: {fileID: 32900000, guid: 28cf24b57b53c4ceb855bd540fd32e84, type: 3}
+  - video: {fileID: 32900000, guid: 52549f8db205d4bd791862963f1efa6d, type: 3}
     audio: {fileID: 0}
     username: Temp
     description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
       et mauris risus. #Sed #diam #arcu
     audioName: 
     weight: 0
-  - video: {fileID: 32900000, guid: 52549f8db205d4bd791862963f1efa6d, type: 3}
+  - video: {fileID: 32900000, guid: 65649695658c0480fb7bb48bb064ea37, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
+    username: NOS
+    description: Serieous stiff hapnned #getscaredrn
     audioName: 
     weight: 0
   order: 0
@@ -391,12 +390,12 @@ MonoBehaviour:
     description: jsfksjdklghj
     audioName: Original audio
     weight: 1
-  overdriveChancePerReel: 0.05
+  overdriveChancePerReel: 0.02
   overdriveGracePeriodReels: 4
   overdriveMinReelsBetween: 8
   overdriveReelOverlayPrefab: {fileID: 4486694225776157802, guid: be25b8657da564880a14af3c8c8e0499, type: 3}
   likeNowPrompt: {fileID: 783890244}
-  advanceThreshold: 0.2
+  advanceThreshold: 0.1
   flickVelocity: 1200
   snapSpeed: 14
 --- !u!114 &398602199
@@ -453,7 +452,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   panelSizeFraction: {x: 1, y: 1}
-  overlayParent: {fileID: 0}
+  overlayParent: {fileID: 398602197}
 --- !u!114 &398602200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +952,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 398602197}
+  - {fileID: 1833084221}
   - {fileID: 1231945678}
   - {fileID: 1184746271}
   m_Father: {fileID: 0}
@@ -1195,9 +1196,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 398602197}
   - {fileID: 1919740043}
-  - {fileID: 1833084221}
   - {fileID: 783890245}
   - {fileID: 121166883}
   m_Father: {fileID: 426246708}
@@ -1233,7 +1232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1402,12 +1401,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833084220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1231945678}
+  m_Father: {fileID: 426246708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

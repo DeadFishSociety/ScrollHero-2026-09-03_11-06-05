@@ -103,4 +103,5 @@ MonoBehaviour:
   fps: 22
   loop: 1
   preserveAspect: 1
+  coverParent: 1
   useUnscaledTime: 1
