@@ -10,7 +10,7 @@ public class MainMenuHighscoreDisplay : MonoBehaviour
 
     private void Start()
     {
-        SaveData data = SaveSystem.Load();
-        highscoreText.text = string.Format(format, data.highscore);
+        string highscore = SaveDataService.Current.highscore.ToString();
+        highscoreText.text = string.Format(format, highscore);
     }
 }

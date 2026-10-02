@@ -1,29 +1,28 @@
 ﻿using System.IO;
 using UnityEngine;
-using DTOs;
 
 namespace Services
 {
     public class SaveSystem
     {
-        private static string FilePath =>
-            Path.Combine(Application.persistentDataPath, "savedata.json");
+        private static string PathFor(string filename) => Path.Combine(Application.persistentDataPath, filename);
         
-        public static void Save(SaveData saveData)
+        public static void Save<T>(T data, string filename)
         {
-            string json = JsonUtility.ToJson(saveData, true);
-            File.WriteAllText(FilePath, json);
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(PathFor(filename), json);
         }
-
-        public static SaveData Load()
+        
+        public static T Load<T>(string file) where T : new()
         {
-            if (!File.Exists(FilePath)) {
-                Debug.LogWarning("Save file not found. Returning fresh data.");
-                return new SaveData();
-            }
+            string path = PathFor(file);
+            if (File.Exists(path))
+                return JsonUtility.FromJson<T>(File.ReadAllText(path));
 
-            string json = File.ReadAllText(FilePath);
-            return JsonUtility.FromJson<SaveData>(json);
+            // Save the new save file if the file did not exist yet
+            T fresh = new T();
+            Save(fresh, file);
+            return fresh;
         }
     }
 }
