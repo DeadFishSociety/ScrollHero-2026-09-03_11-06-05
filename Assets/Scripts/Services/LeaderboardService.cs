@@ -11,7 +11,7 @@ namespace Services
     // All requests fail silently: nothing is thrown or logged when the server can't be reached.
     public static class LeaderboardService
     {
-        private const string BaseURL = "http://larsverschoor.nl";
+        private const string BaseURL = "https://larsverschoor.nl";
 
         // Runs on every game start: claims the username once, then uploads the local highscore.
         // A taken generated name is replaced by a new one; a failed request just stops until next launch.
