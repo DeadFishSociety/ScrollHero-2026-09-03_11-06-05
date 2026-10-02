@@ -20,9 +20,15 @@ public class DopamineManager : MonoBehaviour
     public static event Action<float> OnDopamineInitialized;
     public static event Action<float> OnDopamineChange;
 
-    // Fired with (current lives, starting lives): once at start, and again each
-    // time a life is lost. The lives display and the vignette listen to this.
+    // Fired with (current lives, max lives): on start, whenever a life is lost, and
+    // when overdrive sets/resets the life count. Drives the lives display, bar and
+    // vignette. This is a "count changed" signal, NOT necessarily damage.
     public static event Action<int, int> OnLivesChanged;
+
+    // Fired only when a life is actually lost (dopamine emptied). Separate from
+    // OnLivesChanged so the lives display can play its damage flash here without
+    // also flashing on the overdrive reset (3 -> 2).
+    public static event Action OnLifeLost;
 
     // Fired once dopamine empties with no lives left. The real game-over trigger.
     public event Action Depleted;
@@ -33,9 +39,13 @@ public class DopamineManager : MonoBehaviour
     [SerializeField] private float startDopamine = 100f;
 
     [Header("Lives")]
-    [Tooltip("How many times the dopamine bar can empty before the run ends. Each empty costs a life and refills the bar.")]
+    [Tooltip("Lives the player starts with. Each dopamine empty costs one; the run ends at 0.")]
     [Min(1)]
-    [SerializeField] private int startingLives = 3;
+    [SerializeField] private int startLives = 2;
+
+    [Tooltip("Maximum lives. Overdrive temporarily lifts the player to this, then resets back to Start Lives.")]
+    [Min(1)]
+    [SerializeField] private int maxLives = 3;
 
     [Header("Gains")]
     [Tooltip("Dopamine added each time a reel is swiped away.")]
@@ -66,9 +76,20 @@ public class DopamineManager : MonoBehaviour
     private float activeMinigameDifficulty;
     private bool gameOver;
 
-    // Current and starting lives, for late-subscribing listeners.
+    // Overdrive: a timed bonus round where dopamine only drains (set by the
+    // OverdriveController). While active, gains are ignored and emptying the bar
+    // does NOT cost a life.
+    private bool overdrive;
+    private float overdriveDrainPerSecond;
+
+    // Cheat "scroll mode": captured once on load so the run never drains dopamine.
+    private bool noDrain;
+
+    // Current, start and max lives, for late-subscribing listeners.
     public int Lives => lives;
-    public int StartingLives => startingLives;
+    public int StartLives => startLives;
+    public int MaxLives => maxLives;
+    public bool IsOverdrive => overdrive;
 
     // Optional per-minigame drain (per second) set by the active minigame. When
     // set it replaces the difficulty-based minigame drain for that minigame, and
@@ -89,7 +110,13 @@ public class DopamineManager : MonoBehaviour
         }
 
         dopamineLevel = Mathf.Clamp(startDopamine, 0f, maximumDopamine);
-        lives = Mathf.Max(1, startingLives);
+        maxLives = Mathf.Max(1, maxLives);
+        lives = Mathf.Clamp(startLives, 1, maxLives);
+
+        // Consume the cheat flag: this run honours it, but it won't leak into the
+        // next (normal) run because we reset it here.
+        noDrain = CheatState.NoDopamineDrain;
+        CheatState.NoDopamineDrain = false;
     }
 
     private void OnEnable()
@@ -123,13 +150,30 @@ public class DopamineManager : MonoBehaviour
     private void Start()
     {
         OnDopamineInitialized?.Invoke(Fraction());
-        OnLivesChanged?.Invoke(lives, startingLives);
+        OnLivesChanged?.Invoke(lives, maxLives);
     }
 
     private void Update()
     {
         // Once out of lives the run is over; stop draining so the level stays at zero.
         if (gameOver)
+        {
+            return;
+        }
+
+        // Overdrive: drain steadily toward empty over the round (acts as the timer
+        // visual). No gains, and emptying doesn't cost a life (see UpdateDopamineLevel).
+        if (overdrive)
+        {
+            if (overdriveDrainPerSecond > 0f)
+            {
+                UpdateDopamineLevel(-overdriveDrainPerSecond * Time.deltaTime);
+            }
+            return;
+        }
+
+        // Cheat "scroll mode": never drain (gains still work, so the bar can only rise).
+        if (noDrain)
         {
             return;
         }
@@ -196,7 +240,8 @@ public class DopamineManager : MonoBehaviour
         dopamineLevel = Mathf.Clamp(dopamineLevel + amount, 0f, maximumDopamine);
         OnDopamineChange?.Invoke(Fraction());
 
-        if (dopamineLevel <= 0f)
+        // During overdrive the bar can sit at zero without ending the round.
+        if (dopamineLevel <= 0f && !overdrive)
         {
             LoseLife();
         }
@@ -207,7 +252,8 @@ public class DopamineManager : MonoBehaviour
     private void LoseLife()
     {
         lives = Mathf.Max(0, lives - 1);
-        OnLivesChanged?.Invoke(lives, startingLives);
+        OnLivesChanged?.Invoke(lives, maxLives);
+        OnLifeLost?.Invoke(); // damage signal (distinct from the overdrive reset)
 
         if (lives > 0)
         {
@@ -222,8 +268,51 @@ public class DopamineManager : MonoBehaviour
         }
     }
 
+    // --- Overdrive -----------------------------------------------------------
+
+    // Starts the overdrive bonus round: jump to max lives and drain a full bar over
+    // `duration` seconds (as the countdown visual). Called by OverdriveController.
+    public void EnterOverdrive(float duration)
+    {
+        if (overdrive || gameOver)
+        {
+            return;
+        }
+
+        overdrive = true;
+        overdriveDrainPerSecond = duration > 0f ? maximumDopamine / duration : 0f;
+
+        lives = maxLives;
+        OnLivesChanged?.Invoke(lives, maxLives);
+
+        dopamineLevel = maximumDopamine;
+        OnDopamineChange?.Invoke(Fraction());
+    }
+
+    // Ends overdrive: refill to full and drop back to the starting lives.
+    public void ExitOverdrive()
+    {
+        if (!overdrive)
+        {
+            return;
+        }
+
+        overdrive = false;
+
+        lives = Mathf.Clamp(startLives, 1, maxLives);
+        OnLivesChanged?.Invoke(lives, maxLives);
+
+        dopamineLevel = maximumDopamine;
+        OnDopamineChange?.Invoke(Fraction());
+    }
+
     public void AddDopamine(float amount)
     {
+        // No top-ups during overdrive: the bar only drains.
+        if (overdrive)
+        {
+            return;
+        }
         UpdateDopamineLevel(amount);
     }
 

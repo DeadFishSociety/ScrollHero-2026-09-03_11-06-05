@@ -37,14 +37,31 @@ public class DopamineVignette : MonoBehaviour
     [Tooltip("Pulse speed, in beats per second.")]
     [SerializeField] private float pulseSpeed = 2.5f;
 
-    [Header("Colour (by lives)")]
-    [Tooltip("Vignette colour at full lives. Requires a white/greyscale vignette sprite so it can be tinted.")]
+    [Header("Sprite animation per life (element 0 = faint, last = strongest)")]
+    [Tooltip("Vignette frames while on the last life (1 life left). Leave empty to use the colour fallback below.")]
+    [SerializeField] private Sprite[] life1Frames;
+
+    [Tooltip("Vignette frames while on 2 lives. Leave empty to use the colour fallback below.")]
+    [SerializeField] private Sprite[] life2Frames;
+
+    [Tooltip("Vignette frames while on 3 lives. Leave empty to use the colour fallback below.")]
+    [SerializeField] private Sprite[] life3Frames;
+
+    [Header("Colour fallback (by lives)")]
+    [Tooltip("Used only when the current life has no frames above. Colour at full lives; needs a white/greyscale vignette sprite so it can be tinted.")]
     [SerializeField] private Color fullLivesColor = Color.black;
 
-    [Tooltip("Vignette colour at 1 life. The colour lerps toward this as lives run down.")]
+    [Tooltip("Colour at 1 life. The colour lerps toward this as lives run down.")]
     [SerializeField] private Color lowLivesColor = Color.red;
 
     private Image image;
+
+    // The static vignette sprite the Image started with, restored for the colour
+    // fallback (in case sprite mode swapped it on a previous life).
+    private Sprite baseSprite;
+
+    // Current life count, for choosing the frame set.
+    private int currentLives = 3;
 
     // Target alpha from the latest dopamine reading, and the eased current value.
     private float targetAlpha;
@@ -57,8 +74,9 @@ public class DopamineVignette : MonoBehaviour
     {
         image = GetComponent<Image>();
         image.raycastTarget = false; // never block taps/swipes
+        baseSprite = image.sprite;
         currentAlpha = 0f;
-        Apply(0f);
+        Apply(0f, 0f);
     }
 
     private void OnEnable()
@@ -77,6 +95,7 @@ public class DopamineVignette : MonoBehaviour
 
     private void OnLivesChanged(int lives, int maxLives)
     {
+        currentLives = lives;
         // Full lives -> 0 (base colour); one life -> 1 (fully lowLivesColor).
         redness = maxLives > 1 ? Mathf.Clamp01(Mathf.InverseLerp(maxLives, 1, lives)) : (lives <= 1 ? 1f : 0f);
     }
@@ -96,23 +115,56 @@ public class DopamineVignette : MonoBehaviour
         float k = 1f - Mathf.Exp(-fadeSpeed * Time.unscaledDeltaTime);
         currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, k);
 
+        // Smooth 0..1 vignette intensity (no pulse), used to pick the animation frame.
+        float intensity = maxAlpha > 0f ? Mathf.Clamp01(currentAlpha / maxAlpha) : 0f;
+
         float displayed = currentAlpha;
         if (pulseAmplitude > 0f)
         {
-            float intensity = maxAlpha > 0f ? currentAlpha / maxAlpha : 0f;
             float wave = 0.5f + 0.5f * Mathf.Sin(Time.unscaledTime * pulseSpeed * Mathf.PI * 2f);
             displayed += intensity * pulseAmplitude * wave;
         }
 
-        Apply(Mathf.Clamp01(displayed));
+        Apply(Mathf.Clamp01(displayed), intensity);
     }
 
-    // Sets the overlay colour: RGB tinted toward lowLivesColor by the current
-    // lives, alpha from the dopamine level.
-    private void Apply(float alpha)
+    // Shows the vignette. If the current life has an animation, steps through its
+    // frames by intensity (art provides the colour). Otherwise falls back to the
+    // colour tint on the base sprite.
+    private void Apply(float alpha, float intensity)
     {
-        Color c = Color.Lerp(fullLivesColor, lowLivesColor, redness);
-        c.a = alpha;
-        image.color = c;
+        Sprite[] frames = FramesForCurrentLife();
+        if (frames != null && frames.Length > 0)
+        {
+            int index = Mathf.Clamp(Mathf.RoundToInt(intensity * (frames.Length - 1)), 0, frames.Length - 1);
+            image.sprite = frames[index];
+            image.color = new Color(1f, 1f, 1f, alpha);
+        }
+        else
+        {
+            // Colour fallback: restore the base sprite and tint it by lives.
+            if (image.sprite != baseSprite)
+            {
+                image.sprite = baseSprite;
+            }
+            Color c = Color.Lerp(fullLivesColor, lowLivesColor, redness);
+            c.a = alpha;
+            image.color = c;
+        }
+    }
+
+    // Picks the frame set for the current life. More than 3 lives reuses the Life 3
+    // set; 1 (or fewer) uses the Life 1 set. An empty set means "use the fallback".
+    private Sprite[] FramesForCurrentLife()
+    {
+        if (currentLives >= 3)
+        {
+            return life3Frames;
+        }
+        if (currentLives == 2)
+        {
+            return life2Frames;
+        }
+        return life1Frames;
     }
 }

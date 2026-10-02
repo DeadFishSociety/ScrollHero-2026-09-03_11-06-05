@@ -1,61 +1,61 @@
 fileFormatVersion: 2
-guid: 3dbb95f83b9184567ba51a7a7c49501f
+guid: 29740c92fbc3b4b1da1572fe5e38e6da
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 43496876097355254
-    second: Updated_barUI_2.0_0
+      213: -9125252835789207505
+    second: Overdrive_with_overlay_animation_0
   - first:
-      213: 2808544172663736734
-    second: Updated_barUI_2.0_1
+      213: 7709079263796913003
+    second: Overdrive_with_overlay_animation_1
   - first:
-      213: -3681938048895284095
-    second: Updated_barUI_2.0_2
+      213: 8856465610064183124
+    second: Overdrive_with_overlay_animation_2
   - first:
-      213: -5533893643458216168
-    second: Updated_barUI_2.0_3
+      213: -1797537648532900768
+    second: Overdrive_with_overlay_animation_3
   - first:
-      213: 6505671518310065209
-    second: Updated_barUI_2.0_4
+      213: -2324656673214341001
+    second: Overdrive_with_overlay_animation_4
   - first:
-      213: 3963496769886805570
-    second: Updated_barUI_2.0_5
+      213: 7312512718349875333
+    second: Overdrive_with_overlay_animation_5
   - first:
-      213: -760299147598181882
-    second: Updated_barUI_2.0_6
+      213: -1112679221967598484
+    second: Overdrive_with_overlay_animation_6
   - first:
-      213: -6091112901407383949
-    second: Updated_barUI_2.0_7
+      213: -5953633516242172355
+    second: Overdrive_with_overlay_animation_7
   - first:
-      213: 1344680848476316055
-    second: Updated_barUI_2.0_8
+      213: 8486611288178539974
+    second: Overdrive_with_overlay_animation_8
   - first:
-      213: 6834341625516499691
-    second: Updated_barUI_2.0_9
+      213: 6864594274943425422
+    second: Overdrive_with_overlay_animation_9
   - first:
-      213: -291304006840723529
-    second: Updated_barUI_2.0_10
+      213: -2839672077263886502
+    second: Overdrive_with_overlay_animation_10
   - first:
-      213: -1892272290968107145
-    second: Updated_barUI_2.0_11
+      213: 4979772843099995087
+    second: Overdrive_with_overlay_animation_11
   - first:
-      213: 5896027702879741195
-    second: Updated_barUI_2.0_12
+      213: -7220386262740956994
+    second: Overdrive_with_overlay_animation_12
   - first:
-      213: -5483080174279656506
-    second: Updated_barUI_2.0_13
+      213: 2659780594954457160
+    second: Overdrive_with_overlay_animation_13
   - first:
-      213: 8214109841660051670
-    second: Updated_barUI_2.0_14
+      213: 10711311975832072
+    second: Overdrive_with_overlay_animation_14
   - first:
-      213: -728143013754782290
-    second: Updated_barUI_2.0_15
+      213: -7117925287843740754
+    second: Overdrive_with_overlay_animation_15
   - first:
-      213: -3757633799789130511
-    second: Updated_barUI_2.0_16
+      213: -8681265186274681338
+    second: Overdrive_with_overlay_animation_16
   - first:
-      213: 295444739204990424
-    second: Updated_barUI_2.0_17
+      213: -8611101535828734599
+    second: Overdrive_with_overlay_animation_17
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -190,7 +190,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Updated_barUI_2.0_0
+      name: Overdrive_with_overlay_animation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6fd3f98ad288a9000800000000000000
-      internalID: 43496876097355254
+      spriteID: f28882db4e69c5180800000000000000
+      internalID: -9125252835789207505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_1
+      name: Overdrive_with_overlay_animation_1
       rect:
         serializedVersion: 2
         x: 135
@@ -227,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e998d937b04f9f620800000000000000
-      internalID: 2808544172663736734
+      spriteID: b63e1f7feb62cfa60800000000000000
+      internalID: 7709079263796913003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_2
+      name: Overdrive_with_overlay_animation_2
       rect:
         serializedVersion: 2
         x: 270
@@ -249,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18c0a9e2ad027ecc0800000000000000
-      internalID: -3681938048895284095
+      spriteID: 45fb65d7c8c78ea70800000000000000
+      internalID: 8856465610064183124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_3
+      name: Overdrive_with_overlay_animation_3
       rect:
         serializedVersion: 2
         x: 405
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81f71e41d09a333b0800000000000000
-      internalID: -5533893643458216168
+      spriteID: 0643ecc480ddd07e0800000000000000
+      internalID: -1797537648532900768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_4
+      name: Overdrive_with_overlay_animation_4
       rect:
         serializedVersion: 2
         x: 540
@@ -293,14 +293,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9346f3207c9c84a50800000000000000
-      internalID: 6505671518310065209
+      spriteID: 770615082192dbfd0800000000000000
+      internalID: -2324656673214341001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_5
+      name: Overdrive_with_overlay_animation_5
       rect:
         serializedVersion: 2
         x: 675
@@ -315,14 +315,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 24ed28d005b210730800000000000000
-      internalID: 3963496769886805570
+      spriteID: 58835c0f2934b7560800000000000000
+      internalID: 7312512718349875333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_6
+      name: Overdrive_with_overlay_animation_6
       rect:
         serializedVersion: 2
         x: 810
@@ -337,14 +337,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 60ac06814ffd275f0800000000000000
-      internalID: -760299147598181882
+      spriteID: c6cc9a19428fe80f0800000000000000
+      internalID: -1112679221967598484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_7
+      name: Overdrive_with_overlay_animation_7
       rect:
         serializedVersion: 2
         x: 945
@@ -359,14 +359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 37e50d89615087ba0800000000000000
-      internalID: -6091112901407383949
+      spriteID: d3686855cd1706da0800000000000000
+      internalID: -5953633516242172355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_8
+      name: Overdrive_with_overlay_animation_8
       rect:
         serializedVersion: 2
         x: 1080
@@ -381,14 +381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 791a3b57b1449a210800000000000000
-      internalID: 1344680848476316055
+      spriteID: 6cdb3baa00086c570800000000000000
+      internalID: 8486611288178539974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_9
+      name: Overdrive_with_overlay_animation_9
       rect:
         serializedVersion: 2
         x: 1215
@@ -403,14 +403,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be2a39e9f7578de50800000000000000
-      internalID: 6834341625516499691
+      spriteID: e8bde257f10f34f50800000000000000
+      internalID: 6864594274943425422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_10
+      name: Overdrive_with_overlay_animation_10
       rect:
         serializedVersion: 2
         x: 1350
@@ -425,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b75c969c8415fbf0800000000000000
-      internalID: -291304006840723529
+      spriteID: a57271c7a457798d0800000000000000
+      internalID: -2839672077263886502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_11
+      name: Overdrive_with_overlay_animation_11
       rect:
         serializedVersion: 2
         x: 1485
@@ -447,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7770886806c4db5e0800000000000000
-      internalID: -1892272290968107145
+      spriteID: fcbbc1f4405bb1540800000000000000
+      internalID: 4979772843099995087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_12
+      name: Overdrive_with_overlay_animation_12
       rect:
         serializedVersion: 2
         x: 1620
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b05620015f5e2d150800000000000000
-      internalID: 5896027702879741195
+      spriteID: eb8073403f80ccb90800000000000000
+      internalID: -7220386262740956994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_13
+      name: Overdrive_with_overlay_animation_13
       rect:
         serializedVersion: 2
         x: 1755
@@ -491,14 +491,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cbf211d1af28e3b0800000000000000
-      internalID: -5483080174279656506
+      spriteID: 840dcb6eb5079e420800000000000000
+      internalID: 2659780594954457160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_14
+      name: Overdrive_with_overlay_animation_14
       rect:
         serializedVersion: 2
         x: 1890
@@ -513,14 +513,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d0003a71616ef170800000000000000
-      internalID: 8214109841660051670
+      spriteID: 80ad569a1ed062000800000000000000
+      internalID: 10711311975832072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_15
+      name: Overdrive_with_overlay_animation_15
       rect:
         serializedVersion: 2
         x: 2025
@@ -535,14 +535,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eadb67f69cd15e5f0800000000000000
-      internalID: -728143013754782290
+      spriteID: ea3cd40c9ac083d90800000000000000
+      internalID: -7117925287843740754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_16
+      name: Overdrive_with_overlay_animation_16
       rect:
         serializedVersion: 2
         x: 2160
@@ -557,14 +557,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1fc4197c7f33adbc0800000000000000
-      internalID: -3757633799789130511
+      spriteID: 60ed123fe43f58780800000000000000
+      internalID: -8681265186274681338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_17
+      name: Overdrive_with_overlay_animation_17
       rect:
         serializedVersion: 2
         x: 2295
@@ -579,8 +579,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d5421bcc61a91400800000000000000
-      internalID: 295444739204990424
+      spriteID: 97d8b18d6c83f7880800000000000000
+      internalID: -8611101535828734599
       vertices: []
       indices: 
       edges: []
@@ -589,7 +589,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a7c04a8ecece14e4f806b006c7cea63f
+    spriteID: cb559b92c65764d2b805ccb03ab1b3e1
     internalID: 0
     vertices: []
     indices: 
@@ -601,24 +601,24 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":135.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Updated_barUI_2.0_0: 43496876097355254
-      Updated_barUI_2.0_1: 2808544172663736734
-      Updated_barUI_2.0_10: -291304006840723529
-      Updated_barUI_2.0_11: -1892272290968107145
-      Updated_barUI_2.0_12: 5896027702879741195
-      Updated_barUI_2.0_13: -5483080174279656506
-      Updated_barUI_2.0_14: 8214109841660051670
-      Updated_barUI_2.0_15: -728143013754782290
-      Updated_barUI_2.0_16: -3757633799789130511
-      Updated_barUI_2.0_17: 295444739204990424
-      Updated_barUI_2.0_2: -3681938048895284095
-      Updated_barUI_2.0_3: -5533893643458216168
-      Updated_barUI_2.0_4: 6505671518310065209
-      Updated_barUI_2.0_5: 3963496769886805570
-      Updated_barUI_2.0_6: -760299147598181882
-      Updated_barUI_2.0_7: -6091112901407383949
-      Updated_barUI_2.0_8: 1344680848476316055
-      Updated_barUI_2.0_9: 6834341625516499691
+      Overdrive_with_overlay_animation_0: -9125252835789207505
+      Overdrive_with_overlay_animation_1: 7709079263796913003
+      Overdrive_with_overlay_animation_10: -2839672077263886502
+      Overdrive_with_overlay_animation_11: 4979772843099995087
+      Overdrive_with_overlay_animation_12: -7220386262740956994
+      Overdrive_with_overlay_animation_13: 2659780594954457160
+      Overdrive_with_overlay_animation_14: 10711311975832072
+      Overdrive_with_overlay_animation_15: -7117925287843740754
+      Overdrive_with_overlay_animation_16: -8681265186274681338
+      Overdrive_with_overlay_animation_17: -8611101535828734599
+      Overdrive_with_overlay_animation_2: 8856465610064183124
+      Overdrive_with_overlay_animation_3: -1797537648532900768
+      Overdrive_with_overlay_animation_4: -2324656673214341001
+      Overdrive_with_overlay_animation_5: 7312512718349875333
+      Overdrive_with_overlay_animation_6: -1112679221967598484
+      Overdrive_with_overlay_animation_7: -5953633516242172355
+      Overdrive_with_overlay_animation_8: 8486611288178539974
+      Overdrive_with_overlay_animation_9: 6864594274943425422
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

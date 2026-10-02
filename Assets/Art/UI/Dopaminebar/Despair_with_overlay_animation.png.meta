@@ -1,61 +1,61 @@
 fileFormatVersion: 2
-guid: 3dbb95f83b9184567ba51a7a7c49501f
+guid: 6a83962686f674dd98ada4cf253103e2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 43496876097355254
-    second: Updated_barUI_2.0_0
+      213: 1218532568799007110
+    second: Despair_with_overlay_animation_0
   - first:
-      213: 2808544172663736734
-    second: Updated_barUI_2.0_1
+      213: 4772838026520143078
+    second: Despair_with_overlay_animation_1
   - first:
-      213: -3681938048895284095
-    second: Updated_barUI_2.0_2
+      213: 4418853436427850380
+    second: Despair_with_overlay_animation_2
   - first:
-      213: -5533893643458216168
-    second: Updated_barUI_2.0_3
+      213: 3847175341288009315
+    second: Despair_with_overlay_animation_3
   - first:
-      213: 6505671518310065209
-    second: Updated_barUI_2.0_4
+      213: -4209743641154590697
+    second: Despair_with_overlay_animation_4
   - first:
-      213: 3963496769886805570
-    second: Updated_barUI_2.0_5
+      213: -6045356054088356094
+    second: Despair_with_overlay_animation_5
   - first:
-      213: -760299147598181882
-    second: Updated_barUI_2.0_6
+      213: -831076685806186725
+    second: Despair_with_overlay_animation_6
   - first:
-      213: -6091112901407383949
-    second: Updated_barUI_2.0_7
+      213: 4856962333790292796
+    second: Despair_with_overlay_animation_7
   - first:
-      213: 1344680848476316055
-    second: Updated_barUI_2.0_8
+      213: 1640001538374057026
+    second: Despair_with_overlay_animation_8
   - first:
-      213: 6834341625516499691
-    second: Updated_barUI_2.0_9
+      213: 4546144096533794294
+    second: Despair_with_overlay_animation_9
   - first:
-      213: -291304006840723529
-    second: Updated_barUI_2.0_10
+      213: 3550186917594458669
+    second: Despair_with_overlay_animation_10
   - first:
-      213: -1892272290968107145
-    second: Updated_barUI_2.0_11
+      213: -6812934556876829608
+    second: Despair_with_overlay_animation_11
   - first:
-      213: 5896027702879741195
-    second: Updated_barUI_2.0_12
+      213: -5017229020570444378
+    second: Despair_with_overlay_animation_12
   - first:
-      213: -5483080174279656506
-    second: Updated_barUI_2.0_13
+      213: 3588378561825018671
+    second: Despair_with_overlay_animation_13
   - first:
-      213: 8214109841660051670
-    second: Updated_barUI_2.0_14
+      213: -5145184008312838815
+    second: Despair_with_overlay_animation_14
   - first:
-      213: -728143013754782290
-    second: Updated_barUI_2.0_15
+      213: 508710422164570766
+    second: Despair_with_overlay_animation_15
   - first:
-      213: -3757633799789130511
-    second: Updated_barUI_2.0_16
+      213: -4455304221779082587
+    second: Despair_with_overlay_animation_16
   - first:
-      213: 295444739204990424
-    second: Updated_barUI_2.0_17
+      213: 3257107050589884097
+    second: Despair_with_overlay_animation_17
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -190,7 +190,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Updated_barUI_2.0_0
+      name: Despair_with_overlay_animation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6fd3f98ad288a9000800000000000000
-      internalID: 43496876097355254
+      spriteID: 681528e4ae819e010800000000000000
+      internalID: 1218532568799007110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_1
+      name: Despair_with_overlay_animation_1
       rect:
         serializedVersion: 2
         x: 135
@@ -227,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e998d937b04f9f620800000000000000
-      internalID: 2808544172663736734
+      spriteID: 6e4a535c5e68c3240800000000000000
+      internalID: 4772838026520143078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_2
+      name: Despair_with_overlay_animation_2
       rect:
         serializedVersion: 2
         x: 270
@@ -249,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18c0a9e2ad027ecc0800000000000000
-      internalID: -3681938048895284095
+      spriteID: c82dbc0d9cbe25d30800000000000000
+      internalID: 4418853436427850380
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_3
+      name: Despair_with_overlay_animation_3
       rect:
         serializedVersion: 2
         x: 405
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81f71e41d09a333b0800000000000000
-      internalID: -5533893643458216168
+      spriteID: 36e2d16f699e36530800000000000000
+      internalID: 3847175341288009315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_4
+      name: Despair_with_overlay_animation_4
       rect:
         serializedVersion: 2
         x: 540
@@ -293,14 +293,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9346f3207c9c84a50800000000000000
-      internalID: 6505671518310065209
+      spriteID: 7186589667cf395c0800000000000000
+      internalID: -4209743641154590697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_5
+      name: Despair_with_overlay_animation_5
       rect:
         serializedVersion: 2
         x: 675
@@ -315,14 +315,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 24ed28d005b210730800000000000000
-      internalID: 3963496769886805570
+      spriteID: 20f6e4fc2b49a1ca0800000000000000
+      internalID: -6045356054088356094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_6
+      name: Despair_with_overlay_animation_6
       rect:
         serializedVersion: 2
         x: 810
@@ -337,14 +337,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 60ac06814ffd275f0800000000000000
-      internalID: -760299147598181882
+      spriteID: b1fc961582c6774f0800000000000000
+      internalID: -831076685806186725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_7
+      name: Despair_with_overlay_animation_7
       rect:
         serializedVersion: 2
         x: 945
@@ -359,14 +359,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 37e50d89615087ba0800000000000000
-      internalID: -6091112901407383949
+      spriteID: c3bc5016285676340800000000000000
+      internalID: 4856962333790292796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_8
+      name: Despair_with_overlay_animation_8
       rect:
         serializedVersion: 2
         x: 1080
@@ -381,14 +381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 791a3b57b1449a210800000000000000
-      internalID: 1344680848476316055
+      spriteID: 24c31e5c5b472c610800000000000000
+      internalID: 1640001538374057026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_9
+      name: Despair_with_overlay_animation_9
       rect:
         serializedVersion: 2
         x: 1215
@@ -403,14 +403,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be2a39e9f7578de50800000000000000
-      internalID: 6834341625516499691
+      spriteID: 6fdc2a328f5271f30800000000000000
+      internalID: 4546144096533794294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_10
+      name: Despair_with_overlay_animation_10
       rect:
         serializedVersion: 2
         x: 1350
@@ -425,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b75c969c8415fbf0800000000000000
-      internalID: -291304006840723529
+      spriteID: d2ae47d113cc44130800000000000000
+      internalID: 3550186917594458669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_11
+      name: Despair_with_overlay_animation_11
       rect:
         serializedVersion: 2
         x: 1485
@@ -447,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7770886806c4db5e0800000000000000
-      internalID: -1892272290968107145
+      spriteID: 85c8f53fd189371a0800000000000000
+      internalID: -6812934556876829608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_12
+      name: Despair_with_overlay_animation_12
       rect:
         serializedVersion: 2
         x: 1620
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b05620015f5e2d150800000000000000
-      internalID: 5896027702879741195
+      spriteID: 6ad1e18c9c83f5ab0800000000000000
+      internalID: -5017229020570444378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_13
+      name: Despair_with_overlay_animation_13
       rect:
         serializedVersion: 2
         x: 1755
@@ -491,14 +491,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cbf211d1af28e3b0800000000000000
-      internalID: -5483080174279656506
+      spriteID: f2315393a4b7cc130800000000000000
+      internalID: 3588378561825018671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_14
+      name: Despair_with_overlay_animation_14
       rect:
         serializedVersion: 2
         x: 1890
@@ -513,14 +513,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d0003a71616ef170800000000000000
-      internalID: 8214109841660051670
+      spriteID: 1652e70a762a898b0800000000000000
+      internalID: -5145184008312838815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_15
+      name: Despair_with_overlay_animation_15
       rect:
         serializedVersion: 2
         x: 2025
@@ -535,14 +535,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eadb67f69cd15e5f0800000000000000
-      internalID: -728143013754782290
+      spriteID: e8288a60f6d4f0700800000000000000
+      internalID: 508710422164570766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_16
+      name: Despair_with_overlay_animation_16
       rect:
         serializedVersion: 2
         x: 2160
@@ -557,14 +557,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1fc4197c7f33adbc0800000000000000
-      internalID: -3757633799789130511
+      spriteID: 5a24f8e5a649b22c0800000000000000
+      internalID: -4455304221779082587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Updated_barUI_2.0_17
+      name: Despair_with_overlay_animation_17
       rect:
         serializedVersion: 2
         x: 2295
@@ -579,8 +579,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d5421bcc61a91400800000000000000
-      internalID: 295444739204990424
+      spriteID: 1ce84d90b91933d20800000000000000
+      internalID: 3257107050589884097
       vertices: []
       indices: 
       edges: []
@@ -589,7 +589,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a7c04a8ecece14e4f806b006c7cea63f
+    spriteID: 7085c069bca4548c6a0e7620510551c2
     internalID: 0
     vertices: []
     indices: 
@@ -601,24 +601,24 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":135.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Updated_barUI_2.0_0: 43496876097355254
-      Updated_barUI_2.0_1: 2808544172663736734
-      Updated_barUI_2.0_10: -291304006840723529
-      Updated_barUI_2.0_11: -1892272290968107145
-      Updated_barUI_2.0_12: 5896027702879741195
-      Updated_barUI_2.0_13: -5483080174279656506
-      Updated_barUI_2.0_14: 8214109841660051670
-      Updated_barUI_2.0_15: -728143013754782290
-      Updated_barUI_2.0_16: -3757633799789130511
-      Updated_barUI_2.0_17: 295444739204990424
-      Updated_barUI_2.0_2: -3681938048895284095
-      Updated_barUI_2.0_3: -5533893643458216168
-      Updated_barUI_2.0_4: 6505671518310065209
-      Updated_barUI_2.0_5: 3963496769886805570
-      Updated_barUI_2.0_6: -760299147598181882
-      Updated_barUI_2.0_7: -6091112901407383949
-      Updated_barUI_2.0_8: 1344680848476316055
-      Updated_barUI_2.0_9: 6834341625516499691
+      Despair_with_overlay_animation_0: 1218532568799007110
+      Despair_with_overlay_animation_1: 4772838026520143078
+      Despair_with_overlay_animation_10: 3550186917594458669
+      Despair_with_overlay_animation_11: -6812934556876829608
+      Despair_with_overlay_animation_12: -5017229020570444378
+      Despair_with_overlay_animation_13: 3588378561825018671
+      Despair_with_overlay_animation_14: -5145184008312838815
+      Despair_with_overlay_animation_15: 508710422164570766
+      Despair_with_overlay_animation_16: -4455304221779082587
+      Despair_with_overlay_animation_17: 3257107050589884097
+      Despair_with_overlay_animation_2: 4418853436427850380
+      Despair_with_overlay_animation_3: 3847175341288009315
+      Despair_with_overlay_animation_4: -4209743641154590697
+      Despair_with_overlay_animation_5: -6045356054088356094
+      Despair_with_overlay_animation_6: -831076685806186725
+      Despair_with_overlay_animation_7: 4856962333790292796
+      Despair_with_overlay_animation_8: 1640001538374057026
+      Despair_with_overlay_animation_9: 4546144096533794294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

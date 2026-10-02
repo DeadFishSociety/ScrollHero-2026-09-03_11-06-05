@@ -26,6 +26,7 @@ public class ReelVideoBackground : MonoBehaviour
     private RenderTexture renderTexture;
     private bool isPrepared;
     private bool muted;
+    private float volume = 1f;
 
     void Awake()
     {
@@ -52,7 +53,8 @@ public class ReelVideoBackground : MonoBehaviour
     void OnDisable()
     {
         // Pause instead of stop so the feed can resume where it left off.
-        if (videoPlayer != null)
+        // Skip when the player is already disabled (e.g. during Destroy).
+        if (videoPlayer != null && videoPlayer.enabled && videoPlayer.isPrepared)
         {
             videoPlayer.Pause();
         }
@@ -63,6 +65,14 @@ public class ReelVideoBackground : MonoBehaviour
         if (videoPlayer != null)
         {
             videoPlayer.prepareCompleted -= OnPrepareCompleted;
+            // Stop decoding and detach the target before the RenderTexture is freed,
+            // so the render thread never writes into a destroyed texture.
+            videoPlayer.Stop();
+            videoPlayer.targetTexture = null;
+        }
+        if (targetImage != null)
+        {
+            targetImage.texture = null;
         }
         ReleaseRenderTexture();
     }
@@ -81,6 +91,22 @@ public class ReelVideoBackground : MonoBehaviour
         if (videoPlayer != null && videoPlayer.audioTrackCount > 0)
         {
             videoPlayer.SetDirectAudioMute(0, muted);
+        }
+    }
+
+    // Sets this video's audio volume (0..1). Driven by the feed's global Video
+    // Volume setting; re-applied automatically once the audio track is ready.
+    public void SetVolume(float value)
+    {
+        volume = Mathf.Clamp01(value);
+        ApplyVolume();
+    }
+
+    private void ApplyVolume()
+    {
+        if (videoPlayer != null && videoPlayer.audioTrackCount > 0)
+        {
+            videoPlayer.SetDirectAudioVolume(0, volume);
         }
     }
 
@@ -169,7 +195,8 @@ public class ReelVideoBackground : MonoBehaviour
         }
 
         ApplyCoverCrop(width, height);
-        ApplyMute();   // re-apply now that the audio track exists
+        ApplyMute();     // re-apply now that the audio track exists
+        ApplyVolume();   // ditto for the global volume
         source.Play();
     }
 
