@@ -20,7 +20,7 @@ namespace Services
         {
             while (!SettingsService.Current.registered)
             {
-                ClaimResult result = await Register();
+                ClaimResult result = await Register(SettingsService.Current.username);
                 if (result == ClaimResult.Failed)
                 {
                     return;
@@ -38,6 +38,9 @@ namespace Services
 
             await Save(SaveDataService.Current.highscore);
         }
+
+        public static Awaitable<ClaimResult> Register(string username) =>
+            PostClaim("/register", new RegisterRequest { username = username });
 
         public static Awaitable<ClaimResult> UpdateUsername(string newUsername) =>
             PostClaim("/update-username", new UpdateUsernameRequest { username = SettingsService.Current.username, new_username = newUsername });
@@ -63,9 +66,6 @@ namespace Services
             using UnityWebRequest request = Post("/highscore", new LeaderboardEntry { username = SettingsService.Current.username, score = score });
             await request.SendWebRequest();
         }
-
-        private static Awaitable<ClaimResult> Register() =>
-            PostClaim("/register", new RegisterRequest { username = SettingsService.Current.username });
 
         private static async Awaitable<ClaimResult> PostClaim(string path, object body)
         {
