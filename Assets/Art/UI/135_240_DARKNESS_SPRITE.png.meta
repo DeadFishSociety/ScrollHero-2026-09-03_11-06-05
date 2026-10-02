@@ -1,10 +1,118 @@
 fileFormatVersion: 2
-guid: 839efba5eb25344a7ad144ec89ecc693
+guid: d1aa8cd428ea743ee9025e2c04cbe419
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2363790564409444472
-    second: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_0
+      213: 7174189432232250041
+    second: 135_240_DARKNESS_SPRITE_0
+  - first:
+      213: 8996648932932744141
+    second: 135_240_DARKNESS_SPRITE_1
+  - first:
+      213: 8838094825652089982
+    second: 135_240_DARKNESS_SPRITE_2
+  - first:
+      213: 2085004869668053092
+    second: 135_240_DARKNESS_SPRITE_3
+  - first:
+      213: 9145100376924557021
+    second: 135_240_DARKNESS_SPRITE_4
+  - first:
+      213: -2903551888195940349
+    second: 135_240_DARKNESS_SPRITE_5
+  - first:
+      213: 1603860227485038226
+    second: 135_240_DARKNESS_SPRITE_6
+  - first:
+      213: 3332188394460896562
+    second: 135_240_DARKNESS_SPRITE_7
+  - first:
+      213: 1478784190317961456
+    second: 135_240_DARKNESS_SPRITE_8
+  - first:
+      213: 2610221731813238297
+    second: 135_240_DARKNESS_SPRITE_9
+  - first:
+      213: -8802416945188258908
+    second: 135_240_DARKNESS_SPRITE_10
+  - first:
+      213: -3214594863752004595
+    second: 135_240_DARKNESS_SPRITE_11
+  - first:
+      213: 6070217447176982672
+    second: 135_240_DARKNESS_SPRITE_12
+  - first:
+      213: 7733048792435439869
+    second: 135_240_DARKNESS_SPRITE_13
+  - first:
+      213: -6874616442727218300
+    second: 135_240_DARKNESS_SPRITE_14
+  - first:
+      213: -419865080812736265
+    second: 135_240_DARKNESS_SPRITE_15
+  - first:
+      213: 8769460044873107199
+    second: 135_240_DARKNESS_SPRITE_16
+  - first:
+      213: -7174582871552899072
+    second: 135_240_DARKNESS_SPRITE_17
+  - first:
+      213: 7354176697924566869
+    second: 135_240_DARKNESS_SPRITE_18
+  - first:
+      213: -5942308481845131921
+    second: 135_240_DARKNESS_SPRITE_19
+  - first:
+      213: -4144297238794110979
+    second: 135_240_DARKNESS_SPRITE_20
+  - first:
+      213: 4409197994281495150
+    second: 135_240_DARKNESS_SPRITE_21
+  - first:
+      213: 8803855499251188480
+    second: 135_240_DARKNESS_SPRITE_22
+  - first:
+      213: -1555229218872374939
+    second: 135_240_DARKNESS_SPRITE_23
+  - first:
+      213: 9087808965055243210
+    second: 135_240_DARKNESS_SPRITE_24
+  - first:
+      213: -1631780316280256084
+    second: 135_240_DARKNESS_SPRITE_25
+  - first:
+      213: 8401006180533581228
+    second: 135_240_DARKNESS_SPRITE_26
+  - first:
+      213: -5989815785113917784
+    second: 135_240_DARKNESS_SPRITE_27
+  - first:
+      213: 5460255436703569388
+    second: 135_240_DARKNESS_SPRITE_28
+  - first:
+      213: 7423135694639661920
+    second: 135_240_DARKNESS_SPRITE_29
+  - first:
+      213: 3452899855743001513
+    second: 135_240_DARKNESS_SPRITE_30
+  - first:
+      213: -7115384728259297750
+    second: 135_240_DARKNESS_SPRITE_31
+  - first:
+      213: 198170244119663070
+    second: 135_240_DARKNESS_SPRITE_32
+  - first:
+      213: 8025907829927229820
+    second: 135_240_DARKNESS_SPRITE_33
+  - first:
+      213: 6729368978523475223
+    second: 135_240_DARKNESS_SPRITE_34
+  - first:
+      213: 6579528264916149109
+    second: 135_240_DARKNESS_SPRITE_35
+  - first:
+      213: 8367539893311009228
+    second: 135_240_DARKNESS_SPRITE_36
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,7 +156,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -72,10 +180,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,7 +247,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_0
+      name: 135_240_DARKNESS_SPRITE_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,14 +262,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88774fc6101223fd0800000000000000
-      internalID: -2363790564409444472
+      spriteID: 9ba80933747df8360800000000000000
+      internalID: 7174189432232250041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_1
+      name: 135_240_DARKNESS_SPRITE_1
       rect:
         serializedVersion: 2
         x: 135
@@ -174,16 +282,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bcca04c76114542da9facaf29376ab3f
-      internalID: -1968164054
+      spriteID: dc37a58c9848adc70800000000000000
+      internalID: 8996648932932744141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_2
+      name: 135_240_DARKNESS_SPRITE_2
       rect:
         serializedVersion: 2
         x: 270
@@ -196,16 +304,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3a2e7005e041b4aea8829cd10668d8c3
-      internalID: -1665687341
+      spriteID: e74f53eea6837aa70800000000000000
+      internalID: 8838094825652089982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_3
+      name: 135_240_DARKNESS_SPRITE_3
       rect:
         serializedVersion: 2
         x: 405
@@ -218,16 +326,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 07b4f9961796c4897981721cb9993721
-      internalID: 595246985
+      spriteID: 4602683d1ec6fec10800000000000000
+      internalID: 2085004869668053092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_4
+      name: 135_240_DARKNESS_SPRITE_4
       rect:
         serializedVersion: 2
         x: 540
@@ -240,16 +348,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bbf5bc584a1de447cbcae3e878105ab7
-      internalID: 1537070912
+      spriteID: dde01e9075ce9ee70800000000000000
+      internalID: 9145100376924557021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_5
+      name: 135_240_DARKNESS_SPRITE_5
       rect:
         serializedVersion: 2
         x: 675
@@ -262,16 +370,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ad7c8157792ce4deea6744f0836c6533
-      internalID: 934071195
+      spriteID: 3009a2df0f284b7d0800000000000000
+      internalID: -2903551888195940349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_6
+      name: 135_240_DARKNESS_SPRITE_6
       rect:
         serializedVersion: 2
         x: 810
@@ -284,16 +392,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1e677c90a5d314a3086adeb0d5ecbd49
-      internalID: 1337125394
+      spriteID: 2967f98116e024610800000000000000
+      internalID: 1603860227485038226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_7
+      name: 135_240_DARKNESS_SPRITE_7
       rect:
         serializedVersion: 2
         x: 945
@@ -306,16 +414,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4a4d56805aa77465cb74580facf3bb3c
-      internalID: -1058325433
+      spriteID: 23d5588a0bf4e3e20800000000000000
+      internalID: 3332188394460896562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_8
+      name: 135_240_DARKNESS_SPRITE_8
       rect:
         serializedVersion: 2
         x: 1080
@@ -328,16 +436,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a1446cff9eb7747de9c4841c0105570b
-      internalID: -1680263555
+      spriteID: 0f0ad5bd262b58410800000000000000
+      internalID: 1478784190317961456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_9
+      name: 135_240_DARKNESS_SPRITE_9
       rect:
         serializedVersion: 2
         x: 1215
@@ -350,16 +458,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d78b936b7dac14b14a84a6052b7b7c3b
-      internalID: 1972566104
+      spriteID: 916abb5e5de593420800000000000000
+      internalID: 2610221731813238297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_10
+      name: 135_240_DARKNESS_SPRITE_10
       rect:
         serializedVersion: 2
         x: 1350
@@ -372,10 +480,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: dc5ab9b0cd0c2416fb71c1c527885c81
-      internalID: -1856956604
+      spriteID: 4abbc21fc6887d580800000000000000
+      internalID: -8802416945188258908
       vertices: []
       indices: 
       edges: []
@@ -384,7 +492,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2839fa616b11b4eb99f554c3ecbf5a4d
+    spriteID: fa188f9f678644f88b3d802e7bfc7804
     internalID: 0
     vertices: []
     indices: 
@@ -396,17 +504,17 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":135.0,"y":240.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_0: -2363790564409444472
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_1: -1968164054
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_10: -1856956604
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_2: -1665687341
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_3: 595246985
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_4: 1537070912
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_5: 934071195
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_6: 1337125394
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_7: -1058325433
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_8: -1680263555
-      135_240_OVERDRIVE_UI_COLLECTIONG_OF_SPRITES(1)_9: 1972566104
+      135_240_DARKNESS_SPRITE_0: 7174189432232250041
+      135_240_DARKNESS_SPRITE_1: 8996648932932744141
+      135_240_DARKNESS_SPRITE_10: -8802416945188258908
+      135_240_DARKNESS_SPRITE_2: 8838094825652089982
+      135_240_DARKNESS_SPRITE_3: 2085004869668053092
+      135_240_DARKNESS_SPRITE_4: 9145100376924557021
+      135_240_DARKNESS_SPRITE_5: -2903551888195940349
+      135_240_DARKNESS_SPRITE_6: 1603860227485038226
+      135_240_DARKNESS_SPRITE_7: 3332188394460896562
+      135_240_DARKNESS_SPRITE_8: 1478784190317961456
+      135_240_DARKNESS_SPRITE_9: 2610221731813238297
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

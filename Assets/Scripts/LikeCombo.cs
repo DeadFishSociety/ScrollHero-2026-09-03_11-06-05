@@ -169,6 +169,14 @@ public class LikeCombo : MonoBehaviour
             return;
         }
 
+        // Passing a special reel (holy/despair) neither extends nor breaks the
+        // streak - it's as if that reel wasn't there.
+        if (feed != null && feed.LastScrolledReelWasSpecial)
+        {
+            currentReelLiked = false;
+            return;
+        }
+
         if (currentReelLiked)
         {
             // Grow the streak, but never past the max combo.

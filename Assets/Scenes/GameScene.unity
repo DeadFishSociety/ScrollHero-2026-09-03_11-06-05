@@ -146,110 +146,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1531055605155254148, guid: 283a9f072083a6b40b8eff67c56fb8ac, type: 3}
   m_PrefabInstance: {fileID: 1978004445}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &171579814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 171579815}
-  - component: {fileID: 171579818}
-  - component: {fileID: 171579817}
-  - component: {fileID: 171579816}
-  m_Layer: 5
-  m_Name: OverdriveReelOverlay
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &171579815
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171579814}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1231945678}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &171579816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171579814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e0ae2a39fd144eba320699acfc378e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UISpriteAnimation
-  frames:
-  - {fileID: -2363790564409444472, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: -1968164054, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: -1665687341, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: 595246985, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: 1537070912, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: 934071195, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: 1337125394, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: -1058325433, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: -1680263555, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: 1972566104, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  - {fileID: -1856956604, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  fps: 22
-  loop: 1
-  preserveAspect: 1
-  useUnscaledTime: 1
---- !u!114 &171579817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171579814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -2363790564409444472, guid: 839efba5eb25344a7ad144ec89ecc693, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &171579818
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171579814}
-  m_CullTransparentMesh: 1
 --- !u!114 &213426084 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1363730892818844135, guid: 3c5b69bc5d49e4c9dae7f11fb1c434fc, type: 3}
@@ -284,6 +180,7 @@ GameObject:
   - component: {fileID: 398602210}
   - component: {fileID: 398602208}
   - component: {fileID: 398602211}
+  - component: {fileID: 398602212}
   m_Layer: 5
   m_Name: Feed
   m_TagString: Untagged
@@ -303,7 +200,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1231945678}
+  m_Father: {fileID: 426246708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -325,110 +222,167 @@ MonoBehaviour:
   reelPrefab: {fileID: 7562061212819923730, guid: 2c600100a2ac644b88245b1f3fd3ed95, type: 3}
   videoVolume: 0
   posts:
-  - video: {fileID: 32900000, guid: 525b5b428bf814d0d9dc38b109852ea5, type: 3}
+  - video: {fileID: 32900000, guid: 69947665b308e414995d9d1cbe13bad6, type: 3}
     audio: {fileID: 0}
-    username: Jacob_plays
-    description: Just hanging out outside #nature #wormpilled
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 1d50a236712a74eda9d9a84fed04bbd0, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: b74f124333a914ae2b8db37d6339f515, type: 3}
     audio: {fileID: 0}
-    username: xxx_jwaa
-    description: I love making content #contentcreator
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 87bd48c83fd6f4fd9ade2c13f7f79d7a, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 727ecfd1184f04ec6a3944496455707f, type: 3}
     audio: {fileID: 0}
-    username: I_pee
-    description: Content is cool #thisisavideo
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 5b3cb1350028a4fd3a32f4540ea6b359, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 4de4ff77c9d0a44f79b67776701eb840, type: 3}
     audio: {fileID: 0}
-    username: bolpquick
-    description: 6 is like 7 except 7 8 9 #jokes!
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 0876e22453a6d458bade658169a5c76f, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 7e81760da46ce45e59d4f9dcd2a4f973, type: 3}
     audio: {fileID: 0}
-    username: Jesse_Klaaf
-    description: Birds are cool #I #Wish #A #Bird
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 835d8fb9ea84f4c3292f3378e7d21f27, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: c080d870ff43f4e4ab45cbd45e33a71a, type: 3}
     audio: {fileID: 0}
-    username: oldpeoplesmell
-    description: 'I actually made this pineapple! So cool and edible. I love being
-      soggy. '
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 38062102f90e74348989802152ac706d, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 03cb48777dc4847e6b1bfb665d102940, type: 3}
     audio: {fileID: 0}
-    username: diapervideos
-    description: I'm a chud. I'm a weirdo. #soywokejack
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 4f35bb8e08666442d9fb7ee6c395ceba, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 41391f7dd559f44f283fad64763daafc, type: 3}
     audio: {fileID: 0}
-    username: cheese_plays
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 419df3a4485c64935b13d3bf29cf1248, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 26c91d0edc70946a4801626086c85e4d, type: 3}
     audio: {fileID: 0}
-    username: YUO_d
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 5d033712c2ec94a54863dfd325dc9a9c, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: de963360a706144dc9cd431775152820, type: 3}
     audio: {fileID: 0}
-    username: 2ekamerverhalen
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 14390663a5869435f99310a82f60bea5, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 11dc892e48c584bcb866fa97e46a478c, type: 3}
     audio: {fileID: 0}
-    username: TungLover
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: c8c3200598e874b3888107f3fd0275a3, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 50ed086d2069b40aca5ed5146071c8a9, type: 3}
     audio: {fileID: 0}
-    username: J.E_OGFR
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 8a16883b310e94cefa372691d24ae9e7, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 57da3f3dea04d4488a48df40ad886e37, type: 3}
     audio: {fileID: 0}
-    username: ILOVECHEESE
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: aa899dd97dcf1489cbb1d98ae6cfa447, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 13fdc0724e478452ca4bfad8ecfe3000, type: 3}
     audio: {fileID: 0}
-    username: Speedyuser
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 7e1f99d5cf5be4051b034fed75151c4b, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 20b47f11200ec426fae4b9562c9dd1d8, type: 3}
     audio: {fileID: 0}
-    username: 1cP-LSD
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: e2f0bc911a973403eaf40182d8c0fd8f, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 8c37884196dce450f952a5f559826fa3, type: 3}
     audio: {fileID: 0}
-    username: designerbag
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  - video: {fileID: 32900000, guid: 2642af1c936c546129e6df994e4fa8dc, type: 3}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 02f156dbc482047e69f0059f9a807fae, type: 3}
     audio: {fileID: 0}
-    username: Louis_the-ix
-    description: Tung Tung Sahur I LOVE AI #peterthielismydad
-    audioName: User Audio
-    weight: 1
-  order: 1
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 0788a301cd04d46ecb87b8619d97ae9c, type: 3}
+    audio: {fileID: 0}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: d67c938fc6be84997a9beb6a6510b2ce, type: 3}
+    audio: {fileID: 0}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 5f316a9d274aa442a9aaccf11512df6c, type: 3}
+    audio: {fileID: 0}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 74ef82ff2e15f4f7e94ad4ea1746243d, type: 3}
+    audio: {fileID: 0}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 52549f8db205d4bd791862963f1efa6d, type: 3}
+    audio: {fileID: 0}
+    username: Temp
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+      et mauris risus. #Sed #diam #arcu
+    audioName: 
+    weight: 0
+  - video: {fileID: 32900000, guid: 65649695658c0480fb7bb48bb064ea37, type: 3}
+    audio: {fileID: 0}
+    username: NOS
+    description: Serieous stiff hapnned #getscaredrn
+    audioName: 
+    weight: 0
+  order: 0
   avoidImmediateRepeat: 1
   overdrivePost:
     video: {fileID: 32900000, guid: 5b3cb1350028a4fd3a32f4540ea6b359, type: 3}
@@ -437,11 +391,24 @@ MonoBehaviour:
     description: jsfksjdklghj
     audioName: Original audio
     weight: 1
-  overdriveChancePerReel: 1
+  overdriveChancePerReel: 0.02
   overdriveGracePeriodReels: 4
   overdriveMinReelsBetween: 8
-  overdriveReelOverlay: {fileID: 171579814}
-  advanceThreshold: 0.2
+  overdriveReelOverlayPrefab: {fileID: 4486694225776157802, guid: be25b8657da564880a14af3c8c8e0499, type: 3}
+  likeNowPrompt: {fileID: 783890244}
+  despairPost:
+    video: {fileID: 32900000, guid: 4de4ff77c9d0a44f79b67776701eb840, type: 3}
+    audio: {fileID: 8300000, guid: 9a71746bbe6c44166afd574a9955fc65, type: 3}
+    username: Dark_reel
+    description: This is a dark dark reel, don't even think about liking this one.
+    audioName: Evil Audio
+    weight: 1
+  despairChancePerReel: 0.02
+  despairGracePeriodReels: 4
+  despairMinReelsBetween: 8
+  despairReelOverlayPrefab: {fileID: 4486694225776157802, guid: 87dbe7609d2194604a78d72567724edf, type: 3}
+  despairPrompt: {fileID: 2031485874}
+  advanceThreshold: 0.1
   flickVelocity: 1200
   snapSpeed: 14
 --- !u!114 &398602199
@@ -498,7 +465,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   panelSizeFraction: {x: 1, y: 1}
-  overlayParent: {fileID: 0}
+  overlayParent: {fileID: 398602197}
 --- !u!114 &398602200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DynamicDifficulty
   minigameManager: {fileID: 0}
   dopamineManager: {fileID: 0}
-  scoreForMaxDifficulty: 50000
+  scoreForMaxDifficulty: 1000000
   difficultyOverScore:
     serializedVersion: 2
     m_Curve:
@@ -623,9 +590,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   extraSpawnChanceAtMax: 0.4
-  drainMultiplierAtMax: 2
+  drainMultiplierAtMax: 1.75
   gainMultiplierAtMax: 0.75
-  minigames: []
+  minigames:
+  - prefab: {fileID: 2111662204157608173, guid: 837a25fc7c8534245b6ba8c19ec92a79, type: 3}
+    difficultyAtMinScore: 0.387
+    difficultyAtMaxScore: 0
   scaleUnlistedMinigames: 1
 --- !u!114 &398602204
 MonoBehaviour:
@@ -839,8 +809,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LikeCombo
   feed: {fileID: 398602198}
-  activationThreshold: 3
-  maxCombo: 10
+  activationThreshold: 2
+  maxCombo: 3
   comboLabel: {fileID: 1911072995}
   labelFormat: '{0}x'
   popDuration: 0.25
@@ -863,6 +833,9 @@ MonoBehaviour:
   basePitch: 1
   pitchStep: 0.1
   maxPitch: 2
+  overdriveColorA: {r: 1, g: 1, b: 1, a: 1}
+  overdriveColorB: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  overdriveColorCycleSpeed: 2
 --- !u!114 &398602210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,12 +864,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverdriveController
   duration: 15
-  lockedMultiplier: 15
+  lockedMultiplier: 10
   overlay: {fileID: 0}
-  music: {fileID: 0}
+  music: {fileID: 8300000, guid: c28e6696beff64410a38c49c0a6560d9, type: 3}
   musicVolume: 0.7
   dopamineManager: {fileID: 0}
   musicPlayer: {fileID: 0}
+--- !u!114 &398602212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398602196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb32959a7772f42ad82fc5837f712ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DespairController
+  sound: {fileID: 0}
+  volume: 1
+  sfxSource: {fileID: 0}
+  dopamineManager: {fileID: 0}
 --- !u!1 &426246704
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +898,7 @@ GameObject:
   - component: {fileID: 426246707}
   - component: {fileID: 426246706}
   - component: {fileID: 426246705}
+  - component: {fileID: 426246709}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -991,6 +981,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 398602197}
+  - {fileID: 1833084221}
   - {fileID: 1231945678}
   - {fileID: 1184746271}
   m_Father: {fileID: 0}
@@ -1000,6 +992,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &426246709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426246704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d935e16b26a04127a08252d2825efe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverdriveScreenShake
+  target: {fileID: 0}
+  amplitude: 18
+  frequency: 22
+  useUnscaledTime: 1
 --- !u!114 &710933680 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8660471759133945848, guid: 3c5b69bc5d49e4c9dae7f11fb1c434fc, type: 3}
@@ -1011,6 +1019,160 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &783890244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783890245}
+  - component: {fileID: 783890248}
+  - component: {fileID: 783890247}
+  - component: {fileID: 783890246}
+  m_Layer: 5
+  m_Name: LikeNow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &783890245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783890244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1231945678}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 466.4758, y: 199.7056}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &783890246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783890244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3cfd6cae15684b509fad0de18d59a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIColorFlash
+  colorA: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  colorB: {r: 1, g: 1, b: 1, a: 1}
+  cyclesPerSecond: 2
+  useUnscaledTime: 1
+--- !u!114 &783890247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783890244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: LIKE NOW!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 0a0bd812f208b4807bfa4e6a0242757f, type: 2}
+  m_sharedMaterial: {fileID: 7023525450331759561, guid: 0a0bd812f208b4807bfa4e6a0242757f, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 128
+  m_fontSizeBase: 128
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &783890248
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783890244}
+  m_CullTransparentMesh: 1
 --- !u!114 &1151308023 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3136000401657780251, guid: 283a9f072083a6b40b8eff67c56fb8ac, type: 3}
@@ -1063,10 +1225,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 398602197}
   - {fileID: 1919740043}
-  - {fileID: 1833084221}
-  - {fileID: 171579815}
+  - {fileID: 783890245}
+  - {fileID: 2031485875}
   - {fileID: 121166883}
   m_Father: {fileID: 426246708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1101,7 +1262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1270,12 +1431,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833084220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1231945678}
+  m_Father: {fileID: 426246708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1303,7 +1464,7 @@ MonoBehaviour:
   life1Frames: []
   life2Frames: []
   life3Frames: []
-  fullLivesColor: {r: 0, g: 0, b: 0, a: 1}
+  fullLivesColor: {r: 1, g: 0.69719815, b: 0, a: 1}
   lowLivesColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1833084223
 MonoBehaviour:
@@ -1570,6 +1731,160 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 283a9f072083a6b40b8eff67c56fb8ac, type: 3}
+--- !u!1 &2031485874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031485875}
+  - component: {fileID: 2031485878}
+  - component: {fileID: 2031485877}
+  - component: {fileID: 2031485876}
+  m_Layer: 5
+  m_Name: DespairText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2031485875
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031485874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1231945678}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.00062561, y: -5.7065}
+  m_SizeDelta: {x: 605.44, y: 291.31}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2031485876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031485874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3cfd6cae15684b509fad0de18d59a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIColorFlash
+  colorA: {r: 1, g: 0.015686514, b: 0.015686274, a: 1}
+  colorB: {r: 1, g: 1, b: 1, a: 1}
+  cyclesPerSecond: 2
+  useUnscaledTime: 1
+--- !u!114 &2031485877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031485874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: DOPAMINE DESPAIR
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 0a0bd812f208b4807bfa4e6a0242757f, type: 2}
+  m_sharedMaterial: {fileID: 7023525450331759561, guid: 0a0bd812f208b4807bfa4e6a0242757f, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 128
+  m_fontSizeBase: 128
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2031485878
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031485874}
+  m_CullTransparentMesh: 1
 --- !u!1 &2133480857
 GameObject:
   m_ObjectHideFlags: 0

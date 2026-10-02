@@ -155,9 +155,21 @@ public class TimeLimitMinigame : MinigameBase
     private void OnQuitClicked()
     {
         PlayButtonPress();
-        // Instant lose: this really does close the whole game.
+
+        // Count it as a lost minigame first (so scoring/penalties apply)...
         Lose();
-        QuitGame();
+
+        // ...then end the run via the game-over screen rather than closing the app.
+        // Falls back to quitting if no GameOverController exists.
+        GameOverController gameOver = FindFirstObjectByType<GameOverController>();
+        if (gameOver != null)
+        {
+            gameOver.TriggerGameOver();
+        }
+        else
+        {
+            QuitGame();
+        }
     }
 
     private void PlayButtonPress()

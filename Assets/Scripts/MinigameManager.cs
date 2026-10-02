@@ -145,9 +145,9 @@ public class MinigameManager : MonoBehaviour
             reelsSinceLast++;
         }
 
-        // No minigames while overdrive is active, and never on the golden reel
-        // (a minigame overlay there would block the like that starts overdrive).
-        if (active || OverdriveController.IsActive || (feed != null && feed.TopReelIsOverdrive)
+        // No minigames while overdrive is active, and never on a special reel
+        // (a minigame overlay there would block its like and hide its overlay).
+        if (active || OverdriveController.IsActive || (feed != null && feed.TopReelIsSpecial)
             || minigames == null || minigames.Length == 0)
         {
             return;
