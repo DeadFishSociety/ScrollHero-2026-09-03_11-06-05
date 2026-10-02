@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Services;
 
 // Shows the game-over overlay when the run ends (by default when the dopamine
 // bar empties). Tracks how many reels were scrolled and how long the player
@@ -44,10 +45,6 @@ public class GameOverController : MonoBehaviour
     [SerializeField] private string reelsFormat = "Reels: {0}";
     [SerializeField] private string timeFormat = "Time: {0}";
     [SerializeField] private string highScoreFormat = "Best: {0}";
-
-    [Header("Saving")]
-    [Tooltip("PlayerPrefs key the high score is stored under on the device.")]
-    [SerializeField] private string highScoreKey = "HighScore";
 
     [Header("Behaviour")]
     [Tooltip("Freeze the game (Time.timeScale = 0) while the overlay is up.")]
@@ -140,13 +137,13 @@ public class GameOverController : MonoBehaviour
         float timeAlive = Time.unscaledTime - startTime;
         int score = ScoreManager.Instance != null ? ScoreManager.Instance.Score : 0;
 
-        int highScore = PlayerPrefs.GetInt(highScoreKey, 0);
+        int highScore = SaveDataService.Current.highscore;
         bool isNewHigh = score > highScore;
         if (isNewHigh)
         {
             highScore = score;
-            PlayerPrefs.SetInt(highScoreKey, highScore);
-            PlayerPrefs.Save();
+            SaveDataService.Update(s => s.highscore = score);
+            _ = LeaderboardService.Save(score);
         }
 
         if (scoreLabel != null) scoreLabel.text = string.Format(scoreFormat, score);
