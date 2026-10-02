@@ -53,7 +53,8 @@ public class ReelVideoBackground : MonoBehaviour
     void OnDisable()
     {
         // Pause instead of stop so the feed can resume where it left off.
-        if (videoPlayer != null)
+        // Skip when the player is already disabled (e.g. during Destroy).
+        if (videoPlayer != null && videoPlayer.enabled && videoPlayer.isPrepared)
         {
             videoPlayer.Pause();
         }
@@ -64,6 +65,14 @@ public class ReelVideoBackground : MonoBehaviour
         if (videoPlayer != null)
         {
             videoPlayer.prepareCompleted -= OnPrepareCompleted;
+            // Stop decoding and detach the target before the RenderTexture is freed,
+            // so the render thread never writes into a destroyed texture.
+            videoPlayer.Stop();
+            videoPlayer.targetTexture = null;
+        }
+        if (targetImage != null)
+        {
+            targetImage.texture = null;
         }
         ReleaseRenderTexture();
     }
