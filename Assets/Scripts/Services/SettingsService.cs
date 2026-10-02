@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using DTOs;
+using UnityEngine;
 
 namespace Services
 {
@@ -14,6 +15,28 @@ namespace Services
             mutate(Current);
             SaveSystem.Save(Current, File);
             Changed?.Invoke(Current);
+        }
+
+        // Renames on the leaderboard first, and only applies it locally when that succeeds.
+        // Before registration it's applied locally only; the startup sync registers it later.
+        public static async Awaitable<ClaimResult> ChangeUsername(string newUsername)
+        {
+            if (newUsername == Current.username)
+            {
+                return ClaimResult.Success;
+            }
+
+            if (Current.registered)
+            {
+                ClaimResult result = await LeaderboardService.UpdateUsername(newUsername);
+                if (result != ClaimResult.Success)
+                {
+                    return result;
+                }
+            }
+
+            Update(s => s.username = newUsername);
+            return ClaimResult.Success;
         }
     }
 }

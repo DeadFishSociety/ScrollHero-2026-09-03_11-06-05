@@ -143,6 +143,7 @@ public class GameOverController : MonoBehaviour
         {
             highScore = score;
             SaveDataService.Update(s => s.highscore = score);
+            _ = LeaderboardService.Save(score);
         }
 
         if (scoreLabel != null) scoreLabel.text = string.Format(scoreFormat, score);
