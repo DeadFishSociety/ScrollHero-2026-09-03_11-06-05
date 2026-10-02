@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 747916568}
   - component: {fileID: 747916570}
   - component: {fileID: 747916569}
+  - component: {fileID: 747916571}
   m_Layer: 0
   m_Name: Highscore
   m_TagString: Untagged
@@ -446,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Personal Best: 0'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a0bd812f208b4807bfa4e6a0242757f, type: 2}
   m_sharedMaterial: {fileID: 7023525450331759561, guid: 0a0bd812f208b4807bfa4e6a0242757f, type: 2}
@@ -526,6 +527,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747916567}
   m_CullTransparentMesh: 1
+--- !u!114 &747916571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747916567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aff9689e31afae4b8376bdcb1bd7878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuHighscoreDisplay
+  highscoreText: {fileID: 747916569}
+  format: 'Personal Best: {0}'
 --- !u!1 &1769857996
 GameObject:
   m_ObjectHideFlags: 0
