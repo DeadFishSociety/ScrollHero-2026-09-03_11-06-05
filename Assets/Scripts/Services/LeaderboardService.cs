@@ -42,8 +42,11 @@ namespace Services
         public static Awaitable<ClaimResult> Register(string username) =>
             PostClaim("/register", new RegisterRequest { username = username });
 
+        // A 404 here means the server no longer knows this username (e.g. its row was
+        // deleted) - drop the local registered flag so the next launch re-registers,
+        // rather than looping on an update the server will keep rejecting.
         public static Awaitable<ClaimResult> UpdateUsername(string newUsername) =>
-            PostClaim("/update-username", new UpdateUsernameRequest { username = SettingsService.Current.username, new_username = newUsername });
+            PostClaim("/update-username", new UpdateUsernameRequest { username = SettingsService.Current.username, new_username = newUsername }, resetRegistrationOn404: true);
 
         // Sorted from highest to lowest score; empty when the request fails.
         public static async Awaitable<List<LeaderboardEntry>> Load()
@@ -65,9 +68,17 @@ namespace Services
         {
             using UnityWebRequest request = Post("/highscore", new LeaderboardEntry { username = SettingsService.Current.username, score = score });
             await request.SendWebRequest();
+
+            // Same as UpdateUsername: a 404 means this username is gone server-side, so
+            // mark it unregistered and let the next launch re-register instead of
+            // resubmitting to a username the server will keep rejecting.
+            if (request.responseCode == 404)
+            {
+                SettingsService.Update(s => s.registered = false);
+            }
         }
 
-        private static async Awaitable<ClaimResult> PostClaim(string path, object body)
+        private static async Awaitable<ClaimResult> PostClaim(string path, object body, bool resetRegistrationOn404 = false)
         {
             using UnityWebRequest request = Post(path, body);
             await request.SendWebRequest();
@@ -76,7 +87,18 @@ namespace Services
             {
                 return ClaimResult.Success;
             }
-            return request.responseCode == 409 ? ClaimResult.Taken : ClaimResult.Failed;
+
+            if (request.responseCode == 409)
+            {
+                return ClaimResult.Taken;
+            }
+
+            if (resetRegistrationOn404 && request.responseCode == 404)
+            {
+                SettingsService.Update(s => s.registered = false);
+            }
+
+            return ClaimResult.Failed;
         }
 
         private static UnityWebRequest Post(string path, object body) =>
