@@ -22,6 +22,12 @@ public class GameOverController : MonoBehaviour
     [Tooltip("Retry button. Its click reloads the scene - wired automatically, no OnClick setup needed.")]
     [SerializeField] private Button retryButton;
 
+    [Tooltip("Home button. Its click returns to the main menu - wired automatically, no OnClick setup needed.")]
+    [SerializeField] private Button homeButton;
+
+    [Tooltip("Scene loaded by the Home button.")]
+    [SerializeField] private string mainMenuSceneName = "MainMenuScene";
+
     [Header("Sprite animation")]
     [Tooltip("Image the animation frames play on.")]
     [SerializeField] private Image animationImage;
@@ -82,6 +88,12 @@ public class GameOverController : MonoBehaviour
         {
             retryButton.onClick.RemoveListener(RestartGame);
             retryButton.onClick.AddListener(RestartGame);
+        }
+
+        if (homeButton != null)
+        {
+            homeButton.onClick.RemoveListener(GoToMainMenu);
+            homeButton.onClick.AddListener(GoToMainMenu);
         }
     }
 
@@ -183,6 +195,14 @@ public class GameOverController : MonoBehaviour
         Time.timeScale = 1f;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    // Returns to the main menu, ending the current run. Wired to homeButton, and
+    // also public so you can call it from elsewhere.
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f; // undo the game-over pause before leaving
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 
     // Plays the frames on unscaled time so it animates even while the game is

@@ -29,10 +29,10 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("Each entry becomes one reel as you scroll. Set the video, audio, username, description and audio name here - not on the prefab.")]
     [SerializeField] private ReelPost[] posts;
 
-    [Tooltip("Sequential: play the list in order (loops). WeightedRandom: pick each reel at random using the per-post Weight.")]
+    [Tooltip("Sequential: play the list in order (loops). WeightedRandom: pick each reel at random using the per-post Weight. Shuffled: play every reel once in a random order, then reshuffle - so nothing repeats until all have been shown.")]
     [SerializeField] private FeedOrder order = FeedOrder.Sequential;
 
-    [Tooltip("WeightedRandom only: avoid showing the same post twice in a row (when more than one exists).")]
+    [Tooltip("WeightedRandom / Shuffled: avoid showing the same post twice in a row (when more than one exists).")]
     [SerializeField] private bool avoidImmediateRepeat = true;
 
     [Header("Overdrive reel")]
@@ -75,6 +75,15 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("Centered prompt (e.g. \"DOPAMINE DESPAIR\") shown while the despair reel is the current reel. Leave empty for none.")]
     [SerializeField] private GameObject despairPrompt;
 
+    [Header("Last life")]
+    [Tooltip("Overdrive (golden) reel spawn chance per reel while on the last life - usually higher than normal, to give a comeback chance.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float lastLifeOverdriveChancePerReel = 0.35f;
+
+    [Tooltip("Score multiplier applied while on the last life (0 = earn no points). Read by FeedScorer.")]
+    [Min(0f)]
+    [SerializeField] private float lastLifeScoreMultiplier = 0f;
+
     [Header("Feel")]
     [Tooltip("Fraction of a screen you must drag past for it to advance to the next reel on release.")]
     [Range(0.05f, 0.9f)]
@@ -96,6 +105,12 @@ public class ReelFeedController : MonoBehaviour,
     private readonly List<RectTransform> reels = new List<RectTransform>();
     private int nextPostIndex;
     private int lastPostIndex = -1;
+
+    // Shuffled order: the remaining posts to draw before the bag is refilled.
+    private readonly List<int> shuffleBag = new List<int>();
+
+    // Used to check whether the player is on the last life (last-life settings).
+    private DopamineManager dopamineManager;
 
     // The single full-screen special overlays (children of the feed), toggled on/off.
     private GameObject overdriveOverlayInstance;
@@ -138,7 +153,11 @@ public class ReelFeedController : MonoBehaviour,
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+        dopamineManager = FindFirstObjectByType<DopamineManager>();
     }
+
+    // Score multiplier to apply while on the last life (read by FeedScorer).
+    public float LastLifeScoreMultiplier => lastLifeScoreMultiplier;
 
     void OnEnable()
     {
@@ -481,7 +500,19 @@ public class ReelFeedController : MonoBehaviour,
                 MarkReelSpecial(reel, ReelSpecial.None);
                 return;
             }
-            int index = (order == FeedOrder.WeightedRandom) ? PickWeightedIndex() : (nextPostIndex++ % posts.Length);
+            int index;
+            switch (order)
+            {
+                case FeedOrder.WeightedRandom:
+                    index = PickWeightedIndex();
+                    break;
+                case FeedOrder.Shuffled:
+                    index = PickShuffledIndex();
+                    break;
+                default:
+                    index = nextPostIndex++ % posts.Length;
+                    break;
+            }
             lastPostIndex = index;
             post = posts[index];
         }
@@ -518,7 +549,11 @@ public class ReelFeedController : MonoBehaviour,
         {
             return false;
         }
-        return Random.value <= overdriveChancePerReel;
+
+        // On the last life the golden reel is more likely (a comeback chance).
+        bool lastLife = dopamineManager != null && dopamineManager.IsLastLife;
+        float chance = lastLife ? lastLifeOverdriveChancePerReel : overdriveChancePerReel;
+        return Random.value <= chance;
     }
 
     // Same as ShouldSpawnOverdrive, for the despair reel.
@@ -649,6 +684,48 @@ public class ReelFeedController : MonoBehaviour,
         RefreshGoldenPrompt(top);
     }
 
+    // Draws the next post from a shuffled bag that contains every post index once.
+    // When the bag empties it is refilled and reshuffled, so no post repeats until
+    // all of them have been shown.
+    private int PickShuffledIndex()
+    {
+        if (shuffleBag.Count == 0)
+        {
+            RefillShuffleBag();
+        }
+
+        // Draw from the end (cheap removal).
+        int last = shuffleBag.Count - 1;
+        int index = shuffleBag[last];
+        shuffleBag.RemoveAt(last);
+        return index;
+    }
+
+    // Fills the bag with every post index and Fisher-Yates shuffles it. Optionally
+    // prevents the first draw of the new bag from repeating the post just shown
+    // (the only place a repeat could sneak in - across the seam between bags).
+    private void RefillShuffleBag()
+    {
+        shuffleBag.Clear();
+        for (int i = 0; i < posts.Length; i++)
+        {
+            shuffleBag.Add(i);
+        }
+        for (int i = shuffleBag.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffleBag[i], shuffleBag[j]) = (shuffleBag[j], shuffleBag[i]);
+        }
+
+        // The next draw is the last element; if it matches the last post shown,
+        // swap it to the front so the seam doesn't repeat.
+        int lastSlot = shuffleBag.Count - 1;
+        if (avoidImmediateRepeat && posts.Length > 1 && shuffleBag[lastSlot] == lastPostIndex)
+        {
+            (shuffleBag[lastSlot], shuffleBag[0]) = (shuffleBag[0], shuffleBag[lastSlot]);
+        }
+    }
+
     // Picks a post index at random, biased by each post's Weight. Optionally
     // avoids repeating the last post when more than one is available.
     private int PickWeightedIndex()
@@ -693,7 +770,10 @@ public class ReelFeedController : MonoBehaviour,
 public enum FeedOrder
 {
     Sequential,
-    WeightedRandom
+    WeightedRandom,
+    // Shuffled "bag": plays every post once in a random order, then reshuffles and
+    // repeats - so no post repeats until all of them have been shown.
+    Shuffled
 }
 
 // One post in the feed. Fill these in on the ReelFeedController's Posts array.

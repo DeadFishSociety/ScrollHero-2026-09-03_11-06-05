@@ -220,184 +220,190 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReelFeedController
   reelPrefab: {fileID: 7562061212819923730, guid: 2c600100a2ac644b88245b1f3fd3ed95, type: 3}
-  videoVolume: 0
+  videoVolume: 0.25
   posts:
-  - video: {fileID: 32900000, guid: 69947665b308e414995d9d1cbe13bad6, type: 3}
+  - video: {fileID: 32900000, guid: 6bc245d850d5d4be7beea4d999f5f93f, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: BigMrTrillo
+    description: Im really looking forward to seeing this insane REAL clip, im so
+      real, everything is real, we are NOT communicating with bots, I swear, we are
+      NOT communicating with bots, I swear we are NOT COMMUNICATING WITH BOTS, MY
+      LIFE IS A LIE HELP HELP HELP
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: b74f124333a914ae2b8db37d6339f515, type: 3}
+  - video: {fileID: 32900000, guid: a9f77499c5c434a0c9ec3fd83d4383fe, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: 'Rizla (NOT THE SMOKING BAND) '
+    description: HUH? WHAT DO YOU MEAN????? I don't or have no idea what a rizla
+      is! I just like rizzersssss (like me, I am a big rizzer) and love to riz rizz
+      rizz
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 727ecfd1184f04ec6a3944496455707f, type: 3}
+  - video: {fileID: 32900000, guid: ce62c2de5dd7046278ed591c453877f6, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: CatSmurf
+    description: NI HAOU FINE SHYETTTTTT, im a cat- > I love catting and smufing,
+      I be purring a whole lotta stuff
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 4de4ff77c9d0a44f79b67776701eb840, type: 3}
+  - video: {fileID: 32900000, guid: ffa0073f073404b2ba244727a5f8e7c8, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: "\u2060G00nER_Jermained69"
+    description: Video of me jermaining it, really fun to do with my buddys from
+      school. Love school btw!! #so happy
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 7e81760da46ce45e59d4f9dcd2a4f973, type: 3}
+  - video: {fileID: 32900000, guid: 1540e639deba94103a35f9b681e6706c, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: Sappige_oude_man
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. #Suspendisse
+      #mattis
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: c080d870ff43f4e4ab45cbd45e33a71a, type: 3}
+  - video: {fileID: 32900000, guid: a517f00eba26c4d49a2a249365b6cba4, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: WhyPeeKay.Bierie420
+    description: I am really fucking sick at errything dawg-- PLEASE GIVE ME LIKE
+      MY WHOLE PERSONA AND SELFWORTH IS BASED ON BUTTONS OF AFFIRMATION PLEASE PLEASE
+      PLEASE
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 03cb48777dc4847e6b1bfb665d102940, type: 3}
+  - video: {fileID: 32900000, guid: 1b0ff45d7782c4e7298f58d4b765c95f, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: Sappige_oude_man
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. #Suspendisse
+      #mattis
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 41391f7dd559f44f283fad64763daafc, type: 3}
+  - video: {fileID: 32900000, guid: 7a89cd22ab0224463841970248aa8eae, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: "\u2060Ji-Mon-thly_030"
+    description: Sticking to the plan!!! LOVE TO ALL PEOPLE ON EARTH! WE SHOULD be
+      working as a team! Also hashtag-after-at-me-tonight!
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 26c91d0edc70946a4801626086c85e4d, type: 3}
+  - video: {fileID: 32900000, guid: 9e283ebfe38ba4f509896582ed88c612, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: Sappige_oude_man
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. #Suspendisse
+      #mattis
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: de963360a706144dc9cd431775152820, type: 3}
+  - video: {fileID: 32900000, guid: 22672091a8a484f50b62cae07a1f1a68, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: BAEs_6767
+    description: This wall looks amazing! It's movin hella hard, I think its talk-....
+      these sh***ms are insane bro wanna hold sum? hashtag-this-is-not-WhatsApp?
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 11dc892e48c584bcb866fa97e46a478c, type: 3}
+  - video: {fileID: 32900000, guid: b79a58a293c2f49b1b4c4cf55ad45d2f, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: " \u2060l4rs_pro_goon3r "
+    description: Just made a insane homerun! hastag-im-so-happie hashtag-im-going-to-hit-another.
+      Also check my gooner.bit.
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 50ed086d2069b40aca5ed5146071c8a9, type: 3}
+  - video: {fileID: 32900000, guid: 4e4e7ff2ff1f54e6bad5aa7b351bf9d2, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: YeayeaYea_4949
+    description: Made this sick dog the other day! Yhea Yhea Yhea Smack that Git
+      on the WOOF , smack dat, give me some WOOF
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 57da3f3dea04d4488a48df40ad886e37, type: 3}
+  - video: {fileID: 32900000, guid: 0cff7b4eb0246446b90e6d6a528a264f, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: 'HighSchool_RoffaDamn '
+    description: I really love people who go to school! If they pay for it ofcourse!
+      Love free education and shit! hasthag-im-so-pr
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 13fdc0724e478452ca4bfad8ecfe3000, type: 3}
+  - video: {fileID: 32900000, guid: 97b8be36ffb21423c93caddbfb68b392, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: "\u2060Ch4dboy24 "
+    description: The challenges one throws at another, are rarely meant for the other,
+      but merely, a reflection of theyre own.
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 20b47f11200ec426fae4b9562c9dd1d8, type: 3}
+  - video: {fileID: 32900000, guid: 52f756e0259384621a3d6da70ff5f010, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: ball1nspecter
+    description: I inspect balls. hashtag-balls
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 8c37884196dce450f952a5f559826fa3, type: 3}
+  - video: {fileID: 32900000, guid: 26395a9fb0c0c47b2a8b1b10bd451505, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: LuhTruckAbuser
+    description: dangg this new  8 WHEEL BALLER really hits hardd broooooo. Hashtag-give-me-more-i-need-to-keep-headbutting-8wheelers-at-130km-per-hour
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 02f156dbc482047e69f0059f9a807fae, type: 3}
+  - video: {fileID: 32900000, guid: 76614b74ac849427f874601517384f22, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: user263829
+    description: user263829
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 0788a301cd04d46ecb87b8619d97ae9c, type: 3}
+  - video: {fileID: 32900000, guid: 76614b74ac849427f874601517384f22, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: popthepuilter
+    description: dog goin wild on THAT be- be- be- beat..... How can move like that?
+      I cant. Im like a robot. not mentally i am read. TRUST!
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: d67c938fc6be84997a9beb6a6510b2ce, type: 3}
+  - video: {fileID: 32900000, guid: de1616fac48ec48eda2f34822248bf0d, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: BrainGains
+    description: Pop to the pip on the pap through the pep by the pup with the pyp
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 5f316a9d274aa442a9aaccf11512df6c, type: 3}
+  - video: {fileID: 32900000, guid: 3e781066fd8e74d4491d847ef64854ce, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: tspmio3000
+    description: ' WHO ARE THESE PEOPLE. Data in the brain. No EMOTION. They talk
+      but dont THINK. IS ANYTHING REAL MARIA?'
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 74ef82ff2e15f4f7e94ad4ea1746243d, type: 3}
+  - video: {fileID: 32900000, guid: c62d47320735944c9b043f8d67b13e75, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: Sappige_oude_man
+    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. #Suspendisse
+      #mattis
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 52549f8db205d4bd791862963f1efa6d, type: 3}
+  - video: {fileID: 32900000, guid: a9e1fe3fbe313440fb313cc3ca434db9, type: 3}
     audio: {fileID: 0}
-    username: Temp
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-      et mauris risus. #Sed #diam #arcu
-    audioName: 
+    username: Glonald J Glump
+    description: I really hate Amerucuns, I want to build a trench around em!!! hashtag-stop-murica
+    audioName: Original audio
     weight: 0
-  - video: {fileID: 32900000, guid: 65649695658c0480fb7bb48bb064ea37, type: 3}
+  - video: {fileID: 32900000, guid: 319622aebd0fe4e75b2c73ac8fdea9bd, type: 3}
     audio: {fileID: 0}
-    username: NOS
-    description: Serieous stiff hapnned #getscaredrn
-    audioName: 
+    username: BoPiKa
+    description: I have lots of fun playing TikTok scrolling simulator? how do I
+      buy the TRALALEROTRALALA?
+    audioName: Original audio
     weight: 0
-  order: 0
+  - video: {fileID: 32900000, guid: 6c5f676c99605471d944e7869ab8231e, type: 3}
+    audio: {fileID: 0}
+    username: "\u2060gangshit "
+    description: I B CRIPPINNNNN
+    audioName: Original audio
+    weight: 0
+  order: 2
   avoidImmediateRepeat: 1
   overdrivePost:
-    video: {fileID: 32900000, guid: 5b3cb1350028a4fd3a32f4540ea6b359, type: 3}
+    video: {fileID: 32900000, guid: 939027189129b49b9adc5c0e831b144f, type: 3}
     audio: {fileID: 8300000, guid: 9e281b4262951456cb4ad1be1414ab65, type: 3}
-    username: SuperCoolUser_Name
-    description: jsfksjdklghj
+    username: Goldfingerer
+    description: BRO THIS IS THE REEL OF ALL TIME LIKE THIS RIGHT NOW!
     audioName: Original audio
     weight: 1
-  overdriveChancePerReel: 0.02
+  overdriveChancePerReel: 0.05
   overdriveGracePeriodReels: 4
   overdriveMinReelsBetween: 8
   overdriveReelOverlayPrefab: {fileID: 4486694225776157802, guid: be25b8657da564880a14af3c8c8e0499, type: 3}
   likeNowPrompt: {fileID: 783890244}
   despairPost:
-    video: {fileID: 32900000, guid: 4de4ff77c9d0a44f79b67776701eb840, type: 3}
+    video: {fileID: 32900000, guid: b5fc55e4a34794239b158a3c6e244a6d, type: 3}
     audio: {fileID: 8300000, guid: 9a71746bbe6c44166afd574a9955fc65, type: 3}
     username: Dark_reel
     description: This is a dark dark reel, don't even think about liking this one.
@@ -408,6 +414,8 @@ MonoBehaviour:
   despairMinReelsBetween: 8
   despairReelOverlayPrefab: {fileID: 4486694225776157802, guid: 87dbe7609d2194604a78d72567724edf, type: 3}
   despairPrompt: {fileID: 2031485874}
+  lastLifeOverdriveChancePerReel: 0.15
+  lastLifeScoreMultiplier: 0
   advanceThreshold: 0.1
   flickVelocity: 1200
   snapSpeed: 14
@@ -626,6 +634,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameOverController
   overlayRoot: {fileID: 1184746270}
   retryButton: {fileID: 72183807}
+  homeButton: {fileID: 7463150490963272476}
+  mainMenuSceneName: MainMenuScene
   animationImage: {fileID: 1657938890}
   animationFrames:
   - {fileID: 3858407875973940264, guid: 853cb7ee4fa1042e7a4f9c0abc143a89, type: 3}
@@ -651,7 +661,6 @@ MonoBehaviour:
   reelsFormat: 'Reels: {0}'
   timeFormat: 'Time: {0}'
   highScoreFormat: 'Best: {0}'
-  highScoreKey: HighScore
   pauseOnGameOver: 1
   dopamineManager: {fileID: 0}
   feed: {fileID: 0}
@@ -869,7 +878,7 @@ MonoBehaviour:
   music: {fileID: 8300000, guid: c28e6696beff64410a38c49c0a6560d9, type: 3}
   musicVolume: 0.7
   dopamineManager: {fileID: 0}
-  musicPlayer: {fileID: 0}
+  musicPlayer: {fileID: 398602207}
 --- !u!114 &398602212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,7 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DespairController
   sound: {fileID: 0}
   volume: 1
-  sfxSource: {fileID: 0}
+  sfxSource: {fileID: 398602208}
   dopamineManager: {fileID: 0}
 --- !u!1 &426246704
 GameObject:
@@ -1378,6 +1387,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1362439549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362439550}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1362439550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362439549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 398.48056, y: 951.1141, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2061,6 +2101,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5b69bc5d49e4c9dae7f11fb1c434fc, type: 3}
+--- !u!114 &7463150490963272476 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8374355566662619180, guid: 3c5b69bc5d49e4c9dae7f11fb1c434fc, type: 3}
+  m_PrefabInstance: {fileID: 7463150490963272475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2068,3 +2119,4 @@ SceneRoots:
   - {fileID: 1275079656}
   - {fileID: 426246708}
   - {fileID: 2133480860}
+  - {fileID: 1362439550}
