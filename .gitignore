@@ -114,3 +114,7 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
 .idea/
+
+# macOS
+.DS_Store
+**/.DS_Store
