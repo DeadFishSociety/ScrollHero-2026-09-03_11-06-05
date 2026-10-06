@@ -38,10 +38,6 @@ public class CheatAccess : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (devBuildsOnly && !(Application.isEditor || Debug.isDebugBuild))
-        {
-            return;
-        }
 
         float now = Time.unscaledTime;
         if (taps == 0 || now - firstTapTime > withinSeconds)
