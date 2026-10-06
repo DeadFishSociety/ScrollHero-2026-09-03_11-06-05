@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReelFeedController
   reelPrefab: {fileID: 7562061212819923730, guid: 2c600100a2ac644b88245b1f3fd3ed95, type: 3}
   videoVolume: 0.25
+  musicPlayer: {fileID: 398602207}
   posts:
   - video: {fileID: 32900000, guid: 6bc245d850d5d4be7beea4d999f5f93f, type: 3}
     audio: {fileID: 0}
@@ -392,7 +393,7 @@ MonoBehaviour:
   avoidImmediateRepeat: 1
   overdrivePost:
     video: {fileID: 32900000, guid: 939027189129b49b9adc5c0e831b144f, type: 3}
-    audio: {fileID: 8300000, guid: 9e281b4262951456cb4ad1be1414ab65, type: 3}
+    audio: {fileID: 8300000, guid: dd192e17c5365441da74a43fe51d7e8b, type: 3}
     username: Goldfingerer
     description: BRO THIS IS THE REEL OF ALL TIME LIKE THIS RIGHT NOW!
     audioName: Original audio
@@ -409,7 +410,7 @@ MonoBehaviour:
     description: This is a dark dark reel, don't even think about liking this one.
     audioName: Evil Audio
     weight: 1
-  despairChancePerReel: 0.02
+  despairChancePerReel: 1
   despairGracePeriodReels: 4
   despairMinReelsBetween: 8
   despairReelOverlayPrefab: {fileID: 4486694225776157802, guid: 87dbe7609d2194604a78d72567724edf, type: 3}
@@ -875,7 +876,7 @@ MonoBehaviour:
   duration: 15
   lockedMultiplier: 10
   overlay: {fileID: 0}
-  music: {fileID: 8300000, guid: c28e6696beff64410a38c49c0a6560d9, type: 3}
+  music: {fileID: 8300000, guid: 157025caa2c1641d1b2b1102280b7427, type: 3}
   musicVolume: 0.7
   dopamineManager: {fileID: 0}
   musicPlayer: {fileID: 398602207}
@@ -891,8 +892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb32959a7772f42ad82fc5837f712ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DespairController
-  sound: {fileID: 0}
-  volume: 1
+  sound: {fileID: 8300000, guid: 47ca73cbeeae546f7ba4e65b8563aa87, type: 3}
+  volume: 0.7
   sfxSource: {fileID: 398602208}
   dopamineManager: {fileID: 0}
 --- !u!1 &426246704
@@ -1495,9 +1496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de434073b605748c5a6cd9a9ff1e6c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DopamineVignette
-  startFraction: 0.673
+  startFraction: 0.5
   fullFraction: 0
-  maxAlpha: 1
+  maxAlpha: 0.9
   fadeSpeed: 15
   pulseAmplitude: 0.244
   pulseSpeed: 2.5

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 // Instagram-style vertical reel feed.
@@ -24,6 +25,9 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("Global volume for reel video audio (0 = silent, 1 = full). Applies to every reel.")]
     [Range(0f, 1f)]
     [SerializeField] private float videoVolume = 1f;
+
+    [Tooltip("Background music, paused while a special (holy/despair) reel is on screen. Auto-found if empty.")]
+    [SerializeField] private MusicPlayer musicPlayer;
 
     [Header("Feed content")]
     [Tooltip("Each entry becomes one reel as you scroll. Set the video, audio, username, description and audio name here - not on the prefab.")]
@@ -154,10 +158,29 @@ public class ReelFeedController : MonoBehaviour,
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         dopamineManager = FindFirstObjectByType<DopamineManager>();
+        if (musicPlayer == null)
+        {
+            musicPlayer = FindFirstObjectByType<MusicPlayer>(FindObjectsInactive.Include);
+        }
     }
 
     // Score multiplier to apply while on the last life (read by FeedScorer).
     public float LastLifeScoreMultiplier => lastLifeScoreMultiplier;
+
+    // Turns off Raycast Target on every UI Graphic (Image, TMP text, ...) under the
+    // given object, so purely-visual overlays/prompts never block touch input.
+    private static void DisableRaycastTargets(GameObject go)
+    {
+        if (go == null)
+        {
+            return;
+        }
+        Graphic[] graphics = go.GetComponentsInChildren<Graphic>(true);
+        for (int i = 0; i < graphics.Length; i++)
+        {
+            graphics[i].raycastTarget = false;
+        }
+    }
 
     void OnEnable()
     {
@@ -205,6 +228,13 @@ public class ReelFeedController : MonoBehaviour,
 
         overdriveOverlayInstance = CreateSpecialOverlay(overdriveReelOverlayPrefab);
         despairOverlayInstance = CreateSpecialOverlay(despairReelOverlayPrefab);
+
+        // The holy/despair overlays and their prompts are purely visual - never let
+        // them swallow taps/swipes meant for the feed or the like button.
+        DisableRaycastTargets(overdriveOverlayInstance);
+        DisableRaycastTargets(despairOverlayInstance);
+        DisableRaycastTargets(likeNowPrompt);
+        DisableRaycastTargets(despairPrompt);
 
         for (int i = 0; i < BufferCount; i++)
         {
@@ -410,6 +440,9 @@ public class ReelFeedController : MonoBehaviour,
         RefreshDespairOverlay(top);
         RefreshGoldenPrompt(top);
         RefreshDespairPrompt(top);
+
+        // Pause the background music while a special reel is current.
+        RefreshBackgroundMusic(top);
 
         if (top == audioReel)
         {
@@ -645,16 +678,18 @@ public class ReelFeedController : MonoBehaviour,
         }
     }
 
-    // Shows the centered "LIKE NOW" prompt only while the golden reel is the current
-    // reel and overdrive hasn't started yet.
+    // Shows the centered "LIKE NOW" prompt while the golden reel is the current reel
+    // (before overdrive starts), OR while the player's third (max) life is active.
     private void RefreshGoldenPrompt(RectTransform top)
     {
-        if (likeNowPrompt == null)
+        if (!likeNowPrompt)
         {
             return;
         }
 
-        bool show = ReelIsOverdrive(top) && !OverdriveController.IsActive;
+        bool onGoldenReel = ReelIsOverdrive(top) && !OverdriveController.IsActive;
+        bool thirdLifeActive = dopamineManager != null && dopamineManager.Lives >= dopamineManager.MaxLives;
+        bool show = onGoldenReel || thirdLifeActive;
         if (likeNowPrompt.activeSelf != show)
         {
             likeNowPrompt.SetActive(show);
@@ -676,12 +711,33 @@ public class ReelFeedController : MonoBehaviour,
         }
     }
 
+    // Pauses the background theme while a special reel (holy/despair) is current so
+    // only its own sound plays; resumes it on normal reels. During overdrive the
+    // OverdriveController owns the music, so leave it alone.
+    private void RefreshBackgroundMusic(RectTransform top)
+    {
+        if (musicPlayer == null || OverdriveController.IsActive)
+        {
+            return;
+        }
+
+        if (ReelIsSpecial(top))
+        {
+            musicPlayer.Pause();
+        }
+        else
+        {
+            musicPlayer.Resume();
+        }
+    }
+
     // Re-evaluate the overlay + prompt when overdrive begins/ends (not only on reel change).
     private void OnOverdriveChanged()
     {
         RectTransform top = reels.Count > 0 ? reels[0] : null;
         RefreshOverdriveOverlay(top);
         RefreshGoldenPrompt(top);
+        RefreshBackgroundMusic(top);
     }
 
     // Draws the next post from a shuffled bag that contains every post index once.
