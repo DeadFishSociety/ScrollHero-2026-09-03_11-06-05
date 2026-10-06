@@ -91,6 +91,9 @@ public class DopamineManager : MonoBehaviour
     public int MaxLives => maxLives;
     public bool IsOverdrive => overdrive;
 
+    // True when the player is on their last life (the next loss ends the run).
+    public bool IsLastLife => !gameOver && lives <= 1;
+
     // Optional per-minigame drain (per second) set by the active minigame. When
     // set it replaces the difficulty-based minigame drain for that minigame, and
     // is cleared automatically when the minigame finishes.

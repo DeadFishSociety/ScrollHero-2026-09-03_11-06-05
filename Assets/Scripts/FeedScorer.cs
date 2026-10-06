@@ -45,6 +45,7 @@ public class FeedScorer : MonoBehaviour
 
     private ReelFeedController feed;
     private MinigameManager minigames;
+    private DopamineManager dopamineManager;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class FeedScorer : MonoBehaviour
         {
             likeCombo = FindObjectOfType<LikeCombo>();
         }
+        dopamineManager = FindObjectOfType<DopamineManager>();
     }
 
     private void OnEnable()
@@ -117,11 +119,16 @@ public class FeedScorer : MonoBehaviour
             return;
         }
 
-        // Overdrive locks the multiplier; otherwise an active like combo multiplies.
+        // Multiplier precedence: overdrive locks it; otherwise the last life forces
+        // its own multiplier (e.g. 0 = no points); otherwise an active combo multiplies.
         float multiplier = 1f;
         if (OverdriveController.IsActive)
         {
             multiplier = OverdriveController.Multiplier;
+        }
+        else if (dopamineManager != null && dopamineManager.IsLastLife)
+        {
+            multiplier = feed != null ? feed.LastLifeScoreMultiplier : 0f;
         }
         else if (likeCombo != null && likeCombo.IsActive)
         {
