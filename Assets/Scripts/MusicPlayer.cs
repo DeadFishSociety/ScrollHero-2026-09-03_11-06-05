@@ -69,10 +69,11 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    // Resumes the paused theme - unless an override (e.g. overdrive music) owns it.
+    // Resumes whatever was paused (theme or an override clip). Safe to call when
+    // nothing is paused.
     public void Resume()
     {
-        if (source != null && !overriding)
+        if (source != null)
         {
             source.UnPause();
         }

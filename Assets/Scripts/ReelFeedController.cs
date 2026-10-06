@@ -624,6 +624,9 @@ public class ReelFeedController : MonoBehaviour,
     // Whether the current top reel is any special reel (holy or despair).
     public bool TopReelIsSpecial => SpecialOf(reels.Count > 0 ? reels[0] : null) != ReelSpecial.None;
 
+    // Whether the current top reel is the despair reel.
+    public bool TopReelIsDespair => SpecialOf(reels.Count > 0 ? reels[0] : null) == ReelSpecial.Despair;
+
     private static ReelSpecial SpecialOf(RectTransform reel)
     {
         if (reel == null)

@@ -52,6 +52,16 @@ public class GameOverController : MonoBehaviour
     [SerializeField] private string timeFormat = "Time: {0}";
     [SerializeField] private string highScoreFormat = "Best: {0}";
 
+    [Header("Sound")]
+    [Tooltip("Played once when the game-over overlay appears. Layers over the music (the music keeps playing). Leave empty for none.")]
+    [SerializeField] private AudioClip gameOverSound;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float gameOverVolume = 1f;
+
+    [Tooltip("Source the game-over sound plays through. Auto-added if left empty.")]
+    [SerializeField] private AudioSource sfxSource;
+
     [Header("Behaviour")]
     [Tooltip("Freeze the game (Time.timeScale = 0) while the overlay is up.")]
     [SerializeField] private bool pauseOnGameOver = true;
@@ -94,6 +104,16 @@ public class GameOverController : MonoBehaviour
         {
             homeButton.onClick.RemoveListener(GoToMainMenu);
             homeButton.onClick.AddListener(GoToMainMenu);
+        }
+
+        if (sfxSource == null)
+        {
+            sfxSource = GetComponent<AudioSource>();
+            if (sfxSource == null)
+            {
+                sfxSource = gameObject.AddComponent<AudioSource>();
+                sfxSource.playOnAwake = false;
+            }
         }
     }
 
@@ -175,6 +195,12 @@ public class GameOverController : MonoBehaviour
         if (overlayRoot != null)
         {
             overlayRoot.SetActive(true);
+        }
+
+        // Game-over sting, layered over the music (which keeps playing).
+        if (gameOverSound != null && sfxSource != null)
+        {
+            sfxSource.PlayOneShot(gameOverSound, gameOverVolume);
         }
 
         if (animationImage != null && animationFrames != null && animationFrames.Length > 0)
