@@ -59,6 +59,25 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    // Pauses the music (keeps its position). Used to silence the theme while a
+    // special reel plays its own sound, so nothing overlaps.
+    public void Pause()
+    {
+        if (source != null)
+        {
+            source.Pause();
+        }
+    }
+
+    // Resumes the paused theme - unless an override (e.g. overdrive music) owns it.
+    public void Resume()
+    {
+        if (source != null && !overriding)
+        {
+            source.UnPause();
+        }
+    }
+
     // Replaces the theme with a temporary looping clip (e.g. overdrive music).
     // Call StopOverride() to return to the theme.
     public void PlayOverride(AudioClip clip, float overrideVolume = -1f)
