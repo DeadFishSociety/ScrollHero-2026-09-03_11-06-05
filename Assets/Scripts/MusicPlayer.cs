@@ -1,7 +1,9 @@
 using UnityEngine;
 
-// Plays a looping main theme for the whole session. Add it to a persistent
-// GameObject (it brings its own AudioSource) and assign the theme clip.
+// Plays a looping main theme for the whole session. The source keeps playing the
+// whole time; special reels (golden/despair) just fade its volume down and back up
+// (see SetDucked) so nothing overlaps - the music is never stopped or paused.
+// A temporary override clip (overdrive / last-life music) can replace the theme.
 [RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour
 {
@@ -14,11 +16,21 @@ public class MusicPlayer : MonoBehaviour
     [Tooltip("Start playing automatically on load.")]
     [SerializeField] private bool playOnStart = true;
 
+    [Tooltip("Seconds to fade the music out / in when it's ducked for a special reel.")]
+    [Min(0f)]
+    [SerializeField] private float duckFadeDuration = 0.4f;
+
     private AudioSource source;
 
-    // True while a temporary override clip (e.g. overdrive music) is playing in
-    // place of the theme.
+    // True while a temporary override clip (overdrive / last-life) is playing.
     private bool overriding;
+
+    // Intended volume of the current clip (theme or override).
+    private float baseVolume;
+
+    // Fade multiplier: 1 = full, 0 = fully ducked (silent). Eased toward duckTarget.
+    private float duck = 1f;
+    private float duckTarget = 1f;
 
     private void Awake()
     {
@@ -26,7 +38,8 @@ public class MusicPlayer : MonoBehaviour
         source.clip = theme;
         source.loop = true;
         source.playOnAwake = false;
-        source.volume = volume;
+        baseVolume = volume;
+        ApplyVolume();
     }
 
     private void Start()
@@ -37,14 +50,27 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!Mathf.Approximately(duck, duckTarget))
+        {
+            float step = duckFadeDuration > 0f ? Time.unscaledDeltaTime / duckFadeDuration : 1f;
+            duck = Mathf.MoveTowards(duck, duckTarget, step);
+            ApplyVolume();
+        }
+    }
+
     public void Play()
     {
         if (source == null || theme == null)
         {
             return;
         }
+        overriding = false;
         source.clip = theme;
         source.loop = true;
+        baseVolume = volume;
+        ApplyVolume();
         if (!source.isPlaying)
         {
             source.Play();
@@ -59,28 +85,15 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    // Pauses the music (keeps its position). Used to silence the theme while a
-    // special reel plays its own sound, so nothing overlaps.
-    public void Pause()
+    // Fades the music out (ducked = true) or back in (false). The source keeps
+    // playing the whole time, so it's never cut off.
+    public void SetDucked(bool ducked)
     {
-        if (source != null)
-        {
-            source.Pause();
-        }
+        duckTarget = ducked ? 0f : 1f;
     }
 
-    // Resumes whatever was paused (theme or an override clip). Safe to call when
-    // nothing is paused.
-    public void Resume()
-    {
-        if (source != null)
-        {
-            source.UnPause();
-        }
-    }
-
-    // Replaces the theme with a temporary looping clip (e.g. overdrive music).
-    // Call StopOverride() to return to the theme.
+    // Replaces the theme with a temporary looping clip (e.g. overdrive / last-life
+    // music). Un-ducks immediately so the new clip is heard.
     public void PlayOverride(AudioClip clip, float overrideVolume = -1f)
     {
         if (source == null || clip == null)
@@ -90,7 +103,10 @@ public class MusicPlayer : MonoBehaviour
         overriding = true;
         source.clip = clip;
         source.loop = true;
-        source.volume = overrideVolume >= 0f ? overrideVolume : volume;
+        baseVolume = overrideVolume >= 0f ? overrideVolume : volume;
+        duck = 1f;
+        duckTarget = 1f;
+        ApplyVolume();
         source.Play();
     }
 
@@ -102,9 +118,12 @@ public class MusicPlayer : MonoBehaviour
             return;
         }
         overriding = false;
-        source.volume = volume;
         source.clip = theme;
         source.loop = true;
+        baseVolume = volume;
+        duck = 1f;
+        duckTarget = 1f;
+        ApplyVolume();
         if (theme != null)
         {
             source.Play();
@@ -112,6 +131,14 @@ public class MusicPlayer : MonoBehaviour
         else
         {
             source.Stop();
+        }
+    }
+
+    private void ApplyVolume()
+    {
+        if (source != null)
+        {
+            source.volume = baseVolume * Mathf.Clamp01(duck);
         }
     }
 }

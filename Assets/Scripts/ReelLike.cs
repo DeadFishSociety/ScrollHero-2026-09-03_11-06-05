@@ -138,6 +138,13 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
+
+        // Overdrive is about scrolling, not liking - no likes during it.
+        if (OverdriveController.IsActive)
+        {
+            return;
+        }
+
         liked = true;
 
         if (likeButton != null)

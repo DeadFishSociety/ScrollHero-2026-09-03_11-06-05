@@ -99,8 +99,25 @@ public class ReelFeedController : MonoBehaviour,
     [Tooltip("How quickly a reel settles into place after you let go. Higher = snappier.")]
     [SerializeField] private float snapSpeed = 14f;
 
+    [Tooltip("Forced minimum wait (seconds) between scrolls, so the player can't scroll too fast. 0 = no cooldown. Ignored during overdrive (life 3).")]
+    [Min(0f)]
+    [SerializeField] private float scrollCooldown = 0f;
+
     // How many reels to keep alive: the current one plus this many below it.
     private const int BufferCount = 3;
+
+    // How far a reel can be nudged while on scroll cooldown before snapping back
+    // (kept tiny so it clearly doesn't feel scrollable).
+    private const float CooldownPeekFraction = 0.06f;
+
+    // Time of the last reel advance, for the scroll cooldown.
+    private float lastAdvanceTime = -999f;
+
+    // True while the forced wait between scrolls is in effect (never during overdrive).
+    private bool ScrollOnCooldown =>
+        scrollCooldown > 0f
+        && !OverdriveController.IsActive
+        && (Time.unscaledTime - lastAdvanceTime) < scrollCooldown;
 
     private RectTransform rectTransform;
     private Canvas canvas;
@@ -119,6 +136,9 @@ public class ReelFeedController : MonoBehaviour,
     // The single full-screen special overlays (children of the feed), toggled on/off.
     private GameObject overdriveOverlayInstance;
     private GameObject despairOverlayInstance;
+
+    // While true, the feed reuses one loaded reel (overdrive) instead of recycling.
+    private bool overdriveReelMode;
 
     // Special-reel insertion bookkeeping.
     private int reelsSpawned;
@@ -322,6 +342,15 @@ public class ReelFeedController : MonoBehaviour,
             offset = 0f;
         }
 
+        // Forced wait between scrolls: cap the drag to a tiny peek so the reel barely
+        // moves and never advances - it shouldn't feel like you could scroll.
+        if (ScrollOnCooldown)
+        {
+            offset = Mathf.Min(offset, height * CooldownPeekFraction);
+            LayoutReels();
+            return;
+        }
+
         // Handle fast multi-reel swipes without releasing: recycle as we cross each screen.
         while (offset >= height)
         {
@@ -339,8 +368,9 @@ public class ReelFeedController : MonoBehaviour,
     {
         dragging = false;
 
-        bool advance = offset > ViewportHeight * advanceThreshold
-                       || lastDragVelocity > flickVelocity;
+        bool advance = (offset > ViewportHeight * advanceThreshold
+                        || lastDragVelocity > flickVelocity)
+                       && !ScrollOnCooldown; // forced wait between scrolls
         targetOffset = advance ? ViewportHeight : 0f;
 
         // Notify immediately on commit, so scroll-reactive effects don't wait for
@@ -420,6 +450,20 @@ public class ReelFeedController : MonoBehaviour,
             return;
         }
 
+        // Start the scroll cooldown from each actual advance.
+        lastAdvanceTime = Time.unscaledTime;
+
+        if (overdriveReelMode)
+        {
+            // Overdrive reuses one loaded reel: rotate the top to the bottom instead
+            // of destroying/recreating, so fast scrolling never reloads a video.
+            RectTransform reused = reels[0];
+            reels.RemoveAt(0);
+            reels.Add(reused);
+            UpdateCurrentAudio();
+            return;
+        }
+
         RectTransform top = reels[0];
         reels.RemoveAt(0);
         Destroy(top.gameObject);
@@ -428,6 +472,48 @@ public class ReelFeedController : MonoBehaviour,
 
         // The old top (which was playing) is gone; hand audio to the new top.
         UpdateCurrentAudio();
+    }
+
+    // Overdrive: show one random video from the pool on every reel and reuse it,
+    // so the frantic fast scrolling never reloads a video (no white on slow phones).
+    private void EnterOverdriveReelMode()
+    {
+        overdriveReelMode = true;
+        if (posts == null || posts.Length == 0)
+        {
+            return;
+        }
+
+        ReelPost post = posts[Random.Range(0, posts.Length)];
+        for (int i = 0; i < reels.Count; i++)
+        {
+            ApplyPost(reels[i].gameObject, post);
+            MarkReelSpecial(reels[i].gameObject, ReelSpecial.None);
+        }
+        UpdateCurrentAudio();
+    }
+
+    // Leaving overdrive: back to the shuffled feed. Give the off-screen reels fresh
+    // posts (prepared ahead); the visible top reel is replaced by the normal recycle
+    // on the next scroll.
+    private void ExitOverdriveReelMode()
+    {
+        overdriveReelMode = false;
+
+        // Start the next golden reel's grace/spacing count from here - the end of
+        // the golden reel state - so overdriveMinReelsBetween is measured from after
+        // the overdrive scrolls complete, not from when the golden reel first spawned.
+        reelsSinceOverdrive = 0;
+
+        if (posts == null || posts.Length == 0)
+        {
+            return;
+        }
+
+        for (int i = 1; i < reels.Count; i++)
+        {
+            ApplyPost(reels[i].gameObject, posts[PickNextPostIndex()]);
+        }
     }
 
     // Ensures only the current top reel plays audio. Called when the top changes.
@@ -533,21 +619,39 @@ public class ReelFeedController : MonoBehaviour,
                 MarkReelSpecial(reel, ReelSpecial.None);
                 return;
             }
-            int index;
-            switch (order)
-            {
-                case FeedOrder.WeightedRandom:
-                    index = PickWeightedIndex();
-                    break;
-                case FeedOrder.Shuffled:
-                    index = PickShuffledIndex();
-                    break;
-                default:
-                    index = nextPostIndex++ % posts.Length;
-                    break;
-            }
-            lastPostIndex = index;
-            post = posts[index];
+            post = posts[PickNextPostIndex()];
+        }
+
+        ApplyPost(reel, post);
+        MarkReelSpecial(reel, special);
+    }
+
+    // Picks the next normal post index per the Order mode, updating lastPostIndex.
+    private int PickNextPostIndex()
+    {
+        int index;
+        switch (order)
+        {
+            case FeedOrder.WeightedRandom:
+                index = PickWeightedIndex();
+                break;
+            case FeedOrder.Shuffled:
+                index = PickShuffledIndex();
+                break;
+            default:
+                index = nextPostIndex++ % posts.Length;
+                break;
+        }
+        lastPostIndex = index;
+        return index;
+    }
+
+    // Pushes a post's video + text content onto a reel.
+    private void ApplyPost(GameObject reel, ReelPost post)
+    {
+        if (post == null)
+        {
+            return;
         }
 
         ReelVideoBackground video = reel.GetComponentInChildren<ReelVideoBackground>(true);
@@ -561,8 +665,6 @@ public class ReelFeedController : MonoBehaviour,
         {
             content.SetContent(post.username, post.description, post.audioName, post.audio);
         }
-
-        MarkReelSpecial(reel, special);
     }
 
     // Decides whether this freshly spawned reel should be the overdrive reel:
@@ -714,9 +816,10 @@ public class ReelFeedController : MonoBehaviour,
         }
     }
 
-    // Pauses the background theme while a special reel (holy/despair) is current so
-    // only its own sound plays; resumes it on normal reels. During overdrive the
-    // OverdriveController owns the music, so leave it alone.
+    // Fades the background music out while a special reel (holy/despair) is current
+    // so only its own sound plays, and fades it back in on normal reels. The music
+    // keeps playing the whole time. During overdrive the OverdriveController owns
+    // the music, so leave it alone.
     private void RefreshBackgroundMusic(RectTransform top)
     {
         if (musicPlayer == null || OverdriveController.IsActive)
@@ -724,19 +827,23 @@ public class ReelFeedController : MonoBehaviour,
             return;
         }
 
-        if (ReelIsSpecial(top))
-        {
-            musicPlayer.Pause();
-        }
-        else
-        {
-            musicPlayer.Resume();
-        }
+        musicPlayer.SetDucked(ReelIsSpecial(top));
     }
 
     // Re-evaluate the overlay + prompt when overdrive begins/ends (not only on reel change).
     private void OnOverdriveChanged()
     {
+        // Switch the feed in/out of the single-reused-reel overdrive mode.
+        bool active = OverdriveController.IsActive;
+        if (active && !overdriveReelMode)
+        {
+            EnterOverdriveReelMode();
+        }
+        else if (!active && overdriveReelMode)
+        {
+            ExitOverdriveReelMode();
+        }
+
         RectTransform top = reels.Count > 0 ? reels[0] : null;
         RefreshOverdriveOverlay(top);
         RefreshGoldenPrompt(top);

@@ -34,11 +34,9 @@ public class DespairController : MonoBehaviour
         }
         if (sfxSource == null)
         {
-            sfxSource = GetComponent<AudioSource>();
-            if (sfxSource == null)
-            {
-                sfxSource = gameObject.AddComponent<AudioSource>();
-            }
+            // Dedicated source - never GetComponent, or we'd grab (and Stop) the
+            // MusicPlayer's AudioSource when it shares this GameObject.
+            sfxSource = gameObject.AddComponent<AudioSource>();
         }
         sfxSource.playOnAwake = false;
         sfxSource.loop = false; // play once, never loop

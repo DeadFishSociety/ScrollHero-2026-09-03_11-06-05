@@ -119,12 +119,10 @@ public class LikeCombo : MonoBehaviour
         }
         if (sfxSource == null)
         {
-            sfxSource = GetComponent<AudioSource>();
-            if (sfxSource == null)
-            {
-                sfxSource = gameObject.AddComponent<AudioSource>();
-                sfxSource.playOnAwake = false;
-            }
+            // Dedicated source - never GetComponent, or we'd change the pitch of a
+            // MusicPlayer's AudioSource that shares this GameObject.
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.playOnAwake = false;
         }
     }
 

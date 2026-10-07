@@ -22,10 +22,8 @@ public class FeedAudio : MonoBehaviour
         feed = GetComponent<ReelFeedController>();
         if (source == null)
         {
-            source = GetComponent<AudioSource>();
-        }
-        if (source == null)
-        {
+            // Dedicated source - never GetComponent, or we'd share (and duck) a
+            // MusicPlayer's AudioSource that lives on this GameObject.
             source = gameObject.AddComponent<AudioSource>();
         }
         source.playOnAwake = false;
