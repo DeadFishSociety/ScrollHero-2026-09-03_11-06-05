@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 827794575809067519}
   - component: {fileID: 1358200216380806568}
   - component: {fileID: 8933592836910769691}
-  - component: {fileID: 3876120536365976079}
+  - component: {fileID: 5202786604428254821}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3876120536365976079
+--- !u!114 &5202786604428254821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,19 +85,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 4515231917796619433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0382f65335df34ec8acf89c850ea5646, type: 3}
+  m_Script: {fileID: 11500000, guid: 281590f1c2da04d4c9f24cdaea402bcb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LivesDisplay
-  lifeSprites:
-  - {fileID: 427094971680629321, guid: 09a33d04866154a88badee78dfa06ff3, type: 3}
-  - {fileID: -169956337550097882, guid: 6733762cdd7364ca598c0796c6e0dc7d, type: 3}
-  - {fileID: 8204030942014730030, guid: 4565ce26253ae4e63b18f1d4dcf13d4d, type: 3}
-  - {fileID: 427094971680629321, guid: 09a33d04866154a88badee78dfa06ff3, type: 3}
-  damageSprite: {fileID: 6520206214997268272, guid: 2a72f56369fe24cd3914f94daf30e833, type: 3}
-  damageFlashDuration: 0.3
-  onLifeLost:
-    m_PersistentCalls:
-      m_Calls: []
+  m_EditorClassIdentifier: Assembly-CSharp::TopUIStateAnimator
+  defaultFps: 12
+  useUnscaledTime: 1
+  lifeLoops:
+  - frames:
+    - {fileID: -462604943387913661, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: -4442230032716815906, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: 3943639266242771450, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: 1350886311388104522, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: -7453696815418707861, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    fps: 0
+  - frames:
+    - {fileID: -462604943387913661, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: -4442230032716815906, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: 3943639266242771450, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: 1350886311388104522, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    - {fileID: -7453696815418707861, guid: 227147eb0b8454aa3afeb0e9771e23e2, type: 3}
+    fps: 0
+  - frames:
+    - {fileID: -920766531366357494, guid: f2a77e863436247c4b89967a7d6516e2, type: 3}
+    - {fileID: -8819611770415409204, guid: f2a77e863436247c4b89967a7d6516e2, type: 3}
+    - {fileID: 4516846207488523624, guid: f2a77e863436247c4b89967a7d6516e2, type: 3}
+    - {fileID: -101299816619385925, guid: f2a77e863436247c4b89967a7d6516e2, type: 3}
+    - {fileID: 7079378995854470033, guid: f2a77e863436247c4b89967a7d6516e2, type: 3}
+    - {fileID: 5423150739839755445, guid: f2a77e863436247c4b89967a7d6516e2, type: 3}
+    fps: 0
+  - frames:
+    - {fileID: -834076457829866293, guid: 6652a8fd3e3d5409c8501de536f8a24f, type: 3}
+    - {fileID: -1742506142050326871, guid: 6652a8fd3e3d5409c8501de536f8a24f, type: 3}
+    - {fileID: -3286127803486966719, guid: 6652a8fd3e3d5409c8501de536f8a24f, type: 3}
+    - {fileID: -25206091745521955, guid: 6652a8fd3e3d5409c8501de536f8a24f, type: 3}
+    - {fileID: 1428308548139974626, guid: 6652a8fd3e3d5409c8501de536f8a24f, type: 3}
+    fps: 0
+  lifeTransitions:
+  - frames: []
+    fps: 0
+  - frames:
+    - {fileID: 7311642725990330505, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    - {fileID: -7027931164431473268, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    - {fileID: -8843886739634279153, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    - {fileID: -93865133943515896, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    - {fileID: 372702134474669461, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    - {fileID: -7848276770631013865, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    - {fileID: -531712742797812834, guid: 5562bd16762024b45b573bf2c9a347cb, type: 3}
+    fps: 0
+  - frames: []
+    fps: 0
+  - frames:
+    - {fileID: 1582399734284747848, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    - {fileID: 2275643859900541427, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    - {fileID: 8886869321273253190, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    - {fileID: 6446139698926707408, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    - {fileID: 5254980384225616354, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    - {fileID: -7734930255900595779, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    - {fileID: -2452210500571681076, guid: d72ee219738fa433a900c7bb40a726e3, type: 3}
+    fps: 0
 --- !u!1 &4879519528601988142
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.48888886, y: 0.66666675}
   m_AnchorMax: {x: 0.975, y: 0.8833333}
-  m_AnchoredPosition: {x: -0.16999817, y: 1.1800003}
+  m_AnchoredPosition: {x: -0.17001343, y: 1.1799927}
   m_SizeDelta: {x: -24.3461, y: -21.834198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5801064685429708605

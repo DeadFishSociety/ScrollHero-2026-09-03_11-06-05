@@ -819,7 +819,7 @@ MonoBehaviour:
   feed: {fileID: 398602198}
   activationThreshold: 2
   maxCombo: 3
-  comboLabel: {fileID: 0}
+  comboLabel: {fileID: 748210197}
   labelFormat: '{0}x'
   popDuration: 0.25
   popOvershoot: 2
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd3e353e7ab4bb1aefdd7fbb8c1844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  scoreLabel: {fileID: 0}
+  scoreLabel: {fileID: 563742366}
   labelFormat: 'Score: {0}'
   score: 0
 --- !u!114 &398602211
@@ -1017,10 +1017,32 @@ MonoBehaviour:
   amplitude: 18
   frequency: 22
   useUnscaledTime: 1
+--- !u!114 &563742366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3136000401657780251, guid: 283a9f072083a6b40b8eff67c56fb8ac, type: 3}
+  m_PrefabInstance: {fileID: 1864697114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &710933680 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8660471759133945848, guid: 3c5b69bc5d49e4c9dae7f11fb1c434fc, type: 3}
   m_PrefabInstance: {fileID: 7463150490963272475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &748210197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3658535095683484747, guid: 283a9f072083a6b40b8eff67c56fb8ac, type: 3}
+  m_PrefabInstance: {fileID: 1864697114}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
