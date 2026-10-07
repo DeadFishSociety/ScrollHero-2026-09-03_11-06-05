@@ -37,6 +37,13 @@ public class ScrollOverlayAnimation : MonoBehaviour
     [Tooltip("Size of that area as a fraction of the screen. Larger = more spread. (0 = always dead centre.)")]
     [SerializeField] private Vector2 areaSize = new Vector2(0.4f, 0.4f);
 
+    [Header("Rising particles")]
+    [Tooltip("Particle emitter that sends a flourish up to the dopamine bar each time the overlay plays. Leave empty for none.")]
+    [SerializeField] private RisingParticleEmitter riseParticles;
+
+    [Tooltip("Empty the overlay particles rise to (e.g. one placed over the dopamine bar). Leave empty to use the emitter's own destination.")]
+    [SerializeField] private Transform riseDestination;
+
     [Header("Overlay")]
     [Tooltip("Parent for the spawned animation. Leave empty to use the canvas so it draws over everything.")]
     [SerializeField] private RectTransform overlayParent;
@@ -45,6 +52,11 @@ public class ScrollOverlayAnimation : MonoBehaviour
     [SerializeField] private bool playOnStart = false;
 
     private ReelFeedController feed;
+
+    // Camera the overlay's canvas renders with (null for Screen Space - Overlay),
+    // used to turn the spawned animation's position into a screen point for the
+    // particle emitter - so particles start exactly where the animation played.
+    private Camera overlayCamera;
 
     void Awake()
     {
@@ -58,6 +70,11 @@ public class ScrollOverlayAnimation : MonoBehaviour
                 overlayParent = canvas.transform as RectTransform;
             }
         }
+
+        Canvas overlayCanvas = overlayParent != null ? overlayParent.GetComponentInParent<Canvas>() : null;
+        overlayCamera = (overlayCanvas != null && overlayCanvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            ? overlayCanvas.worldCamera
+            : null;
 
         if (audioSource == null)
         {
@@ -120,6 +137,14 @@ public class ScrollOverlayAnimation : MonoBehaviour
         if (sound != null && audioSource != null)
         {
             audioSource.PlayOneShot(sound);
+        }
+
+        // Send particles rising from where the overlay appeared (a random spot) up
+        // to the bar. The spawn point is this animation's screen position.
+        if (riseParticles != null)
+        {
+            Vector2 spawnScreen = RectTransformUtility.WorldToScreenPoint(overlayCamera, rt.position);
+            riseParticles.EmitFromScreen(spawnScreen, riseDestination);
         }
 
         StartCoroutine(Animate(go, img));
