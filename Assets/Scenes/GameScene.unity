@@ -658,12 +658,14 @@ MonoBehaviour:
   reelsFormat: 'Reels: {0}'
   timeFormat: 'Time: {0}'
   highScoreFormat: 'Best: {0}'
-  gameOverSound: {fileID: 0}
+  gameOverSound: {fileID: 8300000, guid: ab25e6d7f32cc41089dc5213c53bdade, type: 3}
   gameOverVolume: 1
-  sfxSource: {fileID: 0}
+  sfxSource: {fileID: 398602208}
   pauseOnGameOver: 1
+  stopMusicOnGameOver: 1
   dopamineManager: {fileID: 0}
   feed: {fileID: 0}
+  musicPlayer: {fileID: 0}
 --- !u!114 &398602206
 MonoBehaviour:
   m_ObjectHideFlags: 0
