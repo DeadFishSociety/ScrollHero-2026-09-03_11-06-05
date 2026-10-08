@@ -53,7 +53,7 @@ public class GameOverController : MonoBehaviour
     [SerializeField] private string highScoreFormat = "Best: {0}";
 
     [Header("Sound")]
-    [Tooltip("Played once when the game-over overlay appears. Layers over the music (the music keeps playing). Leave empty for none.")]
+    [Tooltip("Played once when the game-over overlay appears, through its own source (so stopping the music doesn't cut it). Leave empty for none.")]
     [SerializeField] private AudioClip gameOverSound;
 
     [Range(0f, 1f)]
@@ -66,9 +66,13 @@ public class GameOverController : MonoBehaviour
     [Tooltip("Freeze the game (Time.timeScale = 0) while the overlay is up.")]
     [SerializeField] private bool pauseOnGameOver = true;
 
+    [Tooltip("Stop the background music when the game ends.")]
+    [SerializeField] private bool stopMusicOnGameOver = true;
+
     [Header("References (auto-found if empty)")]
     [SerializeField] private DopamineManager dopamineManager;
     [SerializeField] private ReelFeedController feed;
+    [SerializeField] private MusicPlayer musicPlayer;
 
     private int reelsScrolled;
     private float startTime;
@@ -83,6 +87,10 @@ public class GameOverController : MonoBehaviour
         if (feed == null)
         {
             feed = FindFirstObjectByType<ReelFeedController>();
+        }
+        if (musicPlayer == null)
+        {
+            musicPlayer = FindFirstObjectByType<MusicPlayer>();
         }
 
         if (overlayRoot != null)
@@ -189,6 +197,8 @@ public class GameOverController : MonoBehaviour
         // paused feed (piling up dopamine and frozen scroll animations).
         if (feed != null)
         {
+            // Silence the current reel (video track + custom clip) before disabling.
+            feed.SetTopReelAudio(false);
             feed.enabled = false;
         }
 
@@ -197,7 +207,13 @@ public class GameOverController : MonoBehaviour
             overlayRoot.SetActive(true);
         }
 
-        // Game-over sting, layered over the music (which keeps playing).
+        // Shut the music down so the game-over sting plays into silence.
+        if (stopMusicOnGameOver && musicPlayer != null)
+        {
+            musicPlayer.Stop();
+        }
+
+        // Game-over sting, through its own source (unaffected by the music stop).
         if (gameOverSound != null && sfxSource != null)
         {
             sfxSource.PlayOneShot(gameOverSound, gameOverVolume);

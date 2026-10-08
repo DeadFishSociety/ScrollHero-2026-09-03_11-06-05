@@ -51,6 +51,13 @@ public class LikeCombo : MonoBehaviour
     [Tooltip("Playback speed of the spritesheet animation, in frames per second.")]
     [SerializeField] private float comboAnimationFps = 24f;
 
+    [Header("Rising particles")]
+    [Tooltip("Particle emitter that sends a flourish up to the dopamine bar each time the combo triggers. Leave empty for none.")]
+    [SerializeField] private RisingParticleEmitter riseParticles;
+
+    [Tooltip("Empty the combo particles rise to (e.g. one placed over the dopamine bar). Leave empty to use the emitter's own destination.")]
+    [SerializeField] private Transform riseDestination;
+
     [Header("Sound")]
     [Tooltip("Sound played each time the combo triggers. Leave empty for none.")]
     [SerializeField] private AudioClip comboSound;
@@ -119,12 +126,10 @@ public class LikeCombo : MonoBehaviour
         }
         if (sfxSource == null)
         {
-            sfxSource = GetComponent<AudioSource>();
-            if (sfxSource == null)
-            {
-                sfxSource = gameObject.AddComponent<AudioSource>();
-                sfxSource.playOnAwake = false;
-            }
+            // Dedicated source - never GetComponent, or we'd change the pitch of a
+            // MusicPlayer's AudioSource that shares this GameObject.
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.playOnAwake = false;
         }
     }
 
@@ -227,7 +232,34 @@ public class LikeCombo : MonoBehaviour
             animRoutine = StartCoroutine(PlayAnimation());
         }
 
+        EmitRiseParticles();
         PlaySound();
+    }
+
+    // Sends a burst of particles up to the dopamine bar from the combo visual (the
+    // animation image if present, otherwise the label).
+    private void EmitRiseParticles()
+    {
+        if (riseParticles == null)
+        {
+            return;
+        }
+
+        RectTransform source = null;
+        if (comboAnimationImage != null)
+        {
+            source = comboAnimationImage.rectTransform;
+        }
+        else if (comboLabel != null)
+        {
+            source = comboLabel.rectTransform;
+        }
+        if (source == null)
+        {
+            source = transform as RectTransform;
+        }
+
+        riseParticles.EmitFrom(source, riseDestination);
     }
 
     // Plays the combo sound, pitched up by how far the streak is past activation.

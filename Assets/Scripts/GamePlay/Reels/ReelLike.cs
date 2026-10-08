@@ -69,6 +69,13 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
     [Tooltip("Playback speed of the spritesheet animation, in frames per second.")]
     [SerializeField] private float likeAnimationFps = 24f;
 
+    [Header("Rising particles")]
+    [Tooltip("Particle emitter that sends a flourish up to the dopamine bar on like. Leave empty to use the scene's RisingParticleEmitter automatically (reels are spawned at runtime, so a prefab can't reference the scene one directly).")]
+    [SerializeField] private RisingParticleEmitter likeParticles;
+
+    [Tooltip("Empty the like particles rise to. Leave empty to use the emitter's own Destination (set that on the RisingParticleEmitter).")]
+    [SerializeField] private Transform likeParticleDestination;
+
     [Header("Sound")]
     [Tooltip("Sound played on like. Leave empty for none.")]
     [SerializeField] private AudioClip likeSound;
@@ -138,6 +145,13 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
+
+        // Overdrive is about scrolling, not liking - no likes during it.
+        if (OverdriveController.IsActive)
+        {
+            return;
+        }
+
         liked = true;
 
         if (likeButton != null)
@@ -174,7 +188,30 @@ public class ReelLike : MonoBehaviour, IPointerClickHandler
         {
             StartCoroutine(PlayAnimation());
         }
+        EmitLikeParticles(screenPosition);
         PlaySound();
+    }
+
+    // Sends a burst of particles rising to the dopamine bar from the like animation
+    // (or the tap position if there's no animation image).
+    private void EmitLikeParticles(Vector2 screenPosition)
+    {
+        // Reels spawn at runtime, so the prefab can't hold a scene reference - fall
+        // back to the scene's primary emitter when none is wired.
+        RisingParticleEmitter emitter = likeParticles != null ? likeParticles : RisingParticleEmitter.Primary;
+        if (emitter == null)
+        {
+            return;
+        }
+
+        if (likeAnimationImage != null)
+        {
+            emitter.EmitFrom(likeAnimationImage.rectTransform, likeParticleDestination);
+        }
+        else
+        {
+            emitter.EmitFromScreen(screenPosition, likeParticleDestination);
+        }
     }
 
     // Emit hearts from the heart icon, and also from where the user tapped (the

@@ -237,10 +237,10 @@ MonoBehaviour:
   heartFill: {fileID: 4264411465040890189}
   particleSpawner: {fileID: 5335243408833517920}
   progressLabel: {fileID: 4831112106398016504}
-  growPerTap: 0.25
+  growPerTap: 0.2
   growPerTapAtMaxDifficulty: 0.1
   shrinkPerSecond: 0.2
-  shrinkPerSecondAtMaxDifficulty: 0.15
+  shrinkPerSecondAtMaxDifficulty: 0.2
   startFill: 0
   punchAmount: 0.015
   punchDecay: 1

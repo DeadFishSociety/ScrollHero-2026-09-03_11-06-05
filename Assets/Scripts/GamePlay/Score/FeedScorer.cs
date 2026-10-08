@@ -39,6 +39,10 @@ public class FeedScorer : MonoBehaviour
     [Tooltip("Points awarded when a reel is liked.")]
     [SerializeField] private int likeScore = 10;
 
+    [Header("Overdrive")]
+    [Tooltip("Points awarded per scroll while in overdrive mode - a separate overdrive scroll score. Awarded as-is (not run through the combo/overdrive multiplier).")]
+    [SerializeField] private int overdriveScrollScore = 100;
+
     [Header("Minigames")]
     [Tooltip("Points per minigame, keyed by prefab. A minigame not listed here awards nothing.")]
     [SerializeField] private MinigameScore[] minigameScores;
@@ -87,6 +91,13 @@ public class FeedScorer : MonoBehaviour
     // Fires once per reel advanced (including each reel crossed on a fast flick).
     private void OnReelSwiped()
     {
+        // In overdrive the mode is all about scrolling: award the dedicated overdrive
+        // scroll score directly (its own value, no extra multiplier).
+        if (OverdriveController.IsActive)
+        {
+            AddScore(overdriveScrollScore);
+            return;
+        }
         Award(swipeScore);
     }
 
@@ -137,6 +148,17 @@ public class FeedScorer : MonoBehaviour
         if (!Mathf.Approximately(multiplier, 1f))
         {
             amount = Mathf.RoundToInt(amount * multiplier);
+        }
+
+        AddScore(amount);
+    }
+
+    // Adds points straight to the ScoreManager (no multiplier).
+    private void AddScore(int amount)
+    {
+        if (amount == 0)
+        {
+            return;
         }
 
         ScoreManager target = scoreManager != null ? scoreManager : ScoreManager.Instance;

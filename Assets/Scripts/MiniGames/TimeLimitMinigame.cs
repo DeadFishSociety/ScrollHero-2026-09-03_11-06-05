@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,12 +35,20 @@ public class TimeLimitMinigame : MinigameBase
     // Cached list of every button, quit + dismiss.
     private readonly List<Button> allButtons = new List<Button>();
 
+    private void Awake()
+    {
+        // Hide the buttons up front (before the overlay even animates in) so they
+        // never flash in their authored, un-shuffled positions. They are revealed
+        // by StartGame once the layout has settled and the shuffle is applied.
+        CollectButtons();
+        SetButtonsVisible(false);
+    }
+
     public override void StartGame(MinigameContext context)
     {
         CollectButtons();
         WireListeners();
-        RandomiseGreys();
-        ShuffleOrder();
+        SetButtonsVisible(false);
 
         if (audioSource == null)
         {
@@ -50,6 +59,34 @@ public class TimeLimitMinigame : MinigameBase
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         audioSource.playOnAwake = false;
+
+        // Wait for the layout to finish before tinting, shuffling and showing the
+        // buttons, so they land in their final slots first.
+        StartCoroutine(SetUpAndRevealButtons());
+    }
+
+    // Lets the UI layout (SafeArea fitters, the overlay's intro, any layout
+    // groups) settle for a frame, then randomises and reveals the buttons. Uses a
+    // frame wait (not a timed one) so it works even while the game is paused.
+    private IEnumerator SetUpAndRevealButtons()
+    {
+        Canvas.ForceUpdateCanvases();
+        yield return null;
+
+        RandomiseGreys();
+        ShuffleOrder();
+        SetButtonsVisible(true);
+    }
+
+    private void SetButtonsVisible(bool visible)
+    {
+        foreach (Button b in allButtons)
+        {
+            if (b != null)
+            {
+                b.gameObject.SetActive(visible);
+            }
+        }
     }
 
     // --- Setup ---------------------------------------------------------------
